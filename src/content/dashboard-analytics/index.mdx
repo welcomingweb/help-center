@@ -1,0 +1,49 @@
+---
+title: "Dashboard & Analytics"
+description: "Track accessibility performance, scan results, and widget usage insights across your sites."
+---
+
+import { Cards } from 'nextra/components'
+import { ChartBarIcon, EyeIcon, ClipboardDocumentIcon, RectangleStackIcon } from '@heroicons/react/24/outline'
+
+# Dashboard & Analytics
+
+<div className="mt-6 space-y-4">
+
+Monitor and interpret your accessibility data using the tools below. This section helps you understand compliance progress, identify issues, and gain visibility into widget usage.
+
+<Cards>
+  <Cards.Card
+    title="Dashboard Overview"
+    icon={<RectangleStackIcon />}
+    href="/dashboard-analytics/dashboard-overview"
+  >
+    <p className="m-2 text-sm text-gray-700"> View site-level summaries including scan counts, average scores, issue counts, and account usage.</p>
+  </Cards.Card>
+
+  <Cards.Card
+    title="Scan History & Reports"
+    icon={<ClipboardDocumentIcon />}
+    href="/dashboard-analytics/scan-history-and-reports"
+  >
+    <p className="m-2 text-sm text-gray-700">Explore past scans, view reports, and understand your compliance timeline and site scores.</p>
+  </Cards.Card>
+
+  <Cards.Card
+    title="Interpreting Scan Results"
+    icon={<EyeIcon />}
+    href="/dashboard-analytics/interpreting-scan-results"
+  >
+    <p className="m-2 text-sm text-gray-700">Understand accessibility audit reports, issue severity, and score breakdowns for each scan session.</p>
+  </Cards.Card>
+
+  <Cards.Card
+    title="Widget Usage Insights"
+    icon={<ChartBarIcon />}
+    href="/dashboard-analytics/widget-usage-insights"
+  >
+    <p className="m-2 text-sm text-gray-700">Analyze widget usage: device types, countries, daily active users, and interaction patterns.</p>
+  </Cards.Card>
+</Cards>
+
+</div>

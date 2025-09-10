@@ -1,0 +1,79 @@
+---
+title: "Widget Configuration"
+description: "Customize your accessibility widget’s settings and appearance."
+---
+
+import { Callout } from 'nextra/components'
+import Link from 'next/link'
+import { Cards } from 'nextra/components'
+ 
+# Widget Configuration
+
+Your accessibility widget is your visitors’ gateway to a tailored, inclusive experience. In this section you’ll learn how to:
+
+- **Basic Configuration** — Set your widget name, default language, and translation options  
+- **Appearance Settings** — Choose colors, iconography, size and on-page placement  
+- **Advanced Settings** — Enable custom triggers, behavior toggles, and your accessibility statement  
+
+<Cards>
+  <Cards.Card
+    title="Basic Configuration"
+    href="/widget-configuration/basic-configuration"
+  />
+  <Cards.Card
+    title="Appearance Settings"
+    href="/widget-configuration/appearance-settings"
+  />
+  <Cards.Card
+    title="Advanced Settings"
+    href="/widget-configuration/advanced-settings"
+  />
+</Cards>
+
+## General Widget Settings
+
+<Callout type="info">
+  Quick links:
+  <Link href="/integrations/html-embed">HTML Embed</Link> •
+  <Link href="/integrations/advanced-embedding-options">Advanced Embedding Options</Link>
+</Callout>
+
+### Basic Information
+
+- **Widget Name**  
+- **Default Language**
+
+## Appearance Settings
+
+- **Button Color Mode**  
+- **Primary / Secondary Color**  
+- **Gradient Direction**  
+- **Button Size**  
+- **Button Icon Type**
+
+## Advanced Settings
+
+- **Position Settings**  
+  - Desktop: Horizontal / Vertical / Offset X / Offset Y  
+  - Mobile:  Horizontal / Vertical / Offset X / Offset Y  
+- **Custom Trigger**  
+- **Widget Display Type** (Full, Mini, Nano, Headless)  
+- **Theme** (Light, Dark, Auto)  
+- **Accessibility Statement**  
+  - Show statement link  
+  - Open inline or new tab  
+  - Statement URL
+
+```html copy
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-theme="light"
+  data-language="en"
+  data-widget-display-type="FULL"
+  data-position="bottom-right"
+  data-button-color-mode="SOLID"
+  data-button-primary-color="#504CFF"
+  data-button-secondary-color="#A94CFF"
+  data-button-gradient-direction="TO_RIGHT"
+></script>

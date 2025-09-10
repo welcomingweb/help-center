@@ -1,0 +1,83 @@
+---
+title: "Color Contrast Best Practices"
+description: "Ensure text and UI elements meet WCAG contrast ratios for optimal readability."
+---
+
+import { Callout } from 'nextra/components'
+import { Table } from 'nextra/components'
+
+# Color Contrast
+
+Sufficient color contrast helps all users, especially those with low vision or color deficiencies, read and interact with your content.
+
+<Callout type="warning">
+Poor contrast can make text and UI elements invisible or difficult to distinguish.
+</Callout>
+
+## WCAG Contrast Requirements
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Level</Table.Th>
+      <Table.Th>Text Size</Table.Th>
+      <Table.Th>Minimum Contrast Ratio</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>AA</Table.Td>
+      <Table.Td>Normal text (< 18pt / 24px)</Table.Td>
+      <Table.Td>4.5:1</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>AA</Table.Td>
+      <Table.Td>Large text (≥ 18pt / 24px or bold ≥ 14pt / 18.66px)</Table.Td>
+      <Table.Td>3:1</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>AAA</Table.Td>
+      <Table.Td>Normal text</Table.Td>
+      <Table.Td>7:1</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>AAA</Table.Td>
+      <Table.Td>Large text</Table.Td>
+      <Table.Td>4.5:1</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Tips to Improve Contrast
+
+- **Choose accessible color pairs**  
+  Pick foreground and background colors that meet or exceed the ratios above.
+
+- **Use a contrast checker tool**  
+  Test your palettes during design and development to catch issues early.
+
+- **Adjust text weight and size**  
+  Increasing font weight or size can help meet contrast requirements.
+
+- **Avoid relying on color alone**  
+  Combine contrast with other cues (e.g. underline links, icons) to convey meaning.
+
+<Callout type="info">
+Remember: Even decorative graphics benefit from clear separation—ensure icons and controls stand out.
+</Callout>
+
+## Example: Before & After
+
+```html
+<!-- Poor: 2.5:1 -->
+<p style="color: #777777; background: #ffffff;">
+  This text fails contrast requirements.
+</p>
+
+<!-- Improved: 4.8:1 -->
+<p style="color: #333333; background: #ffffff;">
+  This text meets AA contrast standards.
+</p>
+```
+
+<Callout type="important"> Consistently review your color palette across your entire UI—small changes can have a big impact on readability! </Callout>

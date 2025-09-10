@@ -1,0 +1,167 @@
+---
+title: "JavaScript API"
+description: "Use the WelcomingWeb JavaScript API to programmatically control widget behavior—no API key needed."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { FeatureHighlight, CTA2 } from '@components/mdx/HelpUI'
+
+# JavaScript API
+
+<Callout type="info">
+Once the WelcomingWeb widget is embedded on your site, a global JavaScript API becomes available via <code>window.AccessibilityWidgetAPI</code>. No API key or authentication is required.
+</Callout>
+
+## Widget Installation
+
+To access the JavaScript API, simply embed the widget.
+
+### Basic Embed
+
+````html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+        data-widget-id="YOUR_WIDGET_ID"></script>
+````
+
+### Advanced Embed
+
+````html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-api-url="https://api.welcomingweb.com"
+  data-theme="light"
+  data-language="en"
+  data-widget-display-type="FULL"
+  data-desktop-horizontal-position="RIGHT"
+  data-desktop-vertical-position="LOWER"
+  data-desktop-offset-x="5"
+  data-desktop-offset-y="5"
+  data-button-color-mode="SOLID"
+  data-button-primary-color="#504CFF"
+  data-button-icon-type="WALKING">
+</script>
+````
+
+Once this script loads, the `window.AccessibilityWidgetAPI` object becomes globally available.
+
+---
+
+## Available Methods
+
+<Steps>
+### `openWidget()`
+Opens the accessibility widget.
+
+### `closeWidget()`
+Closes the widget popup.
+
+### `enableProfile(profileKey)`
+Activates a predefined accessibility profile.
+
+```js
+window.AccessibilityWidgetAPI.enableProfile('visually_impaired')
+```
+
+### `disableCurrentProfile()`
+Disables the currently active profile.
+
+### `enableFeature(key, mode?, options?)`
+Enables a specific feature.
+
+```js
+window.AccessibilityWidgetAPI.enableFeature("contrast", "invert", { brightness: 0.8 })
+```
+
+### `disableFeature(key)`
+Disables the specified feature.
+
+### `changeLanguage(langCode)`
+Changes widget language dynamically.
+
+```js
+window.AccessibilityWidgetAPI.changeLanguage('fr')
+```
+
+### `resetAllFeatures()`
+Resets all features to their default disabled state.
+
+### `resetFeatureEffects()`
+Removes all applied visual changes but keeps preferences in memory.
+
+### `reinitializeWidget()`
+Forcefully reloads the widget and configuration.
+
+### `destroy()`
+Completely removes the widget from the DOM and unregisters the global API.
+</Steps>
+
+---
+
+## Sample Usage
+
+```js
+window.AccessibilityWidgetAPI.enableFeature("custom_font", "dyslexia")
+window.AccessibilityWidgetAPI.disableFeature("custom_font")
+window.AccessibilityWidgetAPI.openWidget()
+window.AccessibilityWidgetAPI.changeLanguage("es")
+```
+
+---
+
+## Wait for Widget to Load
+
+```js
+document.addEventListener("a11yWidgetReady", () => {
+  window.AccessibilityWidgetAPI.openWidget()
+})
+```
+
+---
+
+## HTML Button Example
+
+````html
+<button onclick="window.AccessibilityWidgetAPI.enableFeature('contrast', 'invert')">
+  Enable Contrast
+</button>
+
+<button onclick="window.AccessibilityWidgetAPI.disableFeature('contrast')">
+  Disable Contrast
+</button>
+````
+
+---
+
+## Supported Profile Keys
+
+- `blind`
+- `motor_impaired`
+- `color_blind`
+- `visually_impaired`
+- `seizure_epileptic`
+- `adhd`
+- `cognitive_learning`
+- `elderly`
+- `dyslexia`
+- `kids`
+
+---
+
+## Troubleshooting
+
+<Callout type="warning">
+If <code>window.AccessibilityWidgetAPI</code> is undefined, ensure the following:
+</Callout>
+
+- The script is embedded before any API call.
+- `data-widget-id` is valid and active.
+- You wait for the `a11yWidgetReady` event before calling methods.
+
+---
+
+<CTA2
+  title="Need Implementation Support?"
+  description="Our engineering team is here to help with advanced JavaScript integration."
+  buttonText="Contact Developer Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,106 @@
+---
+title: "Contrast Adjustment"
+description: "Enhance your site's readability using AI-driven contrast adjustments provided by WelcomingWeb."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { HotspotImage, CTA2 } from '@components/mdx/HelpUI'
+
+# Contrast Adjustment
+
+<Callout type="info">
+WelcomingWeb automatically optimizes contrast on your website, making your content easily readable for all visitors, including those with visual impairments.
+</Callout>
+
+## How AI-Powered Contrast Adjustment Works
+
+WelcomingWeb's contrast adjustment tool dynamically analyzes your website’s content and adjusts colors to ensure optimal readability and accessibility:
+
+- **Dynamic Adjustments:** Automatically analyzes text and background colors for insufficient contrast.
+- **Adaptive Colors:** Uses intelligent algorithms to adjust colors without compromising your site's branding.
+- **Real-Time Optimization:** Instantly adapts as your site's content changes.
+
+## Enabling Contrast Adjustment
+
+To activate the AI-powered contrast adjustment feature, follow these simple steps:
+
+<Steps>
+
+### Step 1: Log in to Your WelcomingWeb Dashboard
+
+- Navigate to your site’s accessibility settings.
+
+### Step 2: Select the Contrast Adjustment Feature
+
+- Enable the "Contrast Adjustment" toggle.
+- Save your changes.
+
+### Step 3: Test and Verify
+
+- Visit your website and confirm that the contrast levels have been optimized.
+
+</Steps>
+
+## Customizing Contrast Settings
+
+Advanced users can fine-tune settings:
+
+- **Contrast Modes:** Choose between "dark", "light", or "inverted" contrast modes.
+- **Color Thresholds:** Adjust minimum contrast ratio thresholds.
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-theme="auto"
+  data-button-color-mode="SOLID"
+  data-enable-contrast-adjustment="true">
+</script>
+```
+
+## Example of Contrast Adjustment
+
+<HotspotImage
+  src="/images/contrast-adjustment-demo.png"
+  hotspots={[
+    {
+      x: 30,
+      y: 50,
+      title: 'Before Adjustment',
+      description: 'Low contrast making the text hard to read.'
+    },
+    {
+      x: 70,
+      y: 50,
+      title: 'After Adjustment',
+      description: 'AI-optimized contrast greatly enhances readability.'
+    }
+  ]}
+/>
+
+## Benefits of Using AI Contrast Adjustment
+
+- **Improved Readability:** Ensures content clarity for users with low vision or color blindness.
+- **Compliance:** Helps meet accessibility standards such as WCAG 2.1 guidelines.
+- **User Engagement:** Reduces bounce rates and improves user experience.
+
+## Troubleshooting
+
+<Callout type="warning">
+If contrast adjustments aren't applying correctly:
+</Callout>
+
+- Check if the widget script is properly integrated.
+- Ensure no conflicting stylesheets are overriding adjustments.
+- Review console logs for any errors.
+
+## Need Further Assistance?
+
+Explore our other AI remediation tools or contact our team for personalized help.
+
+<CTA2
+  title="Need Expert Guidance?"
+  description="Schedule personalized support or a demo of our AI features."
+  buttonText="Schedule Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

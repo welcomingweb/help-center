@@ -1,0 +1,98 @@
+---
+title: "Interpreting Accessibility Metrics"
+description: "Understand and interpret your website’s accessibility metrics."
+---
+
+import { Callout } from 'nextra/components'
+import { Steps } from 'nextra/components'
+import { Table } from 'nextra/components'
+import { Tabs } from 'nextra/components'
+
+# Interpreting Accessibility Metrics
+
+Your dashboard provides clear, actionable metrics that help you gauge and improve your site’s accessibility. This guide walks you through each key metric and shows you how to prioritize your next steps.
+
+<Callout type="info">
+  Accessibility metrics range from 0–100, where higher scores indicate better compliance with accessibility standards.
+</Callout>
+
+## Key Metrics
+
+### Accessibility Score  
+A percentage that reflects overall compliance with accessibility best practices.  
+- **0–49**: Significant barriers—critical improvements needed.  
+- **50–89**: Moderate compliance—tackle high-impact issues first.  
+- **90–100**: Strong compliance—fine-tune minor improvements.
+
+### Critical Issues  
+The count of highest-priority violations that severely impact users with disabilities. Address these immediately.
+
+### Performance Score  
+While focused on speed and responsiveness, performance also affects users relying on assistive technologies. A fast, lean site enhances the accessibility experience.
+
+## Deep Dive: Metrics Breakdown
+
+<Tabs items={['Accessibility Score', 'Issue Severity', 'Performance Score']}>
+  <Tabs.Tab>
+    **Accessibility Score**  
+    Reflects combined results from all accessibility checks. Aim to keep this above **90%** for optimal compliance.
+  </Tabs.Tab>
+  <Tabs.Tab>
+    **Issue Severity**  
+    - **Critical**: Blocks content or functionality entirely.  
+    - **High**: Major barriers causing frustration.  
+    - **Medium**: Noticeable but less severe.  
+    - **Low**: Minor enhancements.
+  </Tabs.Tab>
+  <Tabs.Tab>
+    **Performance Score**  
+    Measures page load speed, resource efficiency, and responsiveness—key for users on assistive tools or slow connections.
+  </Tabs.Tab>
+</Tabs>
+
+## Prioritizing Your Work
+
+<Steps>
+### Step 1  
+Fix **Critical** issues to remove the biggest barriers first.
+
+### Step 2  
+Resolve **High**-severity issues to improve usability and compliance.
+
+### Step 3  
+Address **Medium** and **Low**-severity items to polish and perfect the experience.
+
+### Step 4  
+Re-run your scan and review score changes—iterate until you hit your target.
+</Steps>
+
+## Scan Frequency Recommendations
+
+For continuous improvement and timely catch of regressions, use the schedule below:
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Site Activity</Table.Th>
+      <Table.Th>Recommended Scan Interval</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>Frequent updates / high traffic</Table.Td>
+      <Table.Td>Weekly</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>Moderate updates</Table.Td>
+      <Table.Td>Bi-weekly</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>Stable content</Table.Td>
+      <Table.Td>Monthly</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+---
+
+By understanding and acting on these metrics, you’ll ensure your site remains accessible to every visitor. Keep scanning, keep improving!  

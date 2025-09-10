@@ -1,0 +1,77 @@
+---
+title: "Keyboard Accessibility Best Practices"
+description: "Ensure your site is fully operable via keyboard alone."
+---
+
+import { Callout } from 'nextra/components'
+import { Steps } from 'nextra/components'
+
+# Keyboard Accessibility
+
+All interactive elements must be reachable and usable with the keyboard. This ensures users who cannot operate a mouse—due to mobility impairments, screen readers, or other assistive technologies—can still navigate your site.
+
+<Callout type="important">
+Keyboard operability is a core requirement of WCAG and most accessibility regulations.
+</Callout>
+
+## Key Principles
+
+<Steps>
+### 1. Focus Order
+
+Ensure the tab order follows a logical sequence (usually left-to-right, top-to-bottom). Users should be able to predict which element receives focus next.
+
+### 2. Focus Visibility
+
+Visible focus indicators (outlines, borders, background highlights) must be present on all focusable elements.
+
+### 3. Keyboard Traps
+
+Avoid “trapping” focus in any component (e.g., custom widgets or modal dialogs). Provide a clear way to exit.
+
+### 4. All Actions via Keyboard
+
+Every mouse action (click, drag, hover) must have an equivalent keyboard action (Enter, Space, arrow keys, etc.).
+
+### 5. Skip Links
+
+Include a “Skip to main content” link as the first focusable item, allowing users to bypass repetitive navigation.
+
+</Steps>
+
+<Callout type="info">
+Test your site by tabbing through each page. If you lose focus or see no indicator, correct it immediately!
+</Callout>
+
+## Common Keyboard Patterns
+
+- **Links and Buttons**  
+  - Press **Tab** to focus  
+  - Press **Enter** or **Space** to activate  
+
+- **Form Controls**  
+  - **Tab** to move between controls  
+  - **Arrow keys** to select radio buttons, dropdowns, and sliders  
+
+- **Modal Dialogs**  
+  - Focus should move into the dialog when opened  
+  - **Esc** should close the dialog and return focus to the trigger  
+
+- **Custom Widgets**  
+  - Assign appropriate `role`, `tabindex`, and ARIA attributes  
+  - Implement keyboard handlers for all interactions  
+
+<Callout type="warning">
+Never remove the default focus outline without providing an equally visible replacement!
+</Callout>
+
+## Quick Checklist
+
+- Can you navigate every part of the page with Tab/Shift+Tab?  
+- Can you activate every control with Enter or Space?  
+- Do modal dialogs trap focus and restore it on close?  
+- Are all custom components labeled and keyboard-friendly?  
+
+<Callout type="important">
+Keyboard accessibility benefits everyone—power users, screen reader users, and those on small devices alike.
+</Callout>

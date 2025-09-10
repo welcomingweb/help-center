@@ -1,0 +1,50 @@
+---
+title: "Accessibility Best Practices"
+description: "A curated collection of essential accessibility principles for building inclusive websites and applications."
+---
+
+import { Cards } from 'nextra/components'
+import {
+  EyeDropperIcon,
+  EyeIcon,
+  CursorArrowRaysIcon,
+  CodeBracketIcon
+} from '@heroicons/react/24/outline'
+
+# Accessibility Best Practices
+
+This section includes practical guides and actionable recommendations to improve the accessibility of your digital content. These best practices support WCAG standards and help ensure an inclusive experience for all users.
+
+<Cards>
+  <Cards.Card
+    title="Alt Text Guidelines"
+    icon={<EyeIcon />}
+    href="/accessibility-best-practices/alt-text-guidelines"
+  >
+    <p className="m-2">Learn how to write descriptive, meaningful alt text for images to support screen reader users.</p>
+  </Cards.Card>
+
+  <Cards.Card
+    title="Color Contrast Best Practices"
+    icon={<EyeDropperIcon />}
+    href="/accessibility-best-practices/color-contrast"
+  >
+    <p className="m-2">Ensure sufficient contrast between text and background for readability in all conditions.</p>
+  </Cards.Card>
+
+  <Cards.Card
+    title="Keyboard Accessibility Best Practices"
+    icon={<CursorArrowRaysIcon />}
+    href="/accessibility-best-practices/keyboard-access"
+  >
+    <p className="m-2">Design interfaces that are fully usable without a mouse, using tab navigation and focus indicators.</p>
+  </Cards.Card>
+
+  <Cards.Card
+    title="Semantic HTML Best Practices"
+    icon={<CodeBracketIcon />}
+    href="/accessibility-best-practices/semantic-html"
+  >
+   <p className="m-2"> Use meaningful HTML elements to improve accessibility, structure, and assistive technology support.</p>
+  </Cards.Card>
+</Cards>

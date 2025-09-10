@@ -1,0 +1,77 @@
+---
+title: "Integrations Overview"
+description: "Embed the accessibility widget on any platform with our step-by-step guides."
+---
+
+import { Cards, Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Platform Integrations
+
+<Callout type="info">
+  Choose your platform below for tailored implementation instructions.
+</Callout>
+
+## Core Integration Methods
+
+### 1. Universal HTML Embed
+Works on any website with simple copy-paste:
+
+{`<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js" 
+  data-widget-id="YOUR_ID"
+  data-theme="auto">
+</script>`}
+
+### 2. Advanced JavaScript API
+For dynamic control:
+
+{`window.AccessibilityWidgetAPI?.enableFeature('contrast');`}
+
+## Platform-Specific Guides
+
+<Cards>
+  <Cards.Card
+    title="Google Tag Manager"
+    href="/integrations/gtm-integration"
+    description="Install the WelcomingWeb Accessibility Widget via the GTM Community Template Gallery"
+  />
+  <Cards.Card
+    title="WordPress"
+    href="/integrations/wordpress-integration"
+    description="Plugin installation or manual theme integration"
+  />
+  <Cards.Card
+    title="Shopify"
+    href="/integrations/shopify-integration"
+    description="Theme.liquid modification"
+  />
+  <Cards.Card
+    title="SPA Frameworks"
+    href="/integrations/spa-integration"
+    description="React, Angular, Vue implementations"
+  />
+  <Cards.Card
+  title="Wix"
+  href="/integrations/wix-integration"
+  description="Wix installation guide"
+/>
+
+<Cards.Card
+  title="Squarespace"
+  href="/integrations/squarespace-integration"
+  description="Squarespace installation guide"
+/>
+
+<Cards.Card
+  title="Webflow"
+  href="/integrations/webflow-integration"
+  description="Webflow installation guide"
+/>
+</Cards>
+ 
+ <br/>
+<CTA2 
+  title="Need Custom Integration Help?" 
+  buttonText="Contact Support"
+  buttonLink="/support"
+/>

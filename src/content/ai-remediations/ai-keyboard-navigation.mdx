@@ -1,0 +1,105 @@
+---
+title: "AI Keyboard Navigation"
+description: "Enhance keyboard navigation with WelcomingWeb's AI-driven intelligent navigation optimization."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { HotspotImage, CTA2 } from '@components/mdx/HelpUI'
+
+# AI Keyboard Navigation
+
+<Callout type="info">
+Welcomingweb's AI-powered keyboard navigation dynamically improves your website's keyboard usability, making content effortlessly accessible for keyboard-only users.
+</Callout>
+
+## How AI Keyboard Navigation Works
+
+AI Keyboard Navigation analyzes your site's structure and elements, enhancing navigation flow and accessibility for keyboard users:
+
+- **Dynamic Analysis:** AI identifies critical navigation paths automatically.
+- **Optimized Focus:** Ensures logical and intuitive tabbing order throughout the site.
+- **Real-Time Adjustment:** Continuously updates navigation paths as site content changes.
+
+## Activating AI Keyboard Navigation
+
+Follow these simple steps to activate:
+
+<Steps>
+
+### Step 1: Open Your Dashboard
+
+- Log into the WelcomingWeb admin panel.
+- Go to accessibility settings for your site.
+
+### Step 2: Enable Keyboard Navigation
+
+- Toggle the "AI Keyboard Navigation" feature on.
+- Save your configuration.
+
+### Step 3: Verify Navigation Improvements
+
+- Use keyboard (Tab key) navigation on your site to confirm improvements and logical navigation flow.
+
+</Steps>
+
+## Customizing Keyboard Navigation
+
+Advanced settings allow specific customization:
+
+- **Navigation Sequence:** Adjust AI-driven navigation prioritization.
+- **Manual Overrides:** Set specific navigation points or sequences manually.
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-ai-keyboard-navigation-enabled="true">
+</script>
+```
+
+## AI Keyboard Navigation Example
+
+<HotspotImage
+  src="/images/keyboard-navigation-demo.png"
+  hotspots={[
+    {
+      x: 25,
+      y: 50,
+      title: 'Before AI Optimization',
+      description: 'Keyboard navigation may follow an illogical path, confusing users.'
+    },
+    {
+      x: 75,
+      y: 50,
+      title: 'After AI Optimization',
+      description: 'AI-enhanced navigation ensures logical and user-friendly tabbing.'
+    }
+  ]}
+/>
+
+## Key Benefits
+
+- **Intuitive Experience:** Improves ease-of-use for keyboard-only users.
+- **Accessibility Compliance:** Helps meet standards like WCAG 2.1.
+- **Enhanced Engagement:** Reduces frustration and improves user satisfaction.
+
+## Troubleshooting Common Issues
+
+<Callout type="warning">
+If keyboard navigation enhancements are not working:
+</Callout>
+
+- Verify the integration script and configurations are correctly applied.
+- Check for JavaScript or CSS conflicts in the browser console.
+- Ensure dynamic elements are accessible for AI processing.
+
+## Need Further Support?
+
+Discover other AI-powered accessibility enhancements or get dedicated support from our team.
+
+<CTA2
+  title="Require More Assistance?"
+  description="Contact our support team or arrange a personalized demo."
+  buttonText="Get Help Now"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,118 @@
+---
+title: "Wix Integration"
+description: "Simple integration steps to embed the WelcomingWeb widget into your Wix website."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { GifPreview, CTA2 } from '@components/mdx/HelpUI'
+
+# Wix Integration Guide
+
+<Callout type="info">
+Integrate WelcomingWeb seamlessly into your Wix website without coding skills.
+</Callout>
+
+## Integration Steps
+
+<Steps>
+
+### Step 1: Log in to Wix Dashboard
+
+Log in to your Wix admin account at [wix.com](https://www.wix.com).
+
+### Step 2: Navigate to Site Settings
+
+From your site's dashboard:
+- Go to **Settings**.
+- Select **Advanced**.
+- Click on **Custom Code**.
+
+### Step 3: Add Custom Code
+
+Click on **Add Custom Code** and a new panel will open.
+
+### Step 4: Insert Embed Script
+
+From your WelcomingWeb dashboard, copy your unique widget embed code:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID">
+</script>
+```
+
+- Paste this script into the Wix custom code panel.
+- Set it to load on **All pages**.
+- Select **Body - end** from the dropdown to load just before the closing `</body>` tag.
+
+<GifPreview
+  src="/gifs/wix-embed.gif"
+  caption="Adding custom code to Wix"
+/>
+
+### Step 5: Save and Publish
+
+Click **Apply** to save your changes. Ensure your site is published to activate the widget.
+
+</Steps>
+
+## Customize Your Widget
+
+You can customize the widget appearance and behavior by adding additional attributes:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-theme="dark"
+  data-language="en"
+  data-button-color-mode="GRADIENT"
+  data-button-primary-color="#504CFF"
+  data-button-secondary-color="#A94CFF">
+</script>
+```
+
+## Widget Configuration Reference
+
+| Parameter                      | Description                                   | Default Value |
+|--------------------------------|-----------------------------------------------|---------------|
+| `data-theme`                   | Widget theme (`auto`, `light`, `dark`)        | `auto`        |
+| `data-language`                | Widget language (`en`, `es`, etc.)            | `en`          |
+| `data-button-color-mode`       | Button color style (`SOLID`, `GRADIENT`)      | `SOLID`       |
+| `data-button-primary-color`    | Primary button color (Hex)                    | `#504CFF`     |
+| `data-button-secondary-color`  | Secondary gradient color (Hex, for gradient)  | `#A94CFF`     |
+
+## Troubleshooting
+
+<Callout type="warning">
+Quick troubleshooting steps for common integration issues.
+</Callout>
+
+- **Widget not showing?** Ensure Wix publishes the site after adding the code.
+- **Widget conflicts?** Check for other custom scripts or plugins interfering.
+- **Styling issues?** Confirm widget settings and colors are properly configured.
+
+## Advanced JavaScript API
+
+Control widget behavior programmatically:
+
+```js
+// Open the widget
+window.AccessibilityWidgetAPI?.openWidget();
+
+// Enable "Visually Impaired" profile
+window.AccessibilityWidgetAPI?.enableProfile('visually_impaired');
+
+// Reset all features
+window.AccessibilityWidgetAPI?.resetAllFeatures();
+```
+
+## Additional Help
+
+For advanced setups, consult our [Developer Docs](/docs/developer-api) or contact our [Support Team](mailto:support@welcomingweb.com).
+
+<CTA2
+  title="Need Further Assistance?"
+  description="Schedule personalized support or join our next webinar session."
+  buttonText="Get Help Now"
+  buttonLink="https://welcomingweb.com/contact"
+/>

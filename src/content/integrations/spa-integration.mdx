@@ -1,0 +1,157 @@
+---
+title: "SPA Integration and Reinitialization"
+description: "Guide for integrating and dynamically reinitializing WelcomingWeb in Single-Page Applications (React, Angular, Vue)."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Single-Page Application (SPA) Integration
+
+<Callout type="info">
+Integrate and dynamically manage the WelcomingWeb widget within Single-Page Applications (React, Angular, Vue).
+</Callout>
+
+## Why Manual Reinitialization?
+
+Single-Page Applications (SPAs) dynamically load and unload content without full-page reloads. Therefore, the WelcomingWeb widget script might require manual reinitialization to reflect configuration changes or after significant route transitions.
+
+## Initial Integration Steps
+
+<Steps>
+
+### Step 1: Embed the Widget
+
+Add the widget script into your SPA root component or index file:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-theme="auto"
+  data-language="en">
+</script>
+```
+
+For React or Next.js, see the [React & Next.js Integration](/docs/react-nextjs-integration).
+
+### Step 2: Ensure Widget API Availability
+
+Check if the widget API (`window.AccessibilityWidgetAPI`) is loaded:
+
+```javascript
+if (typeof window.AccessibilityWidgetAPI !== 'undefined') {
+  // API is ready for use
+}
+```
+
+</Steps>
+
+## Handling Route Changes
+
+When users navigate within your SPA, you may need to reinitialize the widget to reflect changes in configuration or widget ID.
+
+### React Example (using `useEffect` and React Router)
+
+```jsx
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+function useWidgetReinitializer(newWidgetId) {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (window.AccessibilityWidgetAPI) {
+      // Change widget ID or configuration dynamically
+      document.querySelector('[data-widget-id]').setAttribute('data-widget-id', newWidgetId);
+
+      // Reinitialize widget
+      window.AccessibilityWidgetAPI.reinitializeWidget();
+    }
+  }, [location.pathname, newWidgetId]);
+}
+
+export default useWidgetReinitializer;
+```
+
+Use this hook in your SPA components:
+
+```jsx
+import useWidgetReinitializer from './hooks/useWidgetReinitializer';
+
+function PageComponent() {
+  useWidgetReinitializer('NEW_WIDGET_ID');
+
+  return (
+    <div>Your page content</div>
+  );
+}
+```
+
+### Angular Example (Router)
+
+In Angular, use router events to trigger reinitialization:
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd && window.AccessibilityWidgetAPI) {
+        document.querySelector('[data-widget-id]').setAttribute('data-widget-id', 'NEW_WIDGET_ID');
+        window.AccessibilityWidgetAPI.reinitializeWidget();
+      }
+    });
+  }
+}
+```
+
+### Vue Example (with Vue Router)
+
+In Vue applications, utilize router hooks:
+
+```javascript
+// In main.js or your primary router setup
+router.afterEach((to, from) => {
+  if (window.AccessibilityWidgetAPI) {
+    document.querySelector('[data-widget-id]').setAttribute('data-widget-id', 'NEW_WIDGET_ID');
+    window.AccessibilityWidgetAPI.reinitializeWidget();
+  }
+});
+```
+
+## API Reference
+
+| Method                             | Description                                |
+|------------------------------------|--------------------------------------------|
+| `window.AccessibilityWidgetAPI.reinitializeWidget()` | Manually reinitializes the widget with current configuration or updated attributes. |
+
+## Troubleshooting
+
+<Callout type="warning">
+Quick checks if manual reinitialization fails:
+</Callout>
+
+- Ensure `window.AccessibilityWidgetAPI` is defined.
+- Confirm your widget script tag attributes (`data-widget-id`) update correctly before reinitializing.
+- Check browser console logs for JavaScript errors.
+
+## Further Support
+
+For advanced SPA scenarios or persistent issues, review our [Developer Documentation](/docs/developer-api) or reach out to our [Support Team](mailto:support@welcomingweb.com).
+
+<CTA2
+  title="Need Further Assistance?"
+  description="Schedule expert help or attend a specialized webinar."
+  buttonText="Get Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,121 @@
+---
+title: "Advanced Settings"
+description: "Configure translation, triggers, and advanced widget behavior."
+---
+
+import { Callout } from 'nextra/components'
+import { HotspotImage } from '@components/mdx/HelpUI'
+
+# Advanced Settings
+
+<Callout type="info">
+  Fine-tune how your widget behaves: enable on-the-fly translation, custom triggers, keyboard shortcuts, and more.
+</Callout>
+
+<HotspotImage
+  src="/images/widget-advanced-settings.png"
+  hotspots={[
+    {
+      x: 20,
+      y: 20,
+      title: 'Enable Translation',
+      description: 'Toggle on to allow your site to be translated into any supported language instantly.'
+    },
+    {
+      x: 20,
+      y: 30,
+      title: 'Use Accept-Language Header',
+      description: 'Respect visitor browser settings for default language selection.'
+    },
+    {
+      x: 20,
+      y: 40,
+      title: 'Display Type',
+      description: 'Choose FULL, MINI, NANO or HEADLESS display mode for embedding flexibility.'
+    },
+    {
+      x: 20,
+      y: 50,
+      title: 'Custom Trigger Selector',
+      description: 'When enabled, open widget with your own button by CSS selector.'
+    },
+    {
+      x: 60,
+      y: 20,
+      title: 'Oversized Button',
+      description: 'Show a larger, more noticeable toggle when enabled.'
+    },
+    {
+      x: 60,
+      y: 30,
+      title: 'Keyboard Shortcuts',
+      description: 'Allow users to open/close widget via keyboard (e.g. “Alt + A”).'
+    },
+    {
+      x: 60,
+      y: 40,
+      title: 'Show Statement Link',
+      description: 'Display an “Accessibility Statement” link inside the widget.'
+    },
+    {
+      x: 60,
+      y: 50,
+      title: 'Open Inline & Statement URL',
+      description: 'Load your own accessibility statement URL directly within the widget.'
+    }
+  ]}
+/>
+
+## Translation Settings
+
+- **Enable Translation**  
+  Instantly convert your entire site into any supported language.
+
+- **Use Accept-Language Header**  
+  Automatically detect user language preference.
+
+## Display & Trigger
+
+- **Display Type**  
+  - `FULL` – Complete UI  
+  - `MINI` – Compact tray  
+  - `NANO` – Icon only  
+  - `HEADLESS` – No UI, for custom control
+
+- **Custom Trigger**  
+  - Toggle “Custom Trigger” on  
+  - Enter your button’s CSS selector (e.g. `#my-access-btn`)  
+
+## Behavior Toggles
+
+| Feature                  | Description                                     |
+|--------------------------|-------------------------------------------------|
+| Oversized Button        | Larger toggle for high visibility               |
+| Keyboard Shortcuts      | Open/close widget via keyboard shortcuts        |
+| Report Issue            | Enable built-in “Report an Issue” form          |
+
+## Accessibility Statement
+
+<Callout type="warning">
+  Providing an explicit statement URL helps you meet compliance requirements.
+</Callout>
+
+- **Show Statement Link**: display “Accessibility Statement” inside widget  
+- **Open Inline**: embed the statement page within the widget frame  
+- **Statement URL**: e.g. `https://yourdomain.com/accessibility-statement.html`
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-enable-translation="true"
+  data-use-accept-language-header="true"
+  data-widget-display-type="FULL"
+  data-enable-custom-trigger="true"
+  data-custom-trigger-selector="#my-access-btn"
+  data-show-over-sized-widget-button="true"
+  data-enable-keyboard-shortcuts="true"
+  data-show-statement-link="true"
+  data-open-inline="true"
+  data-statement-url="https://yourdomain.com/accessibility-statement.html"
+></script>

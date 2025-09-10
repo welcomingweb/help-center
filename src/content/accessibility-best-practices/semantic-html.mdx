@@ -1,0 +1,52 @@
+---
+title: "Semantic HTML Best Practices"
+description: "Use the correct HTML elements to improve accessibility and structure."
+---
+
+import { Callout } from 'nextra/components'
+import { Steps } from 'nextra/components'
+
+# Semantic HTML
+
+Proper use of HTML elements provides meaningful structure, improves screen reader navigation, and boosts SEO.
+
+<Callout type="important">
+Semantic markup is the foundation of accessible web content.
+</Callout>
+
+## Core Guidelines
+
+<Steps>
+### 1. Heading Hierarchy  
+Use `<h1>` through `<h6>` in logical order—never skip levels. One `<h1>` per page, then descend sequentially.
+
+### 2. Landmark Elements  
+Wrap major page regions in `<header>`, `<nav>`, `<main>`, `<aside>`, and `<footer>` so assistive tech can jump directly to key areas.
+
+### 3. Sectioning Tags  
+Group related content with `<section>`, `<article>`, `<figure>` + `<figcaption>`, and `<blockquote>` to convey meaning.
+
+### 4. Lists & Tables  
+Use `<ul>`, `<ol>`, `<li>` for lists and `<table>`, `<thead>`, `<tbody>`, `<th>`, `<td>` for tabular data—never simulate lists or tables with `<div>`.
+
+### 5. Controls & Labels  
+Use `<button>` for actions, `<a>` for navigation, and associate `<label>` with form controls. Avoid using `<span>` or `<div>` as interactive elements.
+
+</Steps>
+
+<Callout type="info">
+Screen readers announce semantic elements and allow users to navigate by landmarks, headings, and lists.
+</Callout>
+
+## Quick Checklist
+
+- 📝 **Headings:** Are levels sequential and descriptive?  
+- 🚩 **Landmarks:** Does each region use proper tags (`<main>`, `<nav>`, etc.)?  
+- 📦 **Sections:** Are related blocks wrapped in `<section>` or `<article>`?  
+- 📋 **Lists:** Are lists marked up with `<ul>/<ol>` and `<li>`?  
+- 🔢 **Tables:** Is tabular data in a real `<table>` with headers?  
+- 🔘 **Buttons & Links:** Are interactive elements real HTML controls with labels?
+
+<Callout type="warning">
+Avoid using generic containers (`<div>`, `<span>`) for structure—use them only when no semantic element applies.
+</Callout>

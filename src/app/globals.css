@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+ 
+ 
+body {
+  font-family:
+    Exo, 
+    sans-serif!important;
+   margin: 0 auto;
+}
+ 
+html {
+  scroll-behavior: smooth;
+}
+
+.mask-style {
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: cover;
+  mask-type: luminance
+}

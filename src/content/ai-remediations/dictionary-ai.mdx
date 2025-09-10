@@ -1,0 +1,106 @@
+---
+title: "AI Dictionary"
+description: "Enable WelcomingWeb's AI-powered dictionary to provide instant, intelligent definitions directly within your content."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { HotspotImage, CTA2 } from '@components/mdx/HelpUI'
+
+# AI Dictionary
+
+<Callout type="info">
+Welcomingweb's AI Dictionary feature delivers instant definitions and explanations directly within your website content, greatly enhancing readability and comprehension.
+</Callout>
+
+## How AI Dictionary Works
+
+The AI Dictionary feature intelligently detects complex or technical terms on your website and provides immediate, context-aware definitions:
+
+- **Contextual Understanding:** Automatically identifies key words needing clarification.
+- **Dynamic Definitions:** Provides precise, real-time explanations in the user's preferred language.
+- **Integrated Learning:** Definitions appear directly within your content for seamless learning.
+
+## Activating AI Dictionary
+
+Enable the AI Dictionary in just a few simple steps:
+
+<Steps>
+
+### Step 1: Navigate to Your Dashboard
+
+- Log into your WelcomingWeb admin panel.
+- Visit your site's accessibility settings.
+
+### Step 2: Enable Dictionary Feature
+
+- Toggle on the "AI Dictionary" feature.
+- Click **Save** to activate.
+
+### Step 3: Test and Confirm
+
+- Open your website and hover over or select terms identified by the AI Dictionary to verify definitions appear as intended.
+
+</Steps>
+
+## Customizing Dictionary Settings
+
+You can personalize the AI Dictionary behavior:
+
+- **Definition Presentation:** Choose between tooltip, popup, or inline definitions.
+- **Term Sensitivity:** Adjust how aggressively the dictionary identifies terms.
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-ai-dictionary-enabled="true"
+  data-dictionary-display-mode="tooltip">
+</script>
+```
+
+## AI Dictionary in Action
+
+<HotspotImage
+  src="/images/dictionary-ai-demo.png"
+  hotspots={[
+    {
+      x: 30,
+      y: 50,
+      title: 'Complex Term',
+      description: 'Users may struggle to understand specialized or technical terms without definitions.'
+    },
+    {
+      x: 70,
+      y: 50,
+      title: 'AI-Provided Definition',
+      description: 'Instant, clear, and contextual definitions improve user understanding.'
+    }
+  ]}
+/>
+
+## Key Benefits
+
+- **Enhanced Comprehension:** Clarifies complex vocabulary instantly.
+- **Improved Accessibility:** Supports users with cognitive or language barriers.
+- **Increased Engagement:** Keeps users engaged and informed by minimizing confusion.
+
+## Troubleshooting Common Issues
+
+<Callout type="warning">
+If definitions are not appearing as expected:
+</Callout>
+
+- Confirm the script tag and dictionary settings are correctly implemented.
+- Check for potential CSS or JavaScript conflicts.
+- Inspect browser console logs for any script errors.
+
+## Need Further Assistance?
+
+Discover more AI-powered accessibility tools or connect with our support team for personalized help.
+
+<CTA2
+  title="Have More Questions?"
+  description="Arrange personalized support or a demonstration session with our team."
+  buttonText="Get Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

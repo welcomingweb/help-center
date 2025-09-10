@@ -1,0 +1,126 @@
+---
+title: "WordPress Integration"
+description: "Easy steps to integrate your accessibility widget into any WordPress site."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { GifPreview, HotspotImage, CTA2 } from '@components/mdx/HelpUI'
+
+# WordPress Integration Guide
+
+<Callout type="info">
+Integrating WelcomingWeb into WordPress is straightforward and does not require advanced technical skills.
+</Callout>
+
+## Integration Steps
+
+<Steps>
+
+### Step 1: Log in to Your Dashboard
+
+Log in to your WordPress admin panel (`yourdomain.com/wp-admin`).
+
+### Step 2: Install "Insert Headers and Footers" Plugin
+
+Navigate to `Plugins → Add New`. Search for and install the **"Insert Headers and Footers"** plugin by WPBeginner.
+
+### Step 3: Activate the Plugin
+
+After installation, click **Activate** to enable the plugin.
+
+### Step 4: Retrieve Your Embed Code
+
+In your WelcomingWeb dashboard:
+
+- Navigate to your site settings.
+- Click on **Integration**.
+- Copy the provided embed script:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js" 
+  data-widget-id="YOUR_WIDGET_ID">
+</script>
+```
+
+> Replace `YOUR_WIDGET_ID` with the actual widget ID from your dashboard.
+
+### Step 5: Insert Embed Code
+
+In your WordPress admin:
+- Go to `Settings → Insert Headers and Footers`.
+- Paste your embed code in the `Scripts in Footer` field.
+
+<GifPreview 
+  src="/gifs/wordpress-embed.gif"
+  caption="Inserting the widget embed code in WordPress."
+/>
+
+### Step 6: Save Your Changes
+
+Click **Save** to finalize integration.
+
+</Steps>
+
+## Customizing Widget Settings
+
+You can customize your widget appearance and behavior using additional attributes:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-theme="light|dark|auto"
+  data-position="bottom-right"
+  data-button-color-mode="GRADIENT"
+  data-language="en"
+  data-button-primary-color="#504CFF">
+</script>
+```
+
+## Widget Configuration Parameters
+
+| Parameter                      | Description                             | Default Value |
+|--------------------------------|-----------------------------------------|---------------|
+| `data-theme`                   | Widget theme (`auto`, `light`, `dark`)  | `auto`        |
+| `data-position`                | Widget position (`bottom-right`, `top-left`, etc.) | `bottom-right` |
+| `data-language`                | Widget language (ISO code: `en`, `es`, etc.) | `en`          |
+| `data-button-color-mode`       | Button style (`SOLID`, `GRADIENT`)      | `SOLID`       |
+| `data-button-primary-color`    | Primary color (Hex code)                | `#504CFF`     |
+
+## Troubleshooting
+
+<Callout type="warning">
+Common issues and quick solutions:
+</Callout>
+
+- **Widget not displaying:** Ensure no conflicting scripts/plugins are active and your widget ID is correct.
+- **Styling conflicts:** Check custom CSS on your WordPress theme.
+- **Performance issues:** Load the script in the footer for better performance.
+
+## Advanced Control via JavaScript API
+
+After embedding, you can programmatically control your widget directly via JavaScript:
+
+```js
+// Open widget popup
+window.AccessibilityWidgetAPI?.openWidget();
+
+// Activate a specific profile
+window.AccessibilityWidgetAPI?.enableProfile('motor_impaired');
+
+// Reset widget to default
+window.AccessibilityWidgetAPI?.resetAllFeatures();
+```
+
+## Further Assistance
+
+If you require advanced customization or encounter issues:
+
+- Visit our [Developer Documentation](/docs/developer-api)
+- Contact our [Support Team](mailto:support@welcomingweb.com)
+
+<CTA2
+  title="Need More Help?"
+  description="Book a 1-on-1 support session or join our next live webinar."
+  buttonText="Schedule Now"
+  buttonLink="https://welcomingweb.com/contact"
+/>

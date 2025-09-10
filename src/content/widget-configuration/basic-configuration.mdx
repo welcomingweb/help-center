@@ -1,0 +1,68 @@
+---
+title: "Basic Configuration"
+description: "Define your widget’s core identity and localization settings."
+---
+
+import { Callout } from 'nextra/components'
+import { HotspotImage } from '@components/mdx/HelpUI'
+
+# Basic Configuration
+
+<Callout type="info">
+  These settings establish your widget’s name, language and translation behavior.
+</Callout>
+
+<HotspotImage
+  src="/screenshot/widget-config1.png"
+  hotspots={[
+    {
+      x:  30 /* 30% from the left */,
+      y:  20 /* 20% from the top */,
+      title: 'Widget Name',
+      description: 'Give your widget a unique name to identify it in your dashboard.'
+    },
+    {
+      x:  30,
+      y:  20 /* ~30% */,
+      title: 'Default Language',
+      description: 'Select which language the widget displays by default.'
+    },
+    {
+      x:  30,
+      y:  50 /* ~50% */,
+      title: 'Enable Translation',
+      description: 'Toggle on to power AI-driven, on-the-fly website translations.'
+    },
+    {
+      x:  60 /* ~60% */,
+      y:  50,
+      title: 'Use Accept‐Language Header',
+      description: 'When enabled, the widget detects and applies the visitor’s browser language.'
+    }
+  ]}
+/>
+
+## Widget Name
+
+Enter a descriptive name to help you manage multiple widgets across different sites.
+
+## Default Language
+
+Choose the primary language for the widget interface. Visitors will see this language until they switch manually.
+
+## Translation Settings
+
+- **Enable Translation**  
+  Turn on AI-powered translation to instantly convert page content into the selected language.
+
+- **Use Accept-Language Header**  
+  Automatically detect and apply the visitor’s browser language preferences.
+
+```html copy
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-language="en"
+  data-enable-translation="true"
+  data-use-accept-language="true"
+></script>

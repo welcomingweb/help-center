@@ -1,0 +1,83 @@
+---
+title: "Interpreting Scan Results"
+description: "Understand how to read and act on your accessibility scan scores, issue breakdowns, and severity ratings."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Interpreting Scan Results
+
+<Callout type="info">
+Accessibility scans generate detailed reports outlining your site's compliance level. This page helps you decode and prioritize what the data means.
+</Callout>
+
+## Understanding Scan Scores
+
+Your scan results include a set of scores based on Lighthouse and WelcomingWeb's auditing logic.
+
+<Steps>
+### Accessibility Score
+Reflects overall accessibility compliance (out of 100). A score above 85% is considered excellent.
+
+### SEO Score
+Measures your site's search engine friendliness, including structure and metadata accessibility.
+
+### Best Practices Score
+Checks code quality, image optimization, HTTPS usage, and browser safety.
+
+### Performance Score
+Evaluates page speed, responsiveness, and rendering behavior.
+
+</Steps>
+
+---
+
+## Issue Categories
+
+Each detected issue falls into one of the following categories:
+
+- **Critical**: Blocks user access or severely impairs experience (e.g., missing alt text, broken ARIA labels)
+- **Major**: Impacts usability but doesn’t completely block access
+- **Minor**: Low impact; often aesthetic or redundancy-related
+
+Each issue will include:
+- Affected element (e.g., `<img>`, `<button>`)
+- Explanation of the violation
+- WCAG reference (e.g., 1.1.1, 2.4.4)
+- Suggestion or fix
+
+---
+
+## Viewing the Full Report
+
+Clicking “View Report” on a scan session brings you to a deep-dive report that includes:
+- **Issue list with filters**
+- **Affected elements with HTML snippet**
+- **Score breakdowns**
+- **Technical audit results**
+- **Color-coded severity badges**
+
+---
+
+## Remediation Tips
+
+- Start with Critical issues for compliance and usability.
+- Use the “Fix Suggestions” included in each item.
+- Use your developer’s help for HTML, ARIA, or JavaScript-based issues.
+- Re-scan after applying fixes to verify improvements.
+
+---
+
+## When to Re-scan
+
+- After site updates or deployments
+- After installing new themes, scripts, or 3rd-party widgets
+- On a regular schedule (weekly or monthly)
+
+<CTA2
+  title="Need Expert Help?"
+  description="Our accessibility engineers can help you prioritize and resolve scan issues. Reach out for personalized support."
+  buttonText="Talk to an Expert"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,68 @@
+---
+title: "Understanding Your Accessibility Report"
+description: "Learn how to interpret your accessibility reports and improve your website."
+---
+
+import { HotspotImage } from '@components/mdx/HelpUI'
+import { Steps } from 'nextra/components';
+
+# Understanding Your Accessibility Report
+
+Accessibility reports provide valuable insights into the accessibility performance of your website. Here's how to understand and navigate the report effectively.
+
+## Overview of the Accessibility Report
+
+Your Accessibility Report page provides a quick snapshot of how your site performs regarding accessibility and other metrics.
+
+<HotspotImage
+  src="/screenshot/report-dashboard.png"
+  hotspots={[
+    { x: 20, y: 20, title: 'Audit Pages', description: 'List of pages scanned with quick access to detailed reports.' },
+    { x: 45, y: 20, title: 'Scan Summary', description: 'High-level information about the scan status, date, pages crawled, and subdomains included.' },
+    { x: 70, y: 20, title: 'Performance Scores', description: 'Visual representation of accessibility and performance scores, highlighting areas that need improvement.' },
+    { x: 90, y: 20, title: 'Screenshot Preview', description: 'Quick screenshot of your website during the scan.' },
+    { x: 40, y: 50, title: 'Detailed Audit Results', description: 'Expand these sections for detailed breakdowns of specific accessibility and performance issues.' },
+  ]}
+/>
+
+## Key Sections of Your Report
+
+<Steps>
+
+### Step 1: Audit Pages
+
+This section lists all pages included in the scan. Click any page URL to access detailed audit findings specific to that page.
+
+### Step 2: Scan Summary
+
+- **Status:** Shows whether the scan was successful.
+- **Last Scan:** Indicates the date and time of the last completed scan.
+- **Pages Crawled:** Displays the total number of pages included.
+- **Subdomains:** Lists any subdomains included in the scan.
+
+### Step 3: Performance Scores
+
+Accessibility and Performance scores provide quick insight into the health of your site:
+
+- **Accessibility:** Measures how accessible your website is for users with disabilities.
+- **Performance:** Assesses the overall load speed and responsiveness.
+
+These scores range from 0 to 100, with higher scores indicating better compliance and performance.
+
+### Step 4: Screenshot Preview
+
+Provides a visual snapshot of the website as it appeared at the time of the scan, helping to identify any immediate visual issues.
+
+### Step 5: Detailed Audit Results
+
+Expanding sections like **Accessibility** or **Performance** reveals detailed lists of issues found, including severity, description, and suggestions for remediation.
+
+</Steps>
+
+## Interpreting Accessibility Scores
+
+- **Excellent (90-100):** Your site meets most accessibility standards.
+- **Good (70-89):** Your site is generally accessible but could improve.
+- **Needs Work (0-69):** Immediate attention needed; your site has critical accessibility issues.
+
+Regularly monitoring and addressing these issues ensures your website remains accessible and compliant.

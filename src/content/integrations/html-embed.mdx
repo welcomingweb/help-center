@@ -1,0 +1,116 @@
+---
+title: "HTML Embed"
+description: "Simple copy-paste integration for any website"
+---
+
+import { Callout, Tabs } from 'nextra/components'
+import { GifPreview } from '@components/mdx/HelpUI'
+
+# HTML Embed Integration
+
+<Callout type="info">
+  The simplest way to add accessibility features to any website. Works on all browsers and requires no framework dependencies.
+</Callout>
+
+## Basic Implementation
+
+### 1. Copy the Embed Code
+
+```html
+<script src="https://cdn-01.welcomingweb.com/ally-widget.bundle.js"
+  data-widget-id="05e86a3f-2c94-4071-b971-e2947269ddfd">
+</script>
+```
+
+### 2. Paste Before `</body>`
+Place this code just before your closing `</body>` tag for optimal performance.
+
+<GifPreview 
+  src="/gifs/embed-demo.gif"
+  caption="Pasting the embed code in HTML"
+/>
+
+## Configuration Options
+
+<Tabs items={["Basic", "Advanced"]}>
+<Tabs.Tab>
+
+### Basic Configuration
+
+```html
+<script src="https://cdn-01.welcomingweb.com/ally-widget.bundle.js"
+  data-widget-id="05e86a3f-2c94-4071-b971-e2947269ddfd"
+  data-theme="light|dark|auto"
+  data-language="en">
+</script>
+```
+
+| Parameter         | Values                  | Default |
+|-------------------|-------------------------|---------|
+| `data-theme`      | light, dark, auto       | auto    |
+| `data-language`   | ISO language code       | en      |
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+### Advanced Configuration
+
+```html
+<script src="https://cdn-01.welcomingweb.com/ally-widget.bundle.js"
+  data-widget-id="05e86a3f-2c94-4071-b971-e2947269ddfd"
+  data-position="bottom-right|bottom-left"
+  data-button-size="small|medium|large"
+  data-enable-keyboard-shortcuts="true|false"
+  data-auto-init="true|false">
+</script>
+```
+
+| Parameter                        | Description                   |
+|----------------------------------|-------------------------------|
+| `data-position`                  | Widget position on screen     |
+| `data-button-size`               | Toggle button size            |
+| `data-enable-keyboard-shortcuts` | Enable Alt+A shortcut         |
+| `data-auto-init`                 | Auto-initialize widget        |
+
+</Tabs.Tab>
+</Tabs>
+
+## Best Practices
+
+1. **Placement Matters**
+   - Always load the script before `</body>`
+   - Avoid async/defer attributes
+
+2. **Performance Tips**
+
+```html
+<link rel="preconnect" href="https://cdn-01.welcomingweb.com">
+<link rel="preload" as="script" href="https://cdn-01.welcomingweb.com/ally-widget.bundle.js">
+```
+
+3. **Troubleshooting**
+   - If widget doesn't appear, check browser console for errors
+   - Verify your widget ID is correct
+   - Ensure no content security policies are blocking the script
+
+## JavaScript API Control
+
+After embedding, you can control the widget programmatically:
+
+```javascript
+// Open widget
+window.AccessibilityWidgetAPI?.openWidget();
+
+// Enable specific profile
+window.AccessibilityWidgetAPI?.enableProfile('motor_impaired');
+
+// Check if loaded
+if (typeof AccessibilityWidgetAPI !== 'undefined') {
+  // API is available
+}
+```
+
+<Callout type="important">
+  Remember to replace the example widget ID with your actual ID from the dashboard.
+</Callout>

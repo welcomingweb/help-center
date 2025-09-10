@@ -1,0 +1,119 @@
+---
+title: "Squarespace Integration"
+description: "Simple instructions to embed WelcomingWeb into your Squarespace website."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { GifPreview, CTA2 } from '@components/mdx/HelpUI'
+
+# Squarespace Integration Guide
+
+<Callout type="info">
+Quickly add powerful accessibility capabilities to your Squarespace site, with no advanced coding required.
+</Callout>
+
+## Integration Steps
+
+<Steps>
+
+### Step 1: Log in to Squarespace
+
+Sign in to your Squarespace account at [squarespace.com](https://squarespace.com).
+
+### Step 2: Open Website Settings
+
+From your Squarespace dashboard:
+- Navigate to your website.
+- Click on **Settings**.
+
+### Step 3: Navigate to Advanced
+
+Under **Settings**:
+- Click on **Advanced**.
+- Select **Code Injection**.
+
+### Step 4: Insert Embed Script
+
+In the **Footer** section, paste your unique WelcomingWeb widget script:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID">
+</script>
+```
+
+<GifPreview
+  src="/gifs/squarespace-embed.gif"
+  caption="Embedding the widget script into Squarespace"
+/>
+
+### Step 5: Save Your Changes
+
+Click **Save** at the top to apply your integration. Your widget is now active on your Squarespace website.
+
+</Steps>
+
+## Customization Options
+
+Further personalize your widget using these attributes:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-theme="auto"
+  data-language="en"
+  data-position="bottom-left"
+  data-button-size="MEDIUM"
+  data-button-color-mode="GRADIENT"
+  data-button-primary-color="#504CFF"
+  data-button-secondary-color="#A94CFF">
+</script>
+```
+
+## Widget Configuration Attributes
+
+| Parameter                      | Description                                | Default Value |
+|--------------------------------|--------------------------------------------|---------------|
+| `data-theme`                   | Widget theme (`auto`, `light`, `dark`)     | `auto`        |
+| `data-language`                | Widget language (`en`, `es`, etc.)         | `en`          |
+| `data-position`                | Widget screen position (`bottom-right`, etc.)| `bottom-right`|
+| `data-button-size`             | Widget button size                         | `SMALL`       |
+| `data-button-color-mode`       | Color style (`SOLID`, `GRADIENT`)          | `SOLID`       |
+| `data-button-primary-color`    | Primary button color (Hex)                 | `#504CFF`     |
+| `data-button-secondary-color`  | Gradient secondary color (Hex)             | `#A94CFF`     |
+
+## Troubleshooting
+
+<Callout type="warning">
+Resolve common Squarespace integration issues quickly.
+</Callout>
+
+- **Widget doesn't appear:** Confirm your widget ID and ensure site cache is cleared.
+- **Script conflicts:** Check for conflicting scripts in the footer section.
+- **Styling problems:** Ensure colors and themes match your customization.
+
+## Advanced JavaScript API Usage
+
+You can interact with your widget using JavaScript commands:
+
+```js
+// Open widget
+window.AccessibilityWidgetAPI?.openWidget();
+
+// Activate a specific profile
+window.AccessibilityWidgetAPI?.enableProfile('seizure_epileptic');
+
+// Reset all widget settings
+window.AccessibilityWidgetAPI?.resetAllFeatures();
+```
+
+## Need Further Assistance?
+
+For more detailed support, check our [Developer Documentation](/docs/developer-api) or reach out to our [Support Team](mailto:support@welcomingweb.com).
+
+<CTA2
+  title="Looking for Expert Help?"
+  description="Schedule personalized support or join our next training session."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

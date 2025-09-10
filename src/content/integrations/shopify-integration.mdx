@@ -1,0 +1,123 @@
+---
+title: "Shopify Integration"
+description: "Effortlessly embed the WelcomingWeb widget into your Shopify store."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { GifPreview, CTA2 } from '@components/mdx/HelpUI'
+
+# Shopify Integration Guide
+
+<Callout type="info">
+Integrate WelcomingWeb into Shopify without advanced coding. Enhance your store's accessibility instantly.
+</Callout>
+
+## Integration Steps
+
+<Steps>
+
+### Step 1: Log in to Shopify
+
+Log in to your Shopify admin panel at [shopify.com](https://shopify.com).
+
+### Step 2: Go to Theme Settings
+
+From your dashboard:
+- Click on **Online Store**.
+- Select **Themes**.
+- Click on **Customize**.
+
+### Step 3: Open Theme Code Editor
+
+- In the theme editor, click the **three-dot icon (···)** and select **Edit Code**.
+
+### Step 4: Locate `theme.liquid` File
+
+- In the left sidebar under **Layout**, click on `theme.liquid`.
+
+### Step 5: Embed Widget Script
+
+Scroll down to the bottom of the file and paste your WelcomingWeb embed script right before the closing `</body>` tag:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID">
+</script>
+```
+
+<GifPreview
+  src="/gifs/shopify-embed.gif"
+  caption="Embedding the widget script in Shopify's theme"
+/>
+
+### Step 6: Save and Preview
+
+- Click **Save**.
+- Preview your store to confirm the widget appears.
+
+</Steps>
+
+## Widget Customization
+
+Customize your widget further with additional parameters:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-theme="dark"
+  data-language="en"
+  data-position="bottom-right"
+  data-button-size="LARGE"
+  data-button-color-mode="GRADIENT"
+  data-button-primary-color="#504CFF"
+  data-button-secondary-color="#A94CFF">
+</script>
+```
+
+## Configuration Attributes
+
+| Parameter                      | Description                           | Default Value |
+|--------------------------------|---------------------------------------|---------------|
+| `data-theme`                   | Theme (`auto`, `light`, `dark`)       | `auto`        |
+| `data-language`                | Language (`en`, `es`, etc.)           | `en`          |
+| `data-position`                | Widget position (`bottom-right`, etc.)| `bottom-right`|
+| `data-button-size`             | Widget button size                    | `SMALL`       |
+| `data-button-color-mode`       | Color style (`SOLID`, `GRADIENT`)     | `SOLID`       |
+| `data-button-primary-color`    | Primary button color (Hex)            | `#504CFF`     |
+| `data-button-secondary-color`  | Secondary gradient color (Hex)        | `#A94CFF`     |
+
+## Troubleshooting Tips
+
+<Callout type="warning">
+Resolve common Shopify integration issues quickly.
+</Callout>
+
+- **Widget not displaying:** Ensure your widget ID is correct and your store is published.
+- **Theme conflict:** Check custom scripts or apps causing conflicts.
+- **Appearance issues:** Confirm widget parameters and colors are correct.
+
+## Using JavaScript API
+
+Control the widget using JavaScript for advanced interactions:
+
+```js
+// Open widget
+window.AccessibilityWidgetAPI?.openWidget();
+
+// Enable specific profile
+window.AccessibilityWidgetAPI?.enableProfile('elderly');
+
+// Reset widget settings
+window.AccessibilityWidgetAPI?.resetAllFeatures();
+```
+
+## Additional Support
+
+For detailed assistance, visit our [Developer Documentation](/docs/developer-api) or contact our [Support Team](mailto:support@welcomingweb.com).
+
+<CTA2
+  title="Need More Support?"
+  description="Book a personalized support session or join our webinar."
+  buttonText="Get Assistance"
+  buttonLink="https://welcomingweb.com/contact"
+/>

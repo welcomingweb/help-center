@@ -1,0 +1,104 @@
+---
+title: "Appearance Settings"
+description: "Customize the look and feel of your accessibility widget button."
+---
+
+import { Callout } from 'nextra/components'
+import { HotspotImage } from '@components/mdx/HelpUI'
+
+# Appearance Settings
+
+<Callout type="info">
+  Adjust colors, size and icon of the widget toggle to fit your brand and improve visibility.
+</Callout>
+
+<HotspotImage
+  src="/screenshot/widget-config2.png"
+  hotspots={[
+    {
+      x: 25,
+      y: 25,
+      title: 'Button Color Mode',
+      description: 'Choose between SOLID (single color) or GRADIENT (two-color blend).'
+    },
+    {
+      x: 25,
+      y: 35,
+      title: 'Primary Color',
+      description: 'Pick the main hex color for your button.'
+    },
+    {
+      x: 25,
+      y: 45,
+      title: 'Secondary Color',
+      description: 'When using gradient mode, this defines the ending hue.'
+    },
+    {
+      x: 25,
+      y: 55,
+      title: 'Gradient Direction',
+      description: 'Control the gradient flow (e.g. TO_RIGHT, TO_BOTTOM).'
+    },
+    {
+      x: 60,
+      y: 25,
+      title: 'Button Size',
+      description: 'Select SMALL, MEDIUM, or LARGE to adjust button footprint.'
+    },
+    {
+      x: 60,
+      y: 35,
+      title: 'Button Icon Type',
+      description: 'Choose an icon (Default, Wheelchair, Blindness, Walking).'
+    }
+  ]}
+/>
+
+## Button Color Mode
+
+**SOLID** for one consistent color, or **GRADIENT** for a smooth two-color transition.
+
+## Primary & Secondary Colors
+
+- **Primary Color**  
+  Your button’s main hex color.
+
+- **Secondary Color** (Gradient only)  
+  Accent color for the gradient effect.
+
+## Gradient Direction
+
+Define how the two colors blend:
+
+- `TO_RIGHT` (left → right)  
+- `TO_BOTTOM` (top → bottom)  
+- `DIAGONAL` (e.g. top-left → bottom-right)
+
+## Button Size
+
+- `SMALL` – Minimal footprint  
+- `MEDIUM` – Standard size  
+- `LARGE` – High visibility
+
+## Button Icon Type
+
+Pick the symbol that best represents your site’s audience:
+
+| Icon       | Use Case                              |
+|------------|---------------------------------------|
+| Default    | Standard accessibility “wheel” icon   |
+| Wheelchair | Wheelchair users                      |
+| Blindness  | Low-vision / screen reader users      |
+| Walking    | Mobility assistance                   |
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-button-color-mode="GRADIENT"
+  data-button-primary-color="#504CFF"
+  data-button-secondary-color="#A94CFF"
+  data-button-gradient-direction="TO_RIGHT"
+  data-button-size="MEDIUM"
+  data-button-icon-type="WHEELCHAIR"
+></script>

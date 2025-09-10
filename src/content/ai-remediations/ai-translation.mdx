@@ -1,0 +1,107 @@
+---
+title: "AI Translation"
+description: "Instantly translate your website content into over 100 languages with WelcomingWeb's AI-powered translation feature."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { HotspotImage, CTA2 } from '@components/mdx/HelpUI'
+
+# AI Translation
+
+<Callout type="info">
+WelcomingWeb's AI Translation feature automatically translates your website's content into over 100 languages, enabling you to reach and engage global audiences effortlessly.
+</Callout>
+
+## How AI Translation Works
+
+AI Translation dynamically translates your site's content, ensuring it's easily understandable by users worldwide:
+
+- **Real-Time Translation:** Instantly translates webpage content.
+- **Contextual Accuracy:** Utilizes advanced AI to ensure translations are accurate and contextually relevant.
+- **Automatic Detection:** Automatically recognizes the user's browser language and translates accordingly.
+
+## Activating AI Translation
+
+Follow these straightforward steps to enable translation:
+
+<Steps>
+
+### Step 1: Open Your Dashboard
+
+- Log in to your WelcomingWeb dashboard.
+- Navigate to your site's accessibility settings.
+
+### Step 2: Enable Translation
+
+- Activate the "AI Translation" feature.
+- Select the languages you wish to support.
+- Save your configuration.
+
+### Step 3: Verify Translations
+
+- Visit your site and confirm translations are accurate and accessible.
+
+</Steps>
+
+## Customizing Translation Settings
+
+Further customize your translation options:
+
+- **Language Selector:** Enable a manual language selection dropdown for visitors.
+- **Default Language:** Specify the default language displayed to visitors.
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-ai-translation-enabled="true"
+  data-default-language="en">
+</script>
+```
+
+## AI Translation Example
+
+<HotspotImage
+  src="/images/ai-translation-demo.png"
+  hotspots={[
+    {
+      x: 25,
+      y: 50,
+      title: 'Original Language',
+      description: 'Content is initially in the site’s default language.'
+    },
+    {
+      x: 75,
+      y: 50,
+      title: 'Translated Content',
+      description: 'AI dynamically translates content into the users preferred language, enhancing global accessibility.'
+    }
+  ]}
+/>
+
+## Key Benefits
+
+- **Global Reach:** Seamlessly connect with an international audience.
+- **Enhanced User Experience:** Visitors effortlessly engage with content in their native language.
+- **Increased Accessibility:** Broadens accessibility to non-native speakers.
+
+## Troubleshooting Common Issues
+
+<Callout type="warning">
+If translations aren’t functioning correctly:
+</Callout>
+
+- Ensure widget integration and settings are correctly applied.
+- Verify no JavaScript conflicts or errors exist.
+- Confirm supported languages are correctly selected in your settings.
+
+## Additional Assistance
+ 
+Explore more AI-driven accessibility solutions or connect with our expert support team.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personalized support session or a demo of our AI features."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

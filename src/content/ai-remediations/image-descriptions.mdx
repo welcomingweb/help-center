@@ -1,0 +1,106 @@
+---
+title: "AI Image Descriptions"
+description: "Automatically generate descriptive image alt texts using WelcomingWeb's advanced AI capabilities."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { HotspotImage, CTA2 } from '@components/mdx/HelpUI'
+
+# AI Image Descriptions
+
+<Callout type="info">
+Welcomingweb's AI-driven image description tool automatically analyzes images on your site and generates descriptive alt texts, enhancing accessibility for visually impaired users.
+</Callout>
+
+## How AI Image Descriptions Work
+
+The AI-powered image description feature ensures your images are accessible by providing descriptive alt text automatically:
+
+- **Intelligent Analysis:** Analyzes images without existing alt descriptions.
+- **Automated Descriptions:** Generates detailed and contextually accurate descriptions.
+- **Real-Time Processing:** Automatically processes new images as they're added to your site.
+
+## Activating AI Image Descriptions
+
+Follow these straightforward steps to enable AI-generated image descriptions:
+
+<Steps>
+
+### Step 1: Log in to Your Dashboard
+
+- Access your WelcomingWeb dashboard.
+- Go to your site's accessibility settings.
+
+### Step 2: Enable Image Descriptions
+
+- Turn on the "AI Image Descriptions" toggle.
+- Click **Save** to apply.
+
+### Step 3: Verify Image Descriptions
+
+- Visit your website to confirm images without original alt texts now have AI-generated descriptions.
+
+</Steps>
+
+## Customizing Image Description Settings
+
+Advanced users can manage how descriptions are generated:
+
+- **Language Preference:** Set your preferred language for descriptions.
+- **Quality Control:** Adjust sensitivity for the detail and accuracy of generated descriptions.
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-image-descriptions-enabled="true"
+  data-language="en">
+</script>
+```
+
+## Example of AI-Generated Image Descriptions
+
+<HotspotImage
+  src="/images/image-descriptions-demo.png"
+  hotspots={[
+    {
+      x: 30,
+      y: 50,
+      title: 'Image Without Alt Text',
+      description: 'No alt text makes this image inaccessible.'
+    },
+    {
+      x: 70,
+      y: 50,
+      title: 'AI-Generated Alt Text',
+      description: 'Descriptive alt text automatically added by AI, significantly improving accessibility.'
+    }
+  ]}
+/>
+
+## Benefits of AI Image Descriptions
+
+- **Enhanced Accessibility:** Makes visual content accessible to screen reader users.
+- **Improved SEO:** Descriptive alt texts can improve search engine rankings.
+- **Compliance:** Supports adherence to accessibility guidelines (WCAG 2.1).
+
+## Troubleshooting Tips
+
+<Callout type="warning">
+Common checks if image descriptions fail to generate:
+</Callout>
+
+- Confirm the widget script is correctly installed.
+- Ensure images don't already have alt texts (AI descriptions only apply to missing alt texts).
+- Check browser console for script errors or conflicts.
+
+## Additional Support
+
+Explore more AI-driven accessibility solutions or contact our dedicated support team.
+
+<CTA2
+  title="Need More Assistance?"
+  description="Book a support session or schedule a personalized demo of our AI accessibility tools."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

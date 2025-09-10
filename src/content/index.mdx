@@ -1,0 +1,156 @@
+---
+title: "WelcomingWeb Help Center – Accessibility Tools, Widget Docs, and Compliance"
+description: "Get started with WelcomingWeb – the all-in-one accessibility platform for scanning, remediating, and embedding assistive widgets."
+keywords: "Web accessibility, accessibility widget, ADA compliance, WCAG, AI remediation, WelcomingWeb"
+---
+
+import Navbar from '@components/layout/Navbar'
+import KBCard from '@components/mdx/KBCard'
+import { folderMeta } from '@lib/folderMeta'
+import { C8VideoTutorial, Cinema8VideoPreview } from '@components/mdx/HelpUI';
+
+import Image from 'next/image'
+import Link from 'next/link'
+
+<main className="min-h-screen text-gray-900 dark:text-white transition-colors duration-200">
+  <Navbar />
+
+  {/* Hero Section */}
+  <section className="pt-32 pb-20 px-6 border-b border-gray-100 dark:border-gray-800">
+    <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 items-center">
+      
+      {/* Left Text */}
+      <div className="lg:w-1/2">
+        <span className="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 text-sm font-medium mb-6">
+          WelcomingWeb Documentation
+        </span>
+
+        <h1 className="not-prose text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.2] text-gray-900 dark:text-white mb-6">
+          <span className="block">Build more inclusive</span>
+          <span className="block text-blue-600">accessible websites</span>
+        </h1>
+
+        <p className="text-lg text-gray-600 dark:text-gray-300 mb-10 max-w-lg">
+          Scan, fix, and empower your site with powerful accessibility tools. Learn how to embed widgets, manage sites, and use AI remediations.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 max-w-xl">
+          <div className="flex-1 w-full">
+            <div
+              id="sparc-search-container"
+              data-mode="inline"
+              className="w-full"
+              role="search"
+              aria-label="Search articles or features"
+            />
+          </div>
+
+          <Link
+            href="#categories"
+            className="scroll-smooth px-5 py-3 text-sm font-medium border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition inline-flex items-center gap-2"
+          >
+            Browse all topics
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="w-6 h-6 rotate-90">
+              <path d="M502.6 278.6c12.5 12.5 12.5 32.8 0 45.3l-128 128c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L402.7 352H192c-88.4 0-160-71.6-160-160V80c0-17.7 14.3-32 32-32s32 14.3 32 32v112c0 52.9 43.1 96 96 96h210.7l-73.4-73.4c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l128 128z" />
+            </svg>
+          </Link>
+        </div>
+      </div>
+
+      {/* Right Video or Image */}
+      <div className="lg:w-1/2">
+        <Cinema8VideoPreview
+          videoId="intro-a11ykit"
+          controls="0"
+          posterSrc="/screenshot/widget-remix.png"
+          caption="WelcomingWeb Overview"
+          useModal={true}
+          maskType="diamond"
+        />
+      </div>
+    </div>
+  </section>
+
+  {/* Categories */}
+  <section id="categories" className="py-20 px-6 max-w-7xl mx-auto">
+    <div className="text-center mb-16">
+      <h2 className="text-3xl font-bold mb-4">Browse by topic</h2>
+      <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Learn how to integrate widgets, manage accessibility scans, and automate remediation with AI.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {folderMeta.map(({ slug, title, description, icon }) => (
+        <KBCard key={slug} title={title} href={`/${slug}`} icon={icon} desc={description} />
+      ))}
+    </div>
+  </section>
+
+  {/* Support Section */}
+  <section className="py-16 px-6 bg-white dark:bg-gray-950">
+    <div className="max-w-6xl mx-auto">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-medium text-gray-900 dark:text-white mb-3">
+          Still need help?
+        </h2>
+        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Our support team is here to help, or you can explore platform demos and integrations.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Link href="https://welcomingweb.com/contact" className="group block" aria-label="Contact Support">
+          <div className="relative rounded-xl p-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-300 dark:border-blue-700 hover:shadow-lg transition-all duration-300 h-full">
+            <div className="relative z-10 flex flex-col justify-between h-full">
+              <div>
+                <h3 className="text-blue-800 dark:text-white text-xl font-semibold mb-2">Contact Support</h3>
+                <p className="text-blue-700/80 dark:text-blue-100 text-sm">
+                  Get quick help from our team regarding integration, scanning, or remediation issues.
+                </p>
+              </div>
+              <span className="mt-5 inline-flex items-center gap-1 underline underline-offset-2 font-medium text-sm text-blue-700 dark:text-blue-300 group-hover:text-blue-900 dark:group-hover:text-white">
+                Get Help
+              </span>
+            </div>
+          </div>
+        </Link>
+
+        {[
+          {
+            title: 'Book a Demo',
+            desc: 'Schedule a live walkthrough of WelcomingWeb with our accessibility experts.',
+            href: 'https://welcomingweb.com/book-demo',
+            cta: 'Book Now'
+          },
+          {
+            title: 'Integration Guides',
+            desc: 'Follow step-by-step tutorials for WordPress, Shopify, React and more.',
+            href: '/platform-integrations',
+            cta: 'View Docs'
+          },
+          {
+            title: 'Compliance Services',
+            desc: 'Request a manual audit, VPAT®, or legal support for enterprise compliance.',
+            href: '/compliance',
+            cta: 'Learn More'
+          }
+        ].map((item, index) => (
+          <Link key={index} href={item.href} className="group block" aria-label={item.cta}>
+            <div className="relative rounded-xl p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-pink-400 hover:shadow-lg transition-all duration-300 h-full">
+              <div className="relative z-10 flex flex-col justify-between h-full">
+                <div>
+                  <h3 className="text-gray-900 dark:text-white text-xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">{item.desc}</p>
+                </div>
+                <span className="mt-5 inline-flex items-center gap-1 underline underline-offset-2 font-medium text-sm text-blue-600 dark:text-blue-400 group-hover:text-blue-800 dark:group-hover:text-white">
+                  {item.cta}
+                </span>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  </section>
+</main>

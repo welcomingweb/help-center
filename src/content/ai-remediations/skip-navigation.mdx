@@ -1,0 +1,107 @@
+---
+title: "Smart Skip Navigation"
+description: "Enable AI-powered skip navigation for enhanced keyboard accessibility with WelcomingWeb."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { HotspotImage, CTA2 } from '@components/mdx/HelpUI'
+
+# Smart Skip Navigation
+
+<Callout type="info">
+WelcomingWeb's Smart Skip Navigation leverages AI to intelligently analyze your website’s content, enabling users to effortlessly jump directly to the main sections.
+</Callout>
+
+## How Smart Skip Navigation Works
+
+Skip navigation helps keyboard and screen reader users easily bypass repetitive navigation links and quickly access the main content:
+
+- **Content Analysis:** AI identifies key sections of your webpage.
+- **Intelligent Skipping:** Generates links allowing users to skip directly to main content sections.
+- **Dynamic Updates:** Automatically updates navigation links based on content structure changes.
+
+## Activating Skip Navigation
+
+To enable Smart Skip Navigation, follow these easy steps:
+
+<Steps>
+
+### Step 1: Access Your Dashboard
+
+- Log in to your WelcomingWeb admin panel.
+- Go to your site’s accessibility settings.
+
+### Step 2: Enable Skip Navigation
+
+- Toggle the "Smart Skip Navigation" feature to active.
+- Click **Save**.
+
+### Step 3: Verify Functionality
+
+- Test your website by using keyboard navigation (typically pressing the Tab key).
+- Confirm skip links appear and effectively navigate to main content sections.
+
+</Steps>
+
+## Customizing Skip Navigation
+
+Advanced configuration allows fine-tuning skip navigation:
+
+- **Skip Link Styling:** Adjust the appearance of skip links to match your site’s design.
+- **Manual Overrides:** Define specific sections or skip link targets as needed.
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-enable-skip-navigation="true"
+  data-skip-nav-style="default">
+</script>
+```
+
+## Example of Smart Skip Navigation
+
+<HotspotImage
+  src="/images/skip-navigation-demo.png"
+  hotspots={[
+    {
+      x: 25,
+      y: 40,
+      title: 'Standard Navigation',
+      description: 'Repeated navigation elements that may frustrate keyboard users.'
+    },
+    {
+      x: 75,
+      y: 40,
+      title: 'Smart Skip Navigation',
+      description: 'AI-generated skip links that provide easy access to primary content sections.'
+    }
+  ]}
+/>
+
+## Key Benefits
+
+- **Enhanced Accessibility:** Essential for users relying on keyboard navigation.
+- **Compliance:** Supports accessibility standards, including WCAG 2.1.
+- **Improved User Experience:** Provides faster, more intuitive content access.
+
+## Troubleshooting Common Issues
+
+<Callout type="warning">
+If Smart Skip Navigation isn’t working:
+</Callout>
+
+- Verify the integration script is properly added to your website.
+- Ensure no CSS or JavaScript conflicts are overriding skip links.
+- Check for JavaScript console errors.
+
+## Additional Help
+
+Explore other AI-powered accessibility features or get in touch for personalized assistance.
+
+<CTA2
+  title="Need Personalized Help?"
+  description="Schedule a demo or a one-on-one support session."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

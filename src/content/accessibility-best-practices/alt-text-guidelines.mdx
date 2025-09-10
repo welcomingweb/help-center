@@ -1,0 +1,80 @@
+---
+title: "Alt Text Guidelines"
+description: "Craft clear, concise alternative text to describe meaningful images."
+---
+
+import { Callout } from 'nextra/components'
+import { Steps } from 'nextra/components'
+import { Table } from 'nextra/components'
+
+# Alt Text Guidelines
+
+Providing good alt text ensures that users who cannot see images still understand their purpose and content.
+
+<Callout type="important">
+Always include alt text for any image that conveys information or has a functional role.
+</Callout>
+
+## Key Principles
+
+<Steps>
+### 1. Be Concise  
+Limit to 125 characters or fewer. Screen readers typically stop after this length.
+
+### 2. Be Specific  
+Describe what’s relevant. E.g., “Red maple leaf in autumn” rather than “Leaf.”
+
+### 3. Convey Purpose  
+If an image is decorative only, use an empty alt attribute (`alt=""`) so it’s skipped by assistive tech.
+
+### 4. Avoid Redundancy  
+Don’t repeat information already in nearby text or captions.
+
+### 5. Include Text  
+If text appears in the image that’s essential (e.g., button label), include it verbatim.
+</Steps>
+
+<Callout type="info">
+Decorative images (e.g., background flourishes) should use `alt=""` or be CSS backgrounds to avoid cluttering assistive tool output.
+</Callout>
+
+## Examples
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Use Case</Table.Th>
+      <Table.Th>Bad Alt</Table.Th>
+      <Table.Th>Good Alt</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>Informative photo</Table.Td>
+      <Table.Td>“Image1.jpg”</Table.Td>
+      <Table.Td>“Smiling teacher reading to children in classroom”</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>Button icon</Table.Td>
+      <Table.Td>“icon.png”</Table.Td>
+      <Table.Td>“Search”</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>Decorative only</Table.Td>
+      <Table.Td>“Flower pattern”</Table.Td>
+      <Table.Td>“”</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+<Callout type="warning">
+Do not start alt text with “Image of…”—screen readers already announce it as an image.
+</Callout>
+
+## Quick Checklist
+
+- ✅ Is it under 125 characters?  
+- ✅ Does it describe what matters?  
+- ✅ Is decorative content marked `alt=""`?  
+- ✅ Did you avoid phrases like “image of” or “graphic of”?  
+

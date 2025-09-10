@@ -1,0 +1,178 @@
+---
+title: "Advanced Embedding Options"
+description: "Customize every aspect of your accessibility widget implementation"
+---
+
+import { Callout, Tabs } from 'nextra/components'
+import { HotspotImage } from '@components/mdx/HelpUI'
+
+# Advanced Embedding Options
+
+<Callout type="info">
+  Fine-tune your widget's appearance and behavior with these advanced configuration options.
+</Callout>
+
+## Complete Configuration Template
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js" 
+  data-widget-id="YOUR_WIDGET_ID"
+  data-api-url="https://api.welcomingweb.com"
+  data-theme="light"
+  data-language="en"
+  data-widget-display-type="FULL"
+  data-profile=""
+  data-position="bottom-right"
+  data-enable-custom-trigger="false"
+  data-custom-trigger-selector=""
+  data-desktop-horizontal-position="RIGHT"
+  data-desktop-vertical-position="LOWER"
+  data-desktop-offset-x="5"
+  data-desktop-offset-y="5"
+  data-mobile-horizontal-position="RIGHT"
+  data-mobile-vertical-position="LOWER"
+  data-mobile-offset-x="5"
+  data-mobile-offset-y="5"
+  data-button-color-mode="SOLID"
+  data-button-primary-color="#504CFF"
+  data-button-secondary-color="#A94CFF"
+  data-button-gradient-direction="TO_RIGHT"
+  data-button-size="SMALL"
+  data-button-icon-type="WALKING"
+  data-show-over-sized-widget-button="true">
+</script>
+```
+
+## Configuration Categories
+
+<Tabs items={["Display", "Positioning", "Appearance", "Behavior"]}>
+<Tabs.Tab>
+
+### Display Options
+
+```html
+data-widget-display-type="FULL|COMPACT|BUTTON_ONLY"
+data-theme="light|dark|auto"
+data-show-over-sized-widget-button="true|false"
+```
+
+- **FULL**: Complete widget interface
+- **COMPACT**: Collapsed panel
+- **BUTTON_ONLY**: Just the toggle button
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+### Positioning
+
+```html
+data-position="bottom-right|bottom-left|top-right|top-left"
+data-desktop-offset-x="10"
+data-desktop-offset-y="10"
+data-mobile-offset-x="5"
+data-mobile-offset-y="5"
+```
+
+Pixel values control widget distance from screen edges.
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+### Appearance
+
+```html
+data-button-color-mode="SOLID|GRADIENT"
+data-button-primary-color="#504CFF"
+data-button-secondary-color="#A94CFF"
+data-button-icon-type="DEFAULT|WALKING|WHEELCHAIR"
+```
+
+Use hex color codes for complete brand matching.
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+### Behavior
+
+```html
+data-enable-custom-trigger="true|false"
+data-custom-trigger-selector="#my-button"
+data-auto-init="true|false"
+data-enable-keyboard-shortcuts="true|false"
+```
+
+Trigger the widget from your own UI elements.
+
+</Tabs.Tab>
+</Tabs>
+
+## Implementation Guide
+
+### Custom Trigger Example
+
+1. Add a button to your page:
+
+```html
+<button id="a11y-trigger">Toggle Accessibility</button>
+```
+
+2. Configure the widget:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-enable-custom-trigger="true"
+  data-custom-trigger-selector="#a11y-trigger">
+</script>
+```
+
+### Dynamic Profile Loading
+
+Initialize with specific profile enabled:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-profile="motor_impaired">
+</script>
+```
+
+<HotspotImage
+  src="/images/advanced-config-preview.png"
+  hotspots={[
+    {
+      x: 25,
+      y: 15,
+      title: 'Color Customization',
+      description: 'Match your brand colors exactly'
+    },
+    {
+      x: 75,
+      y: 40,
+      title: 'Position Offsets',
+      description: 'Fine-tune widget placement'
+    }
+  ]}
+/>
+
+## Troubleshooting
+
+<Callout type="warning">
+  Always test mobile and desktop configurations separately.
+</Callout>
+
+Common issues:
+
+1. **Widget not appearing?** Check:
+   - Correct `data-widget-id`
+   - No JavaScript errors in console
+   - CSP allows our CDN
+
+2. **Custom trigger not working?**
+   - Verify selector matches exactly
+   - Ensure element exists when script loads
+
+3. **Styling issues?**
+   - Check for CSS conflicts
+   - Verify color values are valid hex codes

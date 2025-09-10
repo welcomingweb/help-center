@@ -57,3 +57,5 @@ dist/
 .settings/
 package-lock.json
 .project
+.next/
+.next

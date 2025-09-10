@@ -1,0 +1,123 @@
+---
+title: "Google Tag Manager (GTM) Integration"
+description: "Install the WelcomingWeb Accessibility Widget via the GTM Community Template Gallery (recommended) or from file."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { GifPreview, CTA2 } from '@components/mdx/HelpUI'
+
+# Google Tag Manager Integration Guide
+
+<Callout type="info">
+**Recommended:** Install from the *GTM Community Template Gallery*. A file-based (offline) install is provided as a fallback.
+</Callout>
+
+## Step-by-Step Integration
+
+<Steps>
+
+### Step 1: Add the template (Community Template Gallery — recommended)
+
+In **GTM → Templates → Tag Templates → Search Gallery**, search for **WelcomingWeb Accessibility Widget** and click **Add to workspace**.
+
+<GifPreview
+  src="/gifs/gtm-gallery-add.gif"
+  caption="Adding the WelcomingWeb template from the Community Template Gallery"
+/>
+
+### Step 2: Create a tag
+
+Go to **Tags → New → WelcomingWeb Accessibility Widget**, name your tag, and fill out:
+
+- **Widget ID (UUID)** — paste your widget ID from the WelcomingWeb dashboard.
+
+<GifPreview
+  src="/gifs/gtm-create-tag.gif"
+  caption="Creating the WelcomingWeb tag and entering the Widget ID"
+/>
+
+### Step 3: (Recommended) Configure Consent Settings
+
+Open **Advanced → Consent Settings** on the tag and require the consent types your policy needs (e.g., `functionality_storage`).
+This template respects Google Consent Mode—no custom consent fields are required.
+
+### Step 4: Add a trigger
+
+Most installs use **All Pages**. You can scope this to specific pages or events as needed.
+
+### Step 5: Preview & Publish
+
+Use **Preview** to verify the tag fires. In your browser’s DevTools, confirm the request to:
+
+```
+https://cdn-01.welcomingweb.com/a11y-widget.bundle.js?wid=YOUR_WIDGET_ID
+```
+
+Publish when everything looks good.
+
+</Steps>
+
+## Offline (fallback) install from file
+
+If your account can’t access the Gallery, you can import the template from a file.
+
+1. Download `template.tpl` from the repository: [github.com/welcomingweb/gtm](https://github.com/welcomingweb/gtm)
+2. In **GTM → Templates → Tag Templates → Import**, select `template.tpl` and import.
+3. Follow **Steps 2–5** above.
+
+<GifPreview
+  src="/gifs/gtm-import-template.gif"
+  caption="Importing the tag template from a local file"
+/>
+
+## What the template loads
+
+A single script is injected:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js?wid=YOUR_WIDGET_ID"></script>
+```
+
+All styling, positioning, and behavior defaults are controlled by your server-side configuration (WelcomingWeb dashboard).
+
+## Consent & CSP
+
+- **Consent:** Managed by GTM’s Consent Mode. Use **Consent Settings** (and/or the template’s built-in consent checks) to gate this tag. No additional template fields or manual `grantConsent()` calls are needed.
+- **CSP:** If you use a nonce, adopt GTM’s **nonce-aware container snippet** so GTM applies the nonce automatically.
+
+## Troubleshooting
+
+<Callout type="warning">
+Common issues and quick fixes:
+</Callout>
+
+- **Tag isn’t firing?** Ensure the trigger matches your pages and no blocking triggers/consent rules prevent execution.
+- **Consent gating?** If consent is denied, the tag won’t run. Verify **Advanced → Consent Settings** and your CMP integration.
+- **CSP errors?** Use GTM’s nonce-aware snippet and allow `https://cdn-01.welcomingweb.com` in your `script-src`.
+- **Duplicate widget?** Make sure only one WelcomingWeb tag fires per page view.
+
+## Using the JavaScript API
+
+Once the script loads, you can interact with the widget:
+
+```js
+// Open the widget interface
+window.AccessibilityWidgetAPI?.openWidget();
+
+// Enable a profile (example)
+window.AccessibilityWidgetAPI?.enableProfile('color_blind');
+
+// Reset all features to defaults
+window.AccessibilityWidgetAPI?.resetAllFeatures();
+```
+
+## Need Further Support?
+
+For detailed configuration and best practices, visit the repository at [github.com/welcomingweb/gtm](https://github.com/welcomingweb/gtm) or contact our support team.
+
+<CTA2
+  title="Need Expert Help?"
+  description="Schedule a support session or attend a live webinar."
+  buttonText="Schedule Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

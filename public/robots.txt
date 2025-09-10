@@ -1,0 +1,25 @@
+# ===========================================================
+# WelcomingWeb Help Center - robots.txt
+# This file controls how search engines crawl and index content
+# ===========================================================
+
+# -----------------------------------------------------------
+# ✅ ALLOW INDEXING (Active)
+# Uncomment the "Disallow: /" below ONLY if you want to block
+# crawlers completely. Currently, all pages are indexable.
+# -----------------------------------------------------------
+
+# User-agent: *
+# Disallow:
+
+# Sitemap for better SEO and faster crawling
+# Sitemap: https://help.welcomingweb.com/sitemap.xml
+
+# -----------------------------------------------------------
+# 🚫 DISALLOW INDEXING (Optional - Currently Disabled)
+# If you want to hide the entire site from search engines,
+# just uncomment the following section and remove the top one.
+# -----------------------------------------------------------
+
+User-agent: *
+Disallow: /

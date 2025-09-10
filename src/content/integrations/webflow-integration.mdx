@@ -1,0 +1,118 @@
+---
+title: "Webflow Integration"
+description: "Integrate WelcomingWeb easily into your Webflow projects."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { GifPreview, CTA2 } from '@components/mdx/HelpUI'
+
+# Webflow Integration Guide
+
+<Callout type="info">
+Quickly add powerful accessibility tools to your Webflow site.
+</Callout>
+
+## Step-by-Step Integration
+
+<Steps>
+
+### Step 1: Log in to Webflow
+
+Log in to your Webflow account at [webflow.com](https://webflow.com).
+
+### Step 2: Open Site Settings
+
+From your site dashboard:
+- Select your site.
+- Click on **Settings**.
+
+### Step 3: Navigate to Custom Code
+
+Under the **Settings** menu:
+- Click **Custom Code** in the left sidebar.
+
+### Step 4: Paste the Embed Code
+
+Copy your unique WelcomingWeb embed code from your dashboard:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID">
+</script>
+```
+
+- Paste this script into the `Footer Code` section.
+
+<GifPreview
+  src="/gifs/webflow-embed.gif"
+  caption="Adding custom code in Webflow"
+/>
+
+### Step 5: Save and Publish
+
+Click **Save Changes** and publish your site to activate the widget.
+
+</Steps>
+
+## Widget Customization Options
+
+You can easily customize your widget using additional parameters:
+
+```html
+<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-theme="auto"
+  data-language="en"
+  data-position="bottom-left"
+  data-button-size="MEDIUM"
+  data-button-color-mode="SOLID"
+  data-button-primary-color="#504CFF">
+</script>
+```
+
+## Available Configuration Attributes
+
+| Parameter                      | Description                               | Default Value  |
+|--------------------------------|-------------------------------------------|----------------|
+| `data-theme`                   | Theme of widget (`auto`, `light`, `dark`) | `auto`         |
+| `data-language`                | Language (ISO code, e.g., `en`, `es`)     | `en`           |
+| `data-position`                | Widget position (`bottom-right`, etc.)    | `bottom-right` |
+| `data-button-size`             | Size of the widget button                 | `SMALL`        |
+| `data-button-color-mode`       | Color style (`SOLID`, `GRADIENT`)         | `SOLID`        |
+| `data-button-primary-color`    | Primary color (Hex)                       | `#504CFF`      |
+
+## Troubleshooting Tips
+
+<Callout type="warning">
+Resolve common issues quickly:
+</Callout>
+
+- **Widget not appearing?** Ensure your site is published.
+- **Conflicts?** Verify no conflicting custom scripts are present.
+- **Incorrect styling?** Double-check color and appearance parameters.
+
+## Using the JavaScript API
+
+Interact programmatically with the widget using the provided API:
+
+```js
+// Open widget interface
+window.AccessibilityWidgetAPI?.openWidget();
+
+// Activate specific profile
+window.AccessibilityWidgetAPI?.enableProfile('color_blind');
+
+// Reset widget features
+window.AccessibilityWidgetAPI?.resetAllFeatures();
+```
+
+## Need Further Support?
+
+For detailed customizations, visit our [Developer Documentation](/docs/developer-api) or reach out to our [Support Team](mailto:support@welcomingweb.com).
+
+<CTA2
+  title="Need Expert Help?"
+  description="Schedule a support session or attend a live webinar."
+  buttonText="Schedule Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

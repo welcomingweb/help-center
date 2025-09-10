@@ -1,0 +1,132 @@
+---
+title: "React & Next.js Integration"
+description: "Integrate the WelcomingWeb widget into your React or Next.js project effortlessly."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# React & Next.js Integration
+
+<Callout type="info">
+Embed the WelcomingWeb widget seamlessly into your React or Next.js application.
+</Callout>
+
+## Integration Steps
+
+<Steps>
+
+### Step 1: Install Dependencies (Next.js only)
+
+For Next.js apps, ensure you've installed the `next/script` package (it's built-in):
+
+```bash
+npm install next
+```
+
+### Step 2: Create a Custom Component
+
+In your project, create a new component, e.g., `AccessibilityWidget.jsx`:
+
+```jsx
+import { useEffect } from 'react';
+import Script from 'next/script';
+
+export default function AccessibilityWidget({ widgetId }) {
+  useEffect(() => {
+    if (window.__A11Y_WIDGET_ACTIVE__) return;
+
+    window.__A11Y_WIDGET_ACTIVE__ = true;
+
+    const script = document.createElement('script');
+    script.src = "https://cdn-01.welcomingweb.com/a11y-widget.bundle.js";
+    script.setAttribute("data-widget-id", widgetId);
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      script.remove();
+      window.__A11Y_WIDGET_ACTIVE__ = false;
+    };
+  }, [widgetId]);
+
+  return null;
+}
+```
+
+### Step 3: Include the Widget in Your Application
+
+Use the component at the root of your application, typically in `_app.jsx` or `layout.jsx`:
+
+```jsx
+import AccessibilityWidget from './components/AccessibilityWidget';
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <AccessibilityWidget widgetId="YOUR_WIDGET_ID" />
+      <Component {...pageProps} />
+    </>
+  );
+}
+
+export default MyApp;
+```
+
+</Steps>
+
+## Customizing the Widget
+
+You can add more attributes to customize the widget further:
+
+```jsx
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-theme="dark"
+  data-position="bottom-left"
+  data-button-size="LARGE"
+  data-button-color-mode="GRADIENT"
+  data-button-primary-color="#504CFF"
+  data-button-secondary-color="#A94CFF">
+</script>
+```
+
+## Widget Configuration Attributes
+
+| Parameter                      | Description                                | Default Value |
+|--------------------------------|--------------------------------------------|---------------|
+| `data-theme`                   | Widget theme (`auto`, `light`, `dark`)     | `auto`        |
+| `data-language`                | Widget language (`en`, `es`, etc.)         | `en`          |
+| `data-position`                | Widget position (`bottom-right`, etc.)     | `bottom-right`|
+| `data-button-size`             | Widget button size                         | `SMALL`       |
+| `data-button-color-mode`       | Button color mode (`SOLID`, `GRADIENT`)    | `SOLID`       |
+| `data-button-primary-color`    | Primary color (Hex)                        | `#504CFF`     |
+| `data-button-secondary-color`  | Secondary color (Hex, for gradients)       | `#A94CFF`     |
+
+## Using JavaScript API
+
+Leverage the JavaScript API to interact with the widget:
+
+```js
+// Open the widget programmatically
+window.AccessibilityWidgetAPI?.openWidget();
+
+// Enable a specific profile
+window.AccessibilityWidgetAPI?.enableProfile('dyslexia');
+
+// Reset all widget settings
+window.AccessibilityWidgetAPI?.resetAllFeatures();
+```
+
+## Need Further Assistance?
+
+Explore our [Developer Documentation](/docs/developer-api) or reach out directly to our [Support Team](mailto:support@welcomingweb.com).
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

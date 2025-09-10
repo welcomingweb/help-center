@@ -1,0 +1,68 @@
+---
+title: "Developer Resources"
+description: "Everything you need to integrate WelcomingWeb using JavaScript, REST APIs, or Webhooks."
+---
+
+import { Cards } from 'nextra/components'
+import { CodeBracketIcon, Cog6ToothIcon, ServerStackIcon } from '@heroicons/react/24/outline'
+import { Callout, Steps } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# 🧑‍💻 Developer Resources
+
+WelcomingWeb provides multiple integration options for developers—no matter your stack. Whether you're customizing the widget behavior on the frontend or triggering automations via backend systems, you're covered.
+
+<Callout type="info">
+💡 The <strong>JavaScript API does not require any API key</strong>. Once the widget is embedded, it's ready to use via <code>window.AccessibilityWidgetAPI</code>.
+</Callout>
+
+## Explore the Tools
+
+<Cards>
+  <Cards.Card
+    title="JavaScript API"
+    icon={<CodeBracketIcon className="w-6 h-6 text-blue-600" />}
+    href="/developer-resources/javascript-api"
+  >
+    <span className="m-3">Use the global <code>window.AccessibilityWidgetAPI</code> to control widget behavior, profiles, and features—no setup required.</span>
+  </Cards.Card>
+
+  <Cards.Card
+    title="REST API"
+    icon={<ServerStackIcon className="w-6 h-6 text-blue-600" />}
+    href="/developer-resources/rest-api-guide"
+  >
+    <span className="m-3">Securely fetch scan data, control widget settings, and automate reports with server-to-server integrations.</span>
+  </Cards.Card>
+
+  <Cards.Card
+    title="Webhooks"
+    icon={<Cog6ToothIcon className="w-6 h-6 text-blue-600" />}
+    href="/developer-resources/webhooks-integration"
+  >
+    <span className="m-3">Subscribe to real-time events such as scan completions or site updates to automate workflows.</span>
+  </Cards.Card>
+</Cards>
+
+## Quick Integration Guide
+
+<Steps>
+### Step 1: Embed the Widget
+
+Add the `<script>` snippet to your site. Once it loads, the JavaScript API becomes available.
+
+### Step 2: Use JavaScript for Frontend Controls
+
+Open the widget, enable features, or switch profiles using JS—no backend required.
+
+### Step 3: Use REST API or Webhooks for Automation
+
+Trigger scans, retrieve data, or respond to updates securely using tokens and keys.
+</Steps>
+
+<CTA2
+  title="Need Help Integrating?"
+  description="Get developer support or request advanced implementation help tailored to your stack."
+  buttonText="Contact Developer Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

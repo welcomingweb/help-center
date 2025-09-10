@@ -1,0 +1,62 @@
+---
+title: "Scan History & Reports"
+description: "Review all past accessibility scans, session summaries, and downloadable reports for your connected sites."
+---
+
+import { Callout, Steps } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Scan History & Reports
+
+<Callout type="info">
+The Scan History section gives you full visibility into your past accessibility scans, including issue counts, scores, and status for each session.
+</Callout>
+
+## What You’ll Find Here
+
+Each scan session includes:
+
+<Steps>
+### Site Information
+- Domain name
+- Favicon and country (if available)
+- SSL status and domain age
+- PageRank and global rank (if enabled)
+
+### Scan Summary
+- **Score**: Accessibility rating based on Lighthouse principles
+- **Status**: Success, warning, or failed
+- **Pages Crawled**: Total number of pages audited
+- **Scan Timestamp**: When the scan was completed
+- **Subdomains**: If detected, listed for inclusion in extended scans
+
+### Performance Breakdown
+Each session includes sub-scores for:
+- **Accessibility**
+- **SEO**
+- **Performance**
+- **Best Practices**
+
+Visual indicators help quickly assess critical vs. minor issue impact.
+
+### Screenshot Preview
+A preview image is generated from the home page at the time of scan.
+
+### Actions Available
+- **View Full Report**: Opens a detailed issue-by-issue report
+- **Summary View**: Clean overview of key scan stats
+- **Download Report (PDF/JSON)**: If enabled for your plan
+</Steps>
+
+## How to Use Scan History Effectively
+
+- Track improvements over time by comparing scores.
+- Use session filters to locate scans by domain or status.
+- Click “View Report” to drill into specific issues and recommendations.
+
+<CTA2
+  title="Need Help Reading Scan Reports?"
+  description="Schedule a personalized training to walk through your scan results and fix high-priority issues."
+  buttonText="Request Help"
+  buttonLink="https://welcomingweb.com/contact"
+/>
