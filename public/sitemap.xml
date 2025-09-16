@@ -1,725 +1,389 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-<url>
-  <loc>https://help.cinema8.com/</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/using-templates-for-quick-video-creation</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/creating-interactive-360-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/ai-powered-chapter-suggestions</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/adding-background-music-and-sound-effects</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/making-the-most-out-of-your-cinema8-plan</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/screen-recording-with-cinema8</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/adding-chapters-to-your-video</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/automate-video-editing-and-organisation-with-ai</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/subtitle-editor-add-and-edit-captions-easily</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/adding-subtitles-to-your-video</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/editing-videos-on-cinema8-and-adding-background-music</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/dashboard-overview</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/creating-your-first-video</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/what-you-can-achieve-with-growth-tools-cinema8-use-cases</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/create-and-edit-videos/ai-powered-subtitles-and-translations</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/host-manage-and-customise</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/host-manage-and-customise/getting-started-with-cinema8-cms-a-platform-built-for-growth</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/host-manage-and-customise/customising-your-video-player</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/host-manage-and-customise/organising-video-assets-in-folders</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/host-manage-and-customise/creating-private-or-password-protected-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/host-manage-and-customise/organising-video-libraries</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/host-manage-and-customise/brand-your-platform-white-labelling-custom-domains-and-cname-explained</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/host-manage-and-customise/bulk-video-migration-using-ftp-upload</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/host-manage-and-customise/duplicating-or-deleting-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/host-manage-and-customise/creating-channels-for-your-audience</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/host-manage-and-customise/creating-channels-and-playlists-in-cinema8</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/host-manage-and-customise/editing-your-video-info</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/hotspot-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/driving-conversions-with-ctas</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/creating-and-animating-creative-fonts</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/interaction-elements-how-to-use-the-property-panel</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/dynamic-ctas-to-boost-conversions</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/getting-started-with-widgets-and-elements</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/capturing-leads-from-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/making-amazing-video-surveys-with-hotspots</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/html-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/adding-video-overlays</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/generating-leads-with-adaptive-intro-forms</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/collaborating-on-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/add-or-edit-interactivity</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/creating-action-buttons-in-cinema8-creative-studio</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/examples-of-growing-your-business-with-video</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/introducing-interactive-growth-tools</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/engage-and-monetise/using-introduction-forms</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/creating-new-interactive-live-stream</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/what-is-video-element-in-cinema8</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/element-properties-common-features</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/how-to-use-audio-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/image-element-in-cinema8-creative-studio</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/working-with-layers-best-practices-and-samples</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/easy-access-guide-complete-list-of-interactivity-elements</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/project-item-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/drawing-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/how-to-use-after-effect-import-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/dynamic-image-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/how-to-use-server-side-webhooks-to-inject-custom-variables-in-to-video</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/using-the-video-branching-editor</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/connecting-questions-in-branching-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/how-to-make-branching-video-with-different-finals</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/conditional-action-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/studio-development-using-variables</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/how-to-use-action-elements</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/how-to-use-the-jump-to-element-in-cinema8</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/using-variables-in-interaction-design</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/creating-branching-video-experiences</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/how-to-earn-badges-by-viewers-choice-using-variables</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/countdown-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/supported-interaction-elements-in-360-degree-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/an-introduction-to-360-degree-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/designing-custom-forms</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/customizing-form-elements-playing-with-styles</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/how-to-calculate-score-with-questions</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/free-text-question-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/audio-video-input-question</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/how-to-use-audio-feedback</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/how-to-use-question-templates</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/drag-and-drop-question</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/how-to-add-time-restriction-to-question-types</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/fill-in-the-blank-question-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/single-select-question-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/multi-select-question-element</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/design-advanced-interactivity/how-to-add-questions-on-video</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/share-videos-securely</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/share-videos-securely/secure-sharing-options-in-cinema8</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/share-videos-securely/securing-your-videos-with-privacy-settings</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/share-videos-securely/how-to-publish-a-video</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/share-videos-securely/creating-personalized-video-links</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/share-videos-securely/exporting-scorm-packages-from-cinema8</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/share-videos-securely/embedding-cinema8-interactive-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/analyze-and-optimise</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/analyze-and-optimise/understanding-project-specific-data</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/analyze-and-optimise/unlocking-cinema8-analytics-tools</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/analyze-and-optimise/tracking-performance</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/analyze-and-optimise/optimizing-video-strategy-with-a-b-testing</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/analyze-and-optimise/analytics-reporting</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/integrating-cinema8-with-other-platforms</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/integrating-cinema8-with-google-analytics</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/cinema8-support-for-oembed-and-player-js</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/iframely-integration-with-cinema8</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/how-to-use-google-fonts-in-interactive-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/ads-in-your-interactive-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/how-to-use-server-side-web-hooks-to-inject-custom-variables-in-to-video</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/scorm-compatible-exports-for-lms</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/connecting-cinema8-with-other-platforms</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/responsive-iframe-embeds</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/monetise-with-dfp-and-vast</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/creating-new-webhook-in-detail</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/webhooks</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/server-side-webhooks</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/reporting-with-api</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/using-webhooks-in-interaction-design</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/how-to-use-webhook-parameters-in-interactive-videos</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/working-with-video-url-parameters</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/javascript-web-hooks</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/is-cinema8-compatible-with-embedly-api</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/integrations-and-third-party-platforms/tips-tricks-creating-new-webhook-in-detail</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/getting-started-with-cinema8-api</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/generating-api-key-for-integrations</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/rest-api</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/javascript-webhooks-custom-callbacks</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/sample-codes-in-cinema8</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/javascript-api</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/websocket-api</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/authentication-and-sso</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/widget-api</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/cinema8-private-token-api</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/how-to-use-cinema8-data-api</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/support-for-cmi5-and-xapi</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/advanced-tools-for-developers/widget-development-playground</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/accounts-and-billing</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/accounts-and-billing/log-in-to-your-cinema8-account</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/accounts-and-billing/how-to-create-and-edit-users-in-cinema8</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/accounts-and-billing/managing-subscriptions-and-user-accounts</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/accounts-and-billing/finding-the-right-plan-for-you</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/accounts-and-billing/troubleshooting-login-issues-for-cinema8</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/accounts-and-billing/configuring-user-permissions-in-cinema8</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://help.cinema8.com/accounts-and-billing/sign-up-for-cinema8-with-email-or-social-accounts</loc>
-  <lastmod>2025-05-16T13:22:33+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://help.welcomingweb.com/</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/ai-remediations/sign-language-interpreter</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/getting-started/register-account</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/getting-started</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/getting-started/add-first-site</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/getting-started/explore-dashboard</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/getting-started/understanding-your-accessibility-report</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/getting-started/interpreting-accessibility-metrics</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/getting-started/improving-your-score</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/widget-configuration</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/widget-configuration/basic-configuration</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/widget-configuration/appearance-settings</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/widget-configuration/advanced-settings</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/integrations</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/integrations/wordpress-integration</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/integrations/wix-integration</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/integrations/shopify-integration</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/integrations/webflow-integration</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/integrations/advanced-embedding-options</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/integrations/gtm-integration</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/integrations/html-embed</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/integrations/react-integration</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://app.welcomingweb.com/register</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/integrations/spa-integration</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/integrations/squarespace-integration</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/getting-started/accessibility-scan-results</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/widget-configuration/intro</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/getting-started/configure-widget</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/support</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/dashboard-analytics</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/dashboard-analytics/dashboard-overview</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/dashboard-analytics/scan-history-and-reports</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/dashboard-analytics/interpreting-scan-results</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/dashboard-analytics/widget-usage-insights</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/docs/developer-api</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/ai-remediations</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/ai-remediations/contrast-adjustment</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/ai-remediations/image-descriptions</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/ai-remediations/skip-navigation</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/ai-remediations/dictionary-ai</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/features/pause-animations</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/docs/react-nextjs-integration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/ai-remediations/ai-keyboard-navigation</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/ai-remediations/readability-optimizer</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/ai-remediations/ai-translation</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/developer-resources</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/developer-resources/javascript-api</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/developer-resources/rest-api-guide</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/developer-resources/webhooks-integration</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/compliance-standards</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/compliance-standards/wcag-compliance</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/compliance-standards/vpat-reports</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/compliance-standards/legal-guidelines</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/accessibility-best-practices</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/accessibility-best-practices/alt-text-guidelines</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/accessibility-best-practices/color-contrast</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/accessibility-best-practices/keyboard-access</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/accessibility-best-practices/semantic-html</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/platform-integrations</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/compliance</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://app.welcomingweb.com/login</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://app.welcomingweb.com/dashboard</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://help.welcomingweb.com/features/text-magnifier</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://app.welcomingweb.com/forgot-password</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://app.welcomingweb.com/terms</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://app.welcomingweb.com/privacy</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
