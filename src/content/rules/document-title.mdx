@@ -1,0 +1,128 @@
+---
+title: "Document Title"
+description: "Documents must have a &lt;title&gt; element to aid in navigation"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Document Title
+
+<Callout type="info">
+Documents must have a &lt;title&gt; element to aid in navigation
+</Callout>
+
+Every HTML document must include a non-empty &lt;title&gt; element so users can identify the page context quickly. This blog explains what the document-title rule checks, why page titles are essential for navigation and accessibility, how to implement effective titles and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, SEO‑optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The document-title rule checks whether each HTML document contains a &lt;title&gt; element within the &lt;head&gt; section and whether that title is descriptive. Titles appear in browser tabs, search engine results, bookmarks and assistive technology output.
+
+The &lt;title&gt; element provides a concise summary of what the page contains. Without it, users cannot easily identify or differentiate pages.
+
+## Why it matters
+
+A page title is one of the most important navigation cues. When the &lt;title&gt; element is missing or empty: - screen reader users hear generic tab names such as “untitled page”, - users with multiple open tabs may struggle to locate the correct one, - bookmarking becomes confusing, - search engine visibility can be reduced, - cognitive load increases because context is unclear.
+
+Clear titles support predictable navigation and help users orient themselves within a site.
+
+## Who delivers it
+
+Front end developers ensure templates include meaningful &lt;title&gt; elements. Content and SEO teams craft descriptive titles that reflect page purpose. Accessibility engineers and QA testers confirm that each page exposes a correct title. Welcoming Web assists by identifying pages missing &lt;title&gt; elements or containing empty or unclear titles.
+
+How to fix missing or unclear document titles
+
+1. Add a &lt;title&gt; element to every HTML page
+
+Place it in the &lt;head&gt; section.
+
+### Incorrect example:
+
+```html
+<head>  <!-- missing title --></head>
+```
+
+### Corrected version:
+
+```html
+<head>  &lt;title&gt;Account settings</title></head>
+```
+
+2. Keep titles short and descriptive
+
+Titles should summarise the page in a few clear words.
+
+3. Follow a consistent naming pattern
+
+Examples include: “Page name – Site name” or “Section – Page name”.
+
+4. Avoid generic labels
+
+Titles like “Home”, “Page”, or “Untitled” do not help users.
+
+5. Ensure dynamic pages update the &lt;title&gt; correctly
+
+Single‑page applications must change the title when content updates.
+
+## Best practice guidance
+
+Design a title structure that reflects site hierarchy and content purpose. Ensure titles are concise but meaningful. Avoid duplication across pages. Maintain consistency with headings and visible labels where appropriate. Review title patterns regularly as new sections or features are introduced.
+
+## Compliance mapping
+
+Meaningful page titles support: - WCAG 2.2 requirements for page titling and identification, - ADA Title III expectations for clear navigation cues, - EN 301 549 requirements for programmatically determinable information, - Equality Act 2010 duties for predictable and understandable digital content.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects pages that lack titles or include unclear or empty title elements. The platform maps these findings to WCAG criteria and provides guidance for writing descriptive and effective titles.
+
+## Key points for development teams
+
+Every document needs a &lt;title&gt;. Titles must be clear and informative. Avoid generic or empty labels. Dynamic pages must update titles. Quality titles support navigation.
+
+## Call to action
+
+Run an audit Check your site for missing or unclear &lt;title&gt; elements. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the document-title rule check
+
+It checks whether each HTML document contains a meaningful &lt;title&gt; element.
+
+Why are page titles important
+
+Because they help users identify, navigate and return to pages.
+
+What makes a good title
+
+A concise summary that reflects the page’s purpose.
+
+Should dynamic pages update their titles
+
+Yes. Applications that update content must also update the page title.
+
+Can a site use the same title for multiple pages
+
+No. Each page should have a unique title to prevent confusion.
+
+Does a correct &lt;title&gt; guarantee WCAG compliance
+
+It supports WCAG 2.2 goals but does not guarantee full compliance.
+
+How does Welcoming Web help with document titles
+
+Welcoming Web identifies missing or unclear titles and provides guidance for improving them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

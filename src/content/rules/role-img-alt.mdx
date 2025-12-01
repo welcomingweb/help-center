@@ -1,0 +1,124 @@
+---
+title: "Role Img Alt"
+description: "[role=“img”] elements must have alternative text"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Role Img Alt
+
+<Callout type="info">
+[role=“img”] elements must have alternative text
+</Callout>
+
+Elements that use role="img" must include meaningful alternative text so users understand the purpose and content of the visual element. This blog explains what the role-img-alt rule checks, why ARIA images require accessible names, how to implement correct alternatives and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The role-img-alt rule checks whether elements assigned role="img" expose accessible alternative text. Developers often use role="img" for custom icons, SVGs or dynamically generated graphics. Once given this role, the element behaves like an image and therefore requires a clear accessible name.
+
+The name may come from: - aria-label, - aria-labelledby, - or meaningful text content inside the element.
+
+## Why it matters
+
+When a role="img" element lacks alternative text: - screen readers announce it with no description, - users may not understand the purpose of icons or graphics, - critical context may be lost for non-visual users, - interactive components may become confusing, - custom icons used for navigation or status indicators become inaccessible.
+
+Correct alternative text ensures that custom imagery is communicated clearly to all users.
+
+## Who delivers it
+
+Front end developers add ARIA-based alternative text to custom images. Designers specify the purpose of icons so alternative text can reflect meaning accurately. Content authors provide descriptive naming conventions for repeated iconography. Accessibility specialists and QA testers verify that ARIA images include accessible names. Welcoming Web assists by detecting role="img" elements without alternatives.
+
+How to ensure [role=“img”] elements have alternative text
+
+1. Provide an accessible name with aria-label
+
+Use concise, meaningful labels that describe the image’s purpose.
+
+```html
+<span role="img" aria-label="Search icon"></span>
+```
+
+2. Use aria-labelledby for contextual labels
+
+Reference visible text when appropriate.
+
+```html
+<span id="status-text">Completed</span><span role="img" aria-labelledby="status-text"></span>
+```
+
+3. Do not rely on visual appearance
+
+Alternative text must describe meaning, not colour or shape.
+
+4. Avoid decorative role="img"
+
+If the element is purely decorative, remove the role and use aria-hidden="true".
+
+5. Test with screen readers
+
+Ensure the label is announced as expected across assistive technologies.
+
+## Best practice guidance
+
+Use alternative text that reflects the image’s function rather than its visual appearance. Keep text brief and relevant. Document icon usage in a design system with standardised names so teams use consistent and meaningful labels. Avoid using role="img" when the element conveys no information.
+
+## Compliance mapping
+
+Providing alternative text for ARIA images supports: - WCAG 2.2 Non-Text Content success criterion, - WCAG 2.2 Name, Role, Value expectations, - ADA Title III requirements for accessible controls and indicators, - EN 301 549 guidance on programmatically determinable labels, - Equality Act 2010 duties for accessible communication.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies role="img" elements that lack alternative text. The platform highlights missing ARIA labels and provides guidance for ensuring meaningful descriptions.
+
+## Key points for development teams
+
+Role=“img” requires alternative text. Use aria-label or aria-labelledby. Describe purpose, not appearance. Mark decorative images as hidden. Verify screen reader output.
+
+## Call to action
+
+Run an audit Check your site for ARIA images without meaningful alternative text. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the role-img-alt rule check
+
+It checks whether elements with role="img" include accessible alternative text.
+
+Why must ARIA images have alternative text
+
+They must have alternative text so screen readers can describe the image’s purpose.
+
+Can decorative icons use role=“img”
+
+No. Decorative icons should use aria-hidden="true" instead.
+
+What is the best way to label an ARIA image
+
+Use aria-label for short descriptions or aria-labelledby for contextual labels.
+
+Should alternative text describe visual styling
+
+No. Describe meaning or function, not colour, shape or decoration.
+
+Does adding aria-label guarantee WCAG compliance
+
+It supports non-text content requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with ARIA image issues
+
+Welcoming Web detects missing alternative text on role="img" elements and recommends remediation steps.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

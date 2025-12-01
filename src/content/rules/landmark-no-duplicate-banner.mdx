@@ -1,0 +1,128 @@
+---
+title: "Landmark No Duplicate Banner"
+description: "Document should not have more than one banner landmark"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Landmark No Duplicate Banner
+
+<Callout type="info">
+Document should not have more than one banner landmark
+</Callout>
+
+A document must contain no more than one banner landmark so users can identify the global header consistently across pages. This blog explains what the landmark-no-duplicate-banner rule checks, why limiting banners to one improves navigability, how to implement correct landmark usage and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The landmark-no-duplicate-banner rule checks whether the document contains more than one banner landmark. The banner landmark, often represented by the &lt;header&gt; element with a global scope, defines the site-wide header that appears consistently across pages.
+
+A banner landmark is intended to appear only once. It typically contains global navigation, branding or persistent actions.
+
+If the page contains multiple banners, assistive technologies may struggle to determine which region represents the true site header.
+
+## Why it matters
+
+Clear landmark structure is essential for efficient navigation, especially for users of assistive technologies. When multiple banner landmarks appear: - users may hear duplicated “banner” regions, - pages become harder to scan and understand, - global header content may appear ambiguous, - the page outline loses predictability, - users may mistake content-specific headers for the global banner.
+
+A single banner ensures a consistent navigation experience.
+
+## Who delivers it
+
+Front end developers implement correct &lt;header&gt; usage and avoid applying the banner role to multiple regions. Designers maintain a single global header across templates. Content authors avoid elevating content-specific headers to banner status. Accessibility specialists and QA testers check for duplicate banner landmarks. Welcoming Web assists by identifying pages with multiple banner regions.
+
+How to ensure there is only one banner landmark
+
+1. Use one &lt;header&gt; element for the site-wide banner
+
+Place it at the top of the document structure.
+
+### Correct example:
+
+```html
+<body>  <header role="banner">Global header</header>  <main>…</main></body>
+```
+
+2. Do not assign role="banner" to content-specific headers
+
+Headers within articles, sections or components should not be treated as site-wide banners.
+
+3. Avoid adding banners inside sub-templates
+
+Page builders or CMS systems may generate nested headers—review template output.
+
+4. Use semantic HTML correctly
+
+Reserve &lt;header&gt; for global or section-level headers and rely on its implicit semantics.
+
+5. Ensure branding and navigation are consistent
+
+Keep site-wide elements only in the global banner region to avoid confusion.
+
+## Best practice guidance
+
+Maintain a clean, predictable page structure with one global banner. Document landmark usage in your design system so teams do not create multiple banner regions accidentally. Validate templates, especially in large-scale systems where multiple developers contribute layouts.
+
+## Compliance mapping
+
+Using a single banner landmark supports: - WCAG 2.2 Info and Relationships success criteria, - WCAG 2.2 Navigable structure requirements, - ADA Title III expectations for predictable navigation, - EN 301 549 guidance on programmatic region identification, - Equality Act 2010 duties for accessible page layout.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects duplicate banner landmarks and highlights incorrect role usage. The platform provides actionable guidance for restoring a single, clear banner region.
+
+## Key points for development teams
+
+Use only one banner landmark. Do not nest or duplicate banners. Avoid applying role="banner" to content-specific headers. Confirm template consistency across all pages. Use semantic &lt;header&gt; markup.
+
+## Call to action
+
+Run an audit Check your site for duplicate banner landmarks. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the landmark-no-duplicate-banner rule check
+
+It checks whether a document contains more than one banner landmark.
+
+Why is only one banner allowed
+
+One banner ensures users can reliably identify the global header.
+
+Can content sections have their own headers
+
+Yes, but they should not use the banner role.
+
+What causes duplicate banners
+
+Template inheritance, CMS behaviour or misuse of roles can create unintended duplicate banners.
+
+Does &lt;header&gt; always act as a banner
+
+Only a top-level &lt;header&gt; becomes a banner; section headers do not.
+
+How do I fix duplicate banners
+
+Remove extra banner roles or convert content-specific headers to standard section headers.
+
+Does correcting banners guarantee WCAG compliance
+
+It supports structure-related requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with banner issues
+
+Welcoming Web identifies duplicate banner landmarks and provides guidance for correcting the structure.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

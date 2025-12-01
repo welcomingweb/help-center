@@ -1,0 +1,132 @@
+---
+title: "Aria Dialog Name"
+description: "Each ARIA dialog or alertdialog must include an accessible name that clearly communicates its purpose. This blog explains what the aria-dialog-name rule checks, why accessible names are essential for modal components, how to fix issues found during audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval."
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Dialog Name
+
+<Callout type="info">
+Each ARIA dialog or alertdialog must include an accessible name that clearly communicates its purpose. This blog explains what the aria-dialog-name rule checks, why accessible names are essential for modal components, how to fix issues found during audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+</Callout>
+
+Each ARIA dialog or alertdialog must include an accessible name that clearly communicates its purpose. This blog explains what the aria-dialog-name rule checks, why accessible names are essential for modal components, how to fix issues found during audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-dialog-name rule checks whether elements using role="dialog" or role="alertdialog" have an accessible name. The accessible name identifies the purpose of the modal window so that assistive technologies can announce it clearly when it opens.
+
+An accessible name may be provided through: - visible text inside a heading, - aria-label, or - aria-labelledby referencing visible text.
+
+Without this name, users of screen readers cannot understand what the dialog contains or why it appeared.
+
+## Why it matters
+
+Dialogs interrupt the user’s workflow and require immediate attention. Screen reader users rely on clear announcements to understand what the dialog is for. When a dialog has no accessible name it may be announced generically or not at all. This leads to confusion, missed information, and difficulty completing tasks.
+
+Common issues include: - users not realising a modal has opened, - difficulty locating the dialog’s purpose, - confusion between multiple dialogs, - inability to complete or dismiss the dialog safely.
+
+Clear naming ensures users understand what the dialog contains and what action is required.
+
+## Who delivers it
+
+Front end developers ensure dialogs and alertdialogs expose clear accessible names. Accessibility engineers and QA testers verify correct naming during manual and automated audits. Design system teams document modal naming patterns. Welcoming Web assists teams by identifying dialogs without accessible names.
+
+How to fix missing dialog names
+
+1. Identify dialog or alertdialog roles
+
+Find elements using role="dialog" or role="alertdialog".
+
+2. Provide a meaningful accessible name
+
+Use one of: - a visible heading inside the dialog, - aria-label="...", - or aria-labelledby="id-of-heading".
+
+3. Ensure the name reflects the dialog’s purpose
+
+Accessible names should describe the function, not the container.
+
+### Incorrect example:
+
+```html
+<div role="dialog"></div>
+```
+
+### Corrected version:
+
+```html
+<div role="dialog" aria-labelledby="dialog-title">  <h2 id="dialog-title">Delete file</h2></div>
+```
+
+4. Avoid generic names
+
+Do not use labels such as “Dialog” or “Window”.
+
+5. Validate using assistive technologies
+
+Confirm that screen readers announce the dialog’s name immediately when it appears.
+
+## Best practice guidance
+
+Dialogs should always open with focus on a meaningful element, usually the dialog container or its first interactive control. Ensure the accessible name reflects the core purpose of the dialog. Keep naming consistent across your design system.
+
+## Compliance mapping
+
+Correct dialog naming helps teams work towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III digital access expectations, - EN 301 549 accessibility requirements, - Equality Act 2010 expectations for accessible user journeys.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies dialogs and alertdialogs that do not expose accessible names. The platform maps issues to WCAG criteria and provides guidance so developers can add meaningful names and improve clarity for assistive technology users.
+
+## Key points for development teams
+
+Dialogs must always have an accessible name. Names should describe purpose clearly. Heading elements often provide the best names. Automated audits detect missing names. Manual testing confirms correct announcements.
+
+## Call to action
+
+Run an audit Check your site for missing dialog names. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-dialog-name rule check
+
+It checks whether ARIA dialogs and alertdialogs provide an accessible name.
+
+Why must dialogs have accessible names
+
+Because screen reader users need to understand the purpose of the modal when it opens.
+
+How do I add an accessible name to a dialog
+
+Use a visible heading, an aria-label or an aria-labelledby reference.
+
+Is visible text required
+
+Visible text is preferred but not required if aria-label is appropriate.
+
+Can I reuse the same name for multiple dialogs
+
+Names should be specific to the dialog’s purpose.
+
+Does adding a dialog name guarantee WCAG compliance
+
+It supports WCAG guidance but does not guarantee compliance.
+
+How does Welcoming Web help with dialog issues
+
+Welcoming Web identifies dialogs without accessible names and provides guidance for resolving them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

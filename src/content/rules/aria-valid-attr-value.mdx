@@ -1,0 +1,128 @@
+---
+title: "Aria Valid Attr Value"
+description: "ARIA attributes must conform to valid values"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Valid Attr Value
+
+<Callout type="info">
+ARIA attributes must conform to valid values
+</Callout>
+
+ARIA attributes must use valid values defined in the ARIA specification. This blog explains what the aria-valid-attr-value rule checks, why invalid ARIA attribute values create accessibility issues, how to correct invalid values and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-valid-attr-value rule checks whether ARIA attributes contain values that match the permitted formats or value sets defined in the ARIA specification. Each ARIA attribute has strict requirements for the type of value it accepts, such as: - true/false values, - token sets, - numeric ranges, - IDs referencing other elements.
+
+If the value does not follow the required pattern or format, the attribute becomes invalid and assistive technologies ignore it.
+
+## Why it matters
+
+ARIA attributes communicate information such as state, relationships and purpose. When an attribute contains an invalid value, screen readers may: - ignore the attribute completely, - misinterpret the component’s state, - fail to provide expected announcements, - present incomplete or misleading information.
+
+Invalid values often cause developers to believe a component is correctly labelled or states are applied when, in reality, the attribute has no effect.
+
+## Who delivers it
+
+Front end developers ensure ARIA attributes use valid values. Accessibility engineers and QA testers check attribute validity through automated and manual audits. Design system teams document correct ARIA patterns and enforce consistent usage. Welcoming Web assists teams by detecting ARIA attributes with invalid values.
+
+How to fix invalid ARIA attribute values
+
+1. Identify invalid ARIA values
+
+Search for attributes beginning with aria- whose values do not match the specification.
+
+2. Correct the value to match the required type or permitted tokens
+
+Review the ARIA documentation to ensure the value is valid.
+
+### Incorrect example:
+
+```html
+<div role="switch" aria-checked="maybe"></div>
+```
+
+### Corrected version:
+
+```html
+<div role="switch" aria-checked="true"></div>
+```
+
+3. Remove unsupported formats or characters
+
+Ensure values match allowed patterns, such as IDs for relationships or numbers for numeric attributes.
+
+4. Validate dynamic values
+
+When JavaScript updates ARIA attributes, ensure updated states remain valid.
+
+5. Validate with assistive technologies
+
+Check that screen readers announce correct state information once invalid values are fixed.
+
+## Best practice guidance
+
+Keep ARIA usage simple by using only required and meaningful attributes. Validate values during development and maintain attribute definitions within your design system. Avoid custom or experimental values that assistive technologies do not recognise.
+
+## Compliance mapping
+
+Correct ARIA attribute values help teams work towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III expectations for accurate state communication, - EN 301 549 requirements for assistive technology compatibility, - Equality Act 2010 obligations for accessible interfaces.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects ARIA attributes with invalid values and maps these issues to WCAG criteria. The platform provides guidance to help developers correct values and ensure meaningful announcements.
+
+## Key points for development teams
+
+ARIA attributes must always use valid values. Invalid values are ignored by assistive technologies. Native HTML reduces reliance on ARIA. Automated audits detect invalid ARIA values. Manual testing confirms correct announcements.
+
+## Call to action
+
+Run an audit Check your site for invalid ARIA attribute values. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-valid-attr-value rule check
+
+It checks whether ARIA attributes contain values that match the permitted formats or value sets defined in the ARIA specification.
+
+Why must ARIA attributes use valid values
+
+Because invalid values are ignored by assistive technologies and fail to communicate states.
+
+Can ARIA attributes accept custom values
+
+No. Only the values defined in the ARIA specification are valid.
+
+What happens if a value is incorrect
+
+The attribute provides no semantic meaning and may cause incomplete or misleading state announcements.
+
+Do dynamic ARIA values need validation
+
+Yes. JavaScript-updated values must remain valid.
+
+Does fixing invalid values guarantee WCAG compliance
+
+It supports WCAG alignment but does not guarantee full compliance.
+
+How does Welcoming Web help with invalid ARIA values
+
+Welcoming Web identifies invalid values and provides guidance so developers can correct them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

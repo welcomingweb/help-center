@@ -1,0 +1,134 @@
+---
+title: "Identical Links Same Purpose"
+description: "Links with the same name must have a similar purpose"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Identical Links Same Purpose
+
+<Callout type="info">
+Links with the same name must have a similar purpose
+</Callout>
+
+Links that share the same accessible name must lead to similar destinations or actions. This blog explains what the identical-links-same-purpose rule checks, why inconsistent link names cause confusion, how to maintain meaningful and predictable link labelling and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, SEO-optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The identical-links-same-purpose rule checks whether links that share the same accessible name also share the same purpose. The accessible name is what users hear through assistive technologies, not necessarily the visible text alone.
+
+Links that look or sound identical but lead to unrelated destinations break user expectations. For example, two links both labelled “Read more” but leading to entirely different types of content provide no meaningful context.
+
+The rule ensures that identical link names are used consistently, and that different purposes have distinct names.
+
+## Why it matters
+
+Consistent link naming is essential for predictable navigation. When identical link names lead to unrelated destinations: - screen reader users cannot distinguish which link performs which action, - users navigating via link lists or shortcuts encounter confusion, - people with cognitive or memory impairments lose context, - overall navigation becomes frustrating and inefficient.
+
+Clear, consistent link names help users understand where each link will take them and reduce cognitive effort.
+
+## Who delivers it
+
+Content authors write link text that accurately describes purpose. Designers plan consistent naming patterns across components. Front end developers ensure accessible names match the visible labels. Accessibility specialists and QA testers validate that identical link names are used appropriately. Welcoming Web assists by detecting repeated link names that lead to inconsistent purposes.
+
+How to ensure identical link names serve the same purpose
+
+1. Use descriptive link text
+
+Write link names that describe the destination or action.
+
+### Incorrect example:
+
+```html
+<a href="/policies">Learn more</a><a href="/products">Learn more</a>
+```
+
+### Corrected version:
+
+```html
+<a href="/policies">Learn more about policies</a><a href="/products">Learn more about products</a>
+```
+
+2. Align accessible names with visual labels
+
+Ensure aria-label or aria-labelledby values match the intended purpose.
+
+3. Give repeated actions consistent names
+
+If multiple links perform the same action, use the same wording.
+
+4. Avoid overly generic labels
+
+Reduce the use of labels such as “Click here” or “Learn more” when context differs.
+
+5. Review dynamic content and UI components
+
+Card grids, lists and product tiles often duplicate link names without considering purpose.
+
+## Best practice guidance
+
+Plan link naming conventions across the design system. Use labels that are short, descriptive and consistent with the page’s structure. Follow the principle “link text should stand alone” so that users scanning a list of links can understand each one. When using repeated patterns such as blog cards, ensure link labels are contextual.
+
+## Compliance mapping
+
+Using identical link names consistently supports: - WCAG 2.2 requirements for link purpose, - WCAG 2.2 Info and Relationships requirements, - ADA Title III expectations for understandable navigation, - EN 301 549 guidance on programmatically determinable link purpose, - Equality Act 2010 duties for clear and inclusive content.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects identical link names that lead to different destinations. The platform highlights where naming inconsistencies may confuse users and provides guidance for refining link labels.
+
+## Key points for development teams
+
+Identical link names must share purpose. Avoid generic or repeated labels without context. Accessible names must match visual labels. Review card components and dynamic lists. Use link names that stand alone.
+
+## Call to action
+
+Run an audit Check your site for identical link names with inconsistent purposes. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the identical-links-same-purpose rule check
+
+It checks whether multiple links with the same accessible name serve the same purpose.
+
+Why is link naming important
+
+Clear naming helps users understand where links lead, especially when navigating via assistive technologies.
+
+Can two links use the same label
+
+Two links can use the same label only if they serve the same purpose.
+
+How do I fix inconsistent link names
+
+Give each link unique, descriptive text that reflects its specific destination.
+
+Are aria-labels included in this rule
+
+Yes. Accessible names created with ARIA must also follow consistent naming patterns.
+
+Do card components often cause issues
+
+Yes. Card grids frequently repeat generic labels without context.
+
+Does this guarantee WCAG compliance
+
+It supports link purpose requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with link naming
+
+Welcoming Web detects repeated link names with differing destinations and provides guidance for improving clarity.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

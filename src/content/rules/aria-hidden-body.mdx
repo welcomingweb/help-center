@@ -1,0 +1,130 @@
+---
+title: "Aria Hidden Body"
+description: "aria-hidden=“true” must not be present on the document body"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Hidden Body
+
+<Callout type="info">
+aria-hidden=“true” must not be present on the document body
+</Callout>
+
+aria-hidden=“true” must never be applied to the document body. This blog explains what the aria-hidden-body rule checks, why hiding the entire document breaks accessibility, how to fix issues flagged during audits and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-hidden-body rule checks whether the document’s
+
+element includes aria-hidden=“true”. The body element includes all visible and interactive content on the page. Applying aria-hidden=“true” to the entire body hides the whole document from assistive technologies. This prevents users of screen readers or braille devices from accessing any content.
+
+## Why it matters
+
+aria-hidden is intended for selectively hiding decorative or redundant elements. When used on the body it hides all page content. This results in: - no content being announced by screen readers, - users losing access to navigation, - complete failure of interactive tasks, - confusion and inability to move through the page.
+
+This creates a critical accessibility barrier because it removes access to the entire interface.
+
+## Who delivers it
+
+Front end developers and accessibility engineers ensure aria-hidden is used only on appropriate elements. QA testers and accessibility auditors confirm that the body element is never hidden. Welcoming Web assists teams by identifying when aria-hidden has been incorrectly applied to the document body.
+
+How to fix aria-hidden=“true” on the body
+
+1. Locate aria-hidden on the body
+
+Search for aria-hidden=“true” on the
+
+element.
+
+2. Remove the attribute immediately
+
+The body must not include aria-hidden under any circumstance.
+
+### Incorrect example:
+
+```html
+<body aria-hidden="true">  <main>Content</main></body>
+```
+
+### Corrected version:
+
+```html
+<body>  <main>Content</main></body>
+```
+
+3. Check for JavaScript behaviour
+
+Some scripts add aria-hidden to the body during modals or transitions. Update these scripts to only hide specific elements.
+
+4. Use aria-hidden on appropriate elements only
+
+Apply aria-hidden to decorative or redundant sections, not the full document.
+
+5. Validate using assistive technologies
+
+Confirm the page loads correctly with a screen reader and that all content is announced.
+
+## Best practice guidance
+
+Avoid applying aria-hidden to structural elements such as
+
+or
+
+. Hide only elements that are visually hidden or redundant. Ensure modal implementations do not manipulate aria-hidden on the body.
+
+## Compliance mapping
+
+Avoiding aria-hidden on the body helps teams work towards: - WCAG 2.2 non-text and structure guidance, - ADA Title III requirements for accessible digital content, - EN 301 549 compatibility requirements, - Equality Act 2010 expectations for accessible digital services.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies pages where aria-hidden is incorrectly applied to the body. The platform maps this issue to WCAG criteria and provides guidance for safe use of aria-hidden.
+
+## Key points for development teams
+
+Never apply aria-hidden=“true” to the body. Use aria-hidden only for decorative or redundant elements. Automated audits detect misuse quickly. Manual testing confirms complete page access. Correct handling prevents site-wide accessibility barriers.
+
+## Call to action
+
+Run an audit Check your site for incorrect aria-hidden usage. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-hidden-body rule check
+
+It checks whether aria-hidden=“true” has been incorrectly applied to the document body.
+
+Why must the body not be hidden
+
+Because hiding the body hides all content from assistive technologies.
+
+Can aria-hidden be used on large sections
+
+aria-hidden can be used on specific sections if necessary but never on the full document.
+
+What if a modal script adds aria-hidden to the body
+
+The script must be updated to hide only non-modal elements instead of the entire body.
+
+Does removing aria-hidden guarantee WCAG compliance
+
+It supports WCAG alignment but does not guarantee compliance.
+
+How does Welcoming Web help with aria-hidden issues
+
+Welcoming Web detects incorrect aria-hidden usage and provides guidance for resolving it.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

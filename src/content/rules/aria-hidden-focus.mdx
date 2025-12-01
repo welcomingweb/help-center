@@ -1,0 +1,128 @@
+---
+title: "Aria Hidden Focus"
+description: "ARIA hidden element must not be focusable or contain focusable elements"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Hidden Focus
+
+<Callout type="info">
+ARIA hidden element must not be focusable or contain focusable elements
+</Callout>
+
+ARIA hidden elements must not receive focus and must not contain child elements that can be focused. This blog explains what the aria-hidden-focus rule checks, why focusable elements inside aria-hidden regions create accessibility barriers, how to fix issues highlighted during audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-hidden-focus rule checks whether an element with aria-hidden="true" is itself focusable or contains elements that users can focus with the keyboard. When aria-hidden is applied, the element is treated as invisible to assistive technologies. Focusable elements must always remain available to screen reader users. If a hidden element becomes focusable, it traps focus in an inaccessible region.
+
+Focusable elements include: - links (&lt;a href&gt;), - buttons, - inputs and form fields, - elements with tabindex="0" or positive tabindex values.
+
+## Why it matters
+
+When an aria-hidden element can receive focus, screen reader users experience severe accessibility barriers. They may: - move focus to content that is hidden, - become stuck inside an inaccessible region, - lose track of their current position, - activate controls that are visually removed or inactive.
+
+This leads to confusion and breaks the expected navigation flow. aria-hidden must only be applied to non-interactive, non-focusable content.
+
+## Who delivers it
+
+Front end developers ensure that aria-hidden is used only on non-focusable content. Accessibility engineers and QA testers identify any violations through automated and manual audits. Design system teams document safe use of aria-hidden. Welcoming Web assists teams by detecting focusable content inside aria-hidden regions.
+
+How to fix aria-hidden focus issues
+
+1. Identify aria-hidden elements
+
+Search the codebase for any use of aria-hidden="true".
+
+2. Check if the element or its children are focusable
+
+Look for: - interactive elements, - tabindex attributes, - scripts injecting focusable nodes.
+
+3. Remove or relocate focusable content
+
+Focusable elements must not remain inside aria-hidden regions.
+
+### Incorrect example:
+
+```html
+<div aria-hidden="true">  <button>Submit</button></div>
+```
+
+### Corrected version:
+
+```html
+<div aria-hidden="true"></div><button>Submit</button>
+```
+
+4. Avoid hiding interactive components
+
+If the component must remain interactive, do not use aria-hidden. Use CSS techniques instead.
+
+5. Validate with keyboard and screen reader testing
+
+Ensure users cannot tab into hidden content and that assistive technologies announce all interactive controls.
+
+## Best practice guidance
+
+Use aria-hidden carefully and only for decorative or redundant elements. Avoid using it on containers that may later receive interactive child elements. Keep your component library updated with safe aria-hidden patterns.
+
+## Compliance mapping
+
+Correct use of aria-hidden supports teams as they work towards: - WCAG 2.2 focus order and keyboard guidance, - ADA Title III expectations for accessible user interactions, - EN 301 549 requirements for assistive technology support, - Equality Act 2010 obligations for accessible services.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web flags aria-hidden regions that contain focusable elements. The platform maps these findings to WCAG criteria and provides guidance to help developers remove hidden focus traps.
+
+## Key points for development teams
+
+aria-hidden regions must never be focusable. Focusable content must not appear inside aria-hidden containers. Keyboard and screen reader users must never encounter hidden controls. Automated audits identify common violations. Manual testing confirms correct focus behaviour.
+
+## Call to action
+
+Run an audit Check your site for hidden focus traps. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-hidden-focus rule check
+
+It checks whether an aria-hidden element is focusable or contains focusable child elements.
+
+Why must aria-hidden elements not be focusable
+
+Because focusable content must remain available to assistive technologies and cannot be hidden.
+
+Does aria-hidden remove elements from the accessibility tree
+
+Yes, and focusable elements must not exist inside hidden regions.
+
+Can aria-hidden be used on interactive components
+
+No. aria-hidden must only be applied to non-interactive content.
+
+What happens if a script adds focusable elements inside aria-hidden content
+
+The script must be updated to prevent hidden focusable nodes.
+
+Does fixing aria-hidden focus issues guarantee WCAG compliance
+
+It supports WCAG requirements but does not guarantee compliance.
+
+How does Welcoming Web help with aria-hidden issues
+
+Welcoming Web identifies when aria-hidden regions contain focusable content and provides guidance to help developers resolve the issue.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

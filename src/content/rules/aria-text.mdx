@@ -1,0 +1,126 @@
+---
+title: "Aria Text"
+description: "“role=text” should have no focusable descendants"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Text
+
+<Callout type="info">
+“role=text” should have no focusable descendants
+</Callout>
+
+Elements using role="text" must not contain any focusable or interactive descendants. This blog explains what the aria-text rule checks, why focusable content inside text roles creates accessibility issues, how to fix these structural problems and how the rule supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-text rule checks whether elements using role="text" include descendants that are focusable or interactive. The text role is intended to represent static, non-interactive textual content. It acts as a way for assistive technologies to treat the element purely as readable text.
+
+Focusable descendants include: - links (&lt;a href&gt;), - buttons, - inputs and form fields, - elements with tabindex="0" or positive tabindex values.
+
+If any of these appear inside an element with role="text", the structure becomes invalid.
+
+## Why it matters
+
+When focusable or interactive elements appear inside something labelled as text, screen readers and other assistive technologies receive conflicting information. This often results in: - controls being ignored or announced incorrectly, - broken or unpredictable focus behaviour, - confusion during navigation, - content being treated as non-interactive when interaction is required.
+
+This creates accessibility barriers and disrupts the expected behaviour of text-based regions.
+
+## Who delivers it
+
+Front end developers ensure role="text" is applied only to non-interactive content. Accessibility engineers and QA testers verify correct text-role usage through automated and manual audits. Design system teams document appropriate use cases for the text role. Welcoming Web assists teams by detecting when focusable items appear within text-role containers.
+
+How to fix issues with focusable descendants in text roles
+
+1. Identify all elements using role="text"
+
+Search the DOM for any element assigned the text role.
+
+2. Check for focusable or interactive descendants
+
+Look for links, buttons, form controls or any element with a tabindex.
+
+3. Remove or relocate interactive content
+
+Focusable items must not appear inside a text role.
+
+### Incorrect example:
+
+```html
+<div role="text">  <a href="/learn-more">Learn more</a></div>
+```
+
+### Corrected version:
+
+```html
+<div role="text">Additional information</div><a href="/learn-more">Learn more</a>
+```
+
+4. Use the text role only when necessary
+
+Most static content should rely on native HTML semantics instead of ARIA roles.
+
+5. Validate using assistive technologies
+
+Confirm that screen readers treat text-role content as plain text and that interactive controls remain accessible outside.
+
+## Best practice guidance
+
+Use role="text" sparingly. Native HTML elements—such as &lt;p&gt;, &lt;span&gt;, and headings—usually provide the appropriate semantics without requiring ARIA. When custom styling requires the use of the text role, ensure the element remains purely textual and free of interactivity.
+
+## Compliance mapping
+
+Correct use of the text role helps teams work towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III expectations for predictable interaction patterns, - EN 301 549 requirements for assistive technology support, - Equality Act 2010 obligations for clear and accurate content structure.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies incorrect usages of the text role, including focusable descendants or mixed semantics. The platform maps these issues to WCAG criteria and provides guidance to help developers maintain correct structure.
+
+## Key points for development teams
+
+role="text" must only contain static content. Focusable descendants break expected behaviour. Native HTML usually eliminates the need for this role. Automated audits detect structural violations. Manual testing ensures correct announcements.
+
+## Call to action
+
+Run an audit Check your site for incorrect use of the text role. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-text rule check
+
+It checks whether role="text" elements contain focusable or interactive children.
+
+Why must text-role elements have no focusable descendants
+
+Because the role defines static content and interactive elements contradict that meaning.
+
+Can I include links inside a text role
+
+No. Interactive content must not appear inside a text role.
+
+Should I use native HTML instead of the text role
+
+Yes, whenever possible. Native semantics reduce ARIA complexity.
+
+Does fixing text-role issues guarantee WCAG compliance
+
+It supports WCAG alignment but does not guarantee full compliance.
+
+How does Welcoming Web help with text-role issues
+
+Welcoming Web identifies incorrect text-role usage and provides guidance for resolving structural errors.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,126 @@
+---
+title: "Landmark Main Is Top Level"
+description: "Main landmark should not be contained in another landmark"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Landmark Main Is Top Level
+
+<Callout type="info">
+Main landmark should not be contained in another landmark
+</Callout>
+
+The main landmark must appear at the top level of the document so users can identify where the primary content begins. This blog explains what the landmark-main-is-top-level rule checks, why correct placement of the main region is essential for navigation, how to maintain valid semantic structure and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The landmark-main-is-top-level rule checks whether the main landmark—usually represented by the &lt;main&gt; element—is placed at the top level, directly under the &lt;body&gt; element, and not nested inside other landmarks. The main landmark identifies the dominant content of a page and should appear only once.
+
+If the main region is nested within landmarks such as &lt;header&gt;, &lt;nav&gt;, &lt;footer&gt; or &lt;aside&gt;, assistive technologies may misinterpret the intended content hierarchy.
+
+## Why it matters
+
+The main landmark acts as a vital navigation reference point for users, particularly those who rely on screen readers. When the main region is nested improperly: - the global page outline becomes confusing, - users may struggle to skip directly to primary content, - assistive technologies may miscategorise the main region, - the page becomes harder to scan and understand, - navigation landmarks lose their expected structure.
+
+Keeping the main landmark at the top level ensures predictable and efficient navigation.
+
+## Who delivers it
+
+Front end developers implement correct landmark placement using semantic HTML. Designers define layout structures that keep main content visually and logically distinct. Content authors maintain consistent content hierarchy. Accessibility specialists and QA testers verify that the &lt;main&gt; element is correctly positioned. Welcoming Web assists by detecting main landmarks nested inside other regions.
+
+How to ensure the main landmark is top-level
+
+1. Place &lt;main&gt; directly under &lt;body&gt;
+
+The main region should not be nested in &lt;header&gt;, &lt;nav&gt;, &lt;footer&gt;, &lt;aside&gt; or other landmark elements.
+
+### Correct example:
+
+```html
+<body>  <header>…</header>  <main>Main page content</main>  <footer>…</footer></body>
+```
+
+2. Use only one main landmark per page
+
+There should be a single primary content region unless a very specific multi-context pattern is required.
+
+3. Avoid overriding semantics with ARIA roles
+
+Use the &lt;main&gt; element rather than applying role="main" to non-semantic tags.
+
+4. Maintain consistent template structures
+
+Ensure global templates or CMS outputs do not nest the main region inadvertently.
+
+5. Validate using assistive technology tools
+
+Verify that the main landmark appears once and at the top level in the landmark list.
+
+## Best practice guidance
+
+Keep the main content focused and uncluttered. Ensure the main region only contains content that users expect as the primary purpose of the page. Maintain strong visual hierarchy so the main content is easy to locate. Document landmark rules within your design system to ensure consistency across pages.
+
+## Compliance mapping
+
+Correct placement of the main landmark supports: - WCAG 2.2 Info and Relationships requirements, - WCAG 2.2 Navigable expectations for clear regions, - ADA Title III requirements for predictable structure, - EN 301 549 guidance on programmatically determinable landmarks, - Equality Act 2010 duties for accessible navigation patterns.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies main landmarks placed incorrectly inside other landmarks. The platform provides guidance for improving structural consistency so all users can navigate efficiently.
+
+## Key points for development teams
+
+Main landmarks must be top-level. Use one &lt;main&gt; element per page. Avoid nesting the main region. Use semantic HTML rather than ARIA overrides. Validate templates and CMS outputs.
+
+## Call to action
+
+Run an audit Check your site for incorrectly nested main landmarks. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the landmark-main-is-top-level rule check
+
+It checks whether the &lt;main&gt; element or main landmark is placed at the top level of the page.
+
+Why must the main landmark be top-level
+
+It must be top-level so users can reliably identify and reach the primary content.
+
+Can I use more than one &lt;main&gt; element
+
+Only one &lt;main&gt; region should exist to maintain clear content hierarchy.
+
+What happens if &lt;main&gt; is nested
+
+Screen readers may misinterpret the page outline, making navigation harder.
+
+Does &lt;main&gt; automatically map to the main landmark
+
+Yes, &lt;main&gt; maps to the correct landmark without additional roles.
+
+Should section footers or headers be inside &lt;main&gt;
+
+They may appear as part of content structure but must not contain other landmarks.
+
+Does correct main placement guarantee WCAG compliance
+
+It supports structural clarity but does not guarantee full compliance.
+
+How does Welcoming Web help with main landmark issues
+
+Welcoming Web identifies nested main regions and provides guidance for correcting them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

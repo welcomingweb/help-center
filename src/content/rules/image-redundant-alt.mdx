@@ -1,0 +1,132 @@
+---
+title: "Image Redundant Alt"
+description: "Alternative text of images should not be repeated as text"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Image Redundant Alt
+
+<Callout type="info">
+Alternative text of images should not be repeated as text
+</Callout>
+
+Alternative text should not duplicate words already presented next to an image because this creates unnecessary repetition for users of assistive technologies. This blog explains what the image-redundant-alt rule checks, why repeated alt text causes accessibility issues, how to avoid redundancy and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, SEO‑optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The image-redundant-alt rule checks whether an image’s alternative text repeats text that already appears next to the image. Screen readers announce both the alt text and the surrounding content, so repeating the same words creates unnecessary duplication.
+
+This rule encourages authors to keep alt text meaningful but concise, ensuring it adds value rather than repeating visible information.
+
+## Why it matters
+
+Redundant alt text can: - increase cognitive load for screen reader users, - create noisy or repetitive reading experiences, - slow navigation through content, - obscure the purpose of the image, - reduce clarity when reading lists, cards or repeated layouts.
+
+Avoiding redundancy improves comprehension and supports predictable interactions for users who rely on assistive technologies.
+
+## Who delivers it
+
+Content authors write alt text that complements on-page information. Designers clarify when images are decorative versus meaningful. Front end developers implement alt attributes consistently across templates. Accessibility specialists and QA testers review alt text for clarity and redundancy. Welcoming Web assists by detecting images whose alt text repeats visible content.
+
+How to avoid redundant alternative text
+
+1. Do not repeat adjacent visible text
+
+If the caption, heading or label already describes the image, alt text can be empty or simplified.
+
+### Incorrect example:
+
+```html
+<h3>Our team</h3><img src="team.jpg" alt="Our team">
+```
+
+### Corrected version:
+
+```html
+<h3>Our team</h3><img src="team.jpg" alt="">
+```
+
+2. Describe the purpose, not the label
+
+If the heading is descriptive but the image adds context, adjust the alt text.
+
+3. Use empty alt text for decorative images
+
+If an image does not convey new information, mark it as decorative.
+
+4. Avoid repeating filenames or generic words
+
+Do not use values like “photo”, “image” or the file name.
+
+5. Review cards and repeated layouts
+
+Card components often duplicate headings in alt text. Use concise, non‑redundant alternatives.
+
+## Best practice guidance
+
+Write alt text that reflects what the image adds to the content, not what is already visible. Ensure that every alt attribute has a clear purpose: provide meaning for functional or informative images, or remain empty for decorative ones. Maintain guidelines in your design system so teams follow consistent practices.
+
+## Compliance mapping
+
+Avoiding redundant alt text supports: - WCAG 2.2 Non‑Text Content requirements, - WCAG 2.2 Info and Relationships for meaningful presentation, - ADA Title III expectations for understandable content, - EN 301 549 guidance on programmatically determinable alternatives, - Equality Act 2010 duties for accessible communication.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies images where alternative text repeats nearby visible text. The platform highlights opportunities to simplify or remove alt text so content remains concise, meaningful and accessible.
+
+## Key points for development teams
+
+Do not duplicate visible text in alt attributes. Use empty alt text for decorative images. Describe purpose rather than labels. Avoid filenames and generic descriptors. Review repeated components such as cards.
+
+## Call to action
+
+Run an audit Check your site for redundant alternative text. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the image-redundant-alt rule check
+
+It checks whether an image’s alternative text repeats nearby visible text.
+
+Why is redundant alt text a problem
+
+Redundant alt text causes unnecessary repetition for users of assistive technologies.
+
+When should alt text be empty
+
+Alt text should be empty when the image is decorative or when visible text already provides the same meaning.
+
+How do I avoid repeated wording
+
+Align alt text with the image’s purpose rather than copying captions or headings.
+
+Can functional images still use concise alt text
+
+Yes. Functional images should describe the action or destination without repeating visible labels.
+
+Do card components often create redundancy
+
+Yes. Card layouts frequently pair images with repeated headings.
+
+Does avoiding redundancy guarantee WCAG compliance
+
+It supports non‑text content requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with redundant alt text
+
+Welcoming Web detects duplicated alternative text and provides guidance for improving clarity.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

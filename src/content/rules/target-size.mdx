@@ -1,0 +1,124 @@
+---
+title: "Target Size"
+description: "All touch targets must be 24px large, or leave sufficient space"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Target Size
+
+<Callout type="info">
+All touch targets must be 24px large, or leave sufficient space
+</Callout>
+
+Touch targets must be large enough or sufficiently spaced so users can activate them accurately and comfortably. This blog explains what the target-size rule checks, why target size matters for accessibility, how to design and code compliant targets and how this supports WCAG 2.2 and wider usability goals. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The target-size rule checks whether interactive controls that can be activated by touch or pointer input meet a minimum size or spacing requirement. In line with WCAG 2.2 Target Size (Minimum), touch targets should generally be at least 24 by 24 CSS pixels or have enough spacing from nearby targets.
+
+Targets include buttons, links, icons, controls in toolbars, navigation items and other interactive elements.
+
+## Why it matters
+
+When touch targets are too small or packed closely together: - users with motor impairments struggle to activate the correct control, - people using touch screens may tap the wrong element by mistake, - users with low vision or hand tremors find fine targeting difficult, - mobile users cannot rely on precise input, especially when walking or moving, - error rates increase and tasks become frustrating or time consuming.
+
+Adequate size and spacing reduces accidental taps and supports confident interaction.
+
+## Who delivers it
+
+Designers define minimum dimensions and spacing for all interactive elements. Front end developers implement consistent sizing using CSS and responsive layouts. Content authors avoid cramming too many interactive elements into dense regions. Accessibility specialists and QA testers validate target size across breakpoints and devices. Welcoming Web assists by detecting targets that fall below minimum size or spacing thresholds.
+
+How to ensure touch targets have sufficient size and space
+
+1. Aim for at least 24px by 24px target areas
+
+Use CSS to provide a minimum hit area, even if the visible icon is smaller.
+
+```html
+.button-icon {  min-width: 24px;  min-height: 24px;  padding: 4px;}
+```
+
+2. Increase padding around icons
+
+If the visual icon is small, add padding to expand the clickable region.
+
+3. Provide space between adjacent controls
+
+Add horizontal and vertical spacing so users can tap one target without hitting its neighbour.
+
+4. Avoid tiny text links in dense paragraphs
+
+Use larger tap areas, buttons or separate link blocks on mobile.
+
+5. Test on real devices
+
+Check touch behaviour on phones and tablets, not only with a mouse on desktop.
+
+## Best practice guidance
+
+Define a consistent target size standard in your design system. Apply it to buttons, icons, switches, checkboxes, pagination controls and menu items. Consider larger targets on high density displays and for critical actions. Ensure that hit areas are visually clear and respond to focus and hover states.
+
+## Compliance mapping
+
+Providing sufficient touch target size and spacing supports: - WCAG 2.2 Target Size (Minimum) success criterion, - WCAG 2.2 Pointer and Keyboard Operable expectations, - ADA Title III requirements for operable controls, - EN 301 549 guidance on input accuracy and usability, - Equality Act 2010 duties for inclusive interaction design.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies controls that do not meet minimum target size or spacing requirements. The platform highlights problem areas in navigation, forms and interactive components and provides guidance on padding, spacing and layout adjustments.
+
+## Key points for development teams
+
+Use at least 24px by 24px hit areas. Add spacing between adjacent controls. Avoid tiny or crowded tap targets. Standardise sizes in your design system. Test on real touch devices.
+
+## Call to action
+
+Run an audit Check your site for touch targets that are too small or too close together. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the target-size rule check
+
+It checks whether touch and pointer targets meet minimum size or spacing requirements.
+
+Why must targets be at least 24px
+
+This size helps users with different motor abilities activate controls reliably.
+
+Do all controls need to be 24px by 24px
+
+Most interactive elements should meet or exceed this size or have sufficient spacing.
+
+Can I use spacing instead of increasing size
+
+Yes. Adequate spacing between smaller controls can also satisfy the requirement.
+
+How do I increase target size without changing visuals
+
+Use padding or invisible hit areas in CSS to extend the clickable region.
+
+Does this apply only to mobile
+
+No. Touch and pointer accessibility is important across all devices.
+
+Does meeting 24px targets guarantee WCAG compliance
+
+It supports target size requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with target size issues
+
+Welcoming Web flags undersized or crowded targets and suggests practical changes to improve usability.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

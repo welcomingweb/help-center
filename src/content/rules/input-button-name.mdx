@@ -1,0 +1,132 @@
+---
+title: "Input Button Name"
+description: "Input buttons must have discernible text"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Input Button Name
+
+<Callout type="info">
+Input buttons must have discernible text
+</Callout>
+
+Input buttons must include discernible text so users understand their purpose when navigating forms. This blog explains what the input-button-name rule checks, why clear naming is essential for accessibility, how to provide meaningful labels for &lt;input&gt; buttons and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, SEO‑optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The input-button-name rule checks whether &lt;input&gt; elements with button-type roles expose a discernible name. These include: - &lt;input type="button"&gt; - &lt;input type="submit"&gt; - &lt;input type="reset"&gt; - &lt;input type="image"&gt;
+
+Because these elements do not contain inner text, their accessible name must be provided through attributes such as value, alt (for image buttons) or ARIA naming.
+
+Assistive technologies rely on this name to announce the button’s purpose.
+
+## Why it matters
+
+When input buttons do not provide discernible text: - screen reader users cannot understand the button’s action, - form submission, navigation or reset actions become unclear, - users may activate the wrong control by mistake, - cognitive load increases because context is missing.
+
+Clear button naming supports predictable interactions, reduces errors and improves form usability for all users.
+
+## Who delivers it
+
+Front end developers add accessible names using the correct attributes. Designers define wording patterns for form controls. Content authors ensure button labels remain clear and action‑focused. Accessibility specialists and QA testers validate that input buttons expose meaningful, non-empty accessible names. Welcoming Web assists by detecting input buttons without discernible text.
+
+How to ensure input buttons have discernible text
+
+1. Use the value attribute for standard input buttons
+
+Provide a short, clear action description.
+
+### Correct example:
+
+```html
+<input type="submit" value="Send message">
+```
+
+2. Provide alt text for image buttons
+
+Image-only buttons must include meaningful alternative text.
+
+```html
+<input type="image" src="search.png" alt="Search">
+```
+
+3. Avoid empty or placeholder values
+
+Do not use values such as “” or generic words that lack purpose.
+
+4. Use ARIA naming only where appropriate
+
+ARIA should support naming, not replace the required HTML attributes.
+
+5. Review dynamic button generation
+
+Ensure scripts that generate form buttons always include accessible names.
+
+## Best practice guidance
+
+Use action‑oriented labels such as “Submit form”, “Search”, “Continue” or “Save changes”. Keep labels short and clear. Avoid technical jargon or redundant wording. For multilingual sites, ensure translations retain meaning and match the intended action. Test form flows with assistive technologies to confirm that button actions are announced correctly.
+
+## Compliance mapping
+
+Providing discernible text for input buttons supports: - WCAG 2.2 Name, Role, Value requirements, - WCAG 2.2 Non‑Text Content expectations for image buttons, - ADA Title III expectations for operable form controls, - EN 301 549 requirements for programmatically determinable labels, - Equality Act 2010 duties for accessible and understandable interactions.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies input buttons missing discernible text and highlights issues such as empty value attributes, unlabeled image buttons or ARIA‑only naming. The platform provides guidance for correcting labels and improving form usability.
+
+## Key points for development teams
+
+Input buttons must expose clear names. Use value for standard buttons. Image buttons need alt text. Avoid empty attributes or generic labels. Validate naming in dynamic components.
+
+## Call to action
+
+Run an audit Check your site for input buttons without discernible text. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the input-button-name rule check
+
+It checks whether &lt;input&gt; buttons provide a meaningful accessible name.
+
+Why do input buttons need discernible text
+
+Input buttons need discernible text so users understand the action the button performs.
+
+How do I label a standard input button
+
+Label a standard input button by using the value attribute with descriptive text.
+
+How do I label an image button
+
+Label an image button by providing descriptive alt text.
+
+Can I use ARIA instead of value
+
+ARIA can complement naming but should not replace core HTML naming for input buttons.
+
+What is an example of a poor label
+
+Labels like “Submit” or “Click” may be ambiguous depending on context.
+
+Does naming input buttons guarantee WCAG compliance
+
+It supports naming requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with button naming
+
+Welcoming Web detects unlabeled or poorly labeled input buttons and provides guidance to fix them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

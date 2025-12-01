@@ -1,0 +1,128 @@
+---
+title: "Meta Viewport Large"
+description: "Users should be able to zoom and scale the text up to 500%"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Meta Viewport Large
+
+<Callout type="info">
+Users should be able to zoom and scale the text up to 500%
+</Callout>
+
+Pages must support high levels of zoom so users with low vision can enlarge text and content comfortably. This blog explains what the meta-viewport-large rule checks, why supporting significant zoom is essential for accessibility, how to configure the viewport correctly and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The meta-viewport-large rule checks whether the &lt;meta name="viewport"&gt; element allows users to zoom significantly, often up to 500% depending on device capabilities. The rule ensures that viewport settings do not restrict scaling by setting: - maximum-scale=1, - minimum-scale=1 in ways that prevent enlargement, - or other attributes that cap zoom at a low value.
+
+A valid viewport configuration must allow substantial zoom so users can increase the size of text and interface elements.
+
+## Why it matters
+
+High levels of zoom enable people with low vision to read content without assistive magnification tools. When zoom is restricted: - users with visual impairments cannot enlarge text enough to read comfortably, - small controls become difficult to activate on touch devices, - content may become inaccessible on small screens, - users lose control over how information is viewed, - assistive technologies cannot provide adequate magnification support.
+
+Supporting large-scale zoom directly improves readability, comfort and task completion.
+
+## Who delivers it
+
+Front end developers configure the viewport tag to allow zooming without artificial limits. Designers create flexible layouts that remain functional at high zoom levels. Content authors ensure that text and UI elements reflow gracefully. Accessibility specialists and QA testers validate zoom behaviour across devices. Welcoming Web assists by detecting viewport configurations that restrict scaling.
+
+How to allow users to zoom up to 500%
+
+1. Use an accessible baseline viewport configuration
+
+A commonly accepted accessible configuration is:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1">
+```
+
+This configuration avoids limiting zoom.
+
+2. Do not set maximum-scale or minimum-scale values that prevent enlargement
+
+Avoid using: - maximum-scale=1, - minimum-scale=1 when used to lock zoom, - combinations that artificially constrain scaling.
+
+3. Ensure responsive layouts support extreme zoom
+
+Use fluid layouts and relative units (em, rem, %) to ensure content reflows naturally.
+
+4. Avoid fixed-width containers
+
+Fixed pixel widths can break layouts at high zoom and cause horizontal scrolling.
+
+5. Test zoom up to 500% on real devices
+
+Test on iOS, Android and desktop browsers with magnification to ensure content remains usable.
+
+## Best practice guidance
+
+Support users who rely on very high magnification by: - maintaining flexible, responsive layouts, - avoiding text clipping or overlapping at extreme zoom levels, - ensuring touch targets remain sufficiently large even when zoomed, - documenting zoom-friendly design requirements in design systems.
+
+Supporting large-scale zoom aligns with inclusive design principles and ensures interfaces remain readable for diverse users.
+
+## Compliance mapping
+
+Allowing significant zoom supports: - WCAG 2.2 Resize Text success criterion, - WCAG 2.2 Reflow requirements for responsive content, - ADA Title III expectations for perceivable and operable interfaces, - EN 301 549 guidance on user scaling capabilities, - Equality Act 2010 duties for inclusive access.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies viewport configurations that limit scaling and highlights issues that may restrict user zoom. The platform provides actionable guidance for configuring the viewport to support large-scale magnification.
+
+## Key points for development teams
+
+Do not restrict zoom. Avoid maximum-scale limits. Use responsive, fluid layouts. Design for extreme zoom conditions. Test across devices.
+
+## Call to action
+
+Run an audit Check your site for viewport settings that restrict high-level zoom. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the meta-viewport-large rule check
+
+It checks whether the viewport allows significant zoom, such as enlarging text up to 500%.
+
+Why must users be able to zoom so much
+
+Users with low vision may need extreme zoom levels to read or interact comfortably.
+
+Which attributes restrict zoom
+
+maximum-scale and restrictive minimum-scale values can limit user scaling.
+
+Does responsive design replace zoom
+
+No. Zoom remains essential even on responsive websites.
+
+How do I ensure my site supports 500% zoom
+
+Use fluid layouts, avoid zoom-restricting viewport settings and test across devices.
+
+Are fixed-width containers acceptable
+
+They are discouraged because they break layout at high zoom levels.
+
+Does enabling zoom guarantee WCAG compliance
+
+It supports key requirements but does not guarantee complete compliance.
+
+How does Welcoming Web help with viewport scaling issues
+
+Welcoming Web identifies zoom restrictions and provides guidance for restoring full scaling support.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,132 @@
+---
+title: "Aria Input Field Name"
+description: "ARIA input fields must have an accessible name"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Input Field Name
+
+<Callout type="info">
+ARIA input fields must have an accessible name
+</Callout>
+
+ARIA input fields must include accessible names that describe their purpose. This blog explains what the aria-input-field-name rule checks, why accessible naming is essential for fields created with ARIA roles, how to fix issues identified in audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-input-field-name rule checks whether elements that behave like input fields through ARIA roles have accessible names. Developers may use ARIA roles such as: - role="textbox", - role="searchbox", - role="spinbutton", - role="combobox".
+
+These roles simulate interactive input behaviour. Each ARIA input role must expose an accessible name so screen readers can announce what information the user needs to enter.
+
+Accessible names can come from: - visible labels, - aria-label, - aria-labelledby referencing visible text.
+
+## Why it matters
+
+Input fields without accessible names create significant barriers for screen reader users. Without a name, users cannot identify what information the field expects. This leads to confusion, mistakes and abandoned forms.
+
+Common issues include: - fields announced only as “edit” with no context, - users entering incorrect information, - difficulty navigating between related inputs, - increased cognitive load due to missing instructions.
+
+Accessible names ensure all users understand the purpose of ARIA input widgets.
+
+## Who delivers it
+
+Front end developers ensure ARIA input fields include accessible names. Accessibility engineers and QA testers verify correct naming using automated and manual audits. Design system teams document naming patterns across form elements. Welcoming Web assists teams by flagging ARIA input fields without accessible names.
+
+How to fix missing accessible names
+
+1. Identify ARIA-driven input roles
+
+Search for ARIA roles such as textbox, searchbox or spinbutton.
+
+2. Add clear and meaningful accessible names
+
+Use: - a visible label, - aria-label="...", - or aria-labelledby="..." pointing to a label.
+
+3. Ensure the name describes the expected input
+
+Labels must communicate purpose, not placeholder information.
+
+### Incorrect example:
+
+```html
+<div role="textbox"></div>
+```
+
+### Corrected version:
+
+```html
+<label id="user-label">Username</label><div role="textbox" aria-labelledby="user-label"></div>
+```
+
+4. Keep labels consistent with design system patterns
+
+Users expect predictable naming conventions.
+
+5. Validate with screen readers
+
+Test to ensure the name is announced properly when focus enters the element.
+
+## Best practice guidance
+
+Use native HTML &lt;input&gt; elements whenever possible because they provide built in naming behaviour. Only use ARIA roles to create custom input components when HTML cannot support the desired design or interaction.
+
+## Compliance mapping
+
+Accessible naming for ARIA input fields supports teams working towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III form accessibility expectations, - EN 301 549 compatibility requirements, - Equality Act 2010 obligations for accessible digital forms.
+
+Welcoming Web supports alignment with these standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies ARIA input fields that lack accessible names. The platform maps these issues to WCAG criteria and provides guidance to help developers add meaningful labels.
+
+## Key points for development teams
+
+ARIA input fields must always have accessible names. Labels must describe purpose, not visual placeholder text. Native inputs reduce ARIA complexity. Automated audits detect missing names quickly. Manual testing confirms accurate announcements.
+
+## Call to action
+
+Run an audit Check your site for missing ARIA input names. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-input-field-name rule check
+
+It checks whether ARIA-driven input fields expose accessible names.
+
+Why must ARIA input fields have accessible names
+
+Because users of assistive technologies need to know what information the field expects.
+
+Can placeholder text replace labels
+
+No. Placeholder text is not a valid accessible name.
+
+What is the best way to label an ARIA textbox
+
+Use visible text with aria-labelledby or apply an aria-label when visible text is not possible.
+
+Do native HTML inputs need ARIA roles
+
+No. native inputs already include semantic roles.
+
+Does adding an accessible name guarantee WCAG compliance
+
+It supports WCAG intent but does not guarantee compliance.
+
+How does Welcoming Web help with ARIA input issues
+
+Welcoming Web identifies missing accessible names and provides guidance for resolving them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

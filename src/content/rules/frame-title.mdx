@@ -1,0 +1,128 @@
+---
+title: "Frame Title"
+description: "Frames must have an accessible name"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Frame Title
+
+<Callout type="info">
+Frames must have an accessible name
+</Callout>
+
+Frames must have an accessible name so users can understand the purpose of embedded content. This blog explains what the frame-title rule checks, why accessible names for &lt;iframe&gt; and &lt;frame&gt; elements matter, how to provide meaningful titles and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, SEO-optimised and follows the Welcoming Web content framework.
+
+## What it is
+
+The frame-title rule checks whether &lt;iframe&gt; and &lt;frame&gt; elements expose an accessible name. For frames, this name is usually provided by the title attribute, but ARIA attributes such as aria-label or aria-labelledby can also be used in some cases.
+
+The accessible name is what assistive technologies announce when users encounter the frame. It should describe the purpose of the embedded content, not the underlying technology or a generic label.
+
+## Why it matters
+
+Frames often contain important features such as videos, maps, authentication widgets, dashboards or third-party applications. When frames lack accessible names: - screen reader users hear generic announcements such as “frame” with no context, - users cannot determine whether the frame is relevant to their task, - navigation becomes confusing, especially when multiple frames exist, - cognitive load increases because the purpose of the embedded content is unclear.
+
+Clear, descriptive frame names support predictable navigation, help users decide whether to enter the frame and improve understanding of the page structure.
+
+## Who delivers it
+
+Front end developers are responsible for adding accessible names to frames. Designers define meaningful labels that reflect the role of embedded content. Content authors ensure naming is consistent with visible headings or descriptions. Accessibility engineers and QA testers verify that frames expose appropriate names to assistive technologies. Welcoming Web assists by detecting frames without accessible names.
+
+How to provide accessible names for frames
+
+1. Use the title attribute with descriptive text
+
+The title should communicate the function or purpose of the embedded content.
+
+### Incorrect example:
+
+```html
+<iframe src="/checkout"></iframe>
+```
+
+### Corrected version:
+
+```html
+<iframe src="/checkout" title="Checkout payment form"></iframe>
+```
+
+2. Avoid generic titles
+
+Names such as “frame”, “content” or “widget” do not help users.
+
+3. Align titles with visible context
+
+When a heading or label appears next to the frame, use similar wording so users receive consistent information.
+
+4. Use ARIA naming where appropriate
+
+In some patterns, aria-label or aria-labelledby can be used to provide or reference a clear name.
+
+5. Review third-party embeds
+
+Where you include external widgets, update or wrap them to ensure a meaningful accessible name is exposed.
+
+## Best practice guidance
+
+Only use frames when embedding content is necessary. Keep titles concise but descriptive. Avoid exposing technical details such as URLs. When multiple frames appear on the same page, ensure each title is unique and clearly differentiates its purpose. Test with screen readers to confirm that names are announced as intended.
+
+## Compliance mapping
+
+Providing accessible names for frames supports: - WCAG 2.2 Name, Role, Value requirements for user interface components, - WCAG 2.2 Info and Relationships for embedded content, - ADA Title III expectations for understandable and operable interfaces, - EN 301 549 guidance on programmatically determinable labels, - Equality Act 2010 duties for clear and inclusive digital information.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects &lt;iframe&gt; and &lt;frame&gt; elements that do not expose accessible names. The platform maps these findings to WCAG criteria and provides guidance for writing meaningful titles or ARIA labels so users can understand and navigate embedded content.
+
+## Key points for development teams
+
+Frames must have accessible names. Use the title attribute with clear wording. Avoid generic or technical labels. Align names with visible context. Test announcements with screen readers.
+
+## Call to action
+
+Run an audit Check your site for frames that are missing accessible names. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the frame-title rule check
+
+The frame-title rule checks whether &lt;iframe&gt; and &lt;frame&gt; elements have meaningful accessible names.
+
+Why must frames have accessible names
+
+Frames must have accessible names so users, especially screen reader users, can understand the purpose of embedded content.
+
+How do I provide an accessible name for a frame
+
+You provide an accessible name for a frame by using a descriptive title attribute or appropriate ARIA labelling.
+
+What is a good example of a frame title
+
+A good example of a frame title is “Video player: product demo” or “Secure payment form”, which clearly states the purpose.
+
+Can I use generic labels like “frame” or “widget”
+
+Generic labels like “frame” or “widget” should not be used because they do not describe the content or purpose of the frame.
+
+Do third-party iframes also need accessible names
+
+Third-party iframes also need accessible names so users can understand what the embedded service or widget does.
+
+Does naming frames guarantee WCAG compliance
+
+Naming frames supports WCAG Name, Role, Value requirements but does not, by itself, guarantee full WCAG compliance.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,126 @@
+---
+title: "Aria Required Children"
+description: "Certain ARIA roles must contain particular children"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Required Children
+
+<Callout type="info">
+Certain ARIA roles must contain particular children
+</Callout>
+
+Certain ARIA container roles must include specific child roles for assistive technologies to interpret them correctly. This blog explains what the aria-required-children rule checks, why required child roles matter, how to fix missing structural roles and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-required-children rule checks whether elements that use roles requiring specific structural children actually contain them. Some ARIA roles act as containers that depend on child roles to define the full interaction pattern. If these children are missing the component becomes incomplete and cannot be interpreted correctly by assistive technologies.
+
+Examples of roles with required children include: - role="list" requiring role="listitem" - role="menu" requiring role="menuitem", role="menuitemcheckbox" or role="menuitemradio" - role="radiogroup" requiring role="radio" - role="tablist" requiring role="tab"
+
+If the required children are absent the widget becomes structurally invalid.
+
+## Why it matters
+
+Assistive technologies rely on the expected hierarchy of roles to understand widget structure. When required child roles are missing screen readers may: - fail to identify items within the component, - skip available interactions, - misunderstand the type of widget, - or provide incomplete announcements.
+
+This creates confusion and makes the interface harder to use for people who rely on semantic structure.
+
+## Who delivers it
+
+Front end developers ensure that container roles include the required child roles. Accessibility engineers and QA testers verify structural accuracy using automated and manual audits. Design system teams document parent-child role requirements for all ARIA components. Welcoming Web assists teams by detecting missing required children.
+
+How to fix missing required children
+
+1. Identify container roles with missing children
+
+Search for ARIA container roles and check whether the expected child roles are present.
+
+2. Review the ARIA specification for role requirements
+
+Each container role lists the child roles it must contain.
+
+3. Add missing required child roles
+
+Ensure the component includes all structural children.
+
+### Incorrect example:
+
+```html
+<ul role="list"></ul>
+```
+
+### Corrected version:
+
+```html
+<ul role="list">  <li role="listitem">Item one</li>  <li role="listitem">Item two</li></ul>
+```
+
+4. Preserve correct hierarchy
+
+Child roles must be nested inside their parent role elements.
+
+5. Validate using assistive technologies
+
+Check that screen readers announce the complete structure and items.
+
+## Best practice guidance
+
+Use native HTML semantics (&lt;ul&gt;, &lt;li&gt;, &lt;menu&gt;, &lt;input type="radio"&gt;) whenever possible because they automatically provide correct role structures. Document required children in your design system to prevent invalid component construction.
+
+## Compliance mapping
+
+Providing required ARIA child roles helps teams work towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III expectations for accessible interaction patterns, - EN 301 549 requirements for assistive technology compatibility, - Equality Act 2010 obligations for clear and accessible structure.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects ARIA roles missing required children and maps these issues to WCAG criteria. The platform provides guidance so developers can complete required structures and improve semantic clarity.
+
+## Key points for development teams
+
+Some ARIA roles require specific child roles. Missing child roles break semantic structure. Native HTML elements often provide required relationships automatically. Automated audits detect missing children. Manual testing ensures correct announcements.
+
+## Call to action
+
+Run an audit Check your site for missing required child roles. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-required-children rule check
+
+It checks whether ARIA roles that require specific child roles actually contain them.
+
+Why must ARIA container roles include specific children
+
+Because assistive technologies rely on structural roles to identify items and interactions.
+
+Which roles commonly require children
+
+Roles such as list, radiogroup, menu and tablist have required child roles.
+
+Can I use custom HTML and add ARIA roles
+
+Yes, but you must ensure required parent-child patterns remain intact.
+
+Does adding missing child roles guarantee WCAG compliance
+
+It supports WCAG intent but does not guarantee full compliance.
+
+How does Welcoming Web help with required child issues
+
+Welcoming Web identifies missing child roles and provides guidance for correcting component structure.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

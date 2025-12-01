@@ -1,0 +1,130 @@
+---
+title: "Aria Valid Attr"
+description: "ARIA attributes must conform to valid names"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Valid Attr
+
+<Callout type="info">
+ARIA attributes must conform to valid names
+</Callout>
+
+ARIA attributes must use valid names defined in the ARIA specification. This blog explains what the aria-valid-attr rule checks, why invalid ARIA attribute names create accessibility issues, how to fix incorrect attribute usage and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-valid-attr rule checks whether attributes beginning with aria- correspond to valid ARIA attributes. The ARIA specification includes a precise list of supported attribute names. Any attribute not included in that list is considered invalid and will be ignored by assistive technologies.
+
+Examples of invalid attributes include: - misspelled attribute names, such as aria-labl instead of aria-label, - invented or custom ARIA-like attributes, - outdated or removed attribute names.
+
+Invalid attributes provide no semantic value and may cause confusion during accessibility reviews.
+
+## Why it matters
+
+Assistive technologies rely on valid ARIA attributes to announce state, purpose and behaviour. When developers use invalid attribute names, screen readers cannot interpret them. This often results in: - missing states or descriptions, - inconsistent announcements, - failure to convey control behaviour, - reduced trust in interface semantics.
+
+Invalid attributes may also hide genuine accessibility issues because developers might believe they have applied meaningful attributes when, in fact, the browser ignores them entirely.
+
+## Who delivers it
+
+Front end developers must apply valid ARIA attributes when building interactive components. Accessibility engineers and QA testers confirm attribute validity during automated and manual audits. Design system teams maintain approved attribute lists. Welcoming Web assists teams by detecting invalid ARIA attribute names.
+
+How to fix invalid ARIA attributes
+
+1. Identify invalid attributes
+
+Audit the codebase for attributes beginning with aria- that do not match known ARIA attributes.
+
+2. Replace invalid names with correct ones
+
+Correct spelling errors and substitute outdated attributes with their modern equivalents.
+
+### Incorrect example:
+
+```html
+<button aria-labl="Submit"></button>
+```
+
+### Corrected version:
+
+```html
+<button aria-label="Submit"></button>
+```
+
+3. Remove custom or invented attributes
+
+Only attributes defined in the ARIA specification should be used.
+
+4. Use native HTML semantics where possible
+
+Native attributes often remove the need for ARIA entirely.
+
+5. Validate using assistive technologies
+
+Confirm that screen readers announce correct states and labels after fixing attributes.
+
+## Best practice guidance
+
+Keep ARIA usage simple by limiting attributes to those strictly required. Maintain naming standards in your design system to avoid custom or incorrect ARIA attributes. Regularly review ARIA usage to ensure consistency and accuracy.
+
+## Compliance mapping
+
+Valid ARIA attributes help teams work towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III expectations for accurate state communication, - EN 301 549 assistive technology compatibility requirements, - Equality Act 2010 obligations for accessible digital services.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects invalid ARIA attribute names and maps these issues to WCAG criteria. The platform provides guidance so developers can correct attribute usage and ensure semantic accuracy.
+
+## Key points for development teams
+
+ARIA attributes must use valid names. Invalid names are ignored by assistive technologies. Native HTML reduces reliance on ARIA. Automated audits detect spelling and naming errors. Manual testing confirms correct announcements.
+
+## Call to action
+
+Run an audit Check your site for invalid ARIA attribute names. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-valid-attr rule check
+
+It checks whether attributes beginning with aria- correspond to valid ARIA attributes.
+
+Why must ARIA attributes use valid names
+
+Because assistive technologies require recognised names to interpret states and labels.
+
+Can I create my own ARIA attribute names
+
+No. Only ARIA attributes defined in the specification are valid.
+
+What happens if an ARIA name is misspelled
+
+Invalid ARIA attributes are ignored and provide no semantic value.
+
+Should I replace invalid attributes with native HTML
+
+Use native HTML whenever possible, and apply ARIA only when required.
+
+Does fixing ARIA attribute names guarantee WCAG compliance
+
+It supports compliance efforts but does not guarantee full compliance.
+
+How does Welcoming Web help with ARIA attribute issues
+
+Welcoming Web identifies invalid attributes and provides guidance to correct them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

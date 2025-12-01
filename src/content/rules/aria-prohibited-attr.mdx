@@ -1,0 +1,124 @@
+---
+title: "Aria Prohibited Attr"
+description: "Elements must only use permitted ARIA attributes"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Prohibited Attr
+
+<Callout type="info">
+Elements must only use permitted ARIA attributes
+</Callout>
+
+Elements must only use ARIA attributes that are permitted for their assigned roles. This blog explains what the aria-prohibited-attr rule checks, why using prohibited ARIA attributes creates accessibility issues, how to fix violations found during audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-prohibited-attr rule checks whether an element uses ARIA attributes that are explicitly disallowed for its assigned role. Each ARIA role includes a specification that defines which attributes are: - required, - supported, - conditionally supported, or - prohibited.
+
+A prohibited attribute must never be used with a role because it contradicts expected behaviour and can mislead assistive technologies.
+
+## Why it matters
+
+ARIA attributes provide information that assistive technologies rely on. When developers use attributes not permitted for a role, screen readers may: - announce incorrect states, - misinterpret the element’s purpose, - ignore valid behaviour, - or behave inconsistently.
+
+This creates confusion and breaks the expected user experience for people who depend on accurate semantics.
+
+## Who delivers it
+
+Front end developers ensure ARIA attributes match the element’s role. Accessibility engineers and QA testers verify attribute correctness using automated and manual audits. Design system owners document allowed attributes for each component. Welcoming Web assists teams by flagging ARIA attributes that are prohibited.
+
+How to fix prohibited ARIA attribute issues
+
+1. Identify prohibited attribute usage
+
+Search for ARIA attributes applied to elements with defined roles.
+
+2. Check the role specification
+
+Verify whether the attribute is allowed, required or prohibited.
+
+3. Remove or replace the prohibited attribute
+
+Prohibited attributes must be removed to prevent conflicting semantics.
+
+### Incorrect example:
+
+```html
+<div role="img" aria-checked="true"></div>
+```
+
+### Corrected version:
+
+```html
+<div role="img" aria-label="Company logo"></div>
+```
+
+4. Use native elements when possible
+
+Native HTML elements often remove the need for complex ARIA attributes.
+
+5. Validate with assistive technologies
+
+Check that screen readers announce the element correctly after removing prohibited attributes.
+
+## Best practice guidance
+
+Avoid adding ARIA attributes unless the specification requires them. Maintain role and attribute definitions in your component library so developers know which attributes are permitted. Keep code clean to prevent conflicting semantics.
+
+## Compliance mapping
+
+Correct use of permitted ARIA attributes helps teams work towards: - WCAG 2.2 Name, Role, Value success criteria, - ADA Title III expectations for accurate accessibility structure, - EN 301 549 requirements for assistive technology compatibility, - Equality Act 2010 expectations for accessible digital services.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies prohibited ARIA attributes and maps these findings to WCAG requirements. The platform provides guidance to help developers remove invalid attributes and improve semantic reliability.
+
+## Key points for development teams
+
+ARIA attributes must be permitted for the role. Prohibited attributes cause misleading announcements. Native elements reduce ARIA complexity. Automated audits detect prohibited attributes. Manual testing ensures semantic accuracy.
+
+## Call to action
+
+Run an audit Check your site for prohibited ARIA attributes. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-prohibited-attr rule check
+
+It checks whether elements use ARIA attributes that are prohibited for their assigned roles.
+
+Why must prohibited ARIA attributes be removed
+
+Because they create conflicting semantics and confuse assistive technologies.
+
+How do I know if an attribute is prohibited
+
+Review the ARIA specification or role mappings.
+
+Should I avoid adding optional ARIA attributes
+
+Only add attributes when they serve a necessary purpose.
+
+Does removing prohibited attributes guarantee WCAG compliance
+
+It supports compliance efforts but does not guarantee full WCAG coverage.
+
+How does Welcoming Web help with prohibited ARIA issues
+
+Welcoming Web identifies prohibited attribute usage and provides guidance for resolving it.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

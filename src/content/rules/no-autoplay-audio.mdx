@@ -1,0 +1,130 @@
+---
+title: "No Autoplay Audio"
+description: "or  elements must not play automatically"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# No Autoplay Audio
+
+<Callout type="info">
+or  elements must not play automatically
+</Callout>
+
+Audio and video must not autoplay for more than three seconds without a clear way to pause, stop or mute the sound. This blog explains what the no-autoplay-audio rule checks, why autoplaying media causes accessibility issues, how to ensure compliant behaviour and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The no-autoplay-audio rule checks whether &lt;audio&gt; or &lt;video&gt; elements play audio automatically for more than three seconds without giving users control. Autoplaying sound can interfere with assistive technologies and disrupt concentration.
+
+Autoplay may occur when developers use: - &lt;audio autoplay&gt; - &lt;video autoplay&gt; - media libraries or scripts that trigger playback on load
+
+The rule requires that users must be able to pause, stop or mute the audio.
+
+## Why it matters
+
+Autoplaying audio creates barriers for many users: - screen reader output may be drowned out by unexpected sound - users with cognitive impairments may be startled or distracted - people in quiet environments may struggle to continue using the page - users with attention-related conditions may find it difficult to regain focus - autoplay can cause immediate usability issues on mobile and low-bandwidth devices
+
+Providing user control ensures predictable and comfortable interaction.
+
+## Who delivers it
+
+Front end developers configure media elements correctly. Designers avoid patterns that rely on autoplay to draw attention. Content authors provide clear captions, transcripts and alternative formats. Accessibility specialists and QA testers verify that no autoplaying audio persists beyond three seconds without controls. Welcoming Web assists by detecting media elements that violate autoplay requirements.
+
+How to prevent autoplaying audio issues
+
+1. Remove the autoplay attribute
+
+Do not autoplay audio or video with sound.
+
+```html
+<!-- Remove autoplay --><video src="intro.mp4" controls></video>
+```
+
+2. Provide clear user controls
+
+Ensure users can pause, stop or mute the audio easily. Use built‑in media controls or custom accessible components.
+
+3. Use muted autoplay only when essential
+
+If visual autoplay is needed, set muted to ensure no audio plays.
+
+```html
+<video autoplay muted loop></video>
+```
+
+4. Allow users to enable sound
+
+Use buttons or interactions that explicitly request permission before playing audio.
+
+5. Test with screen readers and keyboard navigation
+
+Verify that controls are visible, operable and announced correctly.
+
+## Best practice guidance
+
+Avoid autoplaying audio entirely. Provide captions, transcripts and descriptions for all media. Ensure controls are visible, labelled and reachable by keyboard. For complex media components, follow WAI‑ARIA Authoring Practices for video players.
+
+## Compliance mapping
+
+Preventing autoplaying audio supports: - WCAG 2.2 Pause, Stop, Hide success criterion - WCAG 2.2 Predictable interaction expectations - ADA Title III expectations for user‑controlled media - EN 301 549 guidance on operable multimedia controls - Equality Act 2010 duties for inclusive information access
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies autoplaying media and highlights elements that lack the required controls. The platform provides guidance for fixing player behaviour and improving user experience.
+
+## Key points for development teams
+
+Do not autoplay media with sound. Provide pause, stop or mute controls. Use muted autoplay for visuals only. Ensure controls are accessible. Test with assistive technologies.
+
+## Call to action
+
+Run an audit Check your site for media elements that autoplay without controls. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the no‑autoplay‑audio rule check
+
+It checks whether audio plays automatically for more than three seconds without user controls.
+
+Why must autoplaying audio be avoided
+
+It can overpower screen readers, distract users and reduce usability.
+
+Can media autoplay if muted
+
+Yes. Muted autoplay is allowed because it does not create audio barriers.
+
+What controls must be provided
+
+Users must be able to pause, stop or mute audio.
+
+Does background music count as autoplay
+
+Yes. Any audio that starts automatically is subject to this rule.
+
+How do I fix media libraries that autoplay
+
+Disable autoplay settings and expose accessible controls.
+
+Does removing autoplay guarantee WCAG compliance
+
+It supports multimedia control requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with autoplay issues
+
+Welcoming Web detects non‑compliant autoplaying audio and provides guidance for correcting it.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

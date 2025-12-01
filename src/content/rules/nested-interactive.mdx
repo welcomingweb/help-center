@@ -1,0 +1,128 @@
+---
+title: "Nested Interactive"
+description: "Interactive controls must not be nested"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Nested Interactive
+
+<Callout type="info">
+Interactive controls must not be nested
+</Callout>
+
+Interactive controls must not be nested because assistive technologies may fail to announce them correctly and users can experience unexpected focus behaviour. This blog explains what the nested-interactive rule checks, why nested controls cause accessibility problems, how to structure interactive elements properly and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The nested-interactive rule checks whether one interactive element appears inside another. Examples include placing a button inside a link, an input inside a button, or nested controls inside custom widgets.
+
+Interactive elements include: - &lt;a&gt; elements with href, - &lt;button&gt; elements, - form controls such as &lt;input&gt;, &lt;select&gt;, &lt;textarea&gt;, - interactive ARIA widgets.
+
+When these elements are nested, their semantics and behaviour may conflict.
+
+## Why it matters
+
+Nested interactive elements create several accessibility barriers: - screen readers may fail to announce the nested control, - focus order becomes unpredictable or unstable, - users may trigger the wrong control unintentionally, - keyboard interaction may break when controls overlap, - assistive technologies may ignore one or both controls.
+
+Users must be able to navigate and activate each control with confidence.
+
+## Who delivers it
+
+Front end developers structure UI components so interactive elements are not nested. Designers avoid patterns that rely on clickable containers containing additional controls. Content authors ensure rich-text editors do not produce nested links accidentally. Accessibility specialists and QA testers verify that components follow semantic interaction rules. Welcoming Web assists by detecting nested interactive patterns.
+
+How to ensure interactive controls are not nested
+
+1. Avoid placing interactive elements inside other interactive elements
+
+Do not nest buttons, links or form controls.
+
+Incorrect:
+
+```html
+<a href="#">  <button>Buy now</button></a>
+```
+
+2. Use non-interactive wrappers when grouping controls
+
+To create clickable regions, use CSS or JavaScript on non-interactive containers.
+
+3. Prevent rich-text editors from generating nested links
+
+CMS tools may allow linking text that already contains another link.
+
+4. Use ARIA widgets responsibly
+
+Ensure interactive ARIA roles do not wrap elements that already behave as controls.
+
+5. Validate custom components
+
+Card, tile or menu components must avoid overlapping or nested click targets.
+
+## Best practice guidance
+
+Design clickable elements that behave consistently. Avoid entire-card links if the card contains additional buttons or links. Keep controls separate and clearly labelled. Document interaction rules in your design system so nested behaviour is avoided during component development.
+
+## Compliance mapping
+
+Avoiding nested interactive controls supports: - WCAG 2.2 Name, Role, Value requirements, - WCAG 2.2 Keyboard Access expectations for operable controls, - WCAG 2.2 Predictability success criteria, - ADA Title III expectations for reliable navigation, - EN 301 549 guidance on programmatically determinable interactive components.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects nested controls and highlights incorrect structural patterns. The platform provides guidance for adjusting markup so each interactive element remains separate and fully operable.
+
+## Key points for development teams
+
+Do not nest interactive elements. Use non-interactive wrappers for layout. Avoid nested links in CMS content. Test focus order and keyboard behaviour. Ensure ARIA widgets do not wrap existing controls.
+
+## Call to action
+
+Run an audit Check your site for nested interactive elements. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the nested-interactive rule check
+
+It checks whether one interactive element is nested inside another.
+
+Why must controls not be nested
+
+Nested controls cause conflicts that affect focus, announcements and activation behaviour.
+
+Which elements count as interactive
+
+Links, buttons, form controls and ARIA widgets are interactive elements.
+
+How do I fix nested interactions
+
+Replace nested controls with separate elements or use non-interactive wrappers.
+
+Are entire clickable cards allowed
+
+Only if cards contain no additional controls.
+
+Do CMS editors create nested links
+
+Yes. Some editors allow linking content that already contains links.
+
+Does fixing nesting guarantee WCAG compliance
+
+It supports operability and predictability requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with nested controls
+
+Welcoming Web identifies nested interactive elements and provides corrective guidance.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

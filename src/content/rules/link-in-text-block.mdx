@@ -1,0 +1,129 @@
+---
+title: "Link In Text Block"
+description: "Links must be distinguishable without relying on colour"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Link In Text Block
+
+<Callout type="info">
+Links must be distinguishable without relying on colour
+</Callout>
+
+Links must be identifiable through more than colour alone so all users can recognise interactive text. This blog explains what the link-in-text-block rule checks, why colour‑only indicators fail accessibility, how to make links clearly distinguishable and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The link-in-text-block rule checks whether links inside paragraphs of text are distinguishable from surrounding content using more than colour. Relying solely on colour differences creates barriers for users with low vision, colour‑vision deficiencies or limited contrast perception.
+
+Links should use at least one additional visual cue, such as underlines, bold styling, patterns or other non‑colour indicators.
+
+## Why it matters
+
+When links rely only on colour to communicate interactivity: - users with colour‑vision impairments struggle to identify them, - readers with low vision may miss links entirely, - links become harder to find in dense text blocks, - some colour combinations fail to reach required contrast levels, - users may not know where interactive elements appear.
+
+Providing clear, non‑colour styling supports predictable navigation and improves the discoverability of interactive elements.
+
+## Who delivers it
+
+Designers define link styling patterns that use more than colour. Front end developers implement consistent styling across paragraphs, articles and rich‑text components. Content authors maintain clear link placement within text. Accessibility specialists and QA testers validate that links remain distinguishable under different contrast conditions. Welcoming Web assists by detecting links that rely on colour alone.
+
+How to ensure links are distinguishable without relying on colour
+
+1. Add an underline to inline links
+
+Underlining is the strongest, most recognisable non‑colour cue.
+
+### Example:
+
+```html
+a { text-decoration: underline; }
+```
+2. Use additional styling if underlining cannot be used
+
+Bold weight, distinctive font treatment or patterns can complement link styling.
+
+3. Avoid colour‑only distinctions
+
+Do not present links in a different colour without any secondary cue.
+
+4. Maintain consistent link styling across components
+
+Users expect links to look the same in articles, lists, tables and blocks of text.
+
+5. Ensure visited and active states are also distinguishable
+
+Use visual cues beyond colour saturation or hue adjustments.
+
+6. Validate on low‑contrast and grayscale displays
+
+Links must remain recognisable even when colour perception is reduced.
+
+## Best practice guidance
+
+Use underlined links as the default, especially within paragraphs. Apply accessible hover and focus states that further reinforce interactivity. Avoid removing underlines unless replaced with equally strong cues. Document link styling patterns in your design system to ensure consistency across teams.
+
+## Compliance mapping
+
+Ensuring non‑colour link identification supports: - WCAG 2.2 Use of Colour success criterion, - WCAG 2.2 Contrast and Non‑Text Contrast expectations, - ADA Title III requirements for perceivable interactive elements, - EN 301 549 guidance on distinguishable controls, - Equality Act 2010 duties for accessible communication.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects links that use colour as the only distinguishing feature. The platform highlights affected text blocks and provides guidance on adding appropriate non‑colour indicators.
+
+## Key points for development teams
+
+Do not rely on colour alone. Underline inline links. Use clear styling patterns. Ensure visited and active states are visible. Maintain consistency across templates.
+
+## Call to action
+
+Run an audit Check your site for links that rely solely on colour. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the link-in-text-block rule check
+
+It checks whether inline links are distinguishable without relying on colour alone.
+
+Why must links use more than colour
+
+Links must use more than colour so all users, including those with colour‑vision impairments, can identify them.
+
+What are acceptable cues
+
+Underlines, bold styling, icon indicators or patterns are acceptable cues.
+
+Do visited links need special styling
+
+Yes. They should remain distinguishable without relying only on colour changes.
+
+Can hover effects fix colour‑only issues
+
+No. Links must be identifiable without requiring user action.
+
+Do headings and menus follow the same rule
+
+This rule specifically applies to text blocks, but consistent cues are recommended site‑wide.
+
+Does adding underlines guarantee WCAG compliance
+
+It supports use‑of‑colour requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with link visibility
+
+Welcoming Web identifies colour‑only link styling and recommends accessible alternatives.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

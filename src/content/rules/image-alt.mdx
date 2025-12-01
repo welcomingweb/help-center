@@ -1,0 +1,130 @@
+---
+title: "Image Alt"
+description: "Images must have alternative text"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Image Alt
+
+<Callout type="info">
+Images must have alternative text
+</Callout>
+
+Images must include alternative text so users can understand their meaning when visual content is not accessible. This blog explains what the image-alt rule checks, why alternative text is essential for accessibility, how to write effective alt text and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, SEO‑optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The image-alt rule checks whether &lt;img&gt; elements provide meaningful alternative text using the alt attribute. When an image is decorative and does not convey essential information, it should use empty alt text (alt="") or a role of none or presentation.
+
+Alternative text allows screen readers and other assistive technologies to describe the image’s purpose or meaning. It also acts as fallback content when images fail to load.
+
+## Why it matters
+
+Images often communicate information that users need to understand content or complete tasks. When images lack alternative text: - screen reader users miss important information, - key instructions or context may become inaccessible, - decorative images may clutter the reading experience, - users with low vision or cognitive impairments may struggle to follow the content.
+
+Effective alternative text improves comprehension, preserves meaning and supports predictable interactions.
+
+## Who delivers it
+
+Content authors write meaningful alt text. Designers document when images are decorative or functional. Front end developers ensure alt attributes appear correctly in markup. Accessibility specialists and QA testers validate the quality and presence of alternative text. Welcoming Web assists by detecting missing or inappropriate alt text.
+
+How to ensure images have appropriate alternative text
+
+1. Provide descriptive alt text for meaningful images
+
+Describe the information or function, not the visual details.
+
+### Example:
+
+```html
+<img src="team.jpg" alt="Customer support team working together">
+```
+
+2. Use empty alt text for decorative images
+
+Decorative images should not be announced by screen readers.
+
+```html
+<img src="pattern.svg" alt="">
+```
+
+3. Avoid repeating nearby text
+
+If the same information already appears next to the image, alt text can be shorter.
+
+4. Do not use filenames or placeholder text
+
+Avoid values like image1.jpg, photo or irrelevant descriptions.
+
+5. Use role="presentation" only for purely decorative images
+
+Do not hide images that contain meaningful content.
+
+## Best practice guidance
+
+Write alt text that reflects the image’s purpose, not its every detail. Be concise and avoid redundancy. When images act as links or buttons, describe the destination or action. For complex visual content such as charts, use long descriptions or provide the information in surrounding text. Maintain consistent image labelling patterns across your design system.
+
+## Compliance mapping
+
+Providing appropriate alternative text supports: - WCAG 2.2 success criteria for Non‑Text Content, - ADA Title III expectations for accessible information, - EN 301 549 requirements for programmatically determinable alternatives, - Equality Act 2010 duties for inclusive communication.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects missing, incorrect or redundant alt attributes and highlights images that require descriptive alternative text. The platform provides guidance on writing meaningful alt text and distinguishing decorative from informative images.
+
+## Key points for development teams
+
+Images must use appropriate alt text. Meaningful images need clear descriptions. Decorative images use empty alt text. Avoid redundant or irrelevant wording. Validate alt text across components.
+
+## Call to action
+
+Run an audit Check your site for missing or unclear alternative text. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the image-alt rule check
+
+It checks whether &lt;img&gt; elements provide appropriate alternative text or are marked as decorative.
+
+When should an image have alt text
+
+An image should have alt text when it conveys meaning, information or a functional action.
+
+When should alt text be empty
+
+Alt text should be empty when the image is purely decorative.
+
+Can I use ARIA instead of alt text
+
+No. &lt;img&gt; must use an alt attribute. ARIA does not replace this requirement.
+
+How detailed should alt text be
+
+Alt text should describe the purpose of the image concisely without unnecessary detail.
+
+Do functional images need alt text
+
+Yes. Images used as links or buttons must describe the action or destination.
+
+Does providing alt text guarantee WCAG compliance
+
+It supports non‑text content requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with alt text
+
+Welcoming Web identifies images with missing or inappropriate alt attributes and provides guidance for fixing them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

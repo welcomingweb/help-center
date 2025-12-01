@@ -1,0 +1,132 @@
+---
+title: "Aria Treeitem Name"
+description: "ARIA treeitem nodes should have an accessible name"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Treeitem Name
+
+<Callout type="info">
+ARIA treeitem nodes should have an accessible name
+</Callout>
+
+ARIA treeitem nodes must expose accessible names that describe the item’s purpose or label within a tree structure. This blog explains what the aria-treeitem-name rule checks, why accessible names matter for hierarchical navigation, how to fix issues found in audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-treeitem-name rule checks whether elements using role="treeitem" provide an accessible name. A treeitem represents an individual node inside a tree, such as: - a selectable item, - a parent branch that expands or collapses, - or a leaf item with no children.
+
+The accessible name identifies what the item represents so assistive technologies can announce it clearly.
+
+Treeitem names may come from: - visible text within the item, - aria-label, - or aria-labelledby referencing visible text.
+
+## Why it matters
+
+Users of screen readers rely on accessible names to understand each node in a tree. Without a meaningful name a treeitem may be announced simply as “tree item,” which provides no context.
+
+Missing names can lead to: - confusion about what the item represents, - difficulty navigating tree structures, - misinterpreting expandable/collapsible branches, - increased cognitive load.
+
+Accessible names ensure users understand tree structure, item purpose and available actions.
+
+## Who delivers it
+
+Front end developers ensure ARIA treeitems include accessible names. Accessibility engineers and QA testers validate naming accuracy with automated and manual audits. Design system teams define naming patterns for hierarchical components. Welcoming Web assists teams by detecting ARIA treeitems that lack accessible names.
+
+How to fix missing accessible names
+
+1. Identify treeitem roles
+
+Search for elements using role="treeitem".
+
+2. Provide a meaningful accessible name
+
+Use: - visible item text, - aria-label="...", - or aria-labelledby="..." pointing to text.
+
+3. Ensure the name describes the item’s label or purpose
+
+Names must clearly identify the item.
+
+### Incorrect example:
+
+```html
+<div role="treeitem"></div>
+```
+
+### Corrected version:
+
+```html
+<div role="treeitem" aria-label="Marketing reports"></div>
+```
+
+4. Keep names consistent across hierarchical components
+
+Tree naming patterns help users understand the structure.
+
+5. Validate with assistive technologies
+
+Screen readers should announce the name along with the item’s level (if provided) and state (expanded or collapsed).
+
+## Best practice guidance
+
+Use native list semantics (&lt;ul&gt;, &lt;li&gt;) when possible for hierarchical structures. When using ARIA tree patterns ensure each node is labelled, correctly nested and clear in purpose.
+
+## Compliance mapping
+
+Accessible naming for ARIA treeitems helps teams work towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III expectations for accessible navigation patterns, - EN 301 549 compatibility requirements, - Equality Act 2010 duties for accessible hierarchical structures.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies ARIA treeitems that lack accessible names. The platform maps these issues to WCAG criteria and provides guidance to help developers ensure clear, meaningful tree structures.
+
+## Key points for development teams
+
+ARIA treeitems must always have accessible names. Names must identify what the item represents. Correct naming supports hierarchical clarity. Automated audits detect missing names. Manual testing confirms correct announcements.
+
+## Call to action
+
+Run an audit Check your site for missing ARIA treeitem names. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-treeitem-name rule check
+
+It checks whether elements using the treeitem role expose accessible names.
+
+Why must ARIA treeitems have accessible names
+
+Because users need to understand what each node represents in the tree.
+
+Can I use visible text as the treeitem name
+
+Yes. Visible text is often the best accessible name.
+
+Should expandable nodes also have accessible names
+
+Yes. Expandable and collapsible nodes require clear names plus state indicators.
+
+Does aria-expanded provide an accessible name
+
+No. aria-expanded communicates state, not purpose.
+
+Does fixing treeitem names guarantee WCAG compliance
+
+It supports WCAG alignment but does not guarantee full compliance.
+
+How does Welcoming Web help with treeitem issues
+
+Welcoming Web identifies missing treeitem names and provides guidance to help developers correct the structure.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

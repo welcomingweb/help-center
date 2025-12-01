@@ -1,0 +1,138 @@
+---
+title: "Aria Command Name"
+description: "Each ARIA-based command element must include an accessible name that describes its purpose. This blog explains what the aria-command-name rule checks, why accessible names are essential for assistive technologies, how to fix issues found during audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval."
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Command Name
+
+<Callout type="info">
+Each ARIA-based command element must include an accessible name that describes its purpose. This blog explains what the aria-command-name rule checks, why accessible names are essential for assistive technologies, how to fix issues found during audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+</Callout>
+
+Each ARIA-based command element must include an accessible name that describes its purpose. This blog explains what the aria-command-name rule checks, why accessible names are essential for assistive technologies, how to fix issues found during audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-command-name rule checks whether interactive elements using ARIA command roles—such as button, link and menuitem—have a clear accessible name. An accessible name is the text a screen reader announces to explain what the element does. If the element has no name, users relying on assistive technology cannot identify its purpose.
+
+ARIA command roles include: - role=“button” - role=“link” - role=“menuitem”
+
+These roles must always expose a meaningful name using an element’s text content or attributes such as aria-label or aria-labelledby.
+
+## Why it matters
+
+Screen reader users rely on accessible names to understand what each interactive element does. If a button or link is announced as “button” with no further information, users cannot determine its action. This creates confusion, slows navigation and increases cognitive load.
+
+Missing accessible names can cause users to: - activate the wrong control - miss essential actions - struggle to understand the structure of menus and interfaces - abandon tasks due to lack of clarity
+
+Providing accessible names ensures all users can understand and operate command elements reliably.
+
+## Who delivers it
+
+Front end developers ensure all ARIA command elements have names. Accessibility engineers and QA testers verify that names are present and meaningful during manual and automated audits. Accessibility managers include naming rules within component libraries and coding guidelines. Welcoming Web assists teams by flagging ARIA commands without accessible names.
+
+How to fix missing accessible names
+
+1. Identify ARIA command roles
+
+Locate elements that use role="button", role="link" or role="menuitem".
+
+2. Add a meaningful accessible name
+
+Use one of the following: - visible text inside the element - aria-label - aria-labelledby pointing to visible text
+
+3. Ensure the name reflects the action
+
+Accessible names must describe purpose, not visual shape.
+
+### Incorrect example:
+
+```html
+<div role="button"></div>
+```
+
+### Corrected version:
+
+```html
+<div role="button" aria-label="Submit form"></div>
+```
+
+Or using visible text:
+
+```html
+<div role="button">Submit form</div>
+```
+
+4. Keep names clear and concise
+
+Avoid vague labels such as “Click here” or “Go”. Use action-focused names that communicate purpose.
+
+5. Validate with screen readers
+
+Check that each element is announced with the correct role and accessible name.
+
+## Best practice guidance
+
+Design components so interactive controls always have visible text when possible. Use aria-label only when visible text is not appropriate. Maintain naming conventions in your design system to ensure consistency across the product.
+
+## Compliance mapping
+
+Accessible command names help teams work towards: - WCAG 2.2 Name, Role, Value requirements - ADA Title III digital access expectations - EN 301 549 interactive control standards - Equality Act 2010 expectations for accessible services
+
+Welcoming Web supports alignment with these standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies ARIA command elements that lack accessible names. The platform maps issues to WCAG criteria and provides guidance so developers can add meaningful names and improve clarity for assistive technology users.
+
+## Key points for development teams
+
+ARIA commands must always have an accessible name. Missing names cause confusion for screen reader users. Names must describe purpose, not appearance. Automated tools detect missing names, manual testing confirms quality. Consistency across components improves usability.
+
+## Call to action
+
+Run an audit Check your site for missing command names. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-command-name rule check
+
+It checks whether ARIA command roles such as button, link and menuitem have accessible names.
+
+Why must ARIA commands have accessible names
+
+Without accessible names, users of assistive technologies cannot understand what the element does.
+
+Can aria-label replace visible text
+
+Yes, but visible text is preferred when possible. aria-label is used when text cannot be displayed.
+
+What is the best way to give a name to an ARIA button
+
+Use visible text or aria-label to describe its purpose.
+
+Does placeholder text count as an accessible name
+
+No. Placeholders do not serve as accessible names for buttons or links.
+
+Does adding an accessible name guarantee WCAG compliance
+
+Adding names supports WCAG but does not guarantee full compliance.
+
+How does Welcoming Web help with ARIA command issues
+
+Welcoming Web detects ARIA command elements without accessible names and provides guidance for fixing them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,124 @@
+---
+title: "Valid Lang"
+description: "lang attribute must have a valid value"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Valid Lang
+
+<Callout type="info">
+lang attribute must have a valid value
+</Callout>
+
+The lang attribute must contain a valid language code so browsers and assistive technologies understand how to interpret and announce content. This blog explains what the valid-lang rule checks, why correct language declarations matter, how to apply valid codes and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The valid-lang rule checks whether any lang attribute in the document uses a valid BCP 47 language code. Examples include en, en-GB, fr, es-419, ar, tr and others. Invalid or mistyped codes prevent assistive technologies from switching to the correct pronunciation rules.
+
+Language declarations help screen readers choose the correct voice, pronunciation and reading conventions. They also support proper hyphenation, spellchecking and localisation behaviours.
+
+## Why it matters
+
+When a lang attribute contains an invalid value: - screen readers cannot switch to the correct language profile, - content may be pronounced incorrectly and become difficult to understand, - users who rely on multilingual assistive technologies may miss or misinterpret key information, - search engines may misunderstand content language, - cognitive load increases when pronunciation does not match the expected language.
+
+A valid language code ensures content is delivered in a clear, predictable and accessible way.
+
+## Who delivers it
+
+Front end developers apply correct lang attributes to HTML documents and inline language changes. Designers and content authors identify where multilingual content is used and ensure correct declarations. Accessibility specialists and QA testers verify that all lang values are valid BCP 47 codes. Welcoming Web assists by detecting invalid or malformed language attributes.
+
+How to ensure lang attributes have valid values
+
+1. Use valid BCP 47 codes
+
+Common examples include: - en for English, - en-GB for British English, - en-US for American English, - fr for French, - zh-Hans for Simplified Chinese, - pt-BR for Brazilian Portuguese.
+
+2. Apply the primary language on the &lt;html&gt; element
+
+```html
+<html lang="en-GB">
+```
+
+3. Use inline language declarations for foreign phrases
+
+```html
+<p>The term <span lang="fr">raison d’être</span> is French.</p>
+```
+
+4. Avoid invented, truncated or misspelled codes
+
+Values such as eng, english or uk-EN are invalid.
+
+5. Validate language codes against BCP 47
+
+Use trusted references when adding new language tags.
+
+## Best practice guidance
+
+Keep language declarations simple and consistent. Use region-specific codes only when relevant to spelling or pronunciation. For multilingual websites, ensure each template includes the correct default language. Avoid changing the language unnecessarily. Document language-switching practices in your design system.
+
+## Compliance mapping
+
+Using valid language codes supports: - WCAG 2.2 Language of Page success criterion, - WCAG 2.2 Language of Parts requirements, - ADA Title III expectations for understandable communication, - EN 301 549 guidance on programmatically determinable language, - Equality Act 2010 duties for accessible content.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies invalid lang attributes, highlights mistyped or unsupported language codes and provides guidance on correcting them. It helps teams maintain consistent, predictable language declarations across large websites.
+
+## Key points for development teams
+
+Use valid BCP 47 language codes. Apply the primary language on the &lt;html&gt; element. Declare inline languages for foreign text. Avoid invalid or invented codes. Validate language tags regularly.
+
+## Call to action
+
+Run an audit Check your site for invalid or incorrect lang attributes. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the valid-lang rule check
+
+It checks whether all lang attributes use valid BCP 47 language codes.
+
+Why does the lang attribute matter
+
+It allows screen readers to use the correct pronunciation and supports localisation.
+
+What makes a language code valid
+
+A valid code conforms to the BCP 47 standard.
+
+Can I use region codes like en-GB or fr-CA
+
+Yes. These are valid and help express regional differences.
+
+What happens if the language code is invalid
+
+Assistive technologies may ignore it, leading to incorrect pronunciation.
+
+Do I need to mark short foreign phrases
+
+Yes. Inline language declarations improve clarity for screen reader users.
+
+Does using a valid lang guarantee WCAG compliance
+
+It supports language requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with language issues
+
+Welcoming Web detects invalid language codes and guides teams on using correct BCP 47 values.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

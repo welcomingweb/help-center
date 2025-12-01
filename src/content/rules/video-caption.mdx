@@ -1,0 +1,124 @@
+---
+title: "Video Caption"
+description: "elements must have captions"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Video Caption
+
+<Callout type="info">
+elements must have captions
+</Callout>
+
+Video elements must include captions so users who cannot hear audio can still understand the content. This blog explains what the video-caption rule checks, why captions are essential, how to implement them correctly and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The video-caption rule checks whether &lt;video&gt; elements include captions that accurately represent spoken dialogue and meaningful audio information. Captions provide a text-based equivalent of sounds, speech and important audio cues.
+
+Captions may be: - closed captions using &lt;track kind="captions"&gt;, - embedded captions in the video file, - or external caption files referenced through the track element.
+
+## Why it matters
+
+When a video lacks captions: - users who are Deaf or hard of hearing cannot access the information, - screen reader users may miss important audio context, - people in noisy or quiet environments cannot understand the content, - learners who rely on reading instead of listening are disadvantaged, - organisations risk excluding audiences and failing accessibility requirements.
+
+Captions ensure video content is perceivable and usable for the widest possible range of users.
+
+## Who delivers it
+
+Content creators prepare accurate caption files. Designers ensure video players display caption controls clearly. Front end developers implement &lt;track&gt; elements correctly and verify that captions load across browsers. Accessibility specialists and QA testers review caption accuracy and quality. Welcoming Web assists by detecting videos without captions.
+
+How to ensure  elements have captions
+
+1. Use the &lt;track&gt; element for captions
+
+Include a caption file in WebVTT format.
+
+```html
+<video controls>  <source src="intro.mp4" type="video/mp4">  <track src="intro.vtt" kind="captions" srclang="en" label="English captions"></video>
+```
+
+2. Provide captions in the primary language of the video
+
+Use valid srclang values.
+
+3. Ensure captions describe more than spoken text
+
+Include sound cues, speaker identification and meaningful audio.
+
+4. Avoid auto-generated captions as the only option
+
+Automatic captions may be inaccurate and incomplete.
+
+5. Test captions on all devices and browsers
+
+Verify timing, readability and synchronisation.
+
+## Best practice guidance
+
+Use high‑quality captions with consistent formatting. Provide additional caption tracks when serving multilingual audiences. Ensure caption text contrasts well with the video background. Keep caption positioning clear of important visual content. Document captioning processes in your content workflow and design system.
+
+## Compliance mapping
+
+Providing captions supports: - WCAG 2.2 Captions (Prerecorded) success criterion, - WCAG 2.2 Time‑based Media guidelines, - ADA Title III expectations for accessible multimedia, - EN 301 549 requirements for audiovisual alternatives, - Equality Act 2010 duties for inclusive communication.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies &lt;video&gt; elements that lack captions and highlights where caption files are missing or misconfigured. The platform guides teams on implementing accessible video patterns.
+
+## Key points for development teams
+
+Always include captions. Use WebVTT caption tracks. Ensure accuracy and synchronisation. Avoid relying on auto‑generated captions alone. Test on multiple browsers and devices.
+
+## Call to action
+
+Run an audit Check your site for videos missing captions. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the video-caption rule check
+
+It checks whether &lt;video&gt; elements include captions that communicate spoken and meaningful audio content.
+
+Why are captions required
+
+Captions ensure that users who cannot hear audio can still understand the video.
+
+Can auto‑generated captions satisfy this rule
+
+No. They may help, but they must be reviewed and corrected for accuracy.
+
+What format should captions use
+
+Most browsers support the WebVTT format served through &lt;track&gt; elements.
+
+Do background sounds need to be captioned
+
+Yes. Important audio cues should be included.
+
+Are captions required for videos without speech
+
+If audio conveys meaning or context, captions must reflect this.
+
+Does adding captions guarantee WCAG compliance
+
+It supports media accessibility but does not guarantee full compliance.
+
+How does Welcoming Web help with caption issues
+
+Welcoming Web detects missing caption tracks and provides guidance for adding them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,140 @@
+---
+title: "List"
+description: ""
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# List
+
+<Callout type="info">
+
+</Callout>
+
+and
+
+must only directly contain
+
+,
+
+or  elements
+
+Lists must follow correct HTML structure so users and assistive technologies can understand their organisation. This blog explains what the list rule checks, why proper list nesting matters, how to structure lists correctly and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The list rule checks whether &lt;ul&gt; and &lt;ol&gt; elements contain only valid direct children. HTML lists may only contain: - &lt;li&gt; elements, - &lt;script&gt; elements, - &lt;template&gt; elements.
+
+Any other direct child—such as &lt;div&gt;, text nodes, headings or inline elements—breaks list semantics and creates an incorrect structure.
+
+## Why it matters
+
+Lists communicate grouped or ordered information. When list structures are invalid: - screen readers announce unpredictable or confusing list patterns, - items may not be recognised as part of the same list, - users with cognitive or visual impairments may struggle to interpret grouping, - list numbering or bullet patterns may break, - assistive technologies cannot navigate list items correctly.
+
+Correct list structure ensures predictable reading order and consistent navigation.
+
+## Who delivers it
+
+Front end developers implement lists using valid HTML patterns. Content authors ensure list formatting remains consistent in CMS editors. Designers use clear list patterns for grouped information. Accessibility specialists and QA testers check list markup across templates. Welcoming Web assists by detecting invalid list structures.
+
+How to ensure lists are structured correctly
+
+1. Wrap every item in an &lt;li&gt; element
+
+Never place text or elements directly inside &lt;ul&gt; or &lt;ol&gt;.
+
+### Correct example:
+
+```html
+<ul>  <li>First item</li>  <li>Second item</li></ul>
+```
+
+2. Avoid non-list containers as direct children
+
+Elements such as &lt;div&gt;, &lt;span&gt; or &lt;p&gt; must not be direct children of list containers.
+
+3. Use nested lists correctly
+
+Place nested &lt;ul&gt; or &lt;ol&gt; elements inside an &lt;li&gt;.
+
+```html
+<li>  Parent item  <ul>    <li>Child item</li>  </ul></li>
+```
+
+4. Ensure CMS editors output valid list structure
+
+Rich-text editors may create invalid lists when formatting is inconsistent.
+
+5. Avoid empty list items
+
+Keep list content meaningful and avoid placeholder &lt;li&gt; tags.
+
+## Best practice guidance
+
+Use lists to group related content rather than forcing layout with list styles. Maintain consistent indentation and structure across templates. When building component libraries, document list patterns so developers avoid introducing invalid children. Validate list markup regularly, especially on content-heavy pages.
+
+## Compliance mapping
+
+Correct list structure supports: - WCAG 2.2 Info and Relationships success criteria, - WCAG 2.2 Meaningful Sequence requirements, - ADA Title III expectations for logical reading order, - EN 301 549 guidance on programmatically determinable structures, - Equality Act 2010 duties for accessible content organisation.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies lists with invalid direct children. The platform highlights list containers that include text nodes or non-list elements and provides guidance for restructuring markup.
+
+## Key points for development teams
+
+Lists must contain valid children. Use &lt;li&gt; for all list items. Place nested lists inside &lt;li&gt; elements. Avoid non-list containers as direct children. Validate CMS-generated markup.
+
+## Call to action
+
+Run an audit Check your site for incorrectly structured lists. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the list rule check
+
+It checks whether &lt;ul&gt; and &lt;ol&gt; elements contain only valid direct children.
+
+Why must list items use &lt;li&gt;
+
+```html
+<li> provides the semantic structure needed for assistive technologies to understand list items.
+```
+
+Can lists contain text directly
+
+No. Text must be placed inside an &lt;li&gt;.
+
+How do nested lists work
+
+Nested lists must appear inside an &lt;li&gt; of the parent list.
+
+Do styling changes affect list semantics
+
+No. Styling does not replace the need for correct structure.
+
+Can CMS editors produce invalid lists
+
+Yes. Inconsistent formatting may introduce invalid children.
+
+Does correct list structure guarantee WCAG compliance
+
+It supports structure and reading order requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with list issues
+
+Welcoming Web detects invalid list patterns and provides guidance for proper structure.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

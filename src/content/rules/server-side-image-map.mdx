@@ -1,0 +1,130 @@
+---
+title: "Server Side Image Map"
+description: "Server-side image maps must not be used"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Server Side Image Map
+
+<Callout type="info">
+Server-side image maps must not be used
+</Callout>
+
+Server-side image maps must not be used because they prevent assistive technologies from identifying interactive areas within an image. This blog explains what the server-side-image-map rule checks, why server-side maps are inaccessible, how to replace them with modern alternatives and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The server-side-image-map rule checks whether an image uses the ismap attribute, which activates server-side image maps. These maps rely on sending click coordinates to the server, leaving no semantic structure for users or assistive technologies.
+
+Server-side image maps: - do not expose individual interactive areas, - provide no accessible names for regions, - offer no keyboard access, - make navigation unpredictable.
+
+Modern accessible alternatives must be used instead.
+
+## Why it matters
+
+Server-side image maps create multiple accessibility barriers: - screen readers cannot identify or announce the available clickable areas, - users cannot navigate regions using keyboard or touch assistive tools, - coordinates provide no meaningful structure or purpose, - people with low vision cannot rely on zoom or magnification to identify targets, - cognitive load increases because users cannot predict what clicking will do.
+
+Replace server-side maps to ensure interactive content is perceivable and operable.
+
+## Who delivers it
+
+Front end developers remove legacy server-side maps and implement accessible alternatives. Designers rethink interactive imagery to avoid reliance on coordinate-based interactions. Content authors provide clear text alternatives and labelled navigation. Accessibility specialists and QA testers validate that no server-side image maps remain. Welcoming Web assists by detecting ismap attributes.
+
+How to ensure server-side image maps are not used
+
+1. Remove the ismap attribute from images
+
+Do not rely on click coordinates.
+
+```html
+<!-- Remove this --><img src="floorplan.jpg" ismap>
+```
+
+2. Replace with client-side image maps
+
+Client-side maps allow labelled, keyboard-accessible areas.
+
+```html
+<img src="floorplan.jpg" usemap="#locations"><map name="locations">  <area shape="rect" coords="34,44,270,350" href="/east-wing" alt="East wing"></map>
+```
+
+3. Use standard navigation components instead of image maps
+
+Lists, buttons or cards offer clearer structure.
+
+4. Provide textual alternatives for all key actions
+
+Ensure users can access the same functions without relying on images.
+
+5. Test with assistive technologies
+
+Verify that interactive elements are announced correctly and respond to keyboard input.
+
+## Best practice guidance
+
+Avoid using image maps unless absolutely necessary. When interactive imagery is required, use client-side maps with meaningful alternative text, descriptive labels and keyboard support. Consider responsive layouts to ensure clickable regions scale correctly on mobile devices.
+
+## Compliance mapping
+
+Removing server-side image maps supports: - WCAG 2.2 Non-Text Content requirements, - WCAG 2.2 Keyboard Operable success criterion, - WCAG 2.2 Info and Relationships expectations, - ADA Title III expectations for operable interactive content, - EN 301 549 guidance on programmatically determinable controls.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies images using server-side maps and provides guidance for replacing them with accessible alternatives. The platform highlights legacy markup patterns and offers remediation suggestions.
+
+## Key points for development teams
+
+Do not use server-side image maps. Remove ismap attributes. Use labelled client-side maps. Provide text alternatives. Test keyboard and screen reader navigation.
+
+## Call to action
+
+Run an audit Check your site for server-side image maps. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the server-side-image-map rule check
+
+It checks for images using the ismap attribute that rely on server-side coordinates.
+
+Why are server-side image maps inaccessible
+
+They offer no semantic structure or keyboard access, and assistive technologies cannot interpret them.
+
+What should replace a server-side image map
+
+Use client-side maps or standard HTML navigation components.
+
+Are client-side image maps accessible
+
+Yes, when areas include alternative text and support keyboard interaction.
+
+Do users need text-based alternatives
+
+Yes. All actions must be available without relying solely on images.
+
+Does using image maps affect responsiveness
+
+Client-side maps must be designed carefully to scale on different screen sizes.
+
+Does removing server-side maps guarantee WCAG compliance
+
+It supports operability and clarity requirements but does not guarantee complete compliance.
+
+How does Welcoming Web help with image map issues
+
+Welcoming Web detects server-side maps and provides guidance on accessible alternatives.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

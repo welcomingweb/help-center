@@ -1,0 +1,124 @@
+---
+title: "Meta Viewport"
+description: "Zooming and scaling must not be disabled"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Meta Viewport
+
+<Callout type="info">
+Zooming and scaling must not be disabled
+</Callout>
+
+Pages must allow users to zoom and scale content so they can read and interact comfortably. This blog explains what the meta-viewport rule checks, why disabling zoom creates accessibility barriers, how to configure the viewport correctly and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The meta-viewport rule checks whether the &lt;meta name="viewport"&gt; element disables user scaling. Attributes such as user-scalable=no, maximum-scale=1 or fixed zoom settings prevent users from enlarging text or increasing the page’s scale.
+
+Correct viewport configuration should support user-controlled zoom on all devices.
+
+## Why it matters
+
+When zooming is disabled: - users with low vision cannot enlarge text to a comfortable reading size, - content may become unreadable on small screens, - people with motor impairments may struggle to tap small controls, - assistive technologies cannot apply magnification reliably, - users lose essential control over how content is displayed.
+
+Zoom is a critical accessibility feature for mobile and responsive experiences.
+
+## Who delivers it
+
+Front end developers configure the viewport meta tag correctly. Designers avoid patterns that require disabling zoom. Content authors ensure layouts remain flexible and scalable. Accessibility specialists and QA testers verify that user scaling is always enabled. Welcoming Web assists by detecting viewport configurations that restrict magnification.
+
+How to ensure the viewport does not disable zoom
+
+1. Use an accessible viewport configuration
+
+A safe baseline configuration allows zooming:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1">
+```
+
+2. Do not disable user scaling
+
+Avoid attributes such as: - user-scalable=no - maximum-scale=1 - minimum-scale=1 when used to restrict zoom
+
+3. Ensure mobile layouts support zoom
+
+Responsive design avoids fixed-width containers or elements that force horizontal scrolling.
+
+4. Avoid assuming fixed zoom improves design
+
+Users must remain in control of content size.
+
+5. Test across multiple devices
+
+Check zoom behaviour on iOS and Android, as restrictions may behave differently.
+
+## Best practice guidance
+
+Build flexible layouts that adapt to different screen sizes without requiring zoom restrictions. Use relative units such as rem and em for text and spacing. Avoid designs that rely on pixel-perfect control. Provide adequate spacing and touch targets so users can operate the interface even while zoomed.
+
+## Compliance mapping
+
+Allowing user zoom supports: - WCAG 2.2 Resize Text success criteria, - WCAG 2.2 Reflow requirements for responsive layouts, - ADA Title III expectations for perceivable and operable content, - EN 301 549 guidance on user scaling, - Equality Act 2010 duties for inclusive design.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects viewport configurations that restrict magnification or prevent user scaling. The platform highlights problematic meta tags and provides guidance to restore accessible zoom.
+
+## Key points for development teams
+
+Allow user scaling. Avoid user-scalable=no. Do not lock maximum-scale. Use responsive layouts. Test zoom across devices.
+
+## Call to action
+
+Run an audit Check your site for viewport configurations that restrict zoom. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the meta-viewport rule check
+
+It checks whether the &lt;meta name="viewport"&gt; element disables zoom or user scaling.
+
+Why must zoom not be disabled
+
+Users may need to enlarge text or interface elements to read content comfortably.
+
+Which attributes disable zoom
+
+user-scalable=no and restrictive maximum-scale values disable zoom.
+
+Can I keep initial-scale set to 1
+
+Yes. Initial scale is safe as long as users can still adjust zoom.
+
+Do desktop sites need zoom support
+
+Mobile and responsive views depend on zoom significantly, but support is recommended everywhere.
+
+Can responsive design replace zoom
+
+No. Users must still be able to zoom, regardless of responsiveness.
+
+Does fixing the viewport guarantee WCAG compliance
+
+It supports text resizing requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with viewport issues
+
+Welcoming Web identifies zoom-restricting meta tags and provides guidance for accessible configuration.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

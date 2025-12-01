@@ -1,0 +1,131 @@
+---
+title: "Avoid Inline Spacing"
+description: "Inline text spacing must be adjustable with custom stylesheets"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Avoid Inline Spacing
+
+<Callout type="info">
+Inline text spacing must be adjustable with custom stylesheets
+</Callout>
+
+Inline text spacing must not block users from adjusting spacing with their own custom styles. This blog explains what the avoid-inline-spacing rule checks, why adjustable spacing is important for readability and accessibility, how to fix issues highlighted during audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The avoid-inline-spacing rule checks whether text spacing is controlled directly through inline style attributes in a way that prevents users from overriding it. Inline styles that force properties such as line-height, letter-spacing or word-spacing, especially when combined with !important, can block user stylesheets from adjusting spacing.
+
+WCAG text spacing guidance expects that users can change spacing to meet their needs. Code patterns that hard-code spacing inline make this difficult or impossible.
+
+## Why it matters
+
+Many users rely on customised text spacing for comfortable reading. People with dyslexia, low vision or cognitive differences may need increased line spacing, letter spacing or word spacing to understand content without strain.
+
+When spacing is locked in by inline styles: - user stylesheets may fail to apply, - browser extensions for text spacing may not work correctly, - content can become crowded or hard to scan, - reading speed and comprehension may decrease.
+
+Allowing spacing to be adjusted reduces cognitive load and supports more inclusive reading experiences.
+
+## Who delivers it
+
+Front end developers and UI engineers are responsible for how text spacing is implemented in markup and CSS. Designers specify baseline spacing but should avoid designs that depend on rigid, unchangeable values. Accessibility engineers and QA testers check that text spacing remains adjustable using user styles or tools. Welcoming Web assists teams by identifying inline spacing patterns that may prevent user overrides.
+
+How to fix inline spacing issues
+
+1. Identify inline spacing styles
+
+Search for style attributes on text elements that set properties such as: - line-height, - word-spacing, - letter-spacing, - text-indent.
+
+2. Move spacing rules into CSS
+
+Define spacing in external stylesheets or component-level CSS instead of inline attributes.
+
+### Incorrect example:
+
+```html
+<p style="line-height: 1.1; letter-spacing: 0px;">Sample text</p>
+```
+
+### Corrected version:
+
+```html
+<p class="body-text">Sample text</p>
+.body-text {  line-height: 1.5;}
+```
+
+3. Avoid !important on spacing rules
+
+!important can block user stylesheets from overriding spacing values.
+
+4. Test with custom stylesheets or browser tools
+
+Apply user CSS or browser extensions that change line-height and spacing. Confirm that your content responds correctly.
+
+5. Document spacing patterns
+
+Ensure your design system defines recommended spacing values without preventing user adjustments.
+
+## Best practice guidance
+
+Use CSS classes and external stylesheets for all typography. Avoid hard-coding spacing inline. Support reasonable defaults but do not rely on very tight spacing that users cannot override. When possible, design layouts that tolerate increased spacing without breaking alignment or causing overlap.
+
+## Compliance mapping
+
+Adjustable text spacing helps teams work towards: - WCAG 2.2 guidance related to text spacing and readability, - ADA Title III expectations for usable and accessible content presentation, - EN 301 549 requirements for adaptable presentation, - Equality Act 2010 duties for inclusive and readable services.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web highlights elements where inline text spacing may prevent user overrides. The platform links findings to WCAG criteria and provides guidance so developers can refactor spacing into flexible CSS patterns that respect user preferences.
+
+## Key points for development teams
+
+Inline styles should not lock text spacing. Users must be able to adjust spacing with custom styles. External CSS and classes support flexibility. Avoid !important on spacing properties. Automated and manual tests confirm that text remains adaptable.
+
+## Call to action
+
+Run an audit Check your site for inline spacing patterns that block user styles. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the avoid-inline-spacing rule check
+
+It checks whether inline styles set text spacing in ways that prevent user stylesheets from adjusting spacing.
+
+Why must text spacing be adjustable
+
+Because many users rely on custom spacing for readable and comfortable text presentation.
+
+Which properties affect text spacing
+
+Properties such as line-height, word-spacing, letter-spacing and text-indent affect spacing.
+
+Is it always wrong to use inline styles
+
+Inline styles for spacing are discouraged because they are harder for users to override. External CSS is preferred.
+
+Does using !important on spacing cause problems
+
+Yes. !important can block user stylesheets and accessibility tools from changing spacing.
+
+How can I test whether spacing is adjustable
+
+Apply a custom stylesheet or use a browser extension that modifies spacing and check whether your content responds.
+
+How does Welcoming Web help with inline spacing issues
+
+Welcoming Web detects inline spacing patterns and provides guidance to help developers move spacing into flexible CSS.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

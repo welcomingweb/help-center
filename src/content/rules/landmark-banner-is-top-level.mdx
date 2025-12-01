@@ -1,0 +1,126 @@
+---
+title: "Landmark Banner Is Top Level"
+description: "Banner landmark should not be contained in another landmark"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Landmark Banner Is Top Level
+
+<Callout type="info">
+Banner landmark should not be contained in another landmark
+</Callout>
+
+A banner landmark must appear at the top level of the page so users can understand the structure of the site. This blog explains what the landmark-banner-is-top-level rule checks, why banner placement matters, how to ensure correct landmark hierarchy and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, SEO‑optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The landmark-banner-is-top-level rule checks whether the banner landmark appears only at the top level of the page and is not nested inside another landmark. The banner landmark typically represents the site‑wide header. This area usually contains global navigation, branding or persistent controls.
+
+When a banner is nested inside other landmarks, assistive technologies may present a confusing page outline. Users expect banners to be top‑level landmarks that appear once per page.
+
+## Why it matters
+
+Landmark roles help users understand and navigate the structure of a page. When the banner landmark is incorrectly nested: - screen reader users hear an unexpected layout structure, - navigation becomes harder because regions are misrepresented, - the page outline becomes confusing or misleading, - users may not recognise key global header elements, - assistive technologies may skip or miscategorise regions.
+
+Correct landmark hierarchy ensures predictable navigation and a clear mental model of the page.
+
+## Who delivers it
+
+Front end developers implement banner landmarks using semantic HTML and correct role placement. Designers ensure layout patterns do not encourage nesting banners inside other regions. Content authors maintain consistent structures across templates. Accessibility specialists and QA testers verify correct landmark hierarchy. Welcoming Web assists by identifying banners placed incorrectly inside other landmarks.
+
+How to ensure the banner landmark is top‑level
+
+1. Place the banner landmark at the root of the page
+
+Ensure it sits directly inside &lt;body&gt; and not within &lt;main&gt;, &lt;nav&gt;, &lt;form&gt; or other landmarks.
+
+### Correct example:
+
+```html
+<body>  <header role="banner">    <!-- Global header content -->  </header>  <main>    <!-- Page content -->  </main></body>
+```
+
+2. Avoid multiple banner landmarks
+
+Use one banner landmark per page unless the design pattern intentionally creates multiple top‑level contexts.
+
+3. Do not nest banners inside other landmarks
+
+A banner inside &lt;main&gt; or &lt;aside&gt; breaks landmark expectations.
+
+4. Use semantic HTML where possible
+
+Use &lt;header&gt; for site‑wide headers and reserve the banner role for the top‑level version.
+
+5. Validate templates and layout components
+
+Check CMS themes, page builders and design systems to ensure consistent placement.
+
+## Best practice guidance
+
+Use a clear, predictable layout with a single top‑level banner. Keep the banner lightweight and focused on global functions such as navigation or branding. Document landmark rules within the design system to ensure consistent implementation across pages and teams. Validate the page outline using screen readers or browser tools.
+
+## Compliance mapping
+
+Ensuring the banner landmark appears at the top level supports: - WCAG 2.2 Info and Relationships requirements, - WCAG 2.2 Navigable content expectations, - ADA Title III expectations for predictable structure, - EN 301 549 guidance on programmatically determinable regions, - Equality Act 2010 duties for accessible page navigation.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects banner landmarks placed incorrectly within other regions. The platform highlights structural issues and provides guidance for placing landmarks correctly to improve navigability.
+
+## Key points for development teams
+
+A banner is a top‑level landmark. Do not nest banners inside other landmarks. Use one banner per page. Place banners directly under &lt;body&gt;. Check CMS and component output.
+
+## Call to action
+
+Run an audit Check your site for incorrectly nested banner landmarks. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the landmark-banner-is-top-level rule check
+
+It checks whether the banner landmark appears at the top level and not inside another landmark.
+
+Why must the banner be top‑level
+
+Top‑level placement ensures consistent navigation and a predictable page outline.
+
+Can I use more than one banner
+
+You should only use multiple banners in rare cases where multiple top‑level contexts exist.
+
+What happens if the banner is nested
+
+Nested banners confuse screen readers and disrupt navigation.
+
+Should I use the banner role on all headers
+
+Use the banner role only for the site‑wide header. Other headers should not use it.
+
+Do semantic elements help
+
+Yes. Using &lt;header&gt; at the top level helps maintain correct structure.
+
+Does correct banner placement guarantee WCAG compliance
+
+It supports structure requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with landmark issues
+
+Welcoming Web identifies banners placed inside other landmarks and provides guidance to correct them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

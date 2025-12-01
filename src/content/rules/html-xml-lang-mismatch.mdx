@@ -1,0 +1,140 @@
+---
+title: "Html Xml Lang Mismatch"
+description: "HTML elements with lang and xml:lang must have the same base language"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Html Xml Lang Mismatch
+
+<Callout type="info">
+HTML elements with lang and xml:lang must have the same base language
+</Callout>
+
+HTML elements that use both lang and xml:lang must agree on the base language so assistive technologies can interpret content consistently. This blog explains what the html-xml-lang-mismatch rule checks, why mismatched language attributes cause problems, how to align them correctly and how this supports WCAG 2.2 and wider compliance expectations.
+
+## What it is
+
+The html-xml-lang-mismatch rule checks whether an HTML element, usually the root &lt;html&gt; element, has both lang and xml:lang attributes that agree on the base language. The base language is the primary language subtag in a language code, such as en in en-GB or en-US.
+
+Some assistive technologies use lang to determine language. Others, especially those based on XML or EPUB processing, may use xml:lang. When these attributes disagree, different tools can treat the same page as if it were written in different languages.
+
+## Why it matters
+
+Consistent language information is essential for clear, understandable content. When lang and xml:lang do not match: - screen readers may apply different pronunciation rules, - braille output can become inconsistent, - translation tools and reading systems may choose the wrong language, - users who rely on language specific support experience confusion.
+
+Aligning lang and xml:lang helps ensure that all tools use the same base language. This supports predictable behaviour and more accurate reading experiences.
+
+## Who delivers it
+
+Front end developers are responsible for adding and aligning language attributes on the &lt;html&gt; element. Localisation teams confirm that both attributes match the actual content language. Accessibility specialists and QA testers verify that codes agree and follow BCP 47 patterns. Welcoming Web assists by identifying documents where lang and xml:lang do not share the same base language.
+
+How to fix html-xml-lang mismatches
+
+1. Align lang and xml:lang on the &lt;html&gt; element
+
+Both attributes should declare the same primary language.
+
+### Incorrect example:
+
+```html
+<html lang="fr" xml:lang="en">
+```
+
+### Corrected version:
+
+```html
+<html lang="fr" xml:lang="fr">
+```
+
+2. Ensure base language matches, even with dialects
+
+If you use regional variants, keep the primary language consistent.
+
+### Example:
+
+```html
+<html lang="en-GB" xml:lang="en">
+```
+
+Here the base language en matches in both attributes.
+
+3. Use valid BCP 47 codes
+
+Confirm that both lang and xml:lang values follow recognised tagging, such as en-GB or es-ES.
+
+4. Avoid leaving one attribute outdated
+
+When you change the document language, update both attributes together.
+
+5. Limit use of xml:lang to contexts that need it
+
+In modern HTML, lang is usually sufficient. Use xml:lang only where required for XML based workflows.
+
+## Best practice guidance
+
+Plan language metadata as part of your localisation strategy. Keep a single source of truth for each page’s primary language and apply it consistently to lang and, where needed, xml:lang. For multilingual content, declare the main language at the document level and use lang on elements that contain other languages. Validate output from CMS templates to avoid mismatches introduced during publishing.
+
+## Compliance mapping
+
+Ensuring that lang and xml:lang agree on the base language supports: - WCAG 2.2 Language of Page requirements, - ADA Title III expectations for clear and understandable content, - EN 301 549 guidance on programmatically determinable language, - Equality Act 2010 duties for accurate and accessible communication.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects documents where lang and xml:lang values conflict. The platform highlights mismatched attributes on the &lt;html&gt; element and provides guidance for correcting base language alignment. This helps teams maintain consistent language metadata across different delivery channels.
+
+## Key points for development teams
+
+lang and xml:lang must share the same base language. Use valid BCP 47 language codes. Update both attributes when language changes. Limit xml:lang to contexts that need it. Validate templates for language consistency.
+
+## Call to action
+
+Run an audit Check your site for html-xml language mismatches. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the html-xml-lang-mismatch rule check
+
+The html-xml-lang-mismatch rule checks whether elements with both lang and xml:lang attributes have matching base language values.
+
+Why do both attributes need the same base language
+
+They need the same base language so all tools, including assistive technologies, interpret the document language consistently.
+
+What is meant by base language
+
+Base language refers to the primary language subtag, such as en in en-GB or fr in fr-CA.
+
+Can lang="en-GB" and xml:lang="en" be acceptable
+
+Yes. Both share the base language en. Many rules treat this as aligned.
+
+What is an example of a mismatch
+
+An example of a mismatch is lang="fr" with xml:lang="en", because the base languages differ.
+
+Do I always need xml:lang in HTML
+
+You do not always need xml:lang in HTML. It is mainly relevant for XML based formats. However, if you use it, it must align with lang.
+
+Does fixing mismatched language attributes guarantee WCAG compliance
+
+Fixing mismatched language attributes supports WCAG language requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with language mismatches
+
+Welcoming Web finds documents where lang and xml:lang conflict and provides guidance to correct the base language alignment.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

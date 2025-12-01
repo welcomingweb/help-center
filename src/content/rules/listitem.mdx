@@ -1,0 +1,148 @@
+---
+title: "Listitem"
+description: ""
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Listitem
+
+<Callout type="info">
+
+</Callout>
+
+elements must be contained in a
+
+or
+
+elements must appear inside a valid list container so assistive technologies can understand and present them correctly. This blog explains what the listitem rule checks, why correct list item placement matters, how to use
+
+elements semantically and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The listitem rule checks whether every &lt;li&gt; element is placed inside a &lt;ul&gt; or &lt;ol&gt; element. List items must not appear directly inside &lt;div&gt;, &lt;p&gt;, &lt;section&gt; or other non-list elements.
+
+Using &lt;li&gt; outside a list structure breaks HTML semantics and prevents assistive technologies from interpreting grouped or ordered information accurately.
+
+## Why it matters
+
+When &lt;li&gt; elements are not used semantically: - screen readers cannot identify list items correctly, - the reading order becomes confusing or misleading, - users may not realise that items belong to a related group, - structured content appears fragmented or inconsistent, - assistive technologies cannot announce list lengths or item positions.
+
+Correct list item placement ensures predictable navigation and supports clear information hierarchy.
+
+## Who delivers it
+
+Front end developers structure lists using correct HTML. Content authors ensure CMS-generated content uses valid list elements. Designers define patterns that rely on proper list semantics instead of using list styles for layout. Accessibility specialists and QA testers verify correct list structure across templates. Welcoming Web assists by detecting &lt;li&gt; elements used outside valid list containers.
+
+## How to ensure
+
+elements are used semantically ### 1. Wrap all
+
+elements in a
+
+or
+
+Never place list items directly inside non-list containers.
+
+### Correct example:
+
+```html
+<ul>  <li>Item one</li>  <li>Item two</li></ul>
+```
+
+### 2. Avoid using
+
+for visual styling Do not use &lt;li&gt; elements to achieve bullet or indentation effects outside proper lists.
+
+### 3. Place nested lists inside an
+
+Correct nested structure ensures assistive technologies maintain proper hierarchy.
+
+```html
+<li>  Parent item  <ul>    <li>Child item</li>  </ul></li>
+```
+
+4. Correct CMS formatting errors
+
+Rich text editors may output stray &lt;li&gt; tags when formatting is inconsistent.
+
+5. Remove empty or placeholder list items
+
+Avoid using empty &lt;li&gt; elements unless they serve a clear programmatic purpose.
+
+## Best practice guidance
+
+Use lists to group related content, such as navigation menus, checklists or grouped information. Keep list markup consistent across designs and templates. Document list patterns in your design system to avoid misuse of &lt;li&gt; for styling or layout.
+
+## Compliance mapping
+
+Correct list item placement supports: - WCAG 2.2 Info and Relationships success criteria, - WCAG 2.2 Meaningful Sequence requirements, - ADA Title III expectations for logical content structure, - EN 301 549 guidance on programmatically determinable lists, - Equality Act 2010 duties for accessible information hierarchy.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects &lt;li&gt; elements used outside &lt;ul&gt; or &lt;ol&gt; containers and highlights invalid structures. The platform provides guidance for correcting list item placement to restore proper semantics.
+
+## Key points for development teams
+
+must be inside
+
+or
+
+. Do not use
+
+for styling. Place nested lists inside list items. Clean up CMS-generated markup. Maintaining correct structure improves navigation.
+
+## Call to action
+
+Run an audit Check your site for list items used outside valid containers. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the listitem rule check
+
+It checks whether &lt;li&gt; elements are placed inside &lt;ul&gt; or &lt;ol&gt; containers.
+
+### Why must
+
+be inside a list
+
+elements need a valid parent so assistive technologies can announce lists correctly.
+
+### Can
+
+be used outside lists for styling No. &lt;li&gt; should only be used to represent real list items.
+
+How do I add nested lists
+
+Place the nested list inside an &lt;li&gt; of the parent list.
+
+Do CMS editors cause list issues
+
+Yes. Inconsistent formatting may produce stray &lt;li&gt; tags.
+
+What if a list item needs additional markup
+
+Extra content should be placed inside the &lt;li&gt;, not outside.
+
+### Does fixing
+
+placement guarantee WCAG compliance It supports reading order and structure requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with list item issues
+
+Welcoming Web detects incorrect list item placement and provides guidance for restoring proper structure.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

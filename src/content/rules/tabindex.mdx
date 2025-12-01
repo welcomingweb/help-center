@@ -1,0 +1,128 @@
+---
+title: "Tabindex"
+description: "Elements should not have tabindex greater than zero"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Tabindex
+
+<Callout type="info">
+Elements should not have tabindex greater than zero
+</Callout>
+
+Elements should not use a tabindex value greater than zero because it creates artificial focus orders that confuse keyboard users and assistive technologies. This blog explains what the tabindex rule checks, why positive tabindex values are harmful, how to use tabindex correctly and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and follows the Welcoming Web framework.
+
+## What it is
+
+The tabindex rule checks whether focusable elements use tabindex values greater than 0. A positive tabindex forces a custom focus order instead of following the natural DOM order.
+
+Correct tabindex usage: - tabindex="0" places elements in the normal tab order, - tabindex="-1" allows programmatic focus but not tab focus, - omitting tabindex lets native focus behaviour apply.
+
+## Why it matters
+
+When elements use tabindex values greater than zero: - keyboard users experience unexpected or jumping focus order, - screen reader navigation becomes unpredictable and harder to learn, - users with motor impairments may repeatedly overshoot or miss controls, - cognitive load increases because focus does not follow visual or logical layout, - maintaining the custom focus order becomes fragile as the interface evolves.
+
+Relying on DOM order instead of positive tabindex supports predictable and consistent navigation.
+
+## Who delivers it
+
+Front end developers are responsible for managing focus order through semantic structure rather than positive tabindex. Designers produce layouts that match reading and interaction order. Content authors avoid patterns that depend on unusual focus sequences. Accessibility specialists and QA testers check that focus order follows a logical, DOM-based path. Welcoming Web assists by flagging elements that use tabindex values greater than zero.
+
+How to ensure tabindex is used correctly
+
+1. Remove positive tabindex values
+
+Avoid any tabindex greater than zero.
+
+```html
+<!-- Avoid --><button tabindex="3">Continue</button><!-- Prefer natural order --><button>Continue</button>
+```
+
+2. Use tabindex="0" for custom widgets
+
+Make non-native interactive elements keyboard focusable without changing the natural sequence.
+
+```html
+<div role="button" tabindex="0">Show details</div>
+```
+
+3. Use tabindex="-1" for programmatic focus
+
+Use this for skip link targets, modal containers or regions you move focus to with scripts.
+
+```html
+<main id="content" tabindex="-1">...</main>
+```
+
+4. Fix focus problems via structure, not tabindex
+
+Reorder DOM elements or adjust layout instead of forcing focus order with positive tabindex.
+
+5. Test focus order thoroughly
+
+Use only the keyboard to navigate pages and confirm the order matches visual and logical expectations.
+
+## Best practice guidance
+
+Design interfaces so the visual layout mirrors the underlying DOM order. Avoid scattering interactive controls visually in ways that conflict with reading order. When building complex components such as menus, carousels or dialog boxes, rely on semantic roles and minimal tabindex values rather than large custom tab indices.
+
+## Compliance mapping
+
+Removing positive tabindex values supports: - WCAG 2.2 Focus Order success criterion, - WCAG 2.2 Keyboard Operable requirements, - ADA Title III expectations for predictable keyboard navigation, - EN 301 549 guidance on operable interfaces, - Equality Act 2010 duties for inclusive interaction design.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects elements that use tabindex values greater than zero and highlights potential focus order problems. The platform provides guidance for restructuring focus management to rely on semantic order.
+
+## Key points for development teams
+
+Avoid tabindex greater than zero. Use tabindex="0" for custom controls. Use tabindex="-1" for programmatic focus only. Keep DOM order aligned with visual order. Test focus order with keyboard-only navigation.
+
+## Call to action
+
+Run an audit Check your site for elements using positive tabindex values. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the tabindex rule check
+
+It checks whether elements use tabindex values greater than zero that alter the natural focus order.
+
+Why are positive tabindex values discouraged
+
+They create confusing, hard-to-maintain focus orders that can disorient keyboard and screen reader users.
+
+When should I use tabindex=“0”
+
+Use it to make custom controls keyboard focusable while keeping them in the natural tab sequence.
+
+When should I use tabindex=“-1”
+
+Use it for elements that need programmatic focus but should not be reachable by tabbing.
+
+Can I rely on tabindex to fix layout issues
+
+No. Reorder the DOM or adjust layout instead of forcing focus order.
+
+Does removing positive tabindex guarantee WCAG compliance
+
+It supports keyboard and focus order requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with tabindex issues
+
+Welcoming Web flags elements with positive tabindex values and recommends structural fixes that improve focus order.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

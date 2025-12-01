@@ -1,0 +1,128 @@
+---
+title: "Aria Required Attr"
+description: "Required ARIA attributes must be provided"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Required Attr
+
+<Callout type="info">
+Required ARIA attributes must be provided
+</Callout>
+
+Required ARIA attributes must be present whenever a role depends on them. This blog explains what the aria-required-attr rule checks, why missing required attributes cause accessibility issues, how to fix violations identified by audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-required-attr rule checks whether elements that use certain ARIA roles include all attributes that the role defines as required. Many ARIA roles only work correctly when specific attributes are present. For example some roles require attributes such as aria-valuenow, aria-expanded or aria-required. Without these attributes assistive technologies cannot present complete information.
+
+Required attributes are defined in the ARIA specification for each role. If an element uses a role but omits one of its required attributes, the rule fails.
+
+## Why it matters
+
+Assistive technologies rely on required attributes to understand an element’s state and behaviour. When a required attribute is missing, users may receive incomplete or misleading information. This can lead to confusion, slower navigation and mistakes when interacting with complex widgets.
+
+Examples of issues include missing values on sliders, incomplete states on controls or form components that do not expose required status. These problems increase cognitive load and reduce confidence for users who depend on screen readers.
+
+## Who delivers it
+
+Front end developers must include all required ARIA attributes when they apply roles. Accessibility engineers and QA testers verify attribute completeness through automated and manual audits. Design system teams document which attributes are required for each component. Welcoming Web assists teams by identifying elements that do not provide the required ARIA attributes.
+
+How to fix missing required ARIA attributes
+
+1. Identify failing elements
+
+Use an accessibility audit to find elements that trigger the aria-required-attr rule.
+
+2. Check the role specification
+
+Review the ARIA specification for the role to see which attributes are required.
+
+3. Add missing required attributes
+
+Provide the required attributes with accurate values.
+
+### Incorrect example:
+
+```html
+<div role="slider" aria-valuemin="0" aria-valuemax="100"></div>
+```
+
+### Corrected version:
+
+```html
+<div role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+```
+
+4. Ensure attribute values stay in sync
+
+If the component is interactive update required attributes when its state changes.
+
+5. Validate using assistive technologies
+
+Confirm that screen readers announce the full set of information including required states or values.
+
+## Best practice guidance
+
+Use native HTML components when possible because they reduce the need for complex ARIA roles and attributes. When ARIA roles are needed, treat required attributes as part of the component’s contract. Keep documentation clear so developers know which attributes must always be set.
+
+## Compliance mapping
+
+Providing all required ARIA attributes helps teams work towards: - WCAG 2.2 Name, Role, Value success criteria - ADA Title III expectations for accessible interactive components - EN 301 549 requirements for assistive technology compatibility - Equality Act 2010 duties for accessible digital services
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects elements that use ARIA roles without the required attributes and maps these issues to WCAG criteria. The platform provides guidance so developers can fill in missing attributes and improve semantic accuracy.
+
+## Key points for development teams
+
+Required ARIA attributes must always be present when roles depend on them. Missing attributes cause incomplete or misleading announcements. Native HTML reduces reliance on ARIA. Automated audits detect missing attributes. Manual testing confirms correct behaviour.
+
+## Call to action
+
+Run an audit Check your site for missing required ARIA attributes. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-required-attr rule check
+
+It checks whether elements that use certain ARIA roles include all attributes that the role defines as required.
+
+Why must required ARIA attributes be provided
+
+Because assistive technologies need these attributes to present complete and accurate information.
+
+How do I know which attributes are required for a role
+
+You can review the ARIA specification or role mapping tables that list required attributes.
+
+What happens if a required attribute is missing
+
+Users may receive incomplete information about the element’s state or purpose.
+
+Should I avoid roles that require many attributes
+
+Use native HTML where possible and only apply complex roles when needed.
+
+Does adding required attributes guarantee WCAG compliance
+
+It supports WCAG alignment but does not guarantee full compliance.
+
+How does Welcoming Web help with required attribute issues
+
+Welcoming Web identifies elements that lack required ARIA attributes and provides guidance to help developers correct them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

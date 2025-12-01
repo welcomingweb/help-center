@@ -1,0 +1,126 @@
+---
+title: "Aria Allowed Attr"
+description: "Each element must only use ARIA attributes that are supported by its role. This blog explains what the aria-allowed-attr rule means, why unsupported attributes create accessibility barriers, how to fix issues flagged by audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval."
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Allowed Attr
+
+<Callout type="info">
+Each element must only use ARIA attributes that are supported by its role. This blog explains what the aria-allowed-attr rule means, why unsupported attributes create accessibility barriers, how to fix issues flagged by audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+</Callout>
+
+Each element must only use ARIA attributes that are supported by its role. This blog explains what the aria-allowed-attr rule means, why unsupported attributes create accessibility barriers, how to fix issues flagged by audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-allowed-attr rule checks whether an element is using ARIA attributes that are valid for its assigned role. Each ARIA role has a defined set of attributes it supports. If a developer applies an attribute that the role does not permit the element becomes unpredictable for assistive technologies. Screen readers rely on these mappings to present accurate information to users.
+
+## Why it matters
+
+Unsupported ARIA attributes can confuse assistive technologies. A screen reader expects attributes that match the element’s role. If the attribute does not belong to that role the user may receive incorrect or incomplete information. This creates confusion during navigation and increases the cognitive load for users who depend on accurate semantics.
+
+Issues caused by unsupported attributes include misleading announcements and inconsistent interaction behaviour. These barriers make tasks slower and reduce user confidence.
+
+## Who delivers it
+
+Front end developers and accessibility engineers ensure ARIA attributes match the element’s role. QA teams verify correctness using automated and manual audits. Accessibility managers include this rule within governance frameworks. Welcoming Web assists teams by identifying elements with unsupported ARIA attributes.
+
+How to fix unsupported ARIA attributes
+
+1. Identify elements with invalid attributes
+
+Audit your code for ARIA attributes and confirm whether they are allowed for the element’s role.
+
+2. Check the role’s permitted attribute list
+
+Each ARIA role has a defined list of attributes it supports. Compare the attribute against this list.
+
+3. Remove or replace unsupported attributes
+
+If the attribute is not allowed remove it or replace it with one that matches the role.
+
+### Incorrect example:
+
+```html
+<div role="button" aria-level="2">Submit</div>
+```
+
+### Corrected version:
+
+```html
+<div role="button" aria-pressed="false">Submit</div>
+```
+
+4. Use native HTML elements where possible
+
+Native elements have built in semantics and reduce the need for ARIA.
+
+5. Validate with assistive technology
+
+Verify that the corrected attributes behave as expected in screen readers.
+
+## Best practice guidance
+
+Use ARIA only when native HTML cannot communicate the needed semantics. Follow the ARIA specification to confirm attribute compatibility. Document required ARIA behaviours in your component library to avoid misuse.
+
+## Compliance mapping
+
+Correct ARIA usage helps teams work towards: - WCAG 2.2 semantic and structural guidance - ADA Title III expectations - EN 301 549 accessibility requirements - Equality Act 2010 digital accessibility duties
+
+Welcoming Web supports alignment with these standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web highlights unsupported ARIA attributes and maps issues to relevant WCAG criteria. The platform provides guidance to help developers correct attribute usage and improve semantic accuracy.
+
+## Key points for development teams
+
+ARIA attributes must match the element’s role. Incorrect attributes cause misleading announcements. Native HTML reduces ARIA misuse. Automated and manual audits support verification. Documentation ensures consistent patterns.
+
+## Call to action
+
+Run an audit Check your site for ARIA attribute issues. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-allowed-attr rule check
+
+The aria-allowed-attr rule checks whether an element is using ARIA attributes that are valid for its assigned role.
+
+Why must ARIA attributes match the element’s role
+
+ARIA attributes must match the element’s role because screen readers rely on this relationship to present accurate information.
+
+What happens when unsupported ARIA attributes are used
+
+Unsupported ARIA attributes can cause incorrect announcements or unpredictable interaction behaviour.
+
+How do I know which ARIA attributes a role supports
+
+You can check the ARIA specification to see the allowed attributes for each role.
+
+Can I use ARIA instead of HTML semantics
+
+ARIA should not replace native HTML semantics. Native elements are more reliable and require less maintenance.
+
+Does fixing ARIA attributes guarantee WCAG compliance
+
+Fixing ARIA attributes supports WCAG guidance but does not guarantee compliance.
+
+How does Welcoming Web help with ARIA issues
+
+Welcoming Web identifies unsupported ARIA attributes and provides guidance to help developers correct them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

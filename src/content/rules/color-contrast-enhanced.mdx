@@ -1,0 +1,125 @@
+---
+title: "Color Contrast Enhanced"
+description: "Elements must meet enhanced color contrast ratio thresholds"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Color Contrast Enhanced
+
+<Callout type="info">
+Elements must meet enhanced color contrast ratio thresholds
+</Callout>
+
+Enhanced colour contrast helps users with low vision read and interpret content more comfortably. This blog explains what the color-contrast-enhanced rule checks, why WCAG 2 AAA contrast thresholds matter, how to meet enhanced requirements and how this supports more inclusive visual design. The article is fully original, SEO‑optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The color-contrast-enhanced rule checks whether text and interactive elements meet WCAG 2 AAA contrast ratios. These enhanced thresholds are: - 7:1 for normal text, - 4.5:1 for large text (18pt regular or 14pt bold).
+
+Enhanced contrast requirements are more demanding than WCAG AA and are intended to support users with significant visual impairments or those working in challenging environments.
+
+## Why it matters
+
+Not all users can comfortably read text at standard contrast levels. Enhanced contrast helps people with: - low vision, - age-related contrast sensitivity loss, - bright-screen or outdoor mobile conditions, - low-quality displays or tinted screen protectors.
+
+Insufficient contrast can lead to misreading instructions, skipping important information or struggling to distinguish interactive elements. Enhanced contrast reduces visual strain, improves comprehension and supports a wider range of reading environments.
+
+## Who delivers it
+
+Designers choose colour combinations capable of reaching AAA thresholds. Front end developers apply accessible colour pairs and ensure consistency across states. Accessibility engineers and QA testers validate contrast using automated and manual tools. Welcoming Web assists teams by detecting elements that fail enhanced contrast requirements.
+
+How to fix enhanced contrast issues
+
+1. Measure the contrast ratio
+
+Use a reliable contrast checker to confirm whether the colour pair meets 7:1 for normal text or 4.5:1 for large text.
+
+2. Adjust colour combinations
+
+Increase the difference between foreground and background colours by darkening text, lightening backgrounds or selecting colours with greater luminance contrast.
+
+### Incorrect example:
+```html
+.text-aaa {  color: #777;  background: #eee;}
+```
+
+### Corrected version:
+```html
+.text-aaa {  color: #222;  background: #fff;}
+```
+3. Confirm contrast across all states
+
+Hover, focus, active and disabled states must maintain AAA-level contrast.
+
+4. Base palettes on accessible foundations
+
+Select colour families that naturally support high contrast to reduce future adjustments.
+
+5. Test across devices and settings
+
+Contrast can appear different on low-brightness screens or high-glare environments.
+
+## Best practice guidance
+
+Use a design system that establishes contrast-compliant colour pairs for standard and enhanced modes. Offer user settings such as high contrast themes for improved flexibility. Avoid relying on subtle colour differences for meaning. Ensure icons, borders and interactive indicators follow enhanced contrast rules where possible.
+
+## Compliance mapping
+
+Meeting enhanced contrast thresholds supports: - WCAG 2 AAA requirements for colour contrast, - ADA Title III expectations for accessible interfaces, - EN 301 549 guidance for readable visual displays, - Equality Act 2010 expectations for inclusive design.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies text, icons and UI components that do not meet enhanced contrast levels. The platform provides guidance to help teams adopt colour combinations that support users with higher contrast needs.
+
+## Key points for development teams
+
+Enhanced contrast supports more users. Normal text must meet 7:1. Large text must meet 4.5:1. All states must be checked. Design systems simplify compliance.
+
+## Call to action
+
+Run an audit Check your site for enhanced contrast issues. Supports WCAG 2 AAA and ADA goals.
+
+## FAQs
+
+What does the color-contrast-enhanced rule check
+
+It checks whether elements meet WCAG 2 AAA enhanced colour contrast thresholds.
+
+Why do enhanced contrast ratios matter
+
+Because higher contrast improves readability for users with low vision or those in challenging viewing conditions.
+
+What are the AAA contrast ratios
+
+Normal text requires 7:1 and large text requires 4.5:1.
+
+Do all sites need to meet AAA
+
+AAA is optional but recommended for inclusive design.
+
+Should icons and components meet enhanced contrast
+
+Where possible, UI components should follow AAA-level contrast.
+
+Does meeting AAA contrast guarantee WCAG compliance
+
+It supports WCAG AAA goals but does not guarantee full compliance.
+
+How does Welcoming Web help with enhanced contrast
+
+Welcoming Web identifies insufficient contrast and provides guidance to correct it.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

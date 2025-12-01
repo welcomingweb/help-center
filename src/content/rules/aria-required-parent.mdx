@@ -1,0 +1,126 @@
+---
+title: "Aria Required Parent"
+description: "Certain ARIA roles must be contained by particular parents"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Required Parent
+
+<Callout type="info">
+Certain ARIA roles must be contained by particular parents
+</Callout>
+
+Some ARIA roles must be placed inside specific parent roles to form valid and accessible structures. This blog explains what the aria-required-parent rule checks, why parent-role requirements matter, how to fix incorrect structures and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-required-parent rule checks whether elements using certain ARIA roles are correctly nested inside the parent roles defined in the ARIA specification. Many interactive and structural roles depend on a parent container to provide context, grouping and expected interaction patterns.
+
+Examples of roles requiring specific parents include: - role="listitem" requiring role="list" or role="group" - role="menuitem" requiring role="menu", role="menubar" or role="group" - role="radio" requiring role="radiogroup" - role="tab" requiring role="tablist"
+
+If required parent roles are missing, assistive technologies cannot interpret the widget or structure correctly.
+
+## Why it matters
+
+Parent roles tell assistive technologies how items relate to each other. When a required parent is missing, screen readers may: - misidentify items or their purpose, - fail to announce available interactions, - present unrelated items as standalone elements, - misunderstand the layout or grouping.
+
+This leads to confusion, difficulty navigating and a loss of semantic structure for users who rely on assistive technology.
+
+## Who delivers it
+
+Front end developers ensure ARIA elements are placed inside the correct parent roles. Accessibility engineers and QA testers verify correct nesting through automated and manual audits. Design system teams document parent-child role rules across components. Welcoming Web assists teams by detecting elements missing their required parents.
+
+How to fix missing required parent roles
+
+1. Identify elements with required parents
+
+Search for ARIA roles that are known to require parent roles.
+
+2. Review the ARIA specification for the correct parent
+
+Each role lists the permitted or required parent roles.
+
+3. Correct the structure by nesting the element inside its parent
+
+Ensure the element is placed inside the correct parent.
+
+### Incorrect example:
+
+```html
+<div role="listitem">Option one</div>
+```
+
+### Corrected version:
+
+```html
+<ul role="list">  <li role="listitem">Option one</li></ul>
+```
+
+4. Maintain valid relationships for interactive widgets
+
+For example a radio must always be inside a radiogroup.
+
+5. Validate using assistive technologies
+
+Check that screen readers correctly announce grouping and structure.
+
+## Best practice guidance
+
+Use native HTML semantics when possible because they automatically ensure correct parent-child structures. When using ARIA for custom components maintain accurate nesting. Document structural rules in your design system to prevent invalid patterns.
+
+## Compliance mapping
+
+Providing required parent roles helps teams work towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III expectations for accessible navigation, - EN 301 549 requirements for assistive technology support, - Equality Act 2010 duties for providing accessible structure.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies ARIA elements missing their required parent roles and maps these issues to WCAG criteria. The platform provides guidance so developers can correct structural relationships and improve semantic clarity.
+
+## Key points for development teams
+
+Some ARIA roles require specific parent roles. Incorrect nesting breaks semantic associations. Native HTML provides correct structures by default. Automated audits detect missing required parents. Manual testing confirms correct announcements.
+
+## Call to action
+
+Run an audit Check your site for missing required parent roles. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-required-parent rule check
+
+It checks whether ARIA roles that require specific parent roles are correctly nested inside them.
+
+Why must ARIA roles have required parents
+
+Because assistive technologies rely on parent roles to present grouping and context.
+
+Which roles typically require parents
+
+Roles such as listitem, menuitem, radio and tab require specific parents.
+
+Can I use custom elements with ARIA roles
+
+Yes, but they must follow correct ARIA parent-child rules.
+
+Does fixing required parent issues guarantee WCAG compliance
+
+It supports WCAG alignment but does not guarantee full compliance.
+
+How does Welcoming Web help with parent-role issues
+
+Welcoming Web identifies missing required parents and provides guidance for resolving structural errors.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

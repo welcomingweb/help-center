@@ -1,0 +1,126 @@
+---
+title: "Input Image Alt"
+description: "Image buttons must have alternative text"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Input Image Alt
+
+<Callout type="info">
+Image buttons must have alternative text
+</Callout>
+
+Image buttons must include meaningful alternative text so users understand the action performed when the button is activated. This blog explains what the input-image-alt rule checks, why alternative text is essential for &lt;input type="image"&gt; elements, how to provide descriptive naming and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, SEO‑optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The input-image-alt rule checks whether &lt;input type="image"&gt; elements provide appropriate alternative text using the alt attribute. Because image buttons do not contain text, their accessible name must come from the alt value.
+
+Assistive technologies read this value aloud to users, allowing them to understand the button’s purpose. Without this name, the button becomes silent or confusing.
+
+## Why it matters
+
+Image buttons are often used for actions such as search, submit, save or navigation. When these controls lack alternative text: - screen reader users cannot determine the button’s function, - form submission becomes guesswork, - important actions may be skipped or misunderstood, - users can trigger unintended behaviour, - overall form navigation becomes unpredictable.
+
+Clear alternative text helps users understand and activate image buttons confidently.
+
+## Who delivers it
+
+Front end developers add descriptive alt attributes to image buttons. Designers define consistent naming patterns across interactive controls. Content authors ensure button labels reflect the intended action. Accessibility specialists and QA testers verify that image buttons expose meaningful, non-empty accessible names. Welcoming Web assists by detecting image buttons without appropriate alternative text.
+
+How to ensure image buttons have alternative text
+
+1. Provide descriptive alt text
+
+Describe the action the button performs.
+
+### Correct example:
+
+```html
+<input type="image" src="search.png" alt="Search">
+```
+
+2. Avoid generic or unclear labels
+
+Values such as “button” or “image” do not describe the action.
+
+3. Align naming with surrounding controls
+
+Use consistent patterns such as “Submit form”, “Search”, “Save”, or “Continue”.
+
+4. Ensure dynamic image buttons include alt
+
+Templates or scripts that generate image buttons must include descriptive alternative text.
+
+5. Do not rely on ARIA alone
+
+ARIA does not replace the required alt attribute for &lt;input type="image"&gt;.
+
+## Best practice guidance
+
+Use short, action-focused descriptions. Ensure that the image’s visual design does not determine the label; focus on what the user does when activating the button. Keep naming consistent across your design system. For multilingual sites, maintain clear translations that preserve intent.
+
+## Compliance mapping
+
+Providing alternative text for image buttons supports: - WCAG 2.2 Non-Text Content requirements, - WCAG 2.2 Name, Role, Value expectations for interactive controls, - ADA Title III expectations for operable forms, - EN 301 549 guidance on programmatically determinable labels, - Equality Act 2010 duties for accessible user interactions.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies &lt;input type="image"&gt; elements that lack alternative text or use unclear descriptions. The platform provides guidance to improve naming so users understand each button’s purpose.
+
+## Key points for development teams
+
+Image buttons require descriptive alt text. Avoid empty or generic labels. Describe actions, not visuals. Keep naming consistent across components. Check dynamically generated buttons.
+
+## Call to action
+
+Run an audit Check your site for image buttons missing alternative text. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the input-image-alt rule check
+
+It checks whether &lt;input type="image"&gt; elements include descriptive alternative text.
+
+Why do image buttons need alt text
+
+They need alt text because it provides the accessible name that screen readers announce.
+
+How should I write alternative text for image buttons
+
+Write short, action-focused descriptions that reflect what the button does.
+
+Can ARIA replace the alt attribute
+
+No. Image buttons require the alt attribute for naming.
+
+What makes a poor alt label
+
+Labels like “image”, “button”, or filenames provide no useful information.
+
+Do image buttons impact form usability
+
+Yes. Without clear labels, users cannot complete forms confidently.
+
+Does providing alternative text guarantee WCAG compliance
+
+It supports naming requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with image buttons
+
+Welcoming Web detects image buttons lacking appropriate alt attributes and provides guidance for improvement.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

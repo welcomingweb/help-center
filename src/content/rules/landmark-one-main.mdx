@@ -1,0 +1,126 @@
+---
+title: "Landmark One Main"
+description: "Document should have one main landmark"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Landmark One Main
+
+<Callout type="info">
+Document should have one main landmark
+</Callout>
+
+A document must include a main landmark so users can quickly locate the primary content of the page. This blog explains what the landmark-one-main rule checks, why every page needs a main region, how to implement the main landmark correctly and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The landmark-one-main rule checks whether a document exposes at least one main landmark. The main landmark is usually provided by the semantic &lt;main&gt; element and represents the core content that reflects the primary purpose of the page.
+
+The main region allows assistive technologies and users who navigate by landmarks to jump straight to the central content, bypassing repeated navigation and peripheral sections.
+
+## Why it matters
+
+Without a main landmark: - keyboard and screen reader users cannot easily skip past repeated headers and navigation, - the page outline becomes less meaningful, - users spend more time tabbing or navigating through secondary regions, - people with cognitive or attention-related needs may struggle to find the key information, - the experience becomes inconsistent across different pages.
+
+Providing a main landmark creates a predictable way to reach the most important content on every page.
+
+## Who delivers it
+
+Front end developers implement the &lt;main&gt; element in templates and layouts. Designers define clear layout patterns that distinguish primary content from supporting regions. Content authors structure content so the main area reflects the central purpose of each page. Accessibility specialists and QA testers verify that each document exposes exactly one main region. Welcoming Web assists by detecting pages that do not include a main landmark.
+
+How to ensure the document has one main landmark
+
+1. Use the &lt;main&gt; element for primary content
+
+Wrap the central content of the page in a single &lt;main&gt; element.
+
+### Example:
+
+```html
+<body>  <header>…</header>  <main>    <h1>Service overview</h1>    <p>Primary page content…</p>  </main>  <footer>…</footer></body>
+```
+
+2. Include a main region on every template
+
+Ensure all page layouts, including error pages, dashboards and application views, contain a main landmark.
+
+3. Avoid using ARIA main roles on multiple containers
+
+Prefer the semantic &lt;main&gt; element over role="main" on generic &lt;div&gt; elements.
+
+4. Keep the main content focused
+
+Only include content that serves the page’s primary purpose inside the main region.
+
+5. Validate with assistive technology
+
+Use screen readers or browser tools to confirm that exactly one main landmark is present and easy to navigate to.
+
+## Best practice guidance
+
+Design pages so users can visually and programmatically recognise where the main content starts. Keep navigation, banners and supplementary content outside the main region. For complex web applications, ensure each view still exposes a single, clear main content area. Document landmark usage in your design system so teams follow a consistent approach.
+
+## Compliance mapping
+
+Providing a main landmark supports: - WCAG 2.2 Info and Relationships success criteria, - WCAG 2.2 Bypass Blocks expectations for skipping repeated content, - ADA Title III expectations for predictable and navigable structure, - EN 301 549 guidance on programmatically determinable regions, - Equality Act 2010 duties for accessible and understandable information layout.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects documents that do not expose a main landmark. The platform highlights missing main regions across templates and provides guidance for introducing consistent, semantic &lt;main&gt; elements.
+
+## Key points for development teams
+
+Every document needs one main landmark. Use the &lt;main&gt; element for primary content. Keep navigation and banners outside &lt;main&gt;. Apply the pattern across all templates. Verify landmark presence with assistive tools.
+
+## Call to action
+
+Run an audit Check your site for pages missing a main landmark. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the landmark-one-main rule check
+
+It checks whether each document has at least one main landmark exposing the primary content.
+
+Why is a main landmark required
+
+A main landmark is required so users can quickly jump to the primary content and bypass repeated regions.
+
+How do I add a main landmark
+
+Add a semantic &lt;main&gt; element that wraps the central content of the page.
+
+Can I use role="main" instead of &lt;main&gt;
+
+You can, but using the &lt;main&gt; element is preferred because it is simpler and more semantic.
+
+Should every page include a main region
+
+Yes. All key pages, including application views and error pages, should expose a main landmark.
+
+What if the page is very simple
+
+Even simple pages benefit from a main region because it supports consistent navigation.
+
+Does adding a main landmark guarantee WCAG compliance
+
+It supports structure and navigation goals but does not guarantee full compliance.
+
+How does Welcoming Web help with main landmarks
+
+Welcoming Web identifies documents without a main landmark and provides guidance to introduce correct structure.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

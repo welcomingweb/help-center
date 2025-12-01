@@ -1,0 +1,136 @@
+---
+title: "Bootup Time"
+description: "Reduce JavaScript execution time for faster, more accessible experiences"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Bootup Time
+
+<Callout type="info">
+Reduce JavaScript execution time for faster, more accessible experiences
+</Callout>
+
+Reducing JavaScript execution time helps pages become interactive sooner and supports accessible, predictable user journeys. This rewritten version strengthens SEO signals, expands performance depth and increases originality while following the Welcoming Web framework. It explains what boot‑up time represents, how heavy JavaScript affects usability and how development teams can reduce main‑thread work.
+
+## What it is
+
+JavaScript boot‑up time is the period the browser spends downloading, parsing, compiling and executing scripts before the page can respond to user input. When the main thread is occupied with large bundles or long-running functions, the browser cannot process interactions or assistive technology updates in real time.
+
+Performance tools highlight high boot‑up time to indicate that scripts create delays before the interface becomes usable. Excessive work during this phase often results in slow initial load, late announcements from screen readers and visible layout adjustments.
+
+## Why it matters
+
+Long JavaScript execution times prevent pages from responding immediately. When the main thread is blocked: - buttons and forms may appear unresponsive, - assistive technologies may announce content only after delays, - mobile or low-power devices may struggle to interpret heavy scripts, - navigation and interaction may feel inconsistent.
+
+Reducing boot‑up time improves responsiveness and supports people who rely on predictable interactions. Faster execution creates a smoother experience across screen readers, keyboards, touch and pointer devices.
+
+## Who delivers it
+
+Front end developers reduce script complexity and prioritise critical code. Performance engineers analyse execution patterns in DevTools and Lighthouse. Accessibility teams verify that controls become usable without delay. Welcoming Web supports this by identifying scripts that contribute to long boot‑up times.
+
+How to fix heavy JavaScript execution
+
+1. Measure execution and identify slow scripts
+
+Use performance profiling tools to find: - large bundles, - long-running functions, - unnecessary libraries, - repeated work during initial load.
+
+2. Defer or delay non-critical JavaScript
+
+Load essential functionality first and delay scripts that are not needed immediately.
+
+### Incorrect example:
+
+```html
+<script src="bundle.js"></script>
+```
+
+### Corrected version:
+
+```html
+<script src="core.js" defer></script><script src="features.js" defer></script>
+```
+
+3. Remove unused code
+
+Audit bundles for dead code and redundant functionality.
+
+4. Split bundles into smaller chunks
+
+Only serve the parts of your application needed for the initial view.
+
+5. Reduce dependency size
+
+Third-party libraries often introduce unnecessary overhead.
+
+6. Use web workers for heavy computation
+
+Move resource-intensive logic away from the main thread.
+
+7. Validate improvements
+
+Re-test execution time to confirm that the page becomes interactive sooner.
+
+## Best practice guidance
+
+Optimise JavaScript with a focus on user interaction. Serve the smallest amount of code necessary for the first render. Avoid blocking scripts and long-running functions. Monitor script performance regularly and keep the codebase lean.
+
+## Compliance mapping
+
+Reducing JavaScript execution time supports: - WCAG 2.2 expectations for predictable interaction, - ADA Title III expectations for responsive digital services, - EN 301 549 guidance on user interaction performance, - Equality Act 2010 duties for usable and accessible experiences.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies long-running scripts, highlights heavy main-thread tasks and maps these issues to accessibility and user experience impacts. The platform helps teams prioritise fixes that improve responsiveness and reduce overall execution time.
+
+## Key points for development teams
+
+Large scripts delay interaction. Non-critical code should load later. Bundle splitting reduces initial work. Web workers support heavy tasks. Testing tools reveal long-running functions.
+
+## Call to action
+
+Run an audit Check your site for heavy JavaScript execution and improve responsiveness. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does JavaScript boot-up time measure
+
+It measures how long the browser spends parsing, compiling and executing scripts before the page becomes usable.
+
+Why is long execution time a problem
+
+Because it blocks the main thread and delays user interaction.
+
+Does reducing bundle size improve responsiveness
+
+Yes. Smaller bundles parse and execute more quickly.
+
+Should all scripts run immediately
+
+No. Only critical scripts should run on initial load.
+
+Can heavy tasks run outside the main thread
+
+Yes. Web workers can handle computationally expensive work.
+
+Does reducing JavaScript execution guarantee WCAG compliance
+
+It supports accessibility but does not guarantee compliance.
+
+How does Welcoming Web help with JavaScript issues
+
+Welcoming Web identifies heavy scripts and helps teams reduce boot-up time.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

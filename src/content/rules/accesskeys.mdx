@@ -1,0 +1,130 @@
+---
+title: "Accesskeys"
+description: "Each accesskey attribute in a webpage must use a unique value. This blog explains what the accesskey rule means, why duplicate shortcuts cause accessibility issues, how to fix them and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and FAQs written for search engines and LLM retrieval."
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Accesskeys
+
+<Callout type="info">
+Each accesskey attribute in a webpage must use a unique value. This blog explains what the accesskey rule means, why duplicate shortcuts cause accessibility issues, how to fix them and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and FAQs written for search engines and LLM retrieval.
+</Callout>
+
+Each accesskey attribute in a webpage must use a unique value. This blog explains what the accesskey rule means, why duplicate shortcuts cause accessibility issues, how to fix them and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and FAQs written for search engines and LLM retrieval.
+
+## What it is
+
+The accesskey attribute is an HTML feature that assigns a keyboard shortcut to an element. It allows users to activate or focus an item without tabbing through the entire page. The rule requires each accesskey value in the same document to be unique. If two or more elements share the same value, the browser may activate an unintended element or produce inconsistent behaviour.
+
+## Why it matters
+
+Duplicate accesskey values can cause confusion for anyone relying on keyboard input because of mobility impairments, vision conditions or personal preference. A duplicated shortcut can trigger the wrong control and lead to unexpected focus movement. This creates friction for users who depend on predictable keyboard navigation to move through content safely and efficiently.
+
+Examples of negative effects include unexpected focus jumps, unreliable behaviour between pages and conflicts with browser or assistive technology shortcuts. These issues reduce user confidence and increase cognitive load.
+
+## Who delivers it
+
+Front end developers and accessibility engineers ensure accesskey values remain unique during development. QA testers verify behaviour with automated and manual checks. Accessibility managers map this rule to WCAG 2.2 guidance on keyboard operability. Content teams and product owners document expected shortcuts to avoid conflicts across templates and components.
+
+Welcoming Web assists teams by detecting duplicate shortcuts and providing guidance to help developers resolve issues. This supports accessibility improvement but does not guarantee compliance.
+
+How to fix duplicate accesskey values
+
+1. Audit your markup
+
+Search the page for the accesskey attribute. List each value and the element it belongs to.
+
+2. Identify any duplicates
+
+Look for repeated values. Automated tools highlight these conflicts so developers can review them quickly.
+
+3. Assign unique values
+
+Update one of the elements so that each accesskey in the document uses a distinct character.
+
+### Incorrect example:
+
+```html
+<a href="/home" accesskey="h">Home</a><a href="/help" accesskey="h">Help</a>
+```
+
+### Corrected version:
+
+```html
+<a href="/home" accesskey="h">Home</a><a href="/help" accesskey="p">Help</a>
+```
+
+4. Avoid shortcut conflicts
+
+Check that the chosen letter does not overlap with browser defaults or screen reader shortcuts. This reduces confusion for users.
+
+5. Validate with keyboard testing
+
+Press the shortcut and confirm the correct element receives focus or activation. Automated scans can confirm that the issue is resolved.
+
+## Best practice guidance
+
+Accesskeys can be difficult for users to discover and may conflict with browser or assistive technology controls. Some teams choose not to use accesskeys at all. If shortcuts are required, document a clear and consistent pattern. Keep values simple and avoid reusing letters across a website or application.
+
+Examples of structural improvements include clearer development patterns and fewer manual checks during accessibility reviews. These examples illustrate possible workflows rather than verified performance outcomes.
+
+## Compliance mapping
+
+Managing unique accesskey values helps teams work towards: - WCAG 2.2 keyboard accessibility - ADA Title III digital access expectations - EN 301 549 procurement standards - Equality Act 2010 expectations for accessible services in the UK
+
+This rule supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web assists developers by identifying duplicate accesskey values and listing each affected element. The platform maps issues to WCAG criteria and provides actionable guidance to help teams create predictable keyboard navigation patterns. This supports accessibility improvement across large and small websites.
+
+## Key points for development teams
+
+Unique accesskey values reduce confusion and improve predictability for keyboard users. Consistency across pages helps users understand shortcuts. Conflicts with browser shortcuts should be avoided. Automated and manual tests work together to confirm the fix. Documentation ensures long term consistency.
+
+## Call to action
+
+Run an audit Check your site for keyboard accessibility issues today. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What is an accesskey in HTML
+
+An accesskey in HTML assigns a keyboard shortcut to an element so users can activate it without tabbing through the page.
+
+Why must accesskey values be unique
+
+Accesskey values must be unique because duplicates can activate the wrong element and cause unpredictable navigation.
+
+Is it recommended to use accesskeys
+
+Many teams avoid accesskeys because browser support varies. If you use them you should document a pattern and assign unique values.
+
+How do I find duplicate accesskeys
+
+You can find duplicate accesskeys by searching your HTML or by using automated accessibility scans that highlight repeated values.
+
+Does fixing accesskey issues make my site WCAG compliant
+
+Fixing accesskey issues supports WCAG 2.2 intent but does not guarantee compliance because many other criteria must also be met.
+
+How does Welcoming Web help with accesskey errors
+
+Welcoming Web helps teams identify duplicate accesskeys and provides guidance to help developers assign unique shortcuts and improve navigation.
+
+Do screen readers support accesskeys
+
+Some screen readers support accesskeys but behaviour varies. This makes consistency and testing essential.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

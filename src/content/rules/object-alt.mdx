@@ -1,0 +1,128 @@
+---
+title: "Object Alt"
+description: "elements must have alternative text"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Object Alt
+
+<Callout type="info">
+elements must have alternative text
+</Callout>
+
+elements must include alternative text so users understand the purpose and content of embedded media. This blog explains what the object-alt rule checks, why alternative text is essential for non-text objects, how to provide accessible fallbacks and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The object-alt rule checks whether &lt;object&gt; elements provide alternative text or fallback content that communicates the purpose of the embedded object. &lt;object&gt; is used to embed media such as PDFs, diagrams, SVGs, applications or other rich content.
+
+If an &lt;object&gt; element does not expose meaningful alternative text, screen readers cannot describe its purpose to users.
+
+## Why it matters
+
+When an &lt;object&gt; element lacks alternative text: - screen readers may announce it as an “object” without context, - users may not understand the content being presented, - embedded documents become inaccessible to people using assistive technologies, - users may miss essential information contained inside the object, - predictable navigation becomes more difficult.
+
+Providing alternative text ensures the object’s purpose is clear even when users cannot view or interact with the embedded content.
+
+## Who delivers it
+
+Front end developers add fallback text or ARIA attributes to describe embedded objects. Content authors ensure embedded media includes contextual descriptions. Designers plan for accessible alternatives when using complex visual content. Accessibility specialists and QA testers review &lt;object&gt; usage across templates. Welcoming Web assists by detecting objects without alternative text.
+
+How to ensure  elements have alternative text
+
+1. Provide meaningful fallback text
+
+Place descriptive text between the opening and closing &lt;object&gt; tags.
+
+```html
+<object data="diagram.svg" type="image/svg+xml">  Diagram showing workflow steps</object>
+```
+
+2. Use aria-label or aria-labelledby when appropriate
+
+For interactive objects, use programmatic naming.
+
+```html
+<object data="chart.html" aria-label="Sales performance chart"></object>
+```
+
+3. Offer a link to an accessible version
+
+If the embedded file is complex, provide an HTML equivalent or a downloadable accessible version.
+
+4. Ensure PDFs and documents meet accessibility standards
+
+PDFs embedded using &lt;object&gt; must include tags, reading order and alternative text.
+
+5. Test with assistive technologies
+
+Verify how screen readers announce the object and ensure the fallback content is exposed.
+
+## Best practice guidance
+
+Provide concise but meaningful descriptions that summarise the purpose of the embedded object. Avoid generic labels such as “object” or “file”. For complex interactive content, coordinate with designers and content authors to ensure users receive equivalent information. Document object usage patterns in component libraries to maintain consistency.
+
+## Compliance mapping
+
+Providing alternative text for embedded objects supports: - WCAG 2.2 Non-Text Content success criterion, - WCAG 2.2 Info and Relationships requirements, - ADA Title III expectations for accessible embedded content, - EN 301 549 guidance on programmatically determinable alternatives, - Equality Act 2010 duties for inclusive information access.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects &lt;object&gt; elements that lack fallback text, alternative descriptions or programmatic names. The platform highlights inaccessible objects and provides guidance for remediation.
+
+## Key points for development teams
+
+Ensure  has fallback text. Use aria-label when needed. Provide accessible versions of embedded files. Avoid generic object descriptions. Test with assistive technologies.
+
+## Call to action
+
+Run an audit Check your site for &lt;object&gt; elements without alternative text. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the object-alt rule check
+
+It checks whether &lt;object&gt; elements include alternative text or accessible fallback content.
+
+Why is alternative text needed for objects
+
+It informs users of the object’s purpose when they cannot view the embedded content.
+
+How do I add alternative text to an object
+
+Place descriptive fallback text inside the &lt;object&gt; tag or use ARIA attributes.
+
+Are PDFs embedded with  accessible by default
+
+No. PDFs must be created and tagged accessibly.
+
+Can I replace an object with an image
+
+Yes, if the image includes meaningful alternative text.
+
+Does fallback text always display
+
+It is shown when the object cannot load or when assistive technologies request it.
+
+Does providing object alt guarantee WCAG compliance
+
+It supports non-text content requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with object accessibility
+
+Welcoming Web identifies objects lacking alternative text and guides teams toward accessible solutions.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

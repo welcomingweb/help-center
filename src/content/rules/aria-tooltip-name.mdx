@@ -1,0 +1,130 @@
+---
+title: "Aria Tooltip Name"
+description: "ARIA tooltip nodes must have an accessible name"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Tooltip Name
+
+<Callout type="info">
+ARIA tooltip nodes must have an accessible name
+</Callout>
+
+ARIA tooltip nodes must include accessible names that describe the information they provide. This blog explains what the aria-tooltip-name rule checks, why accessible naming is essential for ARIA tooltips, how to fix issues identified during audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing steps and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-tooltip-name rule checks whether elements that use role="tooltip" expose an accessible name. Tooltips provide advisory or supplemental information triggered by focus, hover or interaction. When a tooltip is implemented using ARIA, it must include an accessible name so screen readers can announce its content.
+
+An accessible name for a tooltip typically comes from: - visible text contained within the tooltip, - or programmatic association via aria-label or aria-labelledby.
+
+Without an accessible name, assistive technologies cannot communicate the tooltip’s purpose or message.
+
+## Why it matters
+
+Tooltips convey meaning, guidance or context that users must receive clearly. When a tooltip lacks an accessible name, screen reader users experience: - missing or incomplete information, - confusion about the UI element’s purpose, - difficulty completing forms or actions, - increased cognitive load.
+
+Accessible names ensure all users receive the same contextual help provided visually.
+
+## Who delivers it
+
+Front end developers provide accessible names for ARIA tooltips. Accessibility engineers and QA testers confirm naming accuracy through manual and automated audits. Design system teams document tooltip structure and naming conventions. Welcoming Web assists teams by identifying ARIA tooltips that do not expose accessible names.
+
+How to fix missing accessible names
+
+1. Identify tooltip roles
+
+Search the DOM for elements using role="tooltip".
+
+2. Provide a meaningful accessible name
+
+Use one of: - the tooltip’s visible text, - aria-label="…", - or aria-labelledby="…".
+
+3. Ensure the name describes the tooltip’s purpose
+
+The accessible name must communicate the tooltip’s informational content.
+
+### Incorrect example:
+
+```html
+<div role="tooltip"></div>
+```
+
+### Corrected version:
+
+```html
+<div role="tooltip" aria-label="Enter at least 8 characters"></div>
+```
+
+4. Keep naming consistent with your design system
+
+Tooltips should provide concise, actionable messages.
+
+5. Validate with assistive technologies
+
+Verify that screen readers announce the tooltip’s name when it becomes visible or receives focus.
+
+## Best practice guidance
+
+Use native HTML semantics such as title attributes only when appropriate, but prefer accessible ARIA tooltips for consistent cross-technology support. Avoid hiding tooltip content from screen readers when it is essential for task completion.
+
+## Compliance mapping
+
+Providing accessible names for ARIA tooltips helps teams work towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III expectations for accessible contextual help, - EN 301 549 assistive technology compatibility requirements, - Equality Act 2010 duties for accessible guidance.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies ARIA tooltip elements lacking accessible names. The platform maps issues to WCAG criteria and provides remediation guidance so developers can deliver clear and consistent tooltip experiences.
+
+## Key points for development teams
+
+ARIA tooltips must always have accessible names. Names must convey informational content. Consistent naming supports predictable behaviour. Automated audits detect missing names. Manual testing confirms correct announcements.
+
+## Call to action
+
+Run an audit Check your site for missing ARIA tooltip names. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-tooltip-name rule check
+
+It checks whether ARIA tooltip nodes expose accessible names.
+
+Why must ARIA tooltips have accessible names
+
+Because users need to receive the same contextual information that visual users see.
+
+Can the accessible name come from visible text
+
+Yes. Visible tooltip text often provides the correct accessible name.
+
+Should I use aria-label for tooltips
+
+Use aria-label or aria-labelledby when the tooltip text is not visible or not programmatically associated.
+
+Does styling affect accessible names
+
+No. Accessible names depend on programmatic labels, not visual styling.
+
+Does adding an accessible name guarantee WCAG compliance
+
+It supports WCAG alignment but does not guarantee full compliance.
+
+How does Welcoming Web help with tooltip issues
+
+Welcoming Web detects missing accessible names and provides guidance to help developers correct tooltip structure.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

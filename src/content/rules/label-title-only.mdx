@@ -1,0 +1,126 @@
+---
+title: "Label Title Only"
+description: "Form elements should have a visible label"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Label Title Only
+
+<Callout type="info">
+Form elements should have a visible label
+</Callout>
+
+Form elements must have visible labels so users can understand what information is required. This blog explains what the label-title-only rule checks, why visible labels are essential for accessibility, how to provide reliable labelling for form controls and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, SEO-optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The label-title-only rule checks whether form elements rely solely on hidden labels, the title attribute or aria-describedby for identification. These approaches do not replace a visible label. A visible label provides clear, persistent text that tells users what the field represents, while hidden labels or metadata only support assistive technologies.
+
+Common issues include: - forms labelled only with the title attribute, - fields identified through aria-describedby but with no visible text, - inputs that use placeholder text instead of labels, - UI components where labels are removed for visual design purposes.
+
+## Why it matters
+
+Visible labels provide essential context for all users. When labels are hidden or missing: - users cannot see what each field requires, - screen reader users receive inconsistent or unclear information, - placeholders disappear when typing, removing context entirely, - cognitive load increases because users must guess meaning or recall it, - error messages become unclear because there is no visible label to reference.
+
+Visible labels support predictable, understandable and usable form interactions.
+
+## Who delivers it
+
+Content authors write meaningful labels. Designers ensure visual designs keep labels visible and clear. Front end developers implement semantic &lt;label&gt; elements and avoid removing visible labels for aesthetic reasons. Accessibility specialists and QA testers verify that all fields have visible labels. Welcoming Web assists by detecting inputs that rely only on hidden labels or metadata.
+
+How to ensure form elements have visible labels
+
+1. Provide a clear visible &lt;label&gt; for every field
+
+Use the for attribute to associate the label with the input.
+
+### Correct example:
+
+```html
+<label for="email">Email address</label><input id="email" type="email">
+```
+
+2. Do not rely on placeholder text
+
+Placeholders are not labels because they disappear when the user types.
+
+3. Avoid using title as a label
+
+The title attribute provides a tooltip, not a reliable or accessible label.
+
+4. Use aria-describedby for supplementary information only
+
+Use it for hints or error messages, not as a replacement for labels.
+
+5. Check custom and dynamic form components
+
+Ensure design systems and generated UI elements keep visible labels intact.
+
+## Best practice guidance
+
+Labels should be short, descriptive and placed consistently so users can scan and complete forms efficiently. Avoid minimalist design patterns that remove labels in favour of placeholders. For multilingual sites, make sure labels remain visible and correctly translated. Test with assistive technologies to confirm labels are announced correctly.
+
+## Compliance mapping
+
+Providing visible labels supports: - WCAG 2.2 Labels and Instructions, - WCAG 2.2 Name, Role, Value requirements, - ADA Title III expectations for usable, understandable forms, - EN 301 549 requirements for programmatically determinable labels, - Equality Act 2010 duties for inclusive design.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies form fields missing visible labels or using only hidden or metadata-based naming. The platform provides guidance for restoring visible labelling and improving form clarity.
+
+## Key points for development teams
+
+Visible labels are required for all fields. Placeholders cannot replace labels. title is not a valid primary label. Use aria-describedby only for supplementary text. Check design systems for label consistency.
+
+## Call to action
+
+Run an audit Check your site for form elements missing visible labels. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the label-title-only rule check
+
+It checks whether form controls rely on hidden labels, the title attribute or aria-describedby instead of visible labels.
+
+Why must labels be visible
+
+Labels must be visible so all users can understand what each field requires without relying on memory or hidden metadata.
+
+Can placeholders replace labels
+
+No. Placeholders disappear and are not reliable or accessible.
+
+Is the title attribute a valid label
+
+No. It provides a tooltip and cannot serve as a primary label.
+
+What should aria-describedby be used for
+
+It should be used for supplementary information such as hints or error messages.
+
+Do custom components need visible labels
+
+Yes. All inputs, including custom components, must have visible labels.
+
+Does adding visible labels guarantee WCAG compliance
+
+It supports labelling requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with label issues
+
+Welcoming Web identifies fields missing visible labels and provides guidance to fix them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

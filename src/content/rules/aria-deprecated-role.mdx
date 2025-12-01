@@ -1,0 +1,130 @@
+---
+title: "Aria Deprecated Role"
+description: "Deprecated ARIA roles must not appear in production code because they are no longer supported by the ARIA specification. This blog explains what the aria-deprecated-role rule checks, why deprecated roles create accessibility issues, how to fix them and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval."
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Deprecated Role
+
+<Callout type="info">
+Deprecated ARIA roles must not appear in production code because they are no longer supported by the ARIA specification. This blog explains what the aria-deprecated-role rule checks, why deprecated roles create accessibility issues, how to fix them and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+</Callout>
+
+Deprecated ARIA roles must not appear in production code because they are no longer supported by the ARIA specification. This blog explains what the aria-deprecated-role rule checks, why deprecated roles create accessibility issues, how to fix them and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-deprecated-role rule checks whether an element is using a role that has been marked as deprecated in the ARIA specification. Deprecated roles are no longer recommended for use because they have been replaced, removed or shown to cause unreliable behaviour in assistive technologies. Developers must not use these roles in new code and must remove them from existing interfaces.
+
+Deprecated roles may include older versions of landmark, widget or document structure roles that have been superseded by modern equivalents.
+
+## Why it matters
+
+Deprecated roles are not supported consistently by assistive technologies. Screen readers may ignore them, treat them unpredictably or announce outdated semantics. This leads to confusion for users who rely on accurate structure and interaction cues.
+
+Issues caused by deprecated roles include: - incorrect or missing announcements - unpredictable behaviour during navigation - confusion in interactive regions - inconsistent structure across components
+
+Avoiding deprecated roles ensures a more stable and accessible experience.
+
+## Who delivers it
+
+Front end developers remove deprecated roles during implementation or refactoring. Accessibility engineers and QA testers verify role usage through automated and manual audits. Design system teams maintain clear guidance to prevent deprecated patterns from being reintroduced. Welcoming Web assists teams by identifying deprecated roles.
+
+How to fix deprecated role issues
+
+1. Identify deprecated roles in your markup
+
+Search for any elements using outdated or removed roles.
+
+2. Replace deprecated roles with modern equivalents
+
+Refer to the ARIA specification to determine the correct replacement.
+
+### Incorrect example:
+
+```html
+<div role="directory">Documents</div>
+```
+
+### Corrected version:
+
+```html
+<nav>Documents</nav>
+```
+
+3. Remove roles that are no longer needed
+
+Some deprecated roles do not need direct replacements because native HTML already provides the correct semantics.
+
+4. Update your design system
+
+Ensure deprecated roles are removed from shared components to prevent reintroduction.
+
+5. Validate with assistive technologies
+
+Confirm correct announcements and navigation behaviour using screen readers.
+
+## Best practice guidance
+
+Use native HTML whenever possible because it remains more consistent than ARIA roles. Keep your component library aligned with current ARIA specifications. Regularly review codebases for deprecated patterns.
+
+## Compliance mapping
+
+Avoiding deprecated ARIA roles helps teams work towards: - WCAG 2.2 structure and semantics guidance - ADA Title III expectations for accessible digital experiences - EN 301 549 requirements for assistive technology support - Equality Act 2010 duties for accessible information
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies deprecated ARIA roles and provides guidance to help developers replace them with modern equivalents. This supports more predictable, stable behaviour across assistive technologies.
+
+## Key points for development teams
+
+Deprecated roles must not be used in production. Native HTML often replaces deprecated ARIA behaviour. Automated audits detect outdated patterns. Manual testing confirms correct semantics. Updating design systems prevents regression.
+
+## Call to action
+
+Run an audit Check your site for deprecated ARIA roles. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-deprecated-role rule check
+
+It checks whether an element is using a deprecated ARIA role that is no longer supported.
+
+Why are some ARIA roles deprecated
+
+Roles are deprecated when they no longer align with modern accessibility standards or have reliable native alternatives.
+
+Can deprecated roles still work in some browsers
+
+They may appear to work but are not safe or reliable for assistive technologies.
+
+How do I know if a role is deprecated
+
+You can check the ARIA specification or reference tables provided by accessibility tools.
+
+Should I replace deprecated roles with ARIA or HTML
+
+Use native HTML where possible because it is more predictable.
+
+Does removing deprecated roles guarantee WCAG compliance
+
+It supports WCAG requirements but does not guarantee compliance.
+
+How does Welcoming Web help with deprecated role issues
+
+Welcoming Web identifies deprecated role usage and provides guidance for replacing them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

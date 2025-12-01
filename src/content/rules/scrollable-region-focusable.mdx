@@ -1,0 +1,124 @@
+---
+title: "Scrollable Region Focusable"
+description: "Scrollable region must have keyboard access"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Scrollable Region Focusable
+
+<Callout type="info">
+Scrollable region must have keyboard access
+</Callout>
+
+Scrollable regions must be keyboard accessible so all users can navigate content reliably. This blog explains what the scrollable-region-focusable rule checks, why keyboard access is essential for scrollable content, how to implement focusable regions correctly and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The scrollable-region-focusable rule checks whether scrollable content can be reached and operated using a keyboard. A scrollable region is any element with overflowing content that requires panning, such as horizontally scrollable containers, panels, carousels or code examples.
+
+If a region is scrollable but cannot be focused, keyboard users cannot navigate or read all the content.
+
+## Why it matters
+
+When scrollable regions are not keyboard accessible: - keyboard-only users cannot reach content that extends beyond the visible area, - screen reader users may miss information inside overflow regions, - users with motor disabilities may be unable to scroll using touch or mouse, - horizontal scrolling areas become impossible to explore, - interactive layouts and cards may trap or skip content unexpectedly.
+
+Ensuring scrollable areas are focusable allows users to explore content safely and predictably.
+
+## Who delivers it
+
+Front end developers implement focusable and keyboard-operable scrollable regions. Designers avoid patterns that rely solely on gestures or mouse interactions. Content authors ensure long text blocks or code samples are placed inside accessible containers. Accessibility specialists and QA testers verify that scrollable regions respond correctly to keyboard input. Welcoming Web assists by detecting scrollable content that lacks focus behaviour.
+
+How to ensure scrollable regions have keyboard access
+
+1. Make scrollable elements focusable
+
+Use tabindex="0" on scrollable containers so keyboard users can reach them.
+
+```html
+<div class="scrollable" tabindex="0">  ... long content ...</div>
+```
+
+2. Use proper overflow styling
+
+Scrollable content must use overflow: auto or overflow: scroll.
+
+3. Ensure focus styles are visible
+
+A clear focus indicator helps users know when the region is active.
+
+4. Support keyboard scrolling
+
+When the region is focused, arrow keys and Page Up/Page Down should move the content.
+
+5. Avoid scroll-only gestures
+
+Do not rely on drag or swipe actions without keyboard equivalents.
+
+## Best practice guidance
+
+Maintain predictable, well-structured scroll patterns. Avoid creating unnecessarily long or horizontally scrollable regions. When scrollable panels contain interactive elements, ensure all interactions remain reachable by keyboard. Document scrollable container patterns in your design system to maintain consistency.
+
+## Compliance mapping
+
+Ensuring scrollable regions are keyboard accessible supports: - WCAG 2.2 Keyboard Operable success criterion, - WCAG 2.2 Meaningful Sequence requirements, - ADA Title III expectations for operable controls and content, - EN 301 549 guidance on keyboard accessibility, - Equality Act 2010 duties for inclusive navigation.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies scrollable regions that cannot receive focus or respond to keyboard input. The platform highlights missing attributes and structural patterns that prevent users from accessing content.
+
+## Key points for development teams
+
+Ensure scrollable regions are focusable. Support keyboard scrolling behaviour. Avoid gesture-only interactions. Add visible focus indicators. Test with screen readers and keyboards.
+
+## Call to action
+
+Run an audit Check your site for scrollable regions that lack keyboard access. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the scrollable-region-focusable rule check
+
+It checks whether scrollable content can be focused and operated using a keyboard.
+
+Why must scrollable regions be keyboard accessible
+
+Keyboard users need to reach and explore content that extends beyond the visible area.
+
+How do I make a scrollable region focusable
+
+Add tabindex="0" and ensure scrolling works when focused.
+
+Do scrollable regions need visible focus styles
+
+Yes. Users must know when the region is active.
+
+Are horizontal scroll areas allowed
+
+Yes, but only if they are keyboard accessible.
+
+Do carousels count as scrollable regions
+
+If they require scrolling or panning, they must be focusable and keyboard operable.
+
+Does fixing scroll access guarantee WCAG compliance
+
+It supports keyboard requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with scrollable region issues
+
+Welcoming Web detects scrollable areas without focusable or operable behaviour and provides guidance for correction.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

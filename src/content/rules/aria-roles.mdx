@@ -1,0 +1,132 @@
+---
+title: "Aria Roles"
+description: "ARIA roles used must conform to valid values"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Roles
+
+<Callout type="info">
+ARIA roles used must conform to valid values
+</Callout>
+
+ARIA roles must always use valid values defined in the ARIA specification. This blog explains what the aria-roles rule checks, why invalid role values create accessibility issues, how to fix incorrect role usage and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-roles rule checks whether elements using the role attribute specify a valid ARIA role. The ARIA specification includes a defined list of roles that assistive technologies recognise. Any value outside this list is considered invalid and will be ignored by screen readers.
+
+Examples of invalid roles include: - misspelled roles (e.g. role="buton"), - outdated or removed roles, - custom values not recognised by ARIA.
+
+If a role is invalid the element loses the intended semantic meaning.
+
+## Why it matters
+
+Invalid ARIA roles create confusion for users who rely on assistive technologies. When a role is not recognised, screen readers typically: - ignore the role entirely, - announce the element with only its native semantics, - or fail to provide expected behaviour.
+
+This leads to inconsistent navigation, unclear purpose and missing functionality for users.
+
+Invalid roles also break the expected structure of widget patterns, making it harder for assistive technologies to interpret the interface.
+
+## Who delivers it
+
+Front end developers must apply valid ARIA roles during implementation. Accessibility engineers and QA testers verify correct role usage through audits. Design system teams maintain approved role lists. Welcoming Web assists teams by detecting elements with invalid or unrecognised ARIA roles.
+
+How to fix invalid ARIA roles
+
+1. Identify elements using invalid role values
+
+Audit your code for role attributes and compare values against the ARIA specification.
+
+2. Replace invalid role values with valid ones
+
+Ensure that every role matches an approved ARIA role.
+
+### Incorrect example:
+
+```html
+<div role="buton">Save</div>
+```
+
+### Corrected version:
+
+```html
+<div role="button">Save</div>
+```
+
+3. Remove unsupported or obsolete roles
+
+If a role has been deprecated or removed choose an appropriate modern equivalent.
+
+4. Use native HTML elements when possible
+
+Native elements provide built in roles that do not require manual assignment.
+
+5. Validate with automated and manual testing
+
+Verify that assistive technologies announce correct roles and provide expected behaviours.
+
+## Best practice guidance
+
+Avoid creating custom roles. Rely on native semantics for buttons, links, lists, tabs and other interactive components. Maintain a role usage guide in your design system to prevent incorrect values from entering the codebase. Keep role spelling and usage consistent.
+
+## Compliance mapping
+
+Using valid ARIA roles supports teams working towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III expectations for accurate semantic structure, - EN 301 549 requirements for assistive technology support, - Equality Act 2010 duties for accessible services.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects invalid ARIA role values and maps these issues to WCAG criteria. The platform provides developers with guidance to correct role usage and improve semantic clarity across interfaces.
+
+## Key points for development teams
+
+ARIA roles must use valid values. Invalid roles break semantic meaning. Native HTML elements reduce role errors. Automated audits detect invalid role values. Manual testing confirms correct announcements.
+
+## Call to action
+
+Run an audit Check your site for invalid ARIA roles. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-roles rule check
+
+It checks whether elements use valid ARIA role values.
+
+Why must ARIA roles use valid values
+
+Because assistive technologies rely on recognised roles to determine behaviour and meaning.
+
+Can I invent my own role values
+
+No. Only roles defined in the ARIA specification are valid.
+
+What happens if a role value is misspelled
+
+Screen readers ignore invalid roles and may announce the element incorrectly.
+
+Should I avoid assigning roles manually
+
+Use native HTML whenever possible. Only assign roles when needed for custom components.
+
+Does fixing invalid role values guarantee WCAG compliance
+
+It supports WCAG intent but does not guarantee full compliance.
+
+How does Welcoming Web help with invalid role issues
+
+Welcoming Web identifies invalid or unrecognised ARIA roles and provides guidance for resolving them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

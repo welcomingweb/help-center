@@ -1,0 +1,130 @@
+---
+title: "Aria Progressbar Name"
+description: "ARIA progressbar nodes must have an accessible name"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Progressbar Name
+
+<Callout type="info">
+ARIA progressbar nodes must have an accessible name
+</Callout>
+
+ARIA progressbar nodes must include accessible names that describe what the progress represents. This blog explains what the aria-progressbar-name rule checks, why accessible naming is essential for ARIA-based progress indicators, how to fix issues identified in audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-progressbar-name rule checks whether elements using role="progressbar" provide an accessible name. A progressbar represents the status of an ongoing process, often expressed as a percentage or a visual fill. When using ARIA to create a custom progressbar, the component must expose an accessible name so assistive technologies can communicate what the progress refers to.
+
+Accessible names can come from: - visible labels, - aria-label, - aria-labelledby referencing visible text.
+
+## Why it matters
+
+Progress indicators without accessible names leave screen reader users without essential context. Users may hear only values or announcements such as “50 percent” with no explanation of what process is progressing.
+
+Issues caused by missing accessible names include: - unclear understanding of progress status, - confusion between multiple progress indicators, - difficulty completing tasks that rely on progress information, - increased cognitive load.
+
+Accessible names ensure all users understand the purpose and state of ARIA progressbars.
+
+## Who delivers it
+
+Front end developers ensure ARIA progressbars include accessible names. Accessibility engineers and QA testers verify naming accuracy using automated and manual audits. Designers and content teams maintain consistent naming within user interfaces. Welcoming Web assists teams by identifying ARIA progressbars that do not expose accessible names.
+
+How to fix missing accessible names
+
+1. Identify progressbar roles
+
+Search for elements using role="progressbar".
+
+2. Provide a meaningful accessible name
+
+Use: - a visible text label, - aria-label="…", - or aria-labelledby="…" linking to a label.
+
+3. Ensure the name explains the purpose
+
+Names must describe what the progressbar tracks.
+
+### Incorrect example:
+
+```html
+<div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+```
+
+### Corrected version:
+
+```html
+<label id="upload-progress">File upload progress</label><div role="progressbar" aria-labelledby="upload-progress" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+```
+
+4. Keep naming clear and concise
+
+Avoid overly technical or ambiguous labels.
+
+5. Validate with assistive technologies
+
+Screen readers should announce both the purpose and the value.
+
+## Best practice guidance
+
+Use native HTML &lt;progress&gt; elements when possible, as they include built in semantics and accessible naming behaviour. Apply ARIA roles only when custom visuals require them. Document naming patterns in your design system for consistency.
+
+## Compliance mapping
+
+Accessible naming for ARIA progressbars helps teams work towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III expectations for accessible user interfaces, - EN 301 549 requirements for assistive technology support, - Equality Act 2010 duties for accessible service delivery.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies ARIA progressbars that lack accessible names and maps issues to WCAG criteria. The platform provides guidance so developers can add meaningful names and ensure accessible progress communication.
+
+## Key points for development teams
+
+ARIA progressbars must always have accessible names. Names must describe what the progress refers to. Native progress elements reduce ARIA complexity. Automated audits detect missing names. Manual testing confirms accurate announcements.
+
+## Call to action
+
+Run an audit Check your site for missing ARIA progressbar names. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-progressbar-name rule check
+
+It checks whether ARIA progressbars provide accessible names.
+
+Why must ARIA progressbars have accessible names
+
+Because users need to understand what process is being tracked.
+
+Can visible labels be used
+
+Yes, visible labels are preferred when available.
+
+Should I use the HTML  element instead
+
+Yes, native HTML elements provide built in semantics.
+
+Does aria-valuenow provide an accessible name
+
+No. It provides only a numeric value, not the purpose.
+
+Does adding an accessible name guarantee WCAG compliance
+
+It supports WCAG intent but does not guarantee compliance.
+
+How does Welcoming Web help with ARIA progressbar issues
+
+Welcoming Web identifies missing accessible names and provides guidance for resolving them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,128 @@
+---
+title: "Form Field Multiple Labels"
+description: "Form fields must not have multiple label elements"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Form Field Multiple Labels
+
+<Callout type="info">
+Form fields must not have multiple label elements
+</Callout>
+
+Form fields must have a single, clear label so users can understand their purpose. This blog explains what the form-field-multiple-labels rule checks, why multiple labels cause confusion, how to ensure each field has one accessible label and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, SEO‑optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The form-field-multiple-labels rule checks whether a single form control is associated with more than one &lt;label&gt; element. HTML and assistive technologies expect each form field to have exactly one accessible label. When fields have multiple labels, screen readers may announce incorrect or unclear information.
+
+Multiple labels often appear when: - developers wrap fields in repeated &lt;label&gt; tags, - visual labels and structural labels are added separately, - frameworks or CMS systems generate duplicated markup, - hidden labels and visible labels are both applied incorrectly.
+
+## Why it matters
+
+A single, meaningful label ensures that users understand the purpose of a form field. When multiple labels exist: - screen readers may announce conflicting names, - users may misunderstand what the field requires, - navigation becomes inconsistent, - cognitive load increases because information is unclear.
+
+A clear, consistent label supports predictable form interactions, improves comprehension and ensures users can complete tasks without confusion.
+
+## Who delivers it
+
+Front end developers ensure that each form control has only one &lt;label&gt;. Designers provide clear, concise label text. Content authors write meaningful labels that describe the expected input. Accessibility engineers and QA testers validate that labels are unique and correctly associated with their fields. Welcoming Web assists by detecting fields with multiple labels.
+
+How to fix form fields with multiple labels
+
+1. Ensure each form control has only one &lt;label&gt; element
+
+Remove any duplicate or redundant labels.
+
+### Incorrect example:
+
+```html
+<label for="email">Email address</label><label for="email">Enter your email</label><input id="email" type="email">
+```
+
+### Corrected version:
+
+```html
+<label for="email">Email address</label><input id="email" type="email">
+```
+
+2. Combine wording when necessary
+
+If multiple concepts need communicating, combine them into one descriptive label.
+
+3. Use helper text for additional explanation
+
+Place extra guidance in helper text rather than in a second label.
+
+4. Check programmatic label associations
+
+Ensure the for attribute matches the form field’s id correctly.
+
+5. Validate CMS or component output
+
+Templates may generate multiple labels without clear intent.
+
+## Best practice guidance
+
+Labels should be concise, descriptive and consistent across a form. Use helper text for clarifications rather than relying on multiple labels. Avoid wrapping form elements inside multiple labelled containers. Ensure that dynamic fields receive a clear label when they appear.
+
+## Compliance mapping
+
+Having a single meaningful label supports: - WCAG 2.2 requirements for Labels and Instructions, - WCAG 2.2 Name, Role, Value expectations, - ADA Title III requirements for understandable form input, - EN 301 549 guidance on programmatically determinable labels, - Equality Act 2010 duties for clear and accessible user interaction.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies form fields associated with more than one label and highlights where conflicting labels may impact comprehension. The platform provides guidance to correct label structure and strengthen form usability.
+
+## Key points for development teams
+
+Each field must have one label. Multiple labels cause confusion. Use helper text for clarity. Validate programmatic associations. Review CMS and component output.
+
+## Call to action
+
+Run an audit Check your site for form fields with multiple labels. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the form-field-multiple-labels rule check
+
+It checks whether a form field is associated with more than one &lt;label&gt;.
+
+Why are multiple labels a problem
+
+They can confuse screen readers and reduce clarity for users.
+
+How do I fix multiple labels
+
+Keep one label and move extra information into helper text.
+
+Can I use ARIA to add more labels
+
+ARIA should not be used to mimic multiple labels. Use a single accessible name.
+
+Do dynamic forms risk multiple labels
+
+Yes. Templates or repeated UI blocks may generate duplicates.
+
+Does fixing label duplication guarantee WCAG compliance
+
+It supports clarity but does not guarantee full compliance.
+
+How does Welcoming Web help
+
+Welcoming Web detects fields with multiple labels and provides guidance to correct the issue.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

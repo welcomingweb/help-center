@@ -1,0 +1,132 @@
+---
+title: "Aria Toggle Field Name"
+description: "ARIA toggle fields must have an accessible name"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Toggle Field Name
+
+<Callout type="info">
+ARIA toggle fields must have an accessible name
+</Callout>
+
+ARIA toggle fields must include accessible names that describe what the toggle controls. This blog explains what the aria-toggle-field-name rule checks, why accessible names are essential for ARIA-based toggles, how to fix issues identified in audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing steps and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-toggle-field-name rule checks whether toggle-like controls built using ARIA roles expose an accessible name. Toggle fields allow users to switch between two states, such as on/off or enabled/disabled. Developers may create these using roles such as: - role="switch", - role="checkbox" used as a toggle, - or custom components with ARIA states like aria-pressed.
+
+These components must always provide an accessible name so assistive technologies can announce what the toggle controls.
+
+Accessible names may come from: - visible text labels, - aria-label, - or aria-labelledby referencing visible text.
+
+## Why it matters
+
+Toggle fields without accessible names leave screen reader users without clear context. Users may hear only the state, such as “on” or “off”, without knowing what the toggle is for.
+
+Common issues include: - confusion between multiple toggles, - misinterpreting functionality, - incorrect settings being applied, - increased cognitive load.
+
+Accessible names ensure users understand the purpose and behaviour of each toggle field.
+
+## Who delivers it
+
+Front end developers provide accessible names for ARIA-based toggle widgets. Accessibility engineers and QA testers verify naming accuracy using automated and manual audits. Design system teams establish clear naming patterns for switches and toggles. Welcoming Web assists teams by detecting ARIA toggle fields that lack accessible names.
+
+How to fix missing accessible names
+
+1. Identify toggle components using ARIA roles
+
+Look for: - role="switch", - toggles built with role="checkbox", - components using aria-pressed state.
+
+2. Add a meaningful accessible name
+
+Use: - a visible label, - aria-label="...", - or aria-labelledby="..." referencing a label element.
+
+3. Ensure the name explains the control’s purpose
+
+Names must describe what the toggle controls, not simply its state.
+
+### Incorrect example:
+
+```html
+<div role="switch" aria-checked="true"></div>
+```
+
+### Corrected version:
+
+```html
+<label id="notif-label">Enable notifications</label><div role="switch" aria-checked="true" aria-labelledby="notif-label"></div>
+```
+
+4. Keep naming consistent across toggle patterns
+
+Follow design system conventions to ensure predictability.
+
+5. Validate using assistive technologies
+
+Confirm that screen readers announce the name and state together.
+
+## Best practice guidance
+
+Use native HTML controls such as &lt;input type="checkbox"&gt; when possible. Apply ARIA roles only when custom designs require them. Ensure interactive components have both clear names and correct state attributes.
+
+## Compliance mapping
+
+Accessible naming for ARIA toggle fields helps teams work towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III requirements for accessible user controls, - EN 301 549 requirements for assistive technology compatibility, - Equality Act 2010 obligations for accessible settings and inputs.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies ARIA toggle elements that lack accessible names. The platform maps these issues to WCAG criteria and provides guidance so developers can add meaningful names.
+
+## Key points for development teams
+
+ARIA toggle fields must always have accessible names. Names must describe purpose, not state. Native HTML toggles reduce ARIA complexity. Automated audits detect missing names. Manual testing confirms correct announcements.
+
+## Call to action
+
+Run an audit Check your site for missing ARIA toggle names. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-toggle-field-name rule check
+
+It checks whether ARIA-based toggle controls expose an accessible name.
+
+Why must ARIA toggles have accessible names
+
+Because users need to understand what the toggle controls, not only its state.
+
+Can I use aria-label for toggle names
+
+Yes. aria-label or aria-labelledby can provide names when visible text is not present.
+
+Should I use the switch role or checkbox role
+
+Use whichever best matches the behaviour, but both require accessible names.
+
+Does aria-checked provide a name
+
+No. aria-checked communicates state, not purpose.
+
+Does adding an accessible name guarantee WCAG compliance
+
+It supports WCAG intent but does not guarantee compliance.
+
+How does Welcoming Web help with toggle issues
+
+Welcoming Web identifies missing accessible names and provides guidance for resolving ARIA toggle problems.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

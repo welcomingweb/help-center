@@ -1,0 +1,128 @@
+---
+title: "Heading Order"
+description: "Heading levels should only increase by one"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Heading Order
+
+<Callout type="info">
+Heading levels should only increase by one
+</Callout>
+
+Heading levels should increase in sequence so the structure of the page is clear and predictable. This blog explains what the heading-order rule checks, why correct heading hierarchy matters for accessibility, how to maintain semantic heading order and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, SEO-optimised and follows the Welcoming Web content framework.
+
+## What it is
+
+The heading-order rule checks whether heading levels, from &lt;h1&gt; to &lt;h6&gt;, follow a logical and consistent sequence. A well structured document starts with a single &lt;h1&gt; and then moves through sections using &lt;h2&gt;, &lt;h3&gt; and so on.
+
+Heading levels should not jump in ways that break this outline. For example, moving directly from &lt;h1&gt; to &lt;h3&gt; can create confusion in the document structure, even if the visual styling appears correct.
+
+## Why it matters
+
+Headings give users a map of the page. Screen readers and other assistive technologies use heading order to present a logical outline. When heading levels skip or jump: - users can lose their place in the content hierarchy, - navigation by heading becomes unreliable, - related sections may appear disconnected, - cognitive load increases because structure is unclear.
+
+Correct heading order supports predictable navigation, helps users scan content quickly and improves overall comprehension.
+
+## Who delivers it
+
+Front end developers implement templates with correct heading levels. Designers define how headings look while respecting semantic order. Content authors ensure that titles and subheadings reflect the right level of detail. Accessibility specialists and QA testers verify that heading order matches the intended document structure. Welcoming Web assists by identifying pages where heading levels do not increase logically.
+
+How to maintain correct heading order
+
+1. Start with a single &lt;h1&gt; per page
+
+Use &lt;h1&gt; for the main page title.
+
+2. Use &lt;h2&gt; for major sections
+
+Each primary section under the main title should use &lt;h2&gt;.
+
+3. Nest deeper levels in sequence
+
+Use &lt;h3&gt; for subsections under &lt;h2&gt;, &lt;h4&gt; under &lt;h3&gt; and so on.
+
+### Incorrect example:
+
+```html
+<h1>Product overview</h1><h3>Key features</h3>
+```
+
+### Corrected version:
+
+```html
+<h1>Product overview</h1><h2>Key features</h2>
+```
+
+4. Avoid skipping levels for visual styling
+
+Use CSS to control size and appearance instead of jumping heading levels.
+
+5. Review dynamic templates and CMS output
+
+Ensure content editors and automated components cannot create broken heading hierarchies.
+
+## Best practice guidance
+
+Think of headings as an outline rather than a design tool. Plan the structure of pages before styling them. Keep headings concise and descriptive. Use headings consistently across similar page types so users learn the pattern. Validate heading order when new components or layouts are introduced.
+
+## Compliance mapping
+
+Ensuring heading levels increase in a logical way supports: - WCAG 2.2 requirements for meaningful sequence and structure, - WCAG 2.2 Info and Relationships success criteria, - ADA Title III expectations for navigable content, - EN 301 549 guidance on programmatically determinable hierarchy, - Equality Act 2010 duties for understandable and well organised information.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects pages where heading levels jump or do not follow a logical outline. The platform highlights inconsistent structures and provides guidance for correcting heading order so the page hierarchy is clear to all users.
+
+## Key points for development teams
+
+Headings define document structure. Levels should increase step by step. Use CSS, not heading jumps, for styling. Review CMS templates for hierarchy issues. Test heading navigation with assistive tech.
+
+## Call to action
+
+Run an audit Check your site for heading levels that do not follow a logical order. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the heading-order rule check
+
+It checks whether heading levels follow a logical sequence without unexpected jumps.
+
+Why is heading order important
+
+Heading order is important because it gives users a clear outline of the page and supports heading-based navigation.
+
+Can I use &lt;h3&gt; directly after &lt;h1&gt;
+
+Skipping from &lt;h1&gt; to &lt;h3&gt; is discouraged because it breaks the expected structure. Use &lt;h2&gt; for the next level.
+
+How do I change heading size without changing level
+
+You can change heading size using CSS while keeping the semantic level the same.
+
+Do single-page applications need correct heading order
+
+Yes. All web content, including SPA views, should maintain a logical heading hierarchy.
+
+Does correct heading order guarantee WCAG compliance
+
+Correct heading order supports WCAG structure goals but does not guarantee full compliance.
+
+How does Welcoming Web help with heading order
+
+Welcoming Web identifies broken heading hierarchies and provides guidance to fix them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

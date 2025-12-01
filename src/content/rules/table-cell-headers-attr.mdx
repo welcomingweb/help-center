@@ -1,0 +1,126 @@
+---
+title: "Table Cell Headers Attr"
+description: "Table cell headers attributes must refer to other"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Table Cell Headers Attr
+
+<Callout type="info">
+Table cell headers attributes must refer to other
+</Callout>
+
+elements in the same table
+
+Table cells that use the headers attribute must only refer to header cells in the same table so assistive technologies can announce data in the correct context. This blog explains what the td-headers-attr rule checks, why correct header references matter, how to implement them properly and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and follows the Welcoming Web framework.
+
+## What it is
+
+The td-headers-attr rule checks whether each &lt;td&gt; element that uses a headers attribute points only to &lt;th&gt; elements within the same &lt;table&gt;. The headers attribute creates explicit relationships between data cells and header cells using id values.
+
+This pattern is most often needed for complex data tables where simple scope attributes are not sufficient.
+
+## Why it matters
+
+When headers attributes are misused or point to the wrong elements: - screen readers cannot reliably determine which headers belong to a data cell, - users may hear values without any context, - tables become confusing or unusable for blind and low vision users, - relationships between rows and columns are lost, - complex data views become difficult to interpret.
+
+Correct header associations allow assistive technologies to describe data accurately.
+
+## Who delivers it
+
+Front end developers implement table markup with correct id and headers pairings or choose simpler scope-based approaches where possible. Designers plan data layouts that support clean header relationships. Content authors maintain consistent structures when updating tables. Accessibility specialists and QA testers verify header associations in complex tables. Welcoming Web assists by detecting invalid headers references.
+
+## How to ensure headers attributes refer only to
+
+in the same table ### 1. Reference only
+
+elements within the same table Each headers value must match the id of a &lt;th&gt; in the same &lt;table&gt; element.
+
+```html
+<table>  <tr>    <th id="name">Name</th>    <th id="total">Total</th>  </tr>  <tr>    <td headers="name">Jordan Smith</td>    <td headers="total">£320</td>  </tr></table>
+```
+
+2. Do not reference cells in other tables
+
+Avoid pointing to header cells in separate tables or layout structures.
+
+3. Ensure the referenced IDs exist
+
+Every headers token must correspond to a real &lt;th id="..."&gt;.
+
+4. Use multiple IDs only when needed
+
+If a cell is described by several headers, list multiple IDs in the headers attribute separated by spaces.
+
+5. Prefer scope for simple tables
+
+For simple row or column headers, scope="row" or scope="col" often provides a clearer alternative.
+
+## Best practice guidance
+
+Reserve headers and id associations for genuinely complex tables. For most data sets, use &lt;th&gt; with scope to express row and column relationships. Keep table structure as simple as possible and avoid using tables for visual layout. Document accessible table patterns in your design system so implementation remains consistent.
+
+## Compliance mapping
+
+Correct use of the headers attribute supports: - WCAG 2.2 Info and Relationships success criterion, - WCAG 2.2 Meaningful Sequence expectations, - ADA Title III expectations for understandable data presentation, - EN 301 549 guidance on programmatically determinable relationships, - Equality Act 2010 duties for accessible information.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies &lt;td&gt; elements whose headers attributes point to missing or invalid targets, or to cells outside the current table. The platform highlights misaligned relationships and provides remediation guidance.
+
+## Key points for development teams
+
+Use headers only for complex tables. Ensure each headers value matches a &lt;th id&gt; in the same table. Avoid cross-table references. Prefer scope for simple structures. Test tables with screen readers.
+
+## Call to action
+
+Run an audit Check your site for tables where headers attributes do not refer only to &lt;th&gt; elements in the same table. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the td-headers-attr rule check
+
+It checks whether &lt;td&gt; elements using headers refer only to &lt;th&gt; elements within the same table.
+
+Why must headers point only to cells in the same table
+
+Assistive technologies rely on these relationships to announce data with the correct headers.
+
+Do simple tables need the headers attribute
+
+Usually not. scope on &lt;th&gt; cells is often enough.
+
+Can a td reference multiple headers
+
+Yes. List multiple &lt;th&gt; IDs in the headers attribute separated by spaces.
+
+What happens if a headers value points to a missing ID
+
+Screen readers may not announce the expected header, leaving data without context.
+
+Should layout tables use headers attributes
+
+No. Layout tables should not use data table semantics.
+
+Does fixing headers attributes guarantee WCAG compliance
+
+It supports Info and Relationships requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with table header issues
+
+Welcoming Web detects invalid headers references and guides teams towards robust, accessible table markup.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

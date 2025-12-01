@@ -1,0 +1,126 @@
+---
+title: "Landmark Complementary Is Top Level"
+description: "Aside should not be contained in another landmark"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Landmark Complementary Is Top Level
+
+<Callout type="info">
+Aside should not be contained in another landmark
+</Callout>
+
+An aside or complementary landmark must appear at the top level of the page for users to understand its structural relationship to the main content. This blog explains what the landmark-complementary-is-top-level rule checks, why complementary landmarks must not be nested, how to implement correct hierarchy and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, SEO-optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The landmark-complementary-is-top-level rule checks whether an &lt;aside&gt; element or complementary landmark is placed at the top level of the document rather than nested inside other landmarks. The complementary landmark represents content that supports the main content, such as sidebars, related articles or secondary navigation.
+
+When placed correctly, users can identify the complementary region as distinct from primary content and navigate accordingly.
+
+## Why it matters
+
+Landmarks give users a clear structural map of the page. When an aside landmark is incorrectly nested: - screen reader users receive a misleading outline, - supporting content may be interpreted as part of the main region, - navigation becomes confusing because landmarks lose their intended meaning, - users may skip important secondary context, - assistive technologies may miscategorise regions.
+
+Correct placement ensures users understand how supportive information relates to the main content.
+
+## Who delivers it
+
+Front end developers implement semantic &lt;aside&gt; or complementary landmarks at top level. Designers plan layouts that do not nest asides inside inappropriate landmarks. Content authors structure secondary content consistently. Accessibility specialists and QA testers verify correct landmark hierarchy. Welcoming Web assists by detecting complementary landmarks placed inside other regions.
+
+How to ensure the complementary landmark is top-level
+
+1. Place the aside directly under &lt;body&gt;
+
+Avoid placing it inside &lt;main&gt;, &lt;header&gt;, &lt;nav&gt;, &lt;footer&gt; or other landmark elements.
+
+### Correct example:
+
+```html
+<body>  <header>...</header>  <aside role="complementary">Related information</aside>  <main>...</main></body>
+```
+
+2. Do not nest complementary landmarks
+
+Nested asides alter the page outline and confuse region relationships.
+
+3. Use semantic HTML
+
+Use &lt;aside&gt; for supporting content and reserve the complementary role for top-level use.
+
+4. Keep page structure consistent
+
+Apply the same pattern across templates and components.
+
+5. Review CMS and design system output
+
+Ensure automatic layouts do not generate nested complementary landmarks.
+
+## Best practice guidance
+
+Use a single, clearly positioned aside at the page’s top level for secondary content. Keep the complementary region meaningful and avoid overuse. Document landmark placement rules within your design system to ensure consistency across the site.
+
+## Compliance mapping
+
+Placing the complementary landmark at the top level supports: - WCAG 2.2 Info and Relationships requirements, - WCAG 2.2 Navigable structure expectations, - ADA Title III requirements for predictable page navigation, - EN 301 549 guidance on programmatically determinable regions, - Equality Act 2010 duties for accessible page layout.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies complementary landmarks that are incorrectly nested within other landmarks. The platform highlights structural issues and provides guidance for placing asides correctly so users can navigate with confidence.
+
+## Key points for development teams
+
+Asides must be top-level landmarks. Do not nest complementary regions. Use one aside per page when appropriate. Follow consistent structural patterns. Review CMS output for landmark errors.
+
+## Call to action
+
+Run an audit Check your site for nested complementary landmarks. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the landmark-complementary-is-top-level rule check
+
+It checks whether the complementary landmark or &lt;aside&gt; is placed at the top level rather than inside another landmark.
+
+Why must asides be top-level
+
+Top-level placement helps users understand how supplementary content relates to the main content.
+
+Can I use multiple asides
+
+You can use multiple asides, but each must follow structural rules and provide meaningful supporting content.
+
+What happens if an aside is nested
+
+Screen readers may misinterpret the structure and make navigation more difficult.
+
+Should all sidebars be complementary landmarks
+
+Sidebars intended as secondary content should use the &lt;aside&gt; element or complementary role.
+
+Do semantic elements help
+
+Yes. Using &lt;aside&gt; helps maintain consistent structural meaning.
+
+Does correct aside placement guarantee WCAG compliance
+
+It supports structural requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with complementary landmark issues
+
+Welcoming Web identifies incorrectly nested asides and provides guidance for correcting their placement.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,127 @@
+---
+title: "Color Contrast"
+description: "Elements must meet minimum color contrast ratio thresholds"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Color Contrast
+
+<Callout type="info">
+Elements must meet minimum color contrast ratio thresholds
+</Callout>
+
+Text and interactive elements must meet minimum color contrast thresholds so users can read and understand content clearly. This blog explains what the color-contrast rule checks, why contrast matters for accessibility and legibility, how to meet WCAG 2 AA thresholds and how this supports broader compliance expectations. The article is fully original, SEO-optimised and structured using the Welcoming Web framework.
+
+## What it is
+
+The color-contrast rule checks whether the visual contrast between the foreground and background meets WCAG 2 AA minimum thresholds. These thresholds are: - 4.5:1 for normal text, - 3:1 for large text (18pt regular or 14pt bold), - 3:1 for graphical objects and UI components.
+
+Contrast ratios measure the difference in perceived brightness between two colors. When ratios fall below WCAG thresholds, text and controls become harder to read.
+
+## Why it matters
+
+Adequate contrast is essential for people with low vision, colour vision deficiencies or situational impairments such as glare, dim screens or mobile use outdoors.
+
+Low contrast affects readability and can cause: - difficulty identifying text and icons, - misinterpretation of instructions, - increased eye strain, - reduced accuracy during navigation, - barriers for users relying on screen magnification.
+
+Clear contrast supports comfortable reading, improves comprehension and ensures controls remain visible across devices and environments.
+
+## Who delivers it
+
+Designers choose colour palettes that meet WCAG thresholds. Front end developers apply colours consistently across components and states. Accessibility engineers and QA testers confirm contrast using automated and manual tools. Welcoming Web assists teams by detecting insufficient contrast and mapping issues to WCAG criteria.
+
+How to fix insufficient color contrast
+
+1. Test contrast ratios
+
+Use contrast checkers to evaluate the ratio between text and background colours.
+
+2. Adjust colours to meet WCAG thresholds
+
+Increase contrast by darkening text, lightening backgrounds or changing colour combinations.
+
+### Incorrect example:
+
+```html
+.button {  color: #999;  background: #eee;}
+```
+### Corrected version:
+```html
+.button {  color: #333;  background: #fff;}
+```
+3. Ensure interactive elements meet 3:1 contrast
+
+Icons, focus indicators, form controls and visual boundaries must remain clearly visible.
+
+4. Check contrast in all states
+
+Verify hover, focus, active and disabled states.
+
+5. Avoid relying on colour alone
+
+Use text, icons and clear shapes to reinforce meaning.
+
+## Best practice guidance
+
+Use a design system with predefined accessible colour pairs. Test colours early in the design process. Consider user environments such as low brightness, reflections or dark mode. Maintain consistent contrast across branding, UI elements and content.
+
+## Compliance mapping
+
+Meeting contrast thresholds supports: - WCAG 2.2 contrast requirements, - ADA Title III expectations for readable content, - EN 301 549 guidance for visual presentation, - Equality Act 2010 duties for accessible design.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies text and UI elements that do not meet contrast thresholds. The platform provides guidance to adjust colour combinations and ensure readable, accessible presentation.
+
+## Key points for development teams
+
+Contrast ratios must meet WCAG thresholds. Low contrast reduces readability and confidence. All states of an element must be tested. Design systems support consistent colour use. Contrast tools help validate compliance.
+
+## Call to action
+
+Run an audit Check your site for insufficient colour contrast. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the color-contrast rule check
+
+It checks whether text and UI elements meet WCAG minimum colour contrast ratios.
+
+Why must colour contrast meet WCAG thresholds
+
+Because low contrast makes text and controls difficult to perceive.
+
+What is the contrast ratio requirement for normal text
+
+Normal text requires a contrast ratio of 4.5:1.
+
+Does large text have a lower threshold
+
+Yes. Large text requires at least 3:1.
+
+Must icons and UI components meet contrast rules
+
+Yes. They must reach at least 3:1 so users can identify them.
+
+Does meeting contrast thresholds guarantee WCAG compliance
+
+It supports WCAG alignment but does not guarantee full compliance.
+
+How does Welcoming Web help with contrast issues
+
+Welcoming Web detects insufficient contrast and provides guidance to correct it.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

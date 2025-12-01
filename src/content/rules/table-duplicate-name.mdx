@@ -1,0 +1,132 @@
+---
+title: "Table Duplicate Name"
+description: "Tables should not have the same summary and caption"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Table Duplicate Name
+
+<Callout type="info">
+Tables should not have the same summary and caption
+</Callout>
+
+Tables must not use identical text for both the summary attribute and the &lt;caption&gt; element. This blog explains what the table-duplicate-name rule checks, why duplicated naming causes accessibility issues, how to distinguish captions from summaries and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The table-duplicate-name rule checks whether a table’s &lt;caption&gt; and its summary attribute contain the same text. While &lt;caption&gt; provides a visible title for the table, the summary attribute (now obsolete in HTML5 but still encountered in legacy code) provides additional non‑visual context for screen reader users.
+
+When both contain the same text, users receive redundant or duplicated information.
+
+## Why it matters
+
+Duplicating the caption and summary creates several accessibility problems: - screen reader users hear the same label twice, - duplicated content increases cognitive load, - users may assume there is additional context when there is not, - inconsistent naming reduces clarity when navigating complex data tables, - redundant information affects efficiency for users relying on audio output.
+
+Clear and distinct naming ensures tables communicate their purpose without repetition.
+
+## Who delivers it
+
+Content authors define captions and write meaningful non-visual descriptions when needed. Front end developers remove obsolete summary attributes or update naming to avoid duplication. Designers ensure table descriptions are communicated visually and non-visually in complementary ways. Accessibility specialists and QA testers verify that captions and summaries remain distinct. Welcoming Web assists by detecting duplicated naming.
+
+How to ensure tables do not use duplicate caption and summary text
+
+1. Use &lt;caption&gt; for the visible title
+
+Provide a clear and concise label that summarises the table’s purpose.
+
+```html
+<table>  <caption>Monthly sales totals</caption>  ...</table>
+```
+
+2. Remove the summary attribute when not needed
+
+Modern HTML no longer requires the summary attribute.
+
+```html
+<!-- Avoid legacy summary unless absolutely required --><table summary="Monthly sales totals">...</table>
+```
+
+3. Provide different text when a summary is required
+
+Use the summary only for structural or contextual information not visible in the caption.
+
+```html
+<table summary="This table compares monthly totals across four regions.">  <caption>Monthly sales totals</caption>  ...</table>
+```
+
+4. Avoid repeating or rephrasing the caption
+
+Summaries should add value, not restate the title.
+
+5. Test with screen readers
+
+Ensure that captions and any remaining summary content are announced in a logical and non‑repetitive order.
+
+## Best practice guidance
+
+Use the summary attribute only in legacy environments where assistive technologies rely on it. In modern implementations, prefer &lt;caption&gt; and surrounding descriptive text to provide context. If additional explanation is necessary, place it near the table and reference it in the content rather than using duplicated attributes.
+
+## Compliance mapping
+
+Avoiding duplicate caption and summary text supports: - WCAG 2.2 Info and Relationships success criterion, - WCAG 2.2 Meaningful Sequence expectations, - ADA Title III guidance for clear and non-redundant communication, - EN 301 549 requirements for programmatically determinable table descriptions, - Equality Act 2010 duties for accessible information.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects tables where the &lt;caption&gt; and summary attribute contain identical text. The platform highlights legacy table structures and provides guidance for improving clarity and removing duplication.
+
+## Key points for development teams
+
+Do not duplicate caption and summary text. Use caption for visible labelling. Use summary only when truly needed. Ensure naming is distinct and meaningful. Test table descriptions with assistive technologies.
+
+## Call to action
+
+Run an audit Check your site for tables using duplicated caption and summary names. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the table-duplicate-name rule check
+
+It checks whether the table’s caption and summary attribute contain the same text.
+
+Why is duplicated naming a problem
+
+It creates redundant announcements for screen reader users and increases cognitive load.
+
+Do modern tables need a summary attribute
+
+No. The summary attribute is obsolete and should be avoided.
+
+Can the summary provide extra information
+
+Yes. It should offer context not given in the caption.
+
+Should captions always be visible
+
+Yes. &lt;caption&gt; provides a visible table title.
+
+What if my CMS outputs summary attributes
+
+Update templates to remove them or ensure they contain distinct, meaningful text.
+
+Does fixing duplicate naming guarantee WCAG compliance
+
+It supports structural clarity but does not guarantee full compliance.
+
+How does Welcoming Web help with table naming issues
+
+Welcoming Web detects duplicated table naming and guides teams toward clearer table descriptions.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

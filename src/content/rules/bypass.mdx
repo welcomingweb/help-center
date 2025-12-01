@@ -1,0 +1,128 @@
+---
+title: "Bypass"
+description: "Page must have means to bypass repeated blocks"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Bypass
+
+<Callout type="info">
+Page must have means to bypass repeated blocks
+</Callout>
+
+Pages must include a mechanism that allows users to skip repeated blocks of navigation and move directly to the main content. This blog explains what the bypass rule checks, why bypass mechanisms matter for accessibility and usability, how to implement effective skip links and how this supports WCAG 2.2 and broader legal expectations. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The bypass rule checks whether a page includes at least one mechanism that allows users to skip repeated navigation and reach the main content quickly. A common technique is a skip link placed at the top of the page that becomes visible when focused. This link should move keyboard and assistive technology users directly to the main region.
+
+Bypass mechanisms help users avoid re-navigating page headers, menus and repeated interface components.
+
+## Why it matters
+
+Users who navigate with keyboards, switch devices or screen readers often move through pages sequentially. Repeated blocks of navigation can slow progress and create unnecessary effort.
+
+When bypass options are missing: - keyboard users must tab repeatedly through menus on every page, - screen reader users may struggle to locate the main content quickly, - people with motor impairments face increased physical strain, - cognitive load increases due to repetitive navigation.
+
+Providing a bypass mechanism supports faster access, reduces strain and improves overall usability.
+
+## Who delivers it
+
+Front end developers implement skip links and ensure they work correctly across templates. Designers include bypass links in layout patterns. Accessibility engineers and QA testers validate that bypass functionality works with keyboard navigation and screen readers. Welcoming Web assists teams by identifying missing or broken bypass mechanisms.
+
+How to fix missing or non-functional bypass mechanisms
+
+1. Add a visible-on-focus skip link
+
+Place a skip link as the first focusable element on the page.
+
+### Example:
+
+```html
+<a class="skip-link" href="#main-content">Skip to main content</a>
+```
+
+2. Ensure the skip link directs to a valid target
+
+The target must be a focusable or landmark region, such as the main element.
+
+```html
+<main id="main-content">...</main>
+```
+
+3. Make the skip link visible on focus
+
+Screen reader users will detect the link, but sighted keyboard users need a visual indicator.
+
+4. Confirm that the skip link works across all pages
+
+Templates should include a consistent implementation.
+
+5. Test with screen readers and keyboard-only navigation
+
+The skip link should move both focus and reading order to the main region.
+
+## Best practice guidance
+
+Use concise wording such as “Skip to main content”. Avoid placing decorative elements before the skip link. Ensure that templates include a single, predictable place for the bypass mechanism. If multiple bypass targets exist—such as search or section navigation—provide additional skip links as appropriate.
+
+## Compliance mapping
+
+Bypass mechanisms help teams work towards: - WCAG 2.2 requirements for bypassing blocks, - ADA Title III expectations for accessible navigation patterns, - EN 301 549 support for efficient user interaction, - Equality Act 2010 duties for reducing repetitive navigation barriers.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies pages that lack skip links or contain non-functional bypass mechanisms. The platform maps these issues to WCAG criteria and provides guidance to help developers create predictable, accessible navigation pathways.
+
+## Key points for development teams
+
+Bypass mechanisms support faster access. Skip links must be visible on focus. Targets must be valid and correctly labelled. Templates should include consistent patterns. Testing confirms correct focus behaviour.
+
+## Call to action
+
+Run an audit Check your site for missing or ineffective skip links. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the bypass rule check
+
+It checks whether a page includes a mechanism that allows users to bypass repeated navigation and reach the main content.
+
+Why do users need bypass mechanisms
+
+Because repeated navigation creates unnecessary effort, especially for keyboard and screen reader users.
+
+What is the most common bypass mechanism
+
+A skip link that moves focus directly to the main content region.
+
+Should the skip link be visible
+
+It must become visible when focused so that keyboard users can identify it.
+
+Can a page have multiple skip links
+
+Yes. Some layouts benefit from additional skip options, such as “Skip to search”.
+
+Does adding a skip link guarantee WCAG compliance
+
+It supports WCAG intent but does not guarantee full compliance.
+
+How does Welcoming Web help with bypass issues
+
+Welcoming Web detects missing bypass mechanisms and provides guidance for implementing them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

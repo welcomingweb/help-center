@@ -1,0 +1,126 @@
+---
+title: "Aria Allowed Role"
+description: "Each element must use a role value that is appropriate for its HTML type. This blog explains what the aria-allowed-role rule checks, why incorrect roles create accessibility issues, how to fix them and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval."
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Allowed Role
+
+<Callout type="info">
+Each element must use a role value that is appropriate for its HTML type. This blog explains what the aria-allowed-role rule checks, why incorrect roles create accessibility issues, how to fix them and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+</Callout>
+
+Each element must use a role value that is appropriate for its HTML type. This blog explains what the aria-allowed-role rule checks, why incorrect roles create accessibility issues, how to fix them and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-allowed-role rule checks whether an element’s role attribute has a value that is permitted for that specific element. HTML provides implicit semantics for many elements, and each element has a defined set of allowed roles. When a developer assigns a role that is not permitted, assistive technologies may ignore it or behave unpredictably.
+
+## Why it matters
+
+ARIA roles tell assistive technologies what an element is and how users can interact with it. When an incorrect role is applied, screen readers may announce the wrong information or skip important behaviours. This makes navigation harder for users who rely on accurate structure and semantics.
+
+Examples of issues caused by inappropriate roles include misleading announcements, missing interactions and inconsistent behaviour across devices. These barriers slow navigation and reduce user confidence.
+
+## Who delivers it
+
+Front end developers and accessibility engineers apply correct roles during implementation. QA testers and accessibility specialists review role usage in audits. Documentation teams maintain coding standards that define how roles should be used. Welcoming Web assists teams by identifying elements that use inappropriate ARIA roles.
+
+How to fix inappropriate ARIA roles
+
+1. Identify elements using role attributes
+
+Search for elements that include a role attribute. These need validation.
+
+2. Check allowed roles for the element
+
+Verify that the assigned role is permitted for the element using ARIA and HTML mappings.
+
+3. Remove or adjust invalid roles
+
+If the role is not allowed, remove it or replace it with a permitted role.
+
+### Incorrect example:
+
+```html
+<span role="heading" aria-level="2">Account settings</span>
+```
+
+### Corrected version:
+
+```html
+<h2>Account settings</h2>
+```
+
+4. Prefer native semantics
+
+Use native HTML elements whenever possible because they provide built in behaviour and reduce role misuse.
+
+5. Validate with automated and manual tests
+
+Use automated tools to detect invalid roles, then confirm expected behaviour in screen readers.
+
+## Best practice guidance
+
+Use ARIA roles to enhance semantics when native HTML cannot express the required behaviour. Document component patterns so teams understand which roles are permitted. Keep code consistent to avoid conflicting semantics.
+
+## Compliance mapping
+
+Correct ARIA role usage helps teams work towards: - WCAG 2.2 guidance on meaningful structure and semantics - ADA Title III accessibility expectations - EN 301 549 accessibility requirements - Equality Act 2010 duties for accessible digital services
+
+Welcoming Web supports alignment with these standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies elements that use inappropriate ARIA roles and links issues to relevant WCAG criteria. The platform provides guidance that helps developers correct role usage and improve semantic accuracy.
+
+## Key points for development teams
+
+ARIA roles must be appropriate for the element. Incorrect roles cause misleading announcements. Native HTML elements reduce the need for ARIA. Automated and manual audits confirm correct behaviour. Documentation prevents repeated mistakes.
+
+## Call to action
+
+Run an audit Check your site for ARIA role issues today. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-allowed-role rule check
+
+The aria-allowed-role rule checks whether an element is using a role value that is appropriate for that element.
+
+Why must ARIA roles match the element
+
+ARIA roles must match the element because assistive technologies rely on consistent semantics.
+
+Can any element take any role
+
+No. Each element has a specific list of permitted roles and unsupported roles can break accessibility.
+
+Should I override native roles with ARIA
+
+Native semantics should not be overridden unless absolutely necessary.
+
+How do I know which roles are allowed for an element
+
+You can consult ARIA and HTML specification mappings to see which roles are supported.
+
+Does fixing roles guarantee WCAG compliance
+
+Fixing roles supports WCAG guidance but does not guarantee compliance.
+
+How does Welcoming Web help with role issues
+
+Welcoming Web identifies inappropriate ARIA roles and helps developers correct them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,130 @@
+---
+title: "Aria Meter Name"
+description: "ARIA meter nodes must have an accessible name"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Meter Name
+
+<Callout type="info">
+ARIA meter nodes must have an accessible name
+</Callout>
+
+ARIA meter nodes must include accessible names that describe what the measurement represents. This blog explains what the aria-meter-name rule checks, why accessible naming is essential for ARIA-based meter widgets, how to fix issues identified in audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-meter-name rule checks whether elements using role="meter" provide an accessible name. A meter represents a scalar measurement within a known range, such as progress, capacity or performance levels. When using ARIA to construct a meter widget, developers must provide an accessible name so assistive technologies can communicate what is being measured.
+
+Accessible names can come from: - visible labels, - aria-label, - aria-labelledby referencing visible text.
+
+## Why it matters
+
+Screen reader users must understand what a meter measures before the value becomes meaningful. Without an accessible name, users may hear only numbers, percentages or ranges without context.
+
+Issues caused by missing accessible names include: - unclear meaning of the displayed value, - confusion about what the meter represents, - difficulty comparing values across multiple meters, - increased cognitive load for users.
+
+Accessible names ensure all users understand the purpose of the ARIA meter component.
+
+## Who delivers it
+
+Front end developers provide accessible names for ARIA meter widgets. Accessibility engineers and QA testers verify correct naming through automated and manual audits. Designers and content teams ensure naming conventions are consistent. Welcoming Web assists teams by flagging ARIA meters without accessible names.
+
+How to fix missing accessible names
+
+1. Identify meter roles
+
+Search for elements using role="meter".
+
+2. Provide a meaningful accessible name
+
+Use: - a visible text label, - aria-label="…", - or aria-labelledby="…".
+
+3. Ensure the name describes the measurement
+
+Names must explain the metric, not the visual representation.
+
+### Incorrect example:
+
+```html
+<div role="meter" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+```
+
+### Corrected version:
+
+```html
+<label id="speed-label">Connection speed</label><div role="meter" aria-labelledby="speed-label" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+```
+
+4. Keep naming consistent across components
+
+Clear naming patterns help users understand multiple meter widgets.
+
+5. Validate with assistive technologies
+
+Screen readers should announce both the name and the value together.
+
+## Best practice guidance
+
+Use native HTML &lt;meter&gt; elements where possible, as they include built in semantics. Apply ARIA roles only when custom designs require them. Ensure documentation outlines naming requirements for all status or measurement components.
+
+## Compliance mapping
+
+Accessible naming for ARIA meters helps teams work towards: - WCAG 2.2 Name, Role, Value requirements, - ADA Title III expectations for accessible interactive components, - EN 301 549 requirements for assistive technology support, - Equality Act 2010 duties for accessible information.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies ARIA meter elements that lack accessible names and maps these issues to WCAG criteria. The platform provides guidance so developers can add meaningful labels and ensure consistent semantics.
+
+## Key points for development teams
+
+ARIA meters must always have accessible names. Labels must describe the measurement, not the appearance. Native HTML meters reduce the need for ARIA roles. Automated audits detect missing names. Manual testing confirms accurate announcements.
+
+## Call to action
+
+Run an audit Check your site for missing ARIA meter names. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-meter-name rule check
+
+It checks whether ARIA meter widgets provide accessible names.
+
+Why must ARIA meters have accessible names
+
+Because users need to understand what the value represents.
+
+Can I rely on visual labels only
+
+Only if the label is programmatically associated through aria-labelledby.
+
+Should I use the HTML  element instead
+
+Yes, when possible. Native elements provide built in semantics.
+
+Does aria-valuenow provide an accessible name
+
+No. aria-valuenow communicates value, not purpose.
+
+Does adding an accessible name guarantee WCAG compliance
+
+It supports WCAG intent but does not guarantee compliance.
+
+How does Welcoming Web help with ARIA meter issues
+
+Welcoming Web identifies missing names and guides developers to add the correct attributes.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

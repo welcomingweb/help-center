@@ -1,0 +1,134 @@
+---
+title: "Skip Link"
+description: "The skip-link target should exist and be focusable"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Skip Link
+
+<Callout type="info">
+The skip-link target should exist and be focusable
+</Callout>
+
+Skip links must lead to a real, focusable target so keyboard users can bypass repeated content. This blog explains what the skip-link rule checks, why working skip links are essential for accessibility, how to implement reliable targets and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The skip-link rule checks whether a skip link points to an existing, focusable target. Skip links usually appear as the first interactive element on a page and allow users to jump directly to the main content.
+
+A skip link typically uses:
+
+```html
+<a href="#main-content" class="skip-link">Skip to main content</a>
+```
+
+The rule ensures that the referenced target exists and can receive focus.
+
+## Why it matters
+
+If a skip link does not work correctly: - keyboard users must tab through repeated navigation each time they load a page, - screen reader users may land on an empty or nonexistent target, - users with motor impairments may struggle to reach primary content efficiently, - the page may appear broken or disorienting, - repeated effort increases cognitive load.
+
+A functional skip link significantly improves keyboard navigation and reduces repeated effort.
+
+## Who delivers it
+
+Front end developers create and maintain reliable skip link targets. Designers ensure navigation patterns support skip links visually and structurally. Content authors avoid placing obstructing content before the main target. Accessibility specialists and QA testers confirm that skip links work on all templates. Welcoming Web assists by detecting skip links with missing or unfocusable targets.
+
+How to ensure skip links have a focusable target
+
+1. Provide a valid target with a matching ID
+
+The skip link’s href must match an existing element’s id.
+
+```html
+<a href="#main-content">Skip to main content</a><main id="main-content">...</main>
+```
+
+2. Ensure the target is focusable
+
+Use tabindex="-1" to make non-interactive elements focusable programmatically.
+
+```html
+<main id="main-content" tabindex="-1">...</main>
+```
+
+3. Place the target at the start of the main content
+
+Users should arrive where meaningful information begins.
+
+4. Make skip links visible on focus
+
+A visible focus state ensures users know when the link is available.
+
+5. Test on all templates and devices
+
+Ensure consistent behaviour across mobile, desktop and embedded views.
+
+## Best practice guidance
+
+Keep skip links simple and consistent across all pages. Ensure the skip target logically represents the first meaningful content block. Avoid hiding targets behind fixed headers or dynamic content. Provide clear styling and maintain predictable behaviour within your design system.
+
+## Compliance mapping
+
+Ensuring skip links target a real, focusable element supports: - WCAG 2.2 Bypass Blocks success criterion, - WCAG 2.2 Focus Order requirements, - ADA Title III expectations for operable navigation, - EN 301 549 guidance on keyboard accessibility, - Equality Act 2010 duties for inclusive page structure.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies skip links that point to missing, invalid or unfocusable targets. The platform highlights template-level issues and provides practical guidance to ensure consistent bypass functionality.
+
+## Key points for development teams
+
+Provide real skip link targets. Ensure targets are focusable. Match ID and href values. Make skip links visible on focus. Validate across templates.
+
+## Call to action
+
+Run an audit Check your site for non-functional or unfocusable skip link targets. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the skip-link rule check
+
+It checks whether skip links point to existing, focusable targets.
+
+Why are skip links important
+
+They allow keyboard users to bypass repeated navigation quickly.
+
+How do I make a skip target focusable
+
+Add tabindex="-1" to the target element.
+
+Can the main element be the skip target
+
+Yes. &lt;main&gt; is commonly used.
+
+Should skip links be visible
+
+They must be visible when focused.
+
+Do all pages need a skip link
+
+Pages with repeated navigation benefit most, but consistent inclusion helps all users.
+
+Does fixing skip links guarantee WCAG compliance
+
+It supports bypass block requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with skip link issues
+
+Welcoming Web detects broken skip links and guides teams to correct them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

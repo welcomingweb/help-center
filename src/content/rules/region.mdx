@@ -1,0 +1,124 @@
+---
+title: "Region"
+description: "All page content should be contained by landmarks"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Region
+
+<Callout type="info">
+All page content should be contained by landmarks
+</Callout>
+
+Page content should be organised within semantic landmarks so users and assistive technologies can navigate clearly and predictably. This blog explains what the region rule checks, why landmark coverage supports accessible navigation, how to structure landmarks correctly and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The region rule checks whether all meaningful page content is contained within landmarks such as &lt;main&gt;, &lt;nav&gt;, &lt;header&gt;, &lt;footer&gt;, &lt;aside&gt; or regions that use role="region" with an accessible name. Landmarks define major page areas and help assistive technologies provide clear navigation shortcuts.
+
+When content sits outside landmarks, users may find it harder to understand structure or move between sections.
+
+## Why it matters
+
+Landmarks provide essential navigation points for people who rely on assistive technologies. When content is not contained within clear landmarks: - screen reader users must move line by line rather than by regions, - page structure becomes difficult to interpret, - navigation becomes inefficient on long or complex pages, - users may miss important content because it is not tied to a recognisable region, - cognitive load increases due to unpredictable layout.
+
+Using semantic landmarks improves wayfinding, consistency and user confidence.
+
+## Who delivers it
+
+Designers plan page layouts around core landmarks. Front end developers implement landmarks using semantic HTML. Content authors ensure new blocks or modules are placed within designated regions. Accessibility specialists and QA testers verify that no meaningful content sits outside landmarks. Welcoming Web assists by identifying content that appears outside the expected landmarks.
+
+How to ensure content is contained by landmarks
+
+1. Use semantic HTML elements for major sections
+
+Use: - &lt;main&gt; for primary content, - &lt;nav&gt; for navigation, - &lt;header&gt; and &lt;footer&gt; for global and sectional context, - &lt;aside&gt; for complementary content.
+
+2. Use role="region" only when needed
+
+Custom regions must include accessible names.
+
+```html
+<section role="region" aria-label="Product details">  ...</section>
+```
+
+3. Ensure templates wrap all modules within landmarks
+
+CMS layouts should not output free-floating content.
+
+4. Avoid multiple &lt;main&gt; regions
+
+Only one main landmark should exist per page.
+
+5. Test with screen reader landmark navigation
+
+Check that all meaningful content appears within the landmark list.
+
+## Best practice guidance
+
+Keep landmark structure simple and consistent across all pages. Avoid overusing regions or adding too many labelled sections. Document landmark patterns in your design system so developers and authors follow the same structure. Landmark names should be clear, descriptive and unique.
+
+## Compliance mapping
+
+Ensuring content is contained by landmarks supports: - WCAG 2.2 Info and Relationships success criterion, - WCAG 2.2 Navigable requirements for regional navigation, - ADA Title III expectations for structured content, - EN 301 549 guidance on programmatically determinable regions, - Equality Act 2010 duties for understandable communication.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects content that falls outside expected landmark regions and identifies inconsistencies in landmark usage. The platform highlights structural issues and provides guidance for improving semantic layout.
+
+## Key points for development teams
+
+Place content within landmarks. Use semantic HTML for major sections. Avoid free-floating modules. Name custom regions clearly. Test landmark navigation.
+
+## Call to action
+
+Run an audit Check your site for content outside landmark regions. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the region rule check
+
+It checks whether all meaningful content is placed within landmarks.
+
+Why are landmarks important
+
+They allow users to navigate major sections quickly and understand the layout.
+
+Which elements count as landmarks
+
+Semantic elements such as &lt;main&gt;, &lt;nav&gt;, &lt;header&gt;, &lt;footer&gt; and &lt;aside&gt;.
+
+Can I create custom landmarks
+
+Yes, with role="region" and a clear accessible name.
+
+What happens if content is outside landmarks
+
+Users may struggle to locate or interpret it using assistive technologies.
+
+Should every section be a landmark
+
+No. Use landmarks for major regions, not every block.
+
+Does containing content in landmarks guarantee WCAG compliance
+
+It supports structural and navigational requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with landmark issues
+
+Welcoming Web detects content outside landmarks and provides recommendations to fix structure.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

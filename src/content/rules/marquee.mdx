@@ -1,0 +1,124 @@
+---
+title: "Marquee"
+description: "elements are deprecated and must not be used"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Marquee
+
+<Callout type="info">
+elements are deprecated and must not be used
+</Callout>
+
+The &lt;marquee&gt; element is deprecated and must not be used in modern HTML. This blog explains what the marquee rule checks, why &lt;marquee&gt; creates accessibility and usability problems, how to remove or replace it and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The marquee rule checks whether a page contains the deprecated &lt;marquee&gt; element. This element was once used to create scrolling or moving text. It is no longer part of the HTML standard and is not supported by modern accessibility requirements.
+
+Use of &lt;marquee&gt; creates non-standard behaviour that screen readers, browsers and assistive technologies cannot reliably interpret.
+
+## Why it matters
+
+The &lt;marquee&gt; element harms accessibility and user experience: - moving text can cause distraction or discomfort, - some users experience difficulty reading text that moves unexpectedly, - users with cognitive impairments may lose context when text scrolls automatically, - screen readers may announce content unpredictably, - users cannot pause, stop or control automatic motion.
+
+Moving or flashing content can also affect people with vestibular or attention-related conditions.
+
+## Who delivers it
+
+Front end developers remove deprecated patterns and replace them with accessible alternatives. Designers avoid motion-heavy text components that cause distraction. Content authors identify content that should be static or restructured. Accessibility specialists and QA testers verify that no &lt;marquee&gt; elements appear in templates. Welcoming Web assists by detecting deprecated marquee usage.
+
+How to ensure  elements are not used
+
+1. Remove any &lt;marquee&gt; elements
+
+Do not rely on scrolling text for important content.
+
+```html
+<!-- Remove this --><marquee>Latest updates</marquee>
+```
+
+2. Replace with accessible alternatives
+
+Use static text or accessible announcement patterns.
+
+3. Use CSS animations only when necessary
+
+Ensure any scripted motion is user-controlled, predictable and minimal.
+
+4. Provide controls for animated content
+
+If motion is required, offer pause and stop controls.
+
+5. Avoid auto-scrolling content in banners or alerts
+
+Use ARIA live regions only for essential announcements.
+
+## Best practice guidance
+
+Maintain calm, stable interfaces. Use motion only when it adds value and ensure users can control it. Avoid patterns that mimic marquee-like behaviour, such as infinitely scrolling text or automatic sliders without controls. Follow a motion-reduction strategy aligned with user preferences.
+
+## Compliance mapping
+
+Removing &lt;marquee&gt; supports: - WCAG 2.2 Pause, Stop, Hide requirements for moving content, - WCAG 2.2 Info and Relationships expectations, - ADA Title III requirements for perceivable, predictable content, - EN 301 549 guidance on avoiding unnecessary motion, - Equality Act 2010 duties for inclusive interaction.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies deprecated &lt;marquee&gt; elements and other motion-based patterns that may cause accessibility barriers. The platform highlights locations where motion must be removed or restructured.
+
+## Key points for development teams
+
+Do not use &lt;marquee&gt;. Avoid auto-scrolling text. Provide user control for motion. Use static or stable alternatives. Follow motion-reduction guidelines.
+
+## Call to action
+
+Run an audit Check your site for &lt;marquee&gt; elements or similar motion patterns. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the marquee rule check
+
+It checks whether a page contains the deprecated &lt;marquee&gt; element.
+
+Why must  not be used
+
+It is deprecated, non-standard and creates significant accessibility barriers.
+
+What should replace
+
+Replace it with static text or controlled motion patterns that users can pause.
+
+Does CSS animation fix marquee issues
+
+Not by default. Motion must be minimal, predictable and user-controlled.
+
+Can motion trigger accessibility risks
+
+Yes. Uncontrolled motion can cause distraction or discomfort.
+
+Are auto-scrolling text banners allowed
+
+They are discouraged unless fully user-controlled.
+
+Does removing  guarantee WCAG compliance
+
+It supports motion and predictability requirements but does not guarantee complete compliance.
+
+How does Welcoming Web help with marquee issues
+
+Welcoming Web identifies deprecated elements and recommends accessible alternatives.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

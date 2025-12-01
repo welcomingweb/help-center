@@ -1,0 +1,186 @@
+---
+title: "Blog 43 Rewrites"
+description: "&lt;dt&gt; and &lt;dd&gt; elements must be contained by a &lt;dl&gt;"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Blog 43 Rewrites
+
+<Callout type="info">
+&lt;dt&gt; and &lt;dd&gt; elements must be contained by a &lt;dl&gt;
+</Callout>
+
+Definition list elements must only be used inside a &lt;dl&gt; so that terms and descriptions form a clear, accessible structure. This rewritten version provides a more distinctive narrative while following the Welcoming Web framework and maintaining accuracy.
+
+## What it is
+
+```html
+<dt> and <dd> elements represent terms and their explanations. These elements only carry semantic meaning when placed inside a <dl>, the definition list container. Without this container, assistive technologies cannot identify the relationship between the term and its description.
+```
+
+## Why it matters
+
+Incorrect placement of &lt;dt&gt; and &lt;dd&gt; breaks the intended pairing. When definitions lose structure: - screen readers cannot form coherent associations, - metadata becomes confusing, - users may misinterpret key information, - the reading sequence becomes unpredictable.
+
+## Who delivers it
+
+Front end developers implement the correct definition list pattern. Designers decide when paired information should be presented semantically. QA and accessibility specialists confirm that markup structure conveys the intended relationships. Welcoming Web identifies where &lt;dt&gt; and &lt;dd&gt; appear outside &lt;dl&gt;.
+
+How to fix incorrect use
+
+Wrap every &lt;dt&gt; and &lt;dd&gt; inside a &lt;dl&gt;.
+
+Group related pairs within the same definition list.
+
+Avoid using definition elements solely for layout.
+
+Validate structure using screen readers and inspection tools.
+
+## Best practice guidance
+
+Use definition lists for glossaries, structured metadata or paired information. Keep text concise and group related items meaningfully.
+
+## Compliance mapping
+
+Correct definition list structure supports WCAG 2.2 requirements for meaningful sequence and semantic clarity.
+
+Welcoming Web support
+
+Welcoming Web identifies invalid structures and provides guidance for correcting definition list markup.
+
+Key points
+
+Definition pairs must live inside &lt;dl&gt;. Proper structure improves clarity. Avoid misusing definition tags.
+
+## Call to action
+
+Run an audit Check your markup for misplaced &lt;dt&gt; and &lt;dd&gt; elements. Supports WCAG 2.2 and ADA goals.
+
+FAQ
+
+What does the rule check? It checks that &lt;dt&gt; and &lt;dd&gt; are correctly placed inside &lt;dl&gt;.
+
+Why does it matter? Because the relationship between term and description must be clear.
+
+Can I use them for layout? No. Only use definition elements for actual definitions.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement but does not issue or guarantee compliance certification.
+
+2. DeveloperFocused Version
+
+This developer-oriented version emphasises practical implementation details and technical accuracy.
+
+## What it is
+
+The definition list pattern requires the following hierarchy:
+
+```html
+<dl>  <dt>Term</dt>  <dd>Description</dd></dl>
+```
+
+```html
+<dt> and <dd> have no semantic value when used outside <dl>.
+```
+
+## Why it matters
+
+Assistive technologies rely on this structure to announce “term” and “description” in sequence. Invalid placement leads to: - incorrect role mapping, - loss of structure in the accessibility tree, - confusing reading order.
+
+Why developers should care
+
+If your UI includes metadata, key-value pairs or glossary-style content, using correct semantics improves accessibility and machine readability.
+
+How to fix
+
+Wrap: Surround all definition elements with a &lt;dl&gt;.
+
+Group: Keep related term–description pairs together.
+
+Validate: Use HTML validators and aXe tooling.
+
+Avoid misuse: Never use &lt;dt&gt;/&lt;dd&gt; for grid or column layout.
+
+Best practice
+
+Use semantic HTML first. Follow visually hidden label patterns when needed. Keep your definition lists clean and predictable.
+
+Quick code example
+
+Incorrect:
+
+```html
+<dt>Size</dt><dd>Large</dd>
+```
+
+Correct:
+
+```html
+<dl>  <dt>Size</dt>  <dd>Large</dd></dl>
+```
+
+Developer checklist
+
+```html
+<dt> always inside <dl>
+```
+
+```html
+<dd> always follows <dt>
+```
+
+No stray content between pairs
+
+Semantic intent confirmed
+
+Disclaimer
+
+Welcoming Web supports accessibility but does not issue compliance certification.
+
+3. Short Snippet Version (SEOOptimised)
+
+```html
+<dt> and <dd> elements must always be contained within a <dl> so assistive technologies can understand the relationship between terms and descriptions. Using these elements outside <dl> breaks semantic structure, confuses screen readers and reduces clarity for users. Wrap all definition terms and descriptions within a <dl> and keep the order consistent to support WCAG 2.2 expectations for meaningful structure.
+```
+
+4. PerformanceFocused Version
+
+Correct definition list structures improve not only accessibility but also DOM clarity and long-term maintainability.
+
+## What it is
+
+A &lt;dl&gt; element defines a set of term–description pairs. Without the container, &lt;dt&gt; and &lt;dd&gt; elements become ambiguous, producing unnecessary noise in the accessibility tree and DOM.
+
+Why it matters for performance
+
+Invalid structure can: - increase complexity during DOM parsing, - produce inconsistent accessibility tree mappings, - make component libraries harder to maintain, - introduce layout unpredictability.
+
+Cleaner, compliant markup reduces overhead and improves the reliability of component-based systems.
+
+How to fix
+
+Place all &lt;dt&gt;/&lt;dd&gt; pairs inside &lt;dl&gt;.
+
+Avoid splitting definition groups across multiple structural elements.
+
+Keep related metadata within the same container.
+
+Validate DOM output when using templating frameworks.
+
+Best practice
+
+Use definition lists intentionally. In component-driven architectures, encapsulate &lt;dl&gt; blocks for improved reusability and performance. Avoid any styling patterns that rely on misusing definition elements.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

@@ -1,0 +1,126 @@
+---
+title: "Meta Refresh"
+description: "Delayed refresh under 20 hours must not be used"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Meta Refresh
+
+<Callout type="info">
+Delayed refresh under 20 hours must not be used
+</Callout>
+
+A delayed meta refresh must not be used for page updates or timed navigation because it disrupts user control and creates accessibility barriers. This blog explains what the meta-refresh rule checks, why timing-based refreshes are problematic, how to replace them with accessible alternatives and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The meta-refresh rule checks whether a document uses a &lt;meta http-equiv="refresh"&gt; element to automatically refresh or redirect the page after a delay of less than 20 hours. This pattern forces time-based navigation without user consent.
+
+Meta refresh may be used for: - timed redirects, - forced reloads, - countdown-driven navigation changes.
+
+These approaches are discouraged because they remove user control and create unpredictable behaviour.
+
+## Why it matters
+
+When pages refresh automatically: - users may lose their reading position or form progress, - screen reader users can be disoriented when content reloads unexpectedly, - people with cognitive impairments may struggle with sudden context changes, - timed navigation interrupts tasks and reduces usability, - assistive technologies may not announce the refresh in a predictable way.
+
+Uncontrolled timing behaviour creates barriers for many users.
+
+## Who delivers it
+
+Front end developers remove meta refresh patterns and replace them with user-controlled alternatives. Designers avoid UX patterns that depend on automatic redirects. Content authors ensure timing-based behaviours are not introduced in templates. Accessibility specialists and QA testers validate that no meta refresh elements appear in code. Welcoming Web assists by detecting the presence of &lt;meta http-equiv="refresh"&gt; with problematic timing values.
+
+How to ensure meta refresh is not used for delayed refresh
+
+1. Remove &lt;meta http-equiv="refresh"&gt; elements
+
+Do not rely on automatic timing-based page updates.
+
+```html
+<!-- Remove this --><meta http-equiv="refresh" content="5;url=/new-page">
+```
+
+2. Provide user-controlled actions
+
+Use visible buttons or clear UI controls for navigation or content reload.
+
+3. Use JavaScript for optional, non-forced updates
+
+Content updates should be user-triggered and predictable.
+
+4. Implement accessible live regions for essential announcements
+
+Use ARIA live regions for dynamic updates without refreshing the entire page.
+
+5. Use server-side redirects for immediate navigation
+
+If a redirect is required, perform it instantly rather than using a timed refresh.
+
+## Best practice guidance
+
+Maintain clear and stable interfaces without forced timing. Avoid any pattern that removes user agency or disrupts reading flow. When timed behaviour is essential for security or inactivity, provide warnings, countdowns and clear controls.
+
+## Compliance mapping
+
+Removing timed refreshes under 20 hours supports: - WCAG 2.2 Pause, Stop, Hide success criteria, - WCAG 2.2 Predictable operation requirements, - ADA Title III expectations for user-controlled interaction, - EN 301 549 guidance on avoiding unexpected timing behaviour, - Equality Act 2010 duties for inclusive and stable content.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects meta refresh elements used with delayed timing values. The platform highlights areas where forced timing behaviour may disrupt user experience and offers guidance for accessible alternatives.
+
+## Key points for development teams
+
+Avoid timed meta refresh. Use immediate redirects when required. Provide user-controlled actions. Use ARIA live regions for dynamic updates. Validate templates for timing behaviours.
+
+## Call to action
+
+Run an audit Check your site for meta refresh elements with delayed timing. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the meta-refresh rule check
+
+It checks whether &lt;meta http-equiv="refresh"&gt; is used to refresh or redirect a page after a delay of less than 20 hours.
+
+Why must delayed meta refresh not be used
+
+It must not be used because it forces timed navigation and removes user control.
+
+Can immediate redirects use meta refresh
+
+Immediate redirects are less problematic but should be replaced with server-side redirects.
+
+What should replace meta refresh
+
+Use user-controlled navigation or server-side redirection.
+
+Does JavaScript fix meta refresh issues
+
+JavaScript can provide accessible alternatives when updates are user-triggered.
+
+Are timed updates ever allowed
+
+Only when they provide clear warnings and full user control.
+
+Does removing meta refresh guarantee WCAG compliance
+
+It supports timing and predictability requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with meta refresh issues
+
+Welcoming Web detects timed refreshes and recommends accessible alternatives.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

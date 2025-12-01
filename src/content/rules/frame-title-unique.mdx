@@ -1,0 +1,128 @@
+---
+title: "Frame Title Unique"
+description: "Frames must have a unique title attribute"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Frame Title Unique
+
+<Callout type="info">
+Frames must have a unique title attribute
+</Callout>
+
+Frames must have unique titles so users can distinguish between multiple embedded pieces of content. This blog explains what the frame-title-unique rule checks, why duplicate frame titles are confusing, how to create unique and meaningful titles and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, SEO-optimised and follows the Welcoming Web content framework.
+
+## What it is
+
+The frame-title-unique rule checks whether each &lt;iframe&gt; or &lt;frame&gt; on a page has a distinct title attribute. While the frame-title rule ensures that frames have accessible names, this rule focuses on uniqueness when there is more than one frame.
+
+When multiple frames share the same title, assistive technologies cannot easily tell them apart. Users may hear the same description repeated without understanding which frame relates to which content.
+
+## Why it matters
+
+Frames are often used to embed separate tools, views or services on a single page. When all of these frames use the same title: - screen reader users hear repeated titles with no way to distinguish frames, - users may enter the wrong embedded area by mistake, - navigation becomes confusing and time-consuming, - cognitive load increases because users must guess which frame contains the feature they need.
+
+Unique titles help users quickly identify each frame’s purpose and choose where to focus their attention.
+
+## Who delivers it
+
+Front end developers and content authors assign unique titles to frames. Designers define naming patterns that reflect each frame’s role. Accessibility engineers and QA testers verify that frames have both meaningful and unique titles. Welcoming Web assists by detecting frames that share the same title attribute.
+
+How to ensure frames have unique titles
+
+1. Describe each frame’s specific purpose
+
+Titles should indicate what makes each frame different.
+
+### Incorrect example:
+
+```html
+<iframe src="/analytics" title="Dashboard"></iframe><iframe src="/reports" title="Dashboard"></iframe>
+```
+
+### Corrected version:
+
+```html
+<iframe src="/analytics" title="Analytics dashboard"></iframe><iframe src="/reports" title="Reports dashboard"></iframe>
+```
+
+2. Align titles with visible headings
+
+Use wording that matches or closely reflects on-page headings or labels for each frame.
+
+3. Avoid generic or repeated titles
+
+Labels such as “frame”, “content” or “widget” should not be used for multiple frames.
+
+4. Ensure localisation remains unique
+
+When localising titles, keep the distinction between frames while translating.
+
+5. Review third-party and dynamic frames
+
+Update or wrap third-party embeds to provide unique and contextual titles, especially when multiple instances appear.
+
+## Best practice guidance
+
+Plan frame titles as part of the page’s information architecture. Keep each title concise, descriptive and clearly different from others on the same page. Avoid including unnecessary technical details such as URLs. Test with screen readers to confirm that users can distinguish one frame from another.
+
+## Compliance mapping
+
+Providing unique frame titles supports: - WCAG 2.2 Name, Role, Value requirements for components, - WCAG 2.2 Info and Relationships for differentiating regions, - ADA Title III expectations for understandable navigation, - EN 301 549 guidance on programmatically determinable labels, - Equality Act 2010 duties for clear and inclusive digital experiences.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies &lt;iframe&gt; and &lt;frame&gt; elements that reuse the same title attribute. The platform maps these issues to WCAG criteria and provides guidance for assigning unique, descriptive titles that help users understand each embedded region.
+
+## Key points for development teams
+
+Each frame needs a unique title. Duplicate titles confuse users. Titles must be meaningful and distinct. Align names with visible context. Test with assistive technologies.
+
+## Call to action
+
+Run an audit Check your site for frames that reuse the same title attribute. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the frame-title-unique rule check
+
+It checks whether each &lt;iframe&gt; or &lt;frame&gt; on a page has a unique title attribute.
+
+Why must frame titles be unique
+
+They must be unique so users, especially screen reader users, can distinguish between multiple frames.
+
+How do I fix duplicate frame titles
+
+Update each frame’s title to describe its specific purpose or content.
+
+Can I use the same label on different pages
+
+Yes. The requirement is uniqueness among frames on the same page, not across the whole site.
+
+What if I use multiple instances of the same widget
+
+Adjust each instance’s title to reflect its context, such as “Support chat widget” and “Feedback chat widget”.
+
+Does unique titling guarantee WCAG compliance
+
+Unique titles support WCAG Name, Role, Value criteria but do not guarantee full compliance.
+
+How does Welcoming Web help with frame title issues
+
+Welcoming Web flags frames with duplicate titles and provides guidance for creating unique, descriptive names.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

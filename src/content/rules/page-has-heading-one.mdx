@@ -1,0 +1,124 @@
+---
+title: "Page Has Heading One"
+description: "Page should contain a level-one heading"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Page Has Heading One
+
+<Callout type="info">
+Page should contain a level-one heading
+</Callout>
+
+A page must contain a clear and meaningful level-one heading so users and assistive technologies can understand the main topic of the content. This blog explains what the page-has-heading-one rule checks, why an &lt;h1&gt; is essential for structure and navigation, how to implement it correctly and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The page-has-heading-one rule checks whether a page, or at least one of its frames, contains a single &lt;h1&gt; element. The &lt;h1&gt; represents the primary heading for the content. It forms a key part of the document’s semantic structure.
+
+Headings help assistive technologies interpret hierarchy and allow users to navigate content quickly.
+
+## Why it matters
+
+When a page does not contain a level-one heading: - screen reader users may struggle to understand the main topic of the page, - navigation through headings becomes less predictable, - users with cognitive impairments may find it harder to grasp structure, - search engines may interpret content inconsistently, - page templates may appear fragmented or incomplete.
+
+An &lt;h1&gt; sets the context and anchors the page hierarchy.
+
+## Who delivers it
+
+Designers define heading patterns and ensure a clear hierarchy. Content authors write descriptive headings that summarise page purpose. Front end developers implement semantic heading levels in templates and components. Accessibility specialists and QA testers validate that each page includes one primary heading. Welcoming Web assists by detecting pages missing an &lt;h1&gt;.
+
+How to ensure a page contains a level-one heading
+
+1. Include exactly one &lt;h1&gt; element
+
+Each page or frame should contain one primary heading.
+
+```html
+<h1>Account overview</h1>
+```
+
+2. Use &lt;h1&gt; for the main topic only
+
+Do not use &lt;h1&gt; repeatedly across different sections.
+
+3. Keep headings descriptive and relevant
+
+The &lt;h1&gt; should summarise the page purpose clearly.
+
+4. Ensure templates include consistent heading structure
+
+CMS templates and page builders must generate an &lt;h1&gt; automatically or require one.
+
+5. Avoid skipping directly to deeper heading levels
+
+Maintain a logical sequence from &lt;h1&gt; downward.
+
+## Best practice guidance
+
+Use meaningful headings that describe content rather than decorative or generic phrases. Align &lt;h1&gt; text with page titles where possible. Avoid placing logos or non-content items inside headings. Confirm that iframes containing standalone documents also include a primary heading.
+
+## Compliance mapping
+
+Providing a level-one heading supports: - WCAG 2.2 Info and Relationships success criterion, - WCAG 2.2 Meaningful Sequence requirements, - ADA Title III expectations for understandable content, - EN 301 549 guidance on structural navigation, - Equality Act 2010 duties for clear and accessible communication.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies pages that lack an &lt;h1&gt; element or contain multiple primary headings. The platform highlights structural issues and provides guidance for restoring heading hierarchy.
+
+## Key points for development teams
+
+Include one &lt;h1&gt; per page. Keep the heading descriptive. Maintain logical structure. Use templates that enforce hierarchy. Support accessible navigation.
+
+## Call to action
+
+Run an audit Check your site for pages missing a level-one heading. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the page-has-heading-one rule check
+
+It checks whether a page or frame contains a single &lt;h1&gt; element.
+
+### Why is an
+
+important It provides the main topic and defines the top of the heading hierarchy.
+
+### Can a page have more than one
+
+It is discouraged, as it creates confusion for assistive technologies.
+
+### Do I need an
+
+inside an iframe If the iframe loads a standalone document, it should include an &lt;h1&gt;.
+
+### Can the logo be the
+
+Only if it genuinely represents the main topic of the page.
+
+### Does using
+
+help SEO It helps search engines understand page structure but should be used semantically.
+
+### Does adding an
+
+guarantee WCAG compliance It supports structural requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with heading issues
+
+Welcoming Web detects missing or multiple &lt;h1&gt; elements and guides teams toward clear structure.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

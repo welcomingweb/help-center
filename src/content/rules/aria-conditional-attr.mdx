@@ -1,0 +1,130 @@
+---
+title: "Aria Conditional Attr"
+description: "Each ARIA attribute must follow the rules defined for the element’s role. This blog explains what the aria-conditional-attr rule checks, why conditional attribute use matters, how to fix issues highlighted by audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing steps and a full FAQ for search engines and LLM retrieval."
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Conditional Attr
+
+<Callout type="info">
+Each ARIA attribute must follow the rules defined for the element’s role. This blog explains what the aria-conditional-attr rule checks, why conditional attribute use matters, how to fix issues highlighted by audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing steps and a full FAQ for search engines and LLM retrieval.
+</Callout>
+
+Each ARIA attribute must follow the rules defined for the element’s role. This blog explains what the aria-conditional-attr rule checks, why conditional attribute use matters, how to fix issues highlighted by audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing steps and a full FAQ for search engines and LLM retrieval.
+
+## What it is
+
+The aria-conditional-attr rule checks whether an element uses ARIA attributes that are conditionally required or conditionally permitted for its assigned role. ARIA roles define when certain attributes must or must not be used. If an attribute is applied outside these conditions assistive technologies may announce incorrect information or behave unpredictably.
+
+Examples of conditional attributes include: - Attributes required only when a specific role is set - Attributes that must not appear unless certain states apply - Attributes that must be paired with another ARIA attribute
+
+## Why it matters
+
+Assistive technologies rely on predictable relationships between roles, attributes and states. When ARIA attributes appear outside the conditions defined in the specification the user may receive contradictory or misleading announcements.
+
+Issues include: - elements announced with incorrect states - missing information for interactive components - users receiving unexpected or confusing feedback
+
+These problems increase cognitive load and reduce trust in the interface for people who depend on screen readers.
+
+## Who delivers it
+
+Front end developers ensure ARIA attributes align with the role’s specification. Accessibility engineers and QA testers verify attribute conditions through automated and manual audits. Accessibility managers include conditional ARIA rules within coding standards. Welcoming Web assists teams by flagging attributes used outside their permitted conditions.
+
+How to fix conditional attribute issues
+
+1. Identify ARIA attributes used on the element
+
+Review all ARIA attributes applied to the element and note the assigned role.
+
+2. Check the role specification
+
+Verify whether each attribute is: - required - supported - supported only under certain conditions - forbidden for the role
+
+3. Remove or adjust incorrect attributes
+
+If an attribute is not valid under the current role conditions remove it or update the markup to meet the requirements.
+
+### Incorrect example:
+
+```html
+<div role="checkbox" aria-checked="mixed" aria-selected="true"></div>
+```
+
+### Corrected version:
+
+```html
+<div role="checkbox" aria-checked="mixed"></div>
+```
+
+4. Pair attributes correctly
+
+Some attributes must be used together. For example some roles require an attribute such as aria-expanded or aria-controls.
+
+5. Validate using assistive technologies
+
+Confirm that the element behaves as expected with screen readers and other tools.
+
+## Best practice guidance
+
+Follow the ARIA specification for each role to ensure conditional requirements are met. Avoid adding attributes unless they directly support the intended behaviour. Use native elements when possible because they reduce the need for complex ARIA relationships.
+
+## Compliance mapping
+
+Correct use of conditional ARIA attributes helps teams work towards: - WCAG 2.2 semantic and interaction guidance - ADA Title III digital access expectations - EN 301 549 requirements for assistive technology support - Equality Act 2010 expectations for accessible services
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web highlights ARIA attributes used outside their permitted conditions and links findings to relevant WCAG criteria. The platform provides guidance so developers can correct usage and improve the reliability of assistive technology support.
+
+## Key points for development teams
+
+Conditional ARIA rules define when attributes may or must be used. Incorrect attribute use causes misleading behaviour. Native HTML reduces attribute complexity. Automated tools detect invalid attribute use. Manual testing confirms semantic accuracy.
+
+## Call to action
+
+Run an audit Check your site for conditional ARIA issues. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-conditional-attr rule check
+
+It checks whether ARIA attributes are used correctly according to the conditions defined by an element’s role.
+
+Why must ARIA attributes follow conditional requirements
+
+Because incorrect use can create misleading or incomplete feedback for assistive technologies.
+
+Can I use any ARIA attribute on any role
+
+No. Each role has strict rules defining which attributes are permitted or required.
+
+How do I know whether an attribute is conditionally allowed
+
+You can check the ARIA specification for the role or use lookup tables provided by accessibility tools.
+
+Are native HTML controls better than ARIA widgets
+
+Often yes. Native controls reduce the need for complex ARIA rules.
+
+Does fixing conditional ARIA attributes guarantee WCAG compliance
+
+It supports WCAG requirements but does not guarantee compliance.
+
+How does Welcoming Web help with ARIA attribute issues
+
+Welcoming Web identifies ARIA attributes used outside their permitted conditions and provides guidance to help developers correct them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

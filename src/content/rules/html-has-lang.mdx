@@ -1,0 +1,128 @@
+---
+title: "Html Has Lang"
+description: "&lt;html&gt; element must have a lang attribute"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Html Has Lang
+
+<Callout type="info">
+&lt;html&gt; element must have a lang attribute
+</Callout>
+
+Every HTML document must include a lang attribute on the &lt;html&gt; element so user agents and assistive technologies know the primary language of the page. This blog explains what the html-has-lang rule checks, why declaring language is critical for accessibility and SEO, how to apply the lang attribute correctly and how this supports WCAG 2.2 and wider compliance expectations.
+
+## What it is
+
+The html-has-lang rule checks whether the root &lt;html&gt; element includes a lang attribute. The lang attribute declares the primary language of the document using a valid language code, such as en, en-GB, fr or tr.
+
+Browsers, screen readers and other tools use this information to select appropriate voice profiles, hyphenation rules and language specific processing.
+
+## Why it matters
+
+When the document language is not declared: - screen readers may use the wrong pronunciation rules, - users can struggle to understand words that are read in the wrong language, - automated translation tools become less reliable, - search engines get weaker signals about content language, - multilingual users may receive inconsistent experiences.
+
+Declaring the correct language supports clear pronunciation, improves comprehension and helps deliver predictable behaviour for assistive technologies.
+
+## Who delivers it
+
+Front end developers add and maintain the lang attribute on the &lt;html&gt; element in templates and layout files. Content and localisation teams ensure that language codes match the actual content language. Accessibility specialists and QA testers verify that each page declares the correct primary language. Welcoming Web assists by detecting documents missing a lang attribute.
+
+How to ensure &lt;html&gt; has a lang attribute
+
+1. Add lang to the root element
+
+Declare the primary language of the page.
+
+### Example:
+
+```html
+<html lang="en-GB">
+```
+
+2. Use valid language codes
+
+Follow BCP 47 language tags such as en, en-GB, es-ES or tr-TR.
+
+3. Match the attribute to the main content language
+
+If most of the page is in English, use an English language code even when small sections are translated.
+
+4. Use lang on sub-elements for inline changes
+
+Apply lang to specific elements when small parts of text appear in another language.
+
+5. Keep templates and partials consistent
+
+Ensure all layouts and content types include a correct lang on the &lt;html&gt; element.
+
+## Best practice guidance
+
+Set the lang attribute at the start of every project and keep it aligned with localisation plans. For multilingual sites, ensure each language version uses the correct language code. Work closely with localisation teams to maintain accuracy. Test with screen readers to confirm that content is announced in the intended language.
+
+## Compliance mapping
+
+Providing a language attribute on the &lt;html&gt; element supports: - WCAG 2.2 success criterion for language of page, - ADA Title III expectations for understandable content presentation, - EN 301 549 requirements for programmatically determinable language, - Equality Act 2010 duties for clear and accessible information.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects HTML documents that do not include a lang attribute or use invalid language codes. The platform maps findings to WCAG criteria and provides guidance for declaring language correctly across templates and pages.
+
+## Key points for development teams
+
+```html
+<html> must include a lang attribute. Use valid language codes such as en-GB. Match the language to main content. Mark inline language changes as needed. Keep templates consistent across the site.
+```
+
+## Call to action
+
+Run an audit Check your site for missing or incorrect lang attributes on the &lt;html&gt; element. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the html-has-lang rule check
+
+The html-has-lang rule checks whether the root &lt;html&gt; element includes a lang attribute with a value.
+
+Why is the lang attribute important
+
+The lang attribute is important because it tells browsers and assistive technologies which language rules to use when presenting content.
+
+What language code should I use
+
+You should use a valid BCP 47 language code, such as en or en-GB, that matches the primary language of the page.
+
+How do I handle multilingual pages
+
+You declare the main language on &lt;html&gt; and apply lang attributes to specific elements for inline language changes.
+
+Does the lang attribute help screen readers
+
+The lang attribute helps screen readers select the correct voice and pronunciation rules.
+
+Does setting lang improve SEO
+
+Search engines can use language declarations as one signal to understand and index content appropriately.
+
+Does adding lang guarantee WCAG compliance
+
+Adding lang supports WCAG language requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with language attributes
+
+Welcoming Web identifies pages missing lang attributes or using invalid codes and provides guidance for fixing them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

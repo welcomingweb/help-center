@@ -1,0 +1,128 @@
+---
+title: "Aria Braille Equivalent"
+description: "Each element that uses aria-braillelabel or aria-brailleroledescription must also provide a non-braille text equivalent. This blog explains what the aria-braille-equivalent rule checks, why non-braille equivalents are required, how to fix issues found during audits and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval."
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Aria Braille Equivalent
+
+<Callout type="info">
+Each element that uses aria-braillelabel or aria-brailleroledescription must also provide a non-braille text equivalent. This blog explains what the aria-braille-equivalent rule checks, why non-braille equivalents are required, how to fix issues found during audits and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+</Callout>
+
+Each element that uses aria-braillelabel or aria-brailleroledescription must also provide a non-braille text equivalent. This blog explains what the aria-braille-equivalent rule checks, why non-braille equivalents are required, how to fix issues found during audits and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The aria-braille-equivalent rule checks whether elements that use braille-specific ARIA attributes also provide a standard text equivalent. The attributes aria-braillelabel and aria-brailleroledescription are designed for refreshable braille displays. These attributes must never replace the non-braille equivalents aria-label and aria-roledescription. Both forms must be present so that assistive technologies can present consistent information.
+
+## Why it matters
+
+Braille-specific ARIA attributes support users who rely on refreshable braille displays. However, these attributes are not interpreted by all assistive technologies. Without a non-braille equivalent, users of screen readers, speech output tools or other assistive devices may receive incomplete or missing information. This results in inconsistent navigation and increases the cognitive load for users who depend on accurate labels.
+
+Issues caused by missing non-braille equivalents include elements being announced incorrectly, important information not being conveyed and loss of expected role description. These problems make tasks slower and reduce confidence in the interface.
+
+## Who delivers it
+
+Front end developers apply both braille and non-braille labels correctly. Accessibility engineers and QA testers verify attribute usage during audits. Accessibility managers include this rule in internal coding standards. Welcoming Web assists teams by identifying when braille attributes are used without a required non-braille equivalent.
+
+How to fix missing non-braille equivalents
+
+1. Find elements using braille attributes
+
+Search for aria-braillelabel or aria-brailleroledescription in your markup. These elements need review.
+
+2. Add the matching non-braille attribute
+
+aria-braillelabel requires aria-label
+
+aria-brailleroledescription requires aria-roledescription
+
+3. Ensure both attributes convey consistent meaning
+
+The braille version should reflect the same purpose communicated by the non-braille version.
+
+### Incorrect example:
+
+```html
+<button aria-braillelabel="Save file">💾</button>
+```
+
+### Corrected version:
+
+```html
+<button aria-label="Save" aria-braillelabel="Save file">💾</button>
+```
+
+4. Avoid using braille attributes alone
+
+Never rely on braille-only labels because they are not supported by all assistive technologies.
+
+5. Validate with screen readers and braille devices
+
+Confirm that non-braille assistive technologies receive the correct labels and descriptions.
+
+## Best practice guidance
+
+Use braille attributes only when required and always ensure a matching non-braille attribute is present. Keep labels concise and consistent across components. Document the correct pairing of braille and non-braille attributes in your component library.
+
+## Compliance mapping
+
+Correct use of braille and non-braille equivalents helps teams work towards: - WCAG 2.2 non-text content and semantic guidance - ADA Title III digital access expectations - EN 301 549 assistive technology compatibility requirements - Equality Act 2010 duties for accessible digital communication
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects when aria-braillelabel or aria-brailleroledescription are used without the required non-braille equivalents. The platform maps these issues to WCAG criteria and provides guidance for correcting attribute usage.
+
+## Key points for development teams
+
+Braille attributes must always include non-braille equivalents. Screen readers require aria-label and aria-roledescription. Consistency improves clarity for all assistive technologies. Automated and manual audits confirm attribute accuracy. Documentation prevents misuse across components.
+
+## Call to action
+
+Run an audit Check your site for ARIA label issues. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the aria-braille-equivalent rule check
+
+It checks whether elements using braille-specific attributes also provide non-braille equivalents.
+
+Why must braille attributes have non-braille equivalents
+
+Because non-braille assistive technologies need standard text attributes to announce labels and descriptions.
+
+Can aria-braillelabel replace aria-label
+
+No. aria-braillelabel must never replace aria-label. Both must be used together.
+
+Can aria-brailleroledescription replace aria-roledescription
+
+No. aria-brailleroledescription must always be paired with aria-roledescription.
+
+What happens if only braille attributes are used
+
+Screen readers may not announce the correct label or role description.
+
+Do all assistive technologies support braille attributes
+
+No. Only some braille devices interpret these attributes.
+
+How does Welcoming Web help with braille attribute issues
+
+Welcoming Web highlights missing non-braille equivalents and provides guidance for fixing these issues.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

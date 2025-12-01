@@ -1,0 +1,128 @@
+---
+title: "Landmark Unique"
+description: "Landmarks should have a unique role or role/label/title combination"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Landmark Unique
+
+<Callout type="info">
+Landmarks should have a unique role or role/label/title combination
+</Callout>
+
+A document must present unique landmarks so users can understand and navigate the page structure without ambiguity. This blog explains what the landmark-unique rule checks, why unique landmark identification is essential, how to ensure each landmark exposes a distinct role or accessible name and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The landmark-unique rule checks whether each landmark region has a unique role or a unique combination of role and accessible name. Landmarks include regions such as banner, navigation, main, complementary, contentinfo and search.
+
+When multiple landmarks share the same role without an accessible name to differentiate them, screen readers may present the page structure as unclear or repetitive.
+
+Landmarks can be differentiated by: - using the correct ARIA role, - providing unique labelling through aria-label, - referencing visible text with aria-labelledby, - or combining the role with a meaningful title.
+
+## Why it matters
+
+Distinct landmark identification ensures users who rely on assistive technologies can understand the layout and move quickly between regions. When landmarks are not unique: - users may hear repeated “navigation” or “complementary” regions without knowing their purpose, - the page outline becomes confusing, - moving between sections requires trial and error, - users with cognitive or visual impairments may lose context, - global and local navigation may become indistinguishable.
+
+Unique landmark naming improves predictability and reduces cognitive load.
+
+## Who delivers it
+
+Front end developers apply correct landmark roles and ensure uniqueness through accessible naming. Designers define clear structural patterns so regions serve distinct purposes. Content authors help clarify visible headings for labelled regions. Accessibility specialists and QA testers validate that landmarks are unique and meaningful. Welcoming Web assists by detecting landmarks that share identical role and label combinations.
+
+How to ensure landmarks are unique
+
+1. Use the correct ARIA roles
+
+Assign roles based on the region’s purpose, such as nav, main, banner, complementary or contentinfo.
+
+2. Add accessible names to distinguish duplicates
+
+If a page needs multiple navigation regions, label them clearly.
+
+### Example:
+
+```html
+<nav aria-label="Primary navigation">…</nav><nav aria-label="Footer navigation">…</nav>
+```
+
+3. Use aria-labelledby when referencing visible text
+
+This keeps regions consistent with visible headings.
+
+4. Ensure contentinfo, banner and main remain unique
+
+These landmarks should appear only once, unless the page has multiple isolated contexts.
+
+5. Check template and CMS outputs
+
+Complex systems may accidentally generate repeated, unlabelled landmark regions.
+
+## Best practice guidance
+
+Use a clear naming strategy for multiple landmarks. For navigation, use labels such as “Main navigation”, “Secondary navigation” or “User account navigation”. Keep roles semantically accurate and avoid assigning extra landmarks unnecessarily. Document your naming logic in your design system so teams apply labels consistently.
+
+## Compliance mapping
+
+Ensuring unique landmark identification supports: - WCAG 2.2 Info and Relationships requirements, - WCAG 2.2 Navigable expectations for region clarity, - ADA Title III expectations for clear structural communication, - EN 301 549 guidance on programmatically determinable region relationships, - Equality Act 2010 duties for accessible page organisation.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies duplicate landmark roles and highlights missing accessible names. The platform provides guidance for assigning unique labels so users can navigate efficiently.
+
+## Key points for development teams
+
+Landmarks must be unique. Use accessible names to differentiate similar regions. Assign roles based on correct semantic purpose. Avoid unnecessary duplication. Validate CMS and template structures.
+
+## Call to action
+
+Run an audit Check your site for landmarks that lack unique identification. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the landmark-unique rule check
+
+It checks whether each landmark has a unique role or unique role and accessible name combination.
+
+Why must landmarks be unique
+
+They must be unique so users can understand and navigate page regions without confusion.
+
+How do I differentiate similar landmarks
+
+Provide accessible names using aria-label or aria-labelledby.
+
+Can I have multiple navigation landmarks
+
+Yes, but each must have a distinct accessible name.
+
+Do banner, main and contentinfo landmarks need to be unique
+
+Yes. These landmarks should appear only once per document.
+
+Does adding ARIA labels fix uniqueness
+
+ARIA labels help distinguish landmarks but must be used meaningfully.
+
+Does fixing landmark uniqueness guarantee WCAG compliance
+
+It supports navigation and structure-related requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with landmark uniqueness
+
+Welcoming Web identifies duplicate landmarks and provides guidance for assigning unique, meaningful labels.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

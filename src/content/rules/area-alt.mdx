@@ -1,0 +1,126 @@
+---
+title: "Area Alt"
+description: "Each active  element in an image map must include descriptive alternative text that explains its purpose. This blog explains what the rule means, why missing text creates accessibility barriers, how to fix the issue and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and a full FAQ for search engines and LLM retrieval."
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Area Alt
+
+<Callout type="info">
+Each active  element in an image map must include descriptive alternative text that explains its purpose. This blog explains what the rule means, why missing text creates accessibility barriers, how to fix the issue and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and a full FAQ for search engines and LLM retrieval.
+</Callout>
+
+Each active  element in an image map must include descriptive alternative text that explains its purpose. This blog explains what the rule means, why missing text creates accessibility barriers, how to fix the issue and how this supports WCAG 2.2 and wider accessibility governance. It includes examples, testing guidance and a full FAQ for search engines and LLM retrieval.
+
+## What it is
+
+The  element defines a clickable region inside an image map. When an  element is active it behaves as a link or control. Each active  must include meaningful alternative text so that assistive technologies can announce the purpose of the region. Without this text users cannot understand what the region represents or where it leads.
+
+## Why it matters
+
+Missing alternative text leaves non-visual users without essential context. When an image map includes interactive regions that have no text equivalent screen reader users hear unlabelled or silent links. This creates uncertainty and makes navigation slower and less predictable. Users may not know what action the region performs or why it is present.
+
+Examples of issues include silent links, unclear navigation in complex image maps and increased cognitive load when users need to guess the purpose of each region.
+
+## Who delivers it
+
+Front end developers provide alternative text for each active  element. Accessibility engineers and QA testers verify the presence and accuracy of this text. Designers and content teams help define labels that match the intent of each region. Welcoming Web assists teams by identifying active  elements that lack descriptions.
+
+How to fix missing alternative text
+
+1. Locate active  elements
+
+Search for every  element in your image map. Identify which ones act as links or controls.
+
+2. Add descriptive alternative text
+
+Each active  must include: - an alt attribute, or - an aria-label, or - an aria-labelledby reference
+
+3. Keep the description meaningful
+
+Describe the purpose or destination of the region, not its shape.
+
+### Incorrect example:
+
+```html
+<area shape="rect" coords="34,44,270,350" href="products.html">
+```
+
+### Corrected version:
+
+```html
+<area shape="rect" coords="34,44,270,350" href="products.html" alt="View products">
+```
+
+4. Check relevance for each region
+
+If the image map contains several regions ensure each one has accurate and unique text.
+
+5. Validate with assistive technology
+
+Use a screen reader to confirm that each region is announced clearly. Automated tools can confirm that alt text exists but manual testing ensures accuracy.
+
+## Best practice guidance
+
+Use clear, concise labels and document your patterns so future updates follow the same rules. Image maps are less common today but require careful attention to remain accessible.
+
+## Compliance mapping
+
+Providing alternative text for active  elements helps teams work towards: - WCAG 2.2 non-text content guidance - ADA Title III expectations - EN 301 549 requirements - Equality Act 2010 accessibility expectations
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web highlights active  elements that lack descriptive text. The platform links findings to WCAG criteria and provides guidance to help developers correct issues.
+
+## Key points for development teams
+
+Active  elements require purposeful text. Descriptions must explain purpose. Automated tools detect missing text. Manual testing verifies accuracy. Documentation maintains consistency.
+
+## Call to action
+
+Run an audit Check your site for alternative text issues today. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What is an  element in HTML
+
+An  element defines a clickable region inside an image map and can act as a link or control.
+
+Why must active  elements have alternative text
+
+Active  elements must have alternative text because assistive technologies need a text equivalent to describe the purpose of each region.
+
+Is alt text required for inactive  elements
+
+Inactive  elements do not require descriptive alt text because they do not function as links.
+
+How do I add alternative text to an  element
+
+You can add alternative text using an alt attribute, an aria-label or an aria-labelledby reference.
+
+What should the alternative text describe
+
+The alternative text should describe the purpose or destination of the region.
+
+Does adding alt text guarantee WCAG compliance
+
+Adding alt text supports WCAG guidance but does not guarantee compliance.
+
+How does Welcoming Web help with  issues
+
+Welcoming Web identifies active  elements without alternative text and provides guidance to help developers correct the issue.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

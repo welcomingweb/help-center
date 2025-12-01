@@ -1,0 +1,116 @@
+---
+title: "Frame Tested"
+description: "Frames should be tested with axe-core"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Frame Tested
+
+<Callout type="info">
+Frames should be tested with axe-core
+</Callout>
+
+Frames and iframes should be included in accessibility testing so issues inside embedded content are not missed. This blog explains what the frame-tested rule checks, why running axe-core inside frames matters, how to ensure embedded documents are covered in audits and how this supports WCAG-related accessibility goals. The article is fully original, SEO-optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The frame-tested rule checks whether &lt;iframe&gt; and &lt;frame&gt; elements load the axe-core script so automated accessibility checks can run inside embedded content. Many applications embed dashboards, forms or widgets inside frames. If the accessibility engine does not execute within those frames, issues inside them will not appear in audit results.
+
+Testing frames with axe-core helps teams see accessibility problems that affect users within embedded sections, not only in the top-level document.
+
+## Why it matters
+
+Users experience the entire page, including content inside frames. When frames are excluded from testing: - accessibility issues inside embedded content remain undetected, - form errors, focus problems or contrast issues within frames go unresolved, - users encounter barriers even when the main page appears compliant, - teams gain an incomplete picture of overall accessibility.
+
+Including frames in axe-core testing supports a more accurate understanding of user experience and reduces the risk of overlooking important issues.
+
+## Who delivers it
+
+Front end developers and test engineers configure axe-core to run inside frames. QA teams design test suites that include embedded content. Accessibility specialists review results from all document contexts. Welcoming Web assists by highlighting frames that are not covered by axe-core testing.
+
+How to ensure frames are tested with axe-core
+
+1. Load axe-core in framed content during testing
+
+Include the axe-core script within the documents loaded into &lt;iframe&gt; or &lt;frame&gt; elements when running automated audits.
+
+2. Configure automation tools to traverse frames
+
+Ensure integration tests, browser automation or CI pipelines execute axe-core within each embedded context.
+
+3. Coordinate with third-party providers
+
+When frames load third-party content, request accessibility testing details or run manual checks where automation is not possible.
+
+4. Review results at both top-level and frame level
+
+Combine findings from the main page and from each frame into a single remediation plan.
+
+5. Re-test after updates
+
+Re-run accessibility checks whenever embedded applications or framed content change.
+
+## Best practice guidance
+
+Treat content in frames as part of the same user journey. Document which frames are under your control and which come from third parties. Where possible, avoid unnecessary framing of content you own and consider integrating it directly so testing and remediation are simpler.
+
+## Compliance mapping
+
+Testing frames with axe-core supports: - WCAG 2.2 goals for consistent accessibility across all content, - ADA Title III expectations that embedded experiences are usable, - EN 301 549 guidance on accessibility of all web content in an application, - Equality Act 2010 duties to provide accessible services across the whole journey.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies frames that are not covered by automated tests and highlights where embedded content may contain untested accessibility issues. The platform helps teams plan more comprehensive audits that include both top-level pages and framed experiences.
+
+## Key points for development teams
+
+Frames must be included in accessibility testing. axe-core should run inside embedded documents. Untested frames can hide issues. Coordinate with third-party providers. Re-test when framed content changes.
+
+## Call to action
+
+Run an audit Check your site for frames that are not included in axe-core testing. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the frame-tested rule check
+
+It checks whether &lt;iframe&gt; and &lt;frame&gt; elements are included in axe-core accessibility testing.
+
+Why must frames be tested separately
+
+Because embedded documents can contain their own structures, forms and interactions that need review.
+
+How do I run axe-core inside a frame
+
+Load the axe-core script into the framed document and execute tests in that context.
+
+What about third-party iframes
+
+You may not be able to inject scripts, so work with providers or test manually.
+
+Does testing frames improve compliance
+
+It supports more complete coverage of accessibility issues but does not guarantee compliance.
+
+Is this required in production
+
+The requirement relates to testing coverage rather than live user-facing scripts.
+
+How does Welcoming Web help with frame testing
+
+Welcoming Web highlights frames that may not be included in automated audits and provides guidance to test them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

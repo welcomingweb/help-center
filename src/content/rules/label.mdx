@@ -1,0 +1,134 @@
+---
+title: "Label"
+description: "Form elements must have labels"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Label
+
+<Callout type="info">
+Form elements must have labels
+</Callout>
+
+Form elements must have clear labels so users can understand what information is required. This blog explains what the label rule checks, why labels are essential for accessible forms, how to apply correct labelling techniques and how this supports WCAG 2.2 and wider compliance expectations. The article is fully original, SEO-optimised and structured using the Welcoming Web content framework.
+
+## What it is
+
+The label rule checks whether form elements have associated labels that describe their purpose. Labels can be provided in several ways, including: - visible &lt;label&gt; elements linked with for and id, - labels wrapped directly around inputs, - programmatically associated labels using aria-label or aria-labelledby.
+
+Labels help assistive technologies announce the purpose of each form control, making the form usable and understandable.
+
+## Why it matters
+
+Form labels provide essential context. When labels are missing or unclear: - screen reader users cannot understand what information to enter, - users may submit incorrect or incomplete data, - cognitive load increases due to guesswork, - error messages become confusing because fields lack clear identification.
+
+Clear labels support predictable, usable form experiences and reduce user frustration.
+
+## Who delivers it
+
+Content authors write clear labels that describe expected input. Designers plan form layouts where labels are consistently placed. Front end developers implement label associations correctly using semantic HTML. Accessibility specialists and QA testers validate label presence and correctness. Welcoming Web assists by detecting form fields without appropriate labels.
+
+How to ensure form elements have labels
+
+1. Use the &lt;label&gt; element linked with for and id
+
+This is the most robust method.
+
+### Example:
+
+```html
+<label for="email">Email address</label><input id="email" type="email">
+```
+
+2. Wrap the &lt;input&gt; inside a &lt;label&gt; when appropriate
+
+This method is acceptable for simple forms.
+
+```html
+<label>Accept terms <input type="checkbox"></label>
+```
+
+3. Use ARIA labels only when necessary
+
+ARIA should support, not replace, semantic labelling.
+
+```html
+<input type="search" aria-label="Search site">
+```
+
+4. Include visible labels wherever possible
+
+Placeholder text cannot replace a label and disappears when users type.
+
+5. Check dynamic and generated forms
+
+Ensure CMS templates and UI components consistently apply labels.
+
+## Best practice guidance
+
+Keep labels short, clear and descriptive. Place labels close to their fields to improve comprehension. Ensure label and input associations do not break when layouts change. For multilingual sites, ensure labels are translated accurately and consistently. Always provide visible labels rather than relying on placeholders.
+
+## Compliance mapping
+
+Providing form labels supports: - WCAG 2.2 Labels and Instructions, - WCAG 2.2 Name, Role, Value requirements, - ADA Title III expectations for operable and understandable forms, - EN 301 549 requirements for programmatically determinable labels, - Equality Act 2010 duties for accessible interactions.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects form fields missing labels or using inadequate labelling techniques. The platform highlights unlabeled controls and provides guidance for applying correct label structures.
+
+## Key points for development teams
+
+Every form element needs a label. Use semantic labelling via &lt;label&gt;. Place labels visually near fields. Avoid relying on placeholders. Validate labels in dynamic forms.
+
+## Call to action
+
+Run an audit Check your site for form fields without accessible labels. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the label rule check
+
+It checks whether form controls have accessible labels that describe their purpose.
+
+Why are labels important
+
+Labels help users understand what information is required and support screen reader navigation.
+
+Can placeholders replace labels
+
+No. Placeholder text is not a reliable substitute for visible labels.
+
+How do I associate a label with an input
+
+Use a &lt;label&gt; with a matching for attribute and input id.
+
+Can I use ARIA for labelling
+
+ARIA may be used when visual labels are not possible, but semantic labels are preferred.
+
+Do dynamic forms need labels
+
+Yes. All interactive fields must have clear, accessible labels.
+
+Does adding labels guarantee WCAG compliance
+
+It supports labelling requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with labelling issues
+
+Welcoming Web identifies missing or incorrect labels and provides guidance for fixing them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

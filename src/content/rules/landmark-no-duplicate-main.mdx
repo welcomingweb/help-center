@@ -1,0 +1,126 @@
+---
+title: "Landmark No Duplicate Main"
+description: "Document should not have more than one main landmark"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Landmark No Duplicate Main
+
+<Callout type="info">
+Document should not have more than one main landmark
+</Callout>
+
+A document must contain no more than one main landmark so users can clearly identify the primary content of the page. This blog explains what the landmark-no-duplicate-main rule checks, why only one main region should exist, how to ensure correct landmark usage and how this supports WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The landmark-no-duplicate-main rule checks whether more than one main landmark appears in a document. The main landmark, represented by the &lt;main&gt; element, identifies the dominant content of the page. It should appear only once and must not be duplicated across layout sections or nested templates.
+
+Multiple main landmarks confuse assistive technologies that expect a single, clear region containing the primary content.
+
+## Why it matters
+
+The main landmark serves as a key navigation anchor for screen reader users. When multiple main regions appear: - users may hear several unrelated “main” landmarks, - the structure becomes unclear or misleading, - navigating to the primary content becomes more difficult, - assistive technologies may misinterpret how content is organised, - users may lose context about which region contains the core information.
+
+A single main landmark ensures predictable, efficient navigation across the page.
+
+## Who delivers it
+
+Front end developers implement the &lt;main&gt; element correctly and avoid applying role="main" to multiple regions. Designers establish clear layout patterns that support a single primary content area. Content authors maintain coherent content hierarchy. Accessibility specialists and QA testers verify that only one main region exists. Welcoming Web assists by identifying duplicate main landmarks.
+
+How to ensure there is only one main landmark
+
+1. Use a single &lt;main&gt; element per page
+
+Place it directly under the &lt;body&gt; element.
+
+### Correct example:
+
+```html
+<body>  <header>…</header>  <main>Main page content</main>  <footer>…</footer></body>
+```
+
+2. Do not apply role="main" to additional sections
+
+Avoid using ARIA attributes to elevate other regions to main status.
+
+3. Avoid duplicate main elements in templates
+
+Templates, page builders or CMS blocks may generate multiple &lt;main&gt; elements unintentionally.
+
+4. Use semantic HTML
+
+Rely on the semantic &lt;main&gt; element instead of adding ARIA main roles to &lt;div&gt; containers.
+
+5. Review multi-part page layouts
+
+Ensure secondary sections or interactive panels do not use main semantics.
+
+## Best practice guidance
+
+Ensure the main content area is visually distinct and clearly communicates its importance. Avoid splitting core content into separate unrelated containers. Document landmark usage in your design system to prevent accidental duplication across teams.
+
+## Compliance mapping
+
+Using only one main landmark supports: - WCAG 2.2 Info and Relationships success criteria, - WCAG 2.2 Navigable requirements for region consistency, - ADA Title III expectations for predictable navigation, - EN 301 549 guidance on programmatically determinable landmarks, - Equality Act 2010 duties for accessible content hierarchy.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects duplicate main landmarks and highlights incorrect role usage. The platform provides guidance to restore a single, valid main region to improve clarity and navigability.
+
+## Key points for development teams
+
+Use only one main landmark. Avoid ARIA roles that create duplicate main regions. Keep the main region at the top level. Check templates and CMS output. Use semantic HTML for primary content.
+
+## Call to action
+
+Run an audit Check your site for duplicate main landmarks. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the landmark-no-duplicate-main rule check
+
+It checks whether more than one main landmark appears on a document.
+
+Why is only one main region allowed
+
+One main region ensures users can reliably locate the primary content.
+
+Can a page ever use more than one main landmark
+
+Only in rare cases where fully separate contexts exist. Typical pages should use one.
+
+What causes duplicate main landmarks
+
+CMS templates, layout inheritance or incorrect ARIA roles often lead to duplication.
+
+Does &lt;main&gt; always map to the main landmark
+
+Yes, &lt;main&gt; automatically maps to the main region.
+
+How do I fix duplicate main regions
+
+Remove extra &lt;main&gt; elements or ARIA main roles and consolidate content into one primary region.
+
+Does correcting main placement guarantee WCAG compliance
+
+It supports structure requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with main landmark issues
+
+Welcoming Web identifies duplicate main landmarks and offers guidance to correct structural inconsistencies.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

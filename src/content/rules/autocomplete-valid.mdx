@@ -1,0 +1,150 @@
+---
+title: "Autocomplete Valid"
+description: "autocomplete attribute must be used correctly"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Autocomplete Valid
+
+<Callout type="info">
+autocomplete attribute must be used correctly
+</Callout>
+
+The autocomplete attribute must be valid and suitable for each form field’s purpose. This blog explains what the autocomplete-valid rule checks, why correct autocomplete usage matters for usability and accessibility, how to fix issues highlighted during audits and how this supports WCAG 2.2 and wider accessibility governance. The article includes examples, testing guidance and a full FAQ designed for search engines and LLM retrieval.
+
+## What it is
+
+The autocomplete-valid rule checks whether the value of the autocomplete attribute is valid and appropriate for the form field where it is used. HTML defines a controlled vocabulary of autocomplete tokens such as name, email, address-line1, postal-code, username and new-password.
+
+Each input field should use an autocomplete value that accurately reflects the type of information the user is expected to provide. Invalid tokens and mismatched values cause browsers to ignore autocomplete or suggest incorrect data.
+
+## Why it matters
+
+Correct autocomplete use improves both accessibility and usability. Users who rely on password managers, browser autofill or assistive technologies benefit from fields that advertise their purpose accurately. When autocomplete values are invalid or unsuitable, issues include:
+
+incorrect suggestions for sensitive fields,
+
+missing autofill assistance,
+
+difficulty completing long forms,
+
+increased cognitive and physical effort.
+
+For users with mobility, cognitive or vision impairments, accurate autocomplete reduces typing, speeds up interaction and lowers the chance of errors.
+
+## Who delivers it
+
+Front end developers and form designers assign appropriate autocomplete values when building forms. Accessibility engineers and QA testers verify these values as part of manual and automated audits. Product teams and UX designers document recommended tokens for common patterns such as sign-up, checkout and profile forms. Welcoming Web assists teams by detecting invalid or unsuitable autocomplete attributes.
+
+How to fix incorrect autocomplete usage
+
+1. Identify fields using autocomplete
+
+Search the form markup for the autocomplete attribute on input and form elements.
+
+2. Check that the value is valid
+
+Compare the value to the HTML specification token list. Remove or correct any tokens that do not match valid values.
+
+3. Match the value to the field’s purpose
+
+Ensure that the autocomplete token describes the type of data expected.
+
+### Incorrect example:
+
+```html
+<input type="email" name="email" autocomplete="username">
+```
+
+### Corrected version:
+
+```html
+<input type="email" name="email" autocomplete="email">
+```
+
+Another example for a password creation field:
+
+```html
+<input type="password" name="new-password" autocomplete="new-password">
+```
+
+4. Use section-specific prefixes when needed
+
+For multi-person forms use section prefixes such as section-billing or section-shipping so browsers can distinguish between addresses.
+
+5. Validate behaviour with real browsers and assistive technologies
+
+Test forms using browser autofill, password managers and screen readers to confirm that suggestions are appropriate and consistent.
+
+## Best practice guidance
+
+Design forms with clear labels, instructions and autocomplete tokens. Avoid using generic or incorrect tokens for convenience. For sensitive fields such as one-time codes or security questions, consider whether autocomplete is appropriate and configure accordingly. Keep patterns consistent across pages so users can rely on familiar behaviour.
+
+## Compliance mapping
+
+Correct use of the autocomplete attribute supports teams working towards:
+
+WCAG 2.2 success criteria on input assistance and form completion,
+
+ADA Title III expectations for usable and accessible forms,
+
+EN 301 549 requirements for accessible user interaction,
+
+Equality Act 2010 duties for barrier-free digital services.
+
+Welcoming Web supports alignment with recognised standards but does not certify compliance.
+
+## How Welcoming Web supports teams
+
+Welcoming Web identifies invalid or unsuitable autocomplete values across forms and maps these findings to WCAG criteria. The platform provides guidance so developers can correct tokens, improve form usability and reduce friction for keyboard and assistive technology users.
+
+## Key points for development teams
+
+autocomplete values must be valid tokens. Tokens must match the field’s actual purpose. Correct autocomplete improves form speed and accuracy. Automated and manual audits help validate behaviour. Consistent patterns support accessible user journeys.
+
+## Call to action
+
+Run an audit Check your site for invalid or unsuitable autocomplete values. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the autocomplete-valid rule check
+
+It checks whether the value of the autocomplete attribute is valid and appropriate for the form field where it is used.
+
+Why must autocomplete values be valid
+
+Because browsers and assistive technologies rely on recognised tokens to provide correct autofill support.
+
+Can I invent my own autocomplete values
+
+No. Only tokens defined in the HTML specification are valid. Custom values are ignored.
+
+How do I choose the right autocomplete value
+
+Match the token to the kind of data the user is entering, such as email, name or postal-code.
+
+Does incorrect autocomplete affect accessibility
+
+Yes. Incorrect or missing autocomplete can increase effort and make complex forms harder to complete for many users.
+
+Should all fields use autocomplete
+
+Not always. Use autocomplete when it helps users, especially for repeated information such as addresses and contact details.
+
+How does Welcoming Web help with autocomplete issues
+
+Welcoming Web detects invalid or unsuitable autocomplete values and provides guidance to help developers correct them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>

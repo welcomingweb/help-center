@@ -1,0 +1,126 @@
+---
+title: "Landmark No Duplicate Contentinfo"
+description: "Document should not have more than one contentinfo landmark"
+---
+
+import { Callout } from 'nextra/components'
+import { CTA2 } from '@components/mdx/HelpUI'
+
+# Landmark No Duplicate Contentinfo
+
+<Callout type="info">
+Document should not have more than one contentinfo landmark
+</Callout>
+
+A document must contain no more than one contentinfo landmark so users can identify the global footer consistently across pages. This blog explains what the landmark-no-duplicate-contentinfo rule checks, why limiting contentinfo to one instance supports clear navigation, how to implement correct landmark usage and how this aligns with WCAG 2.2 and wider accessibility expectations. The article is fully original, accurate and structured using the Welcoming Web content framework.
+
+## What it is
+
+The landmark-no-duplicate-contentinfo rule checks whether the document includes more than one contentinfo landmark. The contentinfo landmark, usually represented by a top-level &lt;footer&gt; element, provides global information such as copyright details, legal notices, organisational information or persistent resources.
+
+The contentinfo landmark is intended to appear only once at the document’s top level. When multiple contentinfo landmarks are present, assistive technologies may misinterpret the structural outline.
+
+## Why it matters
+
+Screen reader users rely on landmarks to understand page structure quickly. When multiple contentinfo landmarks appear: - users may hear several “contentinfo” regions even when only one represents the global footer, - the page outline becomes unclear or confusing, - users may mistake section-level footers for global site information, - navigation between regions becomes unpredictable, - assistive technologies may skip or miscategorise additional footers.
+
+A single, consistent contentinfo landmark ensures intuitive navigation and predictable structure.
+
+## Who delivers it
+
+Front end developers implement correct footer structure using semantic &lt;footer&gt; elements. Designers maintain a single global footer in templates. Content authors avoid adding multiple footers with global information. Accessibility specialists and QA testers verify that only one contentinfo landmark exists. Welcoming Web assists by detecting duplicate contentinfo regions.
+
+How to ensure there is only one contentinfo landmark
+
+1. Use a single top-level &lt;footer&gt; element
+
+Place the global footer directly under the &lt;body&gt; element.
+
+### Correct example:
+
+```html
+<body>  <main>…</main>  <footer role="contentinfo">Global site information</footer></body>
+```
+
+2. Avoid applying role="contentinfo" to section-level footers
+
+Footers within &lt;article&gt;, &lt;section&gt; or &lt;aside&gt; components should not act as contentinfo landmarks.
+
+3. Remove accidental duplicate footers
+
+Complex layouts or CMS templates may generate multiple footer elements. Ensure only one maps to contentinfo.
+
+4. Use semantic HTML
+
+Rely on the implicit behaviour of &lt;footer&gt; elements and avoid adding ARIA roles unnecessarily.
+
+5. Review reused components
+
+Ensure widgets, design system elements or UI components do not include unintended contentinfo roles.
+
+## Best practice guidance
+
+Make the global footer clear, consistent and positioned at the end of the page. Include only content that applies across the entire site. Keep landmark usage documented within design systems to prevent accidental duplication.
+
+## Compliance mapping
+
+Using only one contentinfo landmark supports: - WCAG 2.2 Info and Relationships requirements, - WCAG 2.2 Navigable expectations for region clarity, - ADA Title III expectations for predictable page structure, - EN 301 549 guidance on programmatically determinable regions, - Equality Act 2010 duties for accessible information hierarchy.
+
+Welcoming Web supports alignment with recognised standards but does not issue or guarantee compliance certification.
+
+## How Welcoming Web supports teams
+
+Welcoming Web detects duplicate contentinfo landmarks and highlights incorrect structural usage. The platform provides guidance for restoring a single, valid landmark to improve the clarity of the page outline.
+
+## Key points for development teams
+
+Use only one contentinfo landmark. Do not assign role="contentinfo" to section-level footers. Place the global footer at the top level. Avoid duplicate footer components. Validate CMS and template output.
+
+## Call to action
+
+Run an audit Check your site for duplicate contentinfo landmarks. Supports WCAG 2.2 and ADA goals.
+
+## FAQs
+
+What does the landmark-no-duplicate-contentinfo rule check
+
+It checks whether the document contains more than one contentinfo landmark.
+
+Why is only one contentinfo landmark allowed
+
+One contentinfo landmark ensures users can reliably identify the global footer.
+
+Can sections have their own footers
+
+Yes, but they must not use the contentinfo role.
+
+What causes duplicate contentinfo landmarks
+
+Template inheritance, CMS configurations or misuse of ARIA roles often lead to duplication.
+
+Does &lt;footer&gt; always map to contentinfo
+
+A top-level &lt;footer&gt; becomes the contentinfo landmark, but section-level footers do not.
+
+How do I fix duplicate contentinfo landmarks
+
+Remove unnecessary roles or convert section footers to semantic section-level footers.
+
+Does correcting contentinfo placement guarantee WCAG compliance
+
+It supports structure Requirements but does not guarantee full compliance.
+
+How does Welcoming Web help with contentinfo issues
+
+Welcoming Web identifies duplicate contentinfo landmarks and provides guidance to correct them.
+
+Disclaimer
+
+Welcoming Web supports accessibility improvement and alignment with recognised standards but does not issue or guarantee compliance certification.
+
+<CTA2
+  title="Need More Help?"
+  description="Schedule a personal support session or join our live training webinars."
+  buttonText="Contact Support"
+  buttonLink="https://welcomingweb.com/contact"
+/>
