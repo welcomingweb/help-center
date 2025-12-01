@@ -28,5 +28,6 @@ export default {
   'dashboard-analytics': 'Dashboard & Analytics',
   'ai-remediations': 'AI Remediations & Features',
   'developer-resources': 'Developer Resources',
-  'compliance-standards': 'Compliance & Standards'
+  'compliance-standards': 'Compliance & Standards',
+  'rules': 'Accessibility Rules'
 }
