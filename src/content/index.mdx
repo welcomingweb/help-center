@@ -49,7 +49,7 @@ import Link from 'next/link'
             href="#categories"
             className="scroll-smooth px-5 py-3 text-sm font-medium border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition inline-flex items-center gap-2"
           >
-            Browse all topics
+            Browse topics
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="w-6 h-6 rotate-90">
               <path d="M502.6 278.6c12.5 12.5 12.5 32.8 0 45.3l-128 128c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L402.7 352H192c-88.4 0-160-71.6-160-160V80c0-17.7 14.3-32 32-32s32 14.3 32 32v112c0 52.9 43.1 96 96 96h210.7l-73.4-73.4c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l128 128z" />
             </svg>
@@ -110,7 +110,7 @@ import Link from 'next/link'
                 </p>
               </div>
               <span className="mt-5 inline-flex items-center gap-1 underline underline-offset-2 font-medium text-sm text-blue-700 dark:text-blue-300 group-hover:text-blue-900 dark:group-hover:text-white">
-                Get Help
+                Support
               </span>
             </div>
           </div>
@@ -121,19 +121,19 @@ import Link from 'next/link'
             title: 'Book a Demo',
             desc: 'Schedule a live walkthrough of WelcomingWeb with our accessibility experts.',
             href: 'https://welcomingweb.com/book-demo',
-            cta: 'Book Now'
+            cta: 'Book demo'
           },
           {
             title: 'Integration Guides',
             desc: 'Follow step-by-step tutorials for WordPress, Shopify, React and more.',
-            href: '/platform-integrations',
-            cta: 'View Docs'
+            href: '/integrations',
+            cta: 'Integration docs'
           },
           {
             title: 'Compliance Services',
             desc: 'Request a manual audit, VPAT®, or legal support for enterprise compliance.',
-            href: '/compliance',
-            cta: 'Learn More'
+            href: '/compliance-standards',
+            cta: 'Compliance info'
           }
         ].map((item, index) => (
           <Link key={index} href={item.href} className="group block" aria-label={item.cta}>

@@ -197,12 +197,13 @@ export function EditorDemo({ screenshot, hotspots = [] }) {
 }
  
 
-export function GifPreview({ src, caption, maxWidth = '100%' }) {
+export function GifPreview({ src, caption, maxWidth = '100%', staticSrc }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  
+  const staticPreview = staticSrc || src.replace('.gif', '-static.jpg');
+
   return (
     <div className="my-6" style={{ maxWidth }}>
-      <div 
+      <div
         className="relative cursor-pointer"
         onClick={() => setIsPlaying(!isPlaying)}
       >
@@ -215,7 +216,7 @@ export function GifPreview({ src, caption, maxWidth = '100%' }) {
           }}
         />
         <img
-          src={src.replace('.gif', '-static.jpg')}
+          src={staticPreview}
           alt={caption}
           className="rounded-lg border"
           style={{
@@ -276,7 +277,7 @@ export function VersionUpdate({ version, date, highlights }) {
               <p className="text-sm text-gray-600">{highlight.description}</p>
               {highlight.link && (
                 <a href={highlight.link} className="text-sm text-blue-600 hover:underline">
-                  Learn more
+                  View release details
                 </a>
               )}
             </div>
@@ -504,7 +505,7 @@ export function FAQ({ items }) {
               {item.answer}
               {item.link && (
                 <a href={item.link} className="text-blue-600 hover:underline ml-2">
-                  Learn more →
+                  View related documentation →
                 </a>
               )}
             </div>
@@ -715,7 +716,7 @@ export function Spacer({ size = 'md' }) {
 export function CTA1({
   title = 'Join Us Today!',
   description = 'Get access to exclusive content and features by signing up.',
-  buttonText = 'Learn More',
+  buttonText = 'View details',
   buttonLink = '#',
 }) {
   const external = isExternal(buttonLink);
@@ -763,7 +764,7 @@ export function CTA1({
 export function CTA2({
   title = 'Join Us Today!',
   description = 'Get access to exclusive content and features by signing up.',
-  buttonText = 'Learn More',
+  buttonText = 'View details',
   buttonLink = '#',
 }) {
 	
@@ -810,7 +811,7 @@ export function CTA2({
 export function CTA3({
   title = 'Join Us Today!',
   description = 'Get access to exclusive content and features by signing up.',
-  buttonText = 'Learn More',
+  buttonText = 'View details',
   buttonLink = '#',
 }) {
 	

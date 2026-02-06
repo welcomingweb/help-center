@@ -82,10 +82,6 @@ export const metadata = {
     images: [BRAND.ogImage]
   },
   applicationName: 'WelcomingWeb Help Center',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#2962FF' },
-    { media: '(prefers-color-scheme: dark)', color: '#0B1220' }
-  ],
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',
@@ -93,12 +89,19 @@ export const metadata = {
   }
 }
 
+export const viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#2962FF' },
+    { media: '(prefers-color-scheme: dark)', color: '#0B1220' }
+  ]
+}
+
 // 🎉 Optional banner (keep/edit/remove)
 const banner = (
   <Banner storageKey="welcomingweb-docs-banner">
     🎉 New: AI Sign Language Avatars now in beta!{' '}
     <a href="/ai-remediations/sign-language-interpreter" style={{ textDecoration: 'underline' }}>
-      Learn more →
+      View Sign Language feature →
     </a>
   </Banner>
 )
