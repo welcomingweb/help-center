@@ -18,7 +18,7 @@ export default function Navbar() {
   const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
 
   const navItems = [
-    { name: 'WelcomingWeb.com', href: 'https://welcomingweb.com' },
+    { name: 'Welcoming Web.com', href: 'https://welcomingweb.com' },
     { name: 'Contact', href: 'https://welcomingweb.com/contact' }
   ]
 
@@ -31,7 +31,7 @@ export default function Navbar() {
             <div className="relative w-72 h-14">
               <Image
                 src="/brand/welcomingweb-logo.png"
-                alt="WelcomingWeb"
+                alt="Welcoming Web"
                 fill
                 className="object-contain dark:invert"
               />

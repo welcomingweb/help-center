@@ -1,6 +1,6 @@
 ---
 title: "Google Tag Manager (GTM) Integration"
-description: "Install the WelcomingWeb Accessibility Widget via the GTM Community Template Gallery (recommended) or from file."
+description: "Install the Welcoming Web Accessibility Widget via the GTM Community Template Gallery (recommended) or from file."
 ---
 
 import { Callout, Steps } from 'nextra/components'
@@ -18,22 +18,22 @@ import { GifPreview, CTA2 } from '@components/mdx/HelpUI'
 
 ### Step 1: Add the template (Community Template Gallery — recommended)
 
-In **GTM → Templates → Tag Templates → Search Gallery**, search for **WelcomingWeb Accessibility Widget** and click **Add to workspace**.
+In **GTM → Templates → Tag Templates → Search Gallery**, search for **Welcoming Web Accessibility Widget** and click **Add to workspace**.
 
 <GifPreview
   src="/gifs/gtm-gallery-add.webp"
-  caption="Adding the WelcomingWeb template from the Community Template Gallery"
+  caption="Adding the Welcoming Web template from the Community Template Gallery"
 />
 
 ### Step 2: Create a tag
 
-Go to **Tags → New → WelcomingWeb Accessibility Widget**, name your tag, and fill out:
+Go to **Tags → New → Welcoming Web Accessibility Widget**, name your tag, and fill out:
 
-- **Widget ID (UUID)** — paste your widget ID from the WelcomingWeb dashboard.
+- **Widget ID (UUID)** — paste your widget ID from the Welcoming Web dashboard.
 
 <GifPreview
   src="/gifs/gtm-create-tag.webp"
-  caption="Creating the WelcomingWeb tag and entering the Widget ID"
+  caption="Creating the Welcoming Web tag and entering the Widget ID"
 />
 
 ### Step 3: (Recommended) Configure Consent Settings
@@ -78,7 +78,7 @@ A single script is injected:
 <script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js?wid=YOUR_WIDGET_ID"></script>
 ```
 
-All styling, positioning, and behavior defaults are controlled by your server-side configuration (WelcomingWeb dashboard).
+All styling, positioning, and behavior defaults are controlled by your server-side configuration (Welcoming Web dashboard).
 
 ## Consent & CSP
 
@@ -94,7 +94,7 @@ Common issues and quick fixes:
 - **Tag isn’t firing?** Ensure the trigger matches your pages and no blocking triggers/consent rules prevent execution.
 - **Consent gating?** If consent is denied, the tag won’t run. Verify **Advanced → Consent Settings** and your CMP integration.
 - **CSP errors?** Use GTM’s nonce-aware snippet and allow `https://cdn-01.welcomingweb.com` in your `script-src`.
-- **Duplicate widget?** Make sure only one WelcomingWeb tag fires per page view.
+- **Duplicate widget?** Make sure only one Welcoming Web tag fires per page view.
 
 ## Using the JavaScript API
 

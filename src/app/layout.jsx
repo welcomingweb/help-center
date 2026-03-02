@@ -1,4 +1,4 @@
-// 🌐 WelcomingWeb Help Center — Nextra Root Layout
+// 🌐 Welcoming Web Help Center — Nextra Root Layout
 import { Footer, Layout, Navbar } from 'nextra-theme-docs'
 import { Banner, Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
@@ -19,24 +19,24 @@ import './globals.css'
 // SEO / Branding
 // ───────────────────────────────────────────────────────────────────────────────
 const BRAND = {
-  siteName: 'WelcomingWeb Help Center',
+  siteName: 'Welcoming Web Help Center',
   domain: 'help.welcomingweb.com',
   rootUrl: 'https://help.welcomingweb.com',
   mainUrl: 'https://welcomingweb.com',
-  twitterHandle: '@WelcomingWeb', // update if different
+  twitterHandle: '@Welcoming Web', // update if different
   ogImage: 'https://help.welcomingweb.com/og/help-center-og.png' // provide this asset
 }
 
 export const metadata = {
   metadataBase: new URL(BRAND.rootUrl),
   title: {
-    default: 'WelcomingWeb Help Center',
-    template: '%s — WelcomingWeb Help Center'
+    default: 'Welcoming Web Help Center',
+    template: '%s — Welcoming Web Help Center'
   },
   description:
-    'Official help and developer documentation for WelcomingWeb — the next-gen, AI-centred accessibility platform. Learn installation, widget configuration, remediation, and compliance workflows.',
+    'Official help and developer documentation for Welcoming Web — the next-gen, AI-centred accessibility platform. Learn installation, widget configuration, remediation, and compliance workflows.',
   keywords: [
-    'WelcomingWeb',
+    'Welcoming Web',
     'Accessibility',
     'AccessiblyKit',
     'WCAG',
@@ -57,9 +57,9 @@ export const metadata = {
     follow: true
   },
   openGraph: {
-    title: 'WelcomingWeb Help Center',
+    title: 'Welcoming Web Help Center',
     description:
-      'Learn how to install, configure, and use WelcomingWeb widgets, tools, and AI-powered accessibility features.',
+      'Learn how to install, configure, and use Welcoming Web widgets, tools, and AI-powered accessibility features.',
     url: BRAND.rootUrl,
     siteName: BRAND.siteName,
     locale: 'en_US',
@@ -69,19 +69,19 @@ export const metadata = {
         url: BRAND.ogImage,
         width: 1200,
         height: 630,
-        alt: 'WelcomingWeb Help Center'
+        alt: 'Welcoming Web Help Center'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'WelcomingWeb Help Center',
+    title: 'Welcoming Web Help Center',
     description:
-      'Explore support articles, developer guides, and platform documentation for WelcomingWeb.',
+      'Explore support articles, developer guides, and platform documentation for Welcoming Web.',
     creator: BRAND.twitterHandle,
     images: [BRAND.ogImage]
   },
-  applicationName: 'WelcomingWeb Help Center',
+  applicationName: 'Welcoming Web Help Center',
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',
@@ -112,10 +112,10 @@ const navbar = (
     logo={
       <div className="flex items-center shrink-0 min-w-[260px] sm:min-w-[280px]">
         {/* Logo */}
-        <div className="relative w-44 h-10" aria-label="WelcomingWeb">
+        <div className="relative w-44 h-10" aria-label="Welcoming Web">
           <Image
             src="/brand/welcomingweb-logo.png"
-            alt="WelcomingWeb"
+            alt="Welcoming Web"
             fill
             priority
             className="object-contain"
@@ -141,9 +141,9 @@ const navbar = (
           target="_blank"
           rel="noopener noreferrer"
           className="px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-300"
-          aria-label="Visit WelcomingWeb.com"
+          aria-label="Visit Welcoming Web.com"
         >
-          WelcomingWeb.com
+          Welcoming Web.com
         </Link>
 
         {/* Mobile Search Button */}
@@ -165,11 +165,11 @@ function JsonLd() {
   const org = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'WelcomingWeb',
+    name: 'Welcoming Web',
     url: BRAND.mainUrl,
     logo: 'https://welcomingweb.com/brand/welcomingweb-logo.png',
     sameAs: [
-      'https://x.com/WelcomingWeb',
+      'https://x.com/Welcoming Web',
       'https://www.linkedin.com/company/welcomingweb'
       // add others if available
     ]
@@ -190,10 +190,10 @@ function JsonLd() {
   const collectionPage = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'WelcomingWeb Help Center',
+    name: 'Welcoming Web Help Center',
     url: BRAND.rootUrl,
     description:
-      'Official help and developer documentation for WelcomingWeb — installation, configuration, remediation, and compliance guides.'
+      'Official help and developer documentation for Welcoming Web — installation, configuration, remediation, and compliance guides.'
   }
 
   return (
