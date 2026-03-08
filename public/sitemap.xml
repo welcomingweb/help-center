@@ -3,387 +3,241 @@
   <url>
     <loc>https://help.welcomingweb.com/</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/ai-remediations/sign-language-interpreter</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/getting-started/register-account</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/getting-started</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/getting-started/add-first-site</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/getting-started/explore-dashboard</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/getting-started/understanding-your-accessibility-report</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/getting-started/interpreting-accessibility-metrics</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/getting-started/improving-your-score</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/widget-configuration</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/widget-configuration/basic-configuration</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/widget-configuration/appearance-settings</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/widget-configuration/advanced-settings</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/integrations</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/integrations/wordpress-integration</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/integrations/wix-integration</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/integrations/shopify-integration</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/integrations/webflow-integration</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/integrations/advanced-embedding-options</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/integrations/gtm-integration</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/integrations/html-embed</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/integrations/react-integration</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://app.welcomingweb.com/register</loc>
-    <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/integrations/spa-integration</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/integrations/squarespace-integration</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/getting-started/accessibility-scan-results</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2025-09-16</lastmod>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/widget-configuration/intro</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2025-09-16</lastmod>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/getting-started/configure-widget</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2025-09-16</lastmod>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/support</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2025-09-16</lastmod>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/dashboard-analytics</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/dashboard-analytics/dashboard-overview</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/dashboard-analytics/scan-history-and-reports</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/dashboard-analytics/interpreting-scan-results</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/dashboard-analytics/widget-usage-insights</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/docs/developer-api</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2025-09-16</lastmod>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/ai-remediations</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/ai-remediations/contrast-adjustment</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/ai-remediations/image-descriptions</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/ai-remediations/skip-navigation</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/ai-remediations/dictionary-ai</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/features/pause-animations</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2025-09-16</lastmod>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/docs/react-nextjs-integration</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2025-09-16</lastmod>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/ai-remediations/ai-keyboard-navigation</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/ai-remediations/readability-optimizer</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/ai-remediations/ai-translation</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/developer-resources</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/developer-resources/javascript-api</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/developer-resources/rest-api-guide</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/developer-resources/webhooks-integration</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/compliance-standards</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/compliance-standards/wcag-compliance</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/compliance-standards/vpat-reports</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/compliance-standards/legal-guidelines</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/accessibility-best-practices</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/accessibility-best-practices/alt-text-guidelines</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/accessibility-best-practices/color-contrast</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/accessibility-best-practices/keyboard-access</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/accessibility-best-practices/semantic-html</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/platform-integrations</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2025-09-16</lastmod>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/compliance</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://app.welcomingweb.com/login</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://app.welcomingweb.com/dashboard</loc>
-    <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://help.welcomingweb.com/features/text-magnifier</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://app.welcomingweb.com/forgot-password</loc>
     <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://app.welcomingweb.com/terms</loc>
-    <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://app.welcomingweb.com/privacy</loc>
-    <lastmod>2025-09-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
 </urlset>
