@@ -1,3 +1,5 @@
+# Welcoming Web Help Center robots policy
+
 User-agent: *
 Allow: /
 

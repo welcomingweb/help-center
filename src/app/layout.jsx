@@ -1,40 +1,37 @@
-// 🌐 Welcoming Web Help Center — Nextra Root Layout
-import { Footer, Layout, Navbar } from 'nextra-theme-docs'
+import { Layout, Navbar } from 'nextra-theme-docs'
 import { Banner, Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 
 import Image from 'next/image'
 import Link from 'next/link'
 
-import InjectSearchWidget from '@components/integration/InjectSearchWidget'
 import InjectChatbotWidget from '@components/integration/InjectChatbotWidget'
+import InjectSearchWidget from '@components/integration/InjectSearchWidget'
+import InjectTagManager from '@components/integration/InjectTagManager'
+import CustomFooter from '@components/layout/CustomFooter'
 import PopupModalTrigger from '@components/popup/PopupModalTrigger'
 import MobileSearchTriggerButton from '@components/search/MobileSearchTriggerButton'
-import CustomFooter from '@components/layout/CustomFooter'
 
 import 'nextra-theme-docs/style.css'
 import './globals.css'
 
-// ───────────────────────────────────────────────────────────────────────────────
-// SEO / Branding
-// ───────────────────────────────────────────────────────────────────────────────
 const BRAND = {
   siteName: 'Welcoming Web Help Center',
   domain: 'help.welcomingweb.com',
   rootUrl: 'https://help.welcomingweb.com',
   mainUrl: 'https://welcomingweb.com',
-  twitterHandle: '@Welcoming Web', // update if different
-  ogImage: 'https://help.welcomingweb.com/og/help-center-og.png' // provide this asset
+  twitterHandle: '@Welcoming Web',
+  ogImage: 'https://help.welcomingweb.com/og/help-center-og.png'
 }
 
 export const metadata = {
   metadataBase: new URL(BRAND.rootUrl),
   title: {
-    default: 'Welcoming Web Help Center',
-    template: '%s — Welcoming Web Help Center'
+    default: 'Web Accessibility Tools & Documentation | Welcoming Web Help Center',
+    template: '%s | Welcoming Web Help Center'
   },
   description:
-    'Official help and developer documentation for Welcoming Web — the next-gen, AI-centred accessibility platform. Learn installation, widget configuration, remediation, and compliance workflows.',
+    'Official help and developer documentation for Welcoming Web - the next-gen, AI-centered accessibility platform. Learn installation, widget configuration, remediation, and compliance workflows.',
   keywords: [
     'Welcoming Web',
     'Accessibility',
@@ -49,15 +46,12 @@ export const metadata = {
     'Developer Docs',
     'Help Center'
   ],
-  alternates: {
-    canonical: '/'
-  },
   robots: {
     index: true,
     follow: true
   },
   openGraph: {
-    title: 'Welcoming Web Help Center',
+    title: 'Web Accessibility Tools & Documentation | Welcoming Web Help Center',
     description:
       'Learn how to install, configure, and use Welcoming Web widgets, tools, and AI-powered accessibility features.',
     url: BRAND.rootUrl,
@@ -75,7 +69,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Welcoming Web Help Center',
+    title: 'Web Accessibility Tools & Documentation | Welcoming Web Help Center',
     description:
       'Explore support articles, developer guides, and platform documentation for Welcoming Web.',
     creator: BRAND.twitterHandle,
@@ -96,12 +90,11 @@ export const viewport = {
   ]
 }
 
-// 🎉 Optional banner (keep/edit/remove)
 const banner = (
   <Banner storageKey="welcomingweb-docs-banner">
-    🎉 New: AI Sign Language Avatars now in beta!{' '}
+    New: AI Sign Language Avatars now in beta!{' '}
     <a href="/ai-remediations/sign-language-interpreter" style={{ textDecoration: 'underline' }}>
-      View Sign Language feature →
+      View Sign Language feature {'->'}
     </a>
   </Banner>
 )
@@ -111,7 +104,6 @@ const navbar = (
     align="left"
     logo={
       <div className="flex items-center shrink-0 min-w-[260px] sm:min-w-[280px]">
-        {/* Logo */}
         <div className="relative w-44 h-10" aria-label="Welcoming Web">
           <Image
             src="/brand/welcomingweb-logo.png"
@@ -122,7 +114,6 @@ const navbar = (
           />
         </div>
 
-        {/* Badge */}
         <span className="px-2 py-1 text-sm font-semibold bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-md whitespace-nowrap leading-none ml-2">
           HELP CENTER
         </span>
@@ -130,12 +121,9 @@ const navbar = (
     }
   >
     <div className="flex items-center justify-between w-full flex-wrap gap-4">
-      {/* Right section */}
       <div className="flex items-center justify-end flex-grow gap-4 min-w-0">
-        {/* Support / Contact */}
         <PopupModalTrigger url="https://welcomingweb.com/contact" />
 
-        {/* Main site link */}
         <Link
           href={BRAND.mainUrl}
           target="_blank"
@@ -146,10 +134,8 @@ const navbar = (
           Welcoming Web.com
         </Link>
 
-        {/* Mobile Search Button */}
         <MobileSearchTriggerButton />
 
-        {/* Desktop Search Widget Mount */}
         <div className="flex-shrink max-w-xs w-full hidden sm:block" aria-hidden="true">
           <div id="sparc-search-container" data-mode="popup" className="w-full" />
         </div>
@@ -160,7 +146,6 @@ const navbar = (
 
 const footer = <CustomFooter />
 
-// JSON-LD helpers
 function JsonLd() {
   const org = {
     '@context': 'https://schema.org',
@@ -168,11 +153,7 @@ function JsonLd() {
     name: 'Welcoming Web',
     url: BRAND.mainUrl,
     logo: 'https://welcomingweb.com/brand/welcomingweb-logo.png',
-    sameAs: [
-      'https://x.com/Welcoming Web',
-      'https://www.linkedin.com/company/welcomingweb'
-      // add others if available
-    ]
+    sameAs: ['https://x.com/Welcoming Web', 'https://www.linkedin.com/company/welcomingweb']
   }
 
   const webSite = {
@@ -193,7 +174,7 @@ function JsonLd() {
     name: 'Welcoming Web Help Center',
     url: BRAND.rootUrl,
     description:
-      'Official help and developer documentation for Welcoming Web — installation, configuration, remediation, and compliance guides.'
+      'Official help and developer documentation for Welcoming Web - installation, configuration, remediation, and compliance guides.'
   }
 
   return (
@@ -215,25 +196,15 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <Head>
-        {/* Icons / Canonical */}
         <link rel="icon" href="/favicon.png" />
-        <link rel="canonical" href={BRAND.rootUrl} />
-
-        {/* Performance hints */}
         <link rel="preconnect" href="https://cdn.welcomingweb.com" crossOrigin="" />
         <link rel="dns-prefetch" href="https://cdn.welcomingweb.com" />
-
-        {/* Robots fallback for non-Next crawlers */}
         <meta name="robots" content="index,follow,max-image-preview:large" />
-
-        {/* Viewport (Nextra often includes this; safe to keep) */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        {/* JSON-LD (Organization, WebSite, CollectionPage) */}
         <JsonLd />
       </Head>
       <body>
-        {/* First-party widgets (defer network where possible within components) */}
+        <InjectTagManager />
         <InjectSearchWidget />
         <InjectChatbotWidget />
 
@@ -243,7 +214,6 @@ export default async function RootLayout({ children }) {
           footer={footer}
           pageMap={await getPageMap()}
           search={null}
-          // Update to your new repo if migrated
           docsRepositoryBase="https://github.com/welcomingweb/help-center/blob/main"
         >
           {children}
