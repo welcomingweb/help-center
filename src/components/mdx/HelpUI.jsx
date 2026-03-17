@@ -295,6 +295,7 @@ export function VersionUpdate({ version, date, highlights }) {
  
 export function Cinema8VideoPreview({
   videoId,
+  videoSrc,
   posterSrc,
   caption,
   controls= '1',
@@ -315,15 +316,20 @@ export function Cinema8VideoPreview({
       setShowModal(false);
     } else {
       setIsPlaying(false);
-      iframeRef.current?.contentWindow?.postMessage({ type: 'pause', videoId }, 'https://cinema8.com');
+      if (videoSrc) {
+        iframeRef.current?.pause?.();
+        iframeRef.current.currentTime = 0;
+      } else {
+        iframeRef.current?.contentWindow?.postMessage({ type: 'pause', videoId }, 'https://cinema8.com');
+      }
     }
   };
 
   useEffect(() => {
-    if (isPlaying && iframeRef.current && !useModal) {
+    if (isPlaying && iframeRef.current && !useModal && !videoSrc) {
       iframeRef.current.contentWindow.postMessage({ type: 'play', videoId }, 'https://cinema8.com');
     }
-  }, [isPlaying, videoId, useModal]);
+  }, [isPlaying, videoId, useModal, videoSrc]);
 
   // Updated fancy mask styles (designed to clip only the edges)
   const maskClass = {
@@ -343,14 +349,27 @@ export function Cinema8VideoPreview({
           <div className="relative overflow-hidden aspect-video bg-transparent">
             {!useModal && isPlaying ? (
               <>
-                <iframe
-                  ref={iframeRef}
-                  src={`https://cinema8.com/video/${videoId}?autoplay=1&muted=0&controls=${controls}`}
-                  className="absolute inset-0 w-full h-full"
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
-                  sandbox="allow-scripts allow-same-origin allow-presentation"
-                />
+                {videoSrc ? (
+                  <video
+                    ref={iframeRef}
+                    className={`absolute inset-0 w-full h-full object-cover ${maskClass}`}
+                    controls={controls !== '0'}
+                    autoPlay
+                    playsInline
+                    poster={posterSrc}
+                  >
+                    <source src={videoSrc} type="video/mp4" />
+                  </video>
+                ) : (
+                  <iframe
+                    ref={iframeRef}
+                    src={`https://cinema8.com/video/${videoId}?autoplay=1&muted=0&controls=${controls}`}
+                    className="absolute inset-0 w-full h-full"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                    sandbox="allow-scripts allow-same-origin allow-presentation"
+                  />
+                )}
                 <button
                   onClick={handleStop}
                   className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 rounded-full p-2 z-50"
@@ -397,14 +416,27 @@ export function Cinema8VideoPreview({
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
           <div className="relative w-full max-w-6xl aspect-video bg-black rounded-lg overflow-hidden">
-            <iframe
-              ref={iframeRef}
-              src={`https://cinema8.com/video/${videoId}?autoplay=1&muted=0`}
-              className="absolute inset-0 w-full h-full"
-              allow="autoplay; fullscreen"
-              allowFullScreen
-              sandbox="allow-scripts allow-same-origin allow-presentation"
-            />
+            {videoSrc ? (
+              <video
+                ref={iframeRef}
+                className="absolute inset-0 w-full h-full"
+                controls={controls !== '0'}
+                autoPlay
+                playsInline
+                poster={posterSrc}
+              >
+                <source src={videoSrc} type="video/mp4" />
+              </video>
+            ) : (
+              <iframe
+                ref={iframeRef}
+                src={`https://cinema8.com/video/${videoId}?autoplay=1&muted=0`}
+                className="absolute inset-0 w-full h-full"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+                sandbox="allow-scripts allow-same-origin allow-presentation"
+              />
+            )}
             <button
               onClick={handleStop}
               className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 rounded-full p-2 z-50"
