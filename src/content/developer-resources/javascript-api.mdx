@@ -1,32 +1,72 @@
----
-title: "JavaScript API"
-description: "Use the Welcoming Web JavaScript API to programmatically control widget behavior—no API key needed."
----
+import { Callout, Cards, Steps, Tabs, Table } from 'nextra/components'
 
-import { Callout, Steps } from 'nextra/components'
-import { FeatureHighlight, CTA2 } from '@components/mdx/HelpUI'
+# WelcomingWeb JavaScript API
 
-# JavaScript API
-
-<Callout type="info">
-Once the Welcoming Web widget is embedded on your site, a global JavaScript API becomes available via <code>window.AccessibilityWidgetAPI</code>. No API key or authentication is required.
+<Callout type="important">
+  Client-side integration · No API key required
 </Callout>
 
-## Widget Installation
+Once the WelcomingWeb widget is embedded on your site, a global JavaScript API becomes available at `window.AccessibilityWidgetAPI`.
 
-To access the JavaScript API, simply embed the widget.
+Use it to:
 
-### Basic Embed
+- open and close the widget
+- enable and disable features
+- switch languages
+- activate accessibility profiles
+- listen to lifecycle and UI events from your host application
 
-````html
-<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
-        data-widget-id="YOUR_WIDGET_ID"></script>
-````
+<Cards num={3}>
+  <Cards.Card
+    title="Open API Playground"
+    href="https://welcomingweb.com/playground/api"
+    arrow
+  />
+  <Cards.Card
+    title="REST API Guide"
+    href="./rest-api-guide"
+    arrow
+  />
+  <Cards.Card
+    title="Webhooks Integration"
+    href="./webhooks-integration"
+    arrow
+  />
+</Cards>
 
-### Advanced Embed
+## Overview
 
-````html
-<script src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+- **Global object:** `window.AccessibilityWidgetAPI`
+- **Public API:** widget control, profiles, features, language, lifecycle
+- **Events:** callback API and DOM `CustomEvent` channels
+- **Host hooks:** react to widget, feature, profile, and language changes
+
+---
+
+## Installation
+
+<Steps>
+
+### Embed the widget script
+
+<Tabs items={['Basic embed', 'Advanced embed']}>
+
+<Tabs.Tab>
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+></script>
+```
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
   data-widget-id="YOUR_WIDGET_ID"
   data-api-url="https://api.welcomingweb.com"
   data-theme="light"
@@ -34,105 +74,530 @@ To access the JavaScript API, simply embed the widget.
   data-widget-display-type="FULL"
   data-desktop-horizontal-position="RIGHT"
   data-desktop-vertical-position="LOWER"
-  data-desktop-offset-x="5"
-  data-desktop-offset-y="5"
+  data-desktop-offset-x="16"
+  data-desktop-offset-y="16"
   data-button-color-mode="SOLID"
   data-button-primary-color="#504CFF"
-  data-button-icon-type="WALKING">
-</script>
-````
+  data-button-icon-type="WALKING"
+></script>
+```
 
-Once this script loads, the `window.AccessibilityWidgetAPI` object becomes globally available.
+</Tabs.Tab>
+
+</Tabs>
+
+### Wait until the API is ready
+
+<Tabs items={['DOM event', 'Callback API']}>
+
+<Tabs.Tab>
+
+```js
+window.addEventListener('welcomingweb:widget.loaded', e => {
+  console.log('Widget loaded', e.detail)
+  window.AccessibilityWidgetAPI.openWidget()
+})
+```
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+```js
+window.AccessibilityWidgetAPI.once('widget.loaded', event => {
+  console.log('Widget loaded', event)
+  window.AccessibilityWidgetAPI.openWidget()
+})
+```
+
+</Tabs.Tab>
+
+</Tabs>
+
+### Access the global object
+
+```js
+window.AccessibilityWidgetAPI
+```
+
+</Steps>
 
 ---
 
-## Available Methods
+## Public methods
 
-<Steps>
-### `openWidget()`
-Opens the accessibility widget.
+Use these methods to control the widget from your host page.
 
-### `closeWidget()`
-Closes the widget popup.
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Method</Table.Th>
+      <Table.Th>Description</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td><code>openWidget()</code></Table.Td>
+      <Table.Td>Open the accessibility widget.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>closeWidget()</code></Table.Td>
+      <Table.Td>Close the accessibility widget.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>enableProfile(profileKey)</code></Table.Td>
+      <Table.Td>Activate a predefined accessibility profile.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>disableCurrentProfile()</code></Table.Td>
+      <Table.Td>Disable the currently active profile.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>enableFeature(featureKey, mode?, options?)</code></Table.Td>
+      <Table.Td>Enable a feature with an optional mode and options.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>disableFeature(featureKey)</code></Table.Td>
+      <Table.Td>Disable a specific feature.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>changeLanguage(langCode)</code></Table.Td>
+      <Table.Td>Change the widget language dynamically.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>resetAllFeatures()</code></Table.Td>
+      <Table.Td>Reset all features to their default disabled state.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>resetFeatureEffects()</code></Table.Td>
+      <Table.Td>Remove applied effects while preserving preferences where supported.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>reinitializeWidget()</code></Table.Td>
+      <Table.Td>Tear down and initialize the widget again.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>destroy()</code></Table.Td>
+      <Table.Td>Completely remove the widget and clear the global API instance.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>enableOutsideClickClosing()</code></Table.Td>
+      <Table.Td>Enable closing the widget when users click outside it.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>disableOutsideClickClosing()</code></Table.Td>
+      <Table.Td>Disable closing the widget when users click outside it.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>setCloseOnOutsideClick(enabled)</code></Table.Td>
+      <Table.Td>Set the outside-click closing behavior.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>getCloseOnOutsideClick()</code></Table.Td>
+      <Table.Td>Read the current outside-click closing setting.</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
 
-### `enableProfile(profileKey)`
-Activates a predefined accessibility profile.
+### Widget visibility
+
+```js
+window.AccessibilityWidgetAPI.openWidget()
+window.AccessibilityWidgetAPI.closeWidget()
+```
+
+### Profiles
 
 ```js
 window.AccessibilityWidgetAPI.enableProfile('visually_impaired')
+window.AccessibilityWidgetAPI.disableCurrentProfile()
 ```
 
-### `disableCurrentProfile()`
-Disables the currently active profile.
+### Features
 
-### `enableFeature(key, mode?, options?)`
-Enables a specific feature.
+`enableFeature(featureKey, mode?, options?)`
+
+- `featureKey` — required feature identifier
+- `mode` — optional mode key for features with multiple modes
+- `options` — optional configuration object
 
 ```js
-window.AccessibilityWidgetAPI.enableFeature("contrast", "invert", { brightness: 0.8 })
+window.AccessibilityWidgetAPI.enableFeature('contrast', 'invert', {
+  brightness: 0.8
+})
+
+window.AccessibilityWidgetAPI.disableFeature('custom_font')
+window.AccessibilityWidgetAPI.resetAllFeatures()
+window.AccessibilityWidgetAPI.resetFeatureEffects()
 ```
 
-### `disableFeature(key)`
-Disables the specified feature.
+Common examples:
 
-### `changeLanguage(langCode)`
-Changes widget language dynamically.
+```js
+window.AccessibilityWidgetAPI.enableFeature('custom_font', 'dyslexia')
+window.AccessibilityWidgetAPI.enableFeature('bigger_text', 'b2')
+window.AccessibilityWidgetAPI.enableFeature('highlight_links', 'links')
+```
+
+### Language
 
 ```js
 window.AccessibilityWidgetAPI.changeLanguage('fr')
 ```
 
-### `resetAllFeatures()`
-Resets all features to their default disabled state.
+Related events:
 
-### `resetFeatureEffects()`
-Removes all applied visual changes but keeps preferences in memory.
+- `language.changeRequested`
+- `language.changed`
+- `language.changeFailed`
 
-### `reinitializeWidget()`
-Forcefully reloads the widget and configuration.
-
-### `destroy()`
-Completely removes the widget from the DOM and unregisters the global API.
-</Steps>
-
----
-
-## Sample Usage
+### Lifecycle
 
 ```js
-window.AccessibilityWidgetAPI.enableFeature("custom_font", "dyslexia")
-window.AccessibilityWidgetAPI.disableFeature("custom_font")
-window.AccessibilityWidgetAPI.openWidget()
-window.AccessibilityWidgetAPI.changeLanguage("es")
+window.AccessibilityWidgetAPI.reinitializeWidget()
+window.AccessibilityWidgetAPI.destroy()
+```
+
+<Callout type="warning">
+  After calling <code>reinitializeWidget()</code>, wait for <code>widget.loaded</code> before issuing more widget commands.
+</Callout>
+
+### Outside click behavior
+
+```js
+window.AccessibilityWidgetAPI.enableOutsideClickClosing()
+window.AccessibilityWidgetAPI.disableOutsideClickClosing()
+
+window.AccessibilityWidgetAPI.setCloseOnOutsideClick(true)
+window.AccessibilityWidgetAPI.setCloseOnOutsideClick(false)
+
+const enabled = window.AccessibilityWidgetAPI.getCloseOnOutsideClick()
+console.log(enabled)
 ```
 
 ---
 
-## Wait for Widget to Load
+## Event subscription API
+
+The widget includes a built-in callback system.
+
+### `on(eventName, handler)`
+
+Subscribe to a specific event. Returns an unsubscribe function.
 
 ```js
-document.addEventListener("a11yWidgetReady", () => {
-  window.AccessibilityWidgetAPI.openWidget()
+const unsubscribe = window.AccessibilityWidgetAPI.on(
+  'language.changed',
+  event => {
+    console.log('Language changed', event.language)
+  }
+)
+
+unsubscribe()
+```
+
+### `off(eventName, handler)`
+
+Remove a previously registered handler.
+
+```js
+function onOpened(event) {
+  console.log('opened', event)
+}
+
+window.AccessibilityWidgetAPI.on('widget.opened', onOpened)
+window.AccessibilityWidgetAPI.off('widget.opened', onOpened)
+```
+
+### `once(eventName, handler)`
+
+Subscribe to an event only once.
+
+```js
+window.AccessibilityWidgetAPI.once('widget.loaded', event => {
+  console.log('Loaded once', event)
+})
+```
+
+### `onAny(handler)`
+
+Listen to all widget events.
+
+```js
+const stop = window.AccessibilityWidgetAPI.onAny(event => {
+  console.log(event.name, event)
 })
 ```
 
 ---
 
-## HTML Button Example
+## DOM event API
 
-````html
-<button onclick="window.AccessibilityWidgetAPI.enableFeature('contrast', 'invert')">
-  Enable Contrast
-</button>
+In addition to callback subscriptions, the widget dispatches browser `CustomEvent` events on `window`.
 
-<button onclick="window.AccessibilityWidgetAPI.disableFeature('contrast')">
-  Disable Contrast
-</button>
-````
+<Tabs items={['Specific DOM event', 'Generic DOM event']}>
+
+<Tabs.Tab>
+
+```js
+window.addEventListener('welcomingweb:language.changed', e => {
+  console.log(e.detail)
+})
+```
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+```js
+window.addEventListener('welcomingweb:event', e => {
+  console.log(e.detail.name, e.detail)
+})
+```
+
+</Tabs.Tab>
+
+</Tabs>
+
+- specific channel: `welcomingweb:<eventName>`
+- generic channel: `welcomingweb:event`
 
 ---
 
-## Supported Profile Keys
+## Event list
+
+Use these event names with both the callback API and DOM events.
+
+### Widget lifecycle
+
+- `widget.loaded`
+- `widget.opened`
+- `widget.closed`
+- `widget.reinitialized`
+- `widget.reset`
+- `widget.destroyed`
+
+### Language
+
+- `language.changeRequested`
+- `language.changed`
+- `language.changeFailed`
+
+### Features
+
+- `feature.enabled`
+- `feature.disabled`
+
+### Profiles
+
+- `profile.enabled`
+- `profile.disabled`
+
+### Position and behavior
+
+- `widget.positionChanged`
+- `widget.outsideClickClosingChanged`
+
+---
+
+## Event payload format
+
+Each event includes a normalized payload.
+
+```json
+{
+  "name": "language.changed",
+  "timestamp": "2026-03-18T12:34:56.000Z",
+  "widgetId": "YOUR_WIDGET_ID",
+  "language": "fr",
+  "defaultLanguage": "en",
+  "url": "https://example.com/pricing",
+  "isOpen": true,
+  "source": "ui",
+  "reason": "api",
+  "previousLanguage": "en",
+  "isTranslated": true
+}
+```
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Field</Table.Th>
+      <Table.Th>Description</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td><code>name</code></Table.Td>
+      <Table.Td>Event name.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>timestamp</code></Table.Td>
+      <Table.Td>ISO timestamp.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>widgetId</code></Table.Td>
+      <Table.Td>Widget UUID.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>url</code></Table.Td>
+      <Table.Td>Current page URL.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>language</code></Table.Td>
+      <Table.Td>Current selected language, when relevant.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>defaultLanguage</code></Table.Td>
+      <Table.Td>Widget default language, when available.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>isOpen</code></Table.Td>
+      <Table.Td>Current widget open state.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>source</code></Table.Td>
+      <Table.Td><code>api</code>, <code>ui</code>, <code>shortcut</code>, <code>system</code>, or <code>customTrigger</code>.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td><code>reason</code></Table.Td>
+      <Table.Td>Optional reason string.</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+Event-specific fields may also include `previousLanguage`, `isTranslated`, `featureId`, `mode`, `profile`, `previousProfile`, `position`, `enabled`, and `error`.
+
+---
+
+## Script tag configuration options
+
+The widget supports several `data-*` attributes on the embed script for host-side configuration overrides.
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-api-url="https://api.welcomingweb.com"
+  data-theme="light"
+  data-language="en"
+  data-widget-display-type="FULL"
+  data-desktop-horizontal-position="RIGHT"
+  data-desktop-vertical-position="LOWER"
+  data-desktop-offset-x="16"
+  data-desktop-offset-y="16"
+  data-mobile-horizontal-position="RIGHT"
+  data-mobile-vertical-position="LOWER"
+  data-mobile-offset-x="16"
+  data-mobile-offset-y="16"
+  data-button-color-mode="SOLID"
+  data-button-primary-color="#504CFF"
+  data-button-secondary-color="#8F84FF"
+  data-button-gradient-direction="TO_BOTTOM_RIGHT"
+  data-button-size="MEDIUM"
+  data-button-icon-type="WALKING"
+  data-enable-custom-trigger="false"
+  data-custom-trigger-selector="#open-a11y"
+  data-enable-keyboard-shortcuts="true"
+  data-style-mode="auto"
+  data-requires-consent="functional"
+  data-close-on-outside-click="true"
+  data-csp-nonce="YOUR_NONCE"
+></script>
+```
+
+### Display types
+
+- `FULL`
+- `MINI`
+- `NANO`
+- `HEADLESS`
+
+### Style modes
+
+- `auto`
+- `host`
+- `cdn`
+
+---
+
+## Supported feature keys and mode keys
+
+<Callout type="info">
+  Feature availability depends on plan, visibility, rollout status, and server-side configuration.
+</Callout>
+
+<Tabs items={['Contrast', 'Readability', 'Navigation', 'Miscellaneous']}>
+
+<Tabs.Tab>
+
+- `contrast` — `invert`, `dark`, `light`
+- `saturation` — `low`, `high`, `desaturate`
+- `custom_color` — no mode
+- `smart_contrast` — no mode _(PRO, beta)_
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+- `bigger_text` — `b1`, `b2`, `b3`, `b4`
+- `enlarge_buttons` — `b1`, `b2`
+- `text_spacing` — `light`, `moderate`, `heavy`
+- `line_height` — `b1`, `b2`, `b3`
+- `text_align` — `left`, `right`, `center`, `justify`
+- `readable_mode` — `onpage`, `popup`
+- `virtual_keyboard` — no mode
+- `mute_media` — no mode
+- `text_magnifier` — no mode
+- `custom_font` — `dyslexia`, `serif`, `monospace`, `high_contrast`
+- `ai_readability_optimizer` — no mode _(PRO)_
+- `dictionary` — no mode _(PRO)_
+- `image_descriptions` — `title`, `figcaption` _(PRO)_
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+- `cursor` — `black`, `white`
+- `magnifier` — no mode
+- `reading_focus` — `mask`, `guide`
+- `tooltips` — no mode
+- `page_structure` — no mode
+- `highlight_links` — `links`, `headers`, `all`, `mouse`
+- `skip_navigation` — no mode
+- `ai_auto_keyboard_navigation` — no mode _(PRO)_
+- `screen_reader` — `normal`, `fast`, `slow` _(PRO)_
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+- `pause_animations` — no mode
+- `hide_images` — `images`, `graphics`
+- `speech_to_text` — no mode _(PRO)_
+- `real_time_sign_language_interpreter` — no mode _(PRO, coming soon)_
+
+</Tabs.Tab>
+
+</Tabs>
+
+Example feature calls:
+
+```js
+window.AccessibilityWidgetAPI.enableFeature('contrast', 'invert')
+window.AccessibilityWidgetAPI.enableFeature('bigger_text', 'b2')
+window.AccessibilityWidgetAPI.enableFeature('custom_font', 'dyslexia')
+window.AccessibilityWidgetAPI.enableFeature('highlight_links', 'links')
+window.AccessibilityWidgetAPI.enableFeature('screen_reader', 'fast')
+window.AccessibilityWidgetAPI.enableFeature('hide_images', 'graphics')
+```
+
+---
+
+## Supported profile keys
+
+The following profile keys are currently defined in the accessibility catalog.
 
 - `blind`
 - `motor_impaired`
@@ -145,23 +610,446 @@ document.addEventListener("a11yWidgetReady", () => {
 - `dyslexia`
 - `kids`
 
+```js
+window.AccessibilityWidgetAPI.enableProfile('dyslexia')
+```
+
+Profile behavior is server-configured and may enable multiple underlying features and modes at once.
+
+---
+
+## Preventing host-page content from being translated
+
+When live site translation is enabled, the widget can translate host-page text nodes and common attributes like `placeholder`, `alt`, `aria-label`, and `title`.
+
+If you have areas that should never be translated, mark them using one of the following:
+
+- class: `no-translate`
+- attribute: `data-no-translate`
+- attribute: `translate="no"`
+
+```html
+<div class="no-translate">
+  Debug logs, JSON payloads, IDs, and raw system messages go here.
+</div>
+
+<div data-no-translate>
+  Internal status output
+</div>
+
+<div translate="no">
+  SKU-1234 / build-2026-03-18 / feature flags
+</div>
+```
+
+### Recommended use cases
+
+- logs and debug consoles
+- JSON payloads and raw API responses
+- IDs, keys, SKUs, tokens, and internal labels
+- admin tools and developer UIs
+- email addresses and URLs when exact output should be preserved
+
+### Content already skipped by the translator
+
+- `script`
+- `style`
+- `iframe`
+- `[contenteditable]`
+- `code`
+- `pre`
+- `kbd`
+- `samp`
+
+<Callout type="default">
+  For dynamic status panels or custom developer consoles, it is still recommended to add
+  <code>data-no-translate</code> or <code>translate="no"</code> explicitly.
+</Callout>
+
+---
+
+## Language and direction hooks added to the document
+
+When translation is active, the widget may update the root document element with accessibility language state.
+
+- `html[data-a11y-active-lang]`
+- `html.a11y-rtl`
+- `html.a11y-ltr`
+
+```css
+html.a11y-rtl .my-custom-sidebar {
+  direction: rtl;
+}
+```
+
+These hooks are useful if your application wants to align custom UI with the widget’s translated language state.
+
+---
+
+## Consent integration
+
+The widget supports consent-gated initialization.
+
+<Tabs items={['Single category', 'Multiple categories']}>
+
+<Tabs.Tab>
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-requires-consent="functional"
+></script>
+```
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-requires-consent="functional,analytics"
+></script>
+```
+
+</Tabs.Tab>
+
+</Tabs>
+
+The widget can detect consent through:
+
+- `window.dataLayer`
+- a custom browser event
+- the helper function below
+
+```js
+window.welcomingWeb.grantConsent()
+```
+
+Recognized consent categories include:
+
+- `functional`
+- `analytics`
+- `ad`
+- `personalization`
+- `security`
+
+---
+
+## Use your own trigger button
+
+You can open the widget from your own existing UI by enabling a custom trigger.
+
+```html
+<button id="open-a11y">Accessibility options</button>
+
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-enable-custom-trigger="true"
+  data-custom-trigger-selector="#open-a11y"
+></script>
+```
+
+When a custom trigger is enabled and found, the internal floating button is hidden and your external trigger controls the widget.
+
+---
+
+## Keyboard shortcut
+
+When keyboard shortcuts are enabled, the widget supports <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> to toggle the widget open and closed.
+
+```html
+<script
+  src="https://cdn-01.welcomingweb.com/a11y-widget.bundle.js"
+  data-widget-id="YOUR_WIDGET_ID"
+  data-enable-keyboard-shortcuts="true"
+></script>
+```
+
+---
+
+## Async behavior notes
+
+Some API calls perform asynchronous work internally, especially feature application and language changes.
+
+- `enableFeature(...)`
+- `disableFeature(...)`
+- `enableProfile(...)`
+- `disableCurrentProfile()`
+- `changeLanguage(...)`
+
+After calling `reinitializeWidget()`, wait for the widget to finish loading again before calling more widget methods.
+
+<Tabs items={['Callback API pattern', 'DOM event pattern']}>
+
+<Tabs.Tab>
+
+```js
+window.AccessibilityWidgetAPI.reinitializeWidget()
+
+window.AccessibilityWidgetAPI.once('widget.loaded', () => {
+  window.AccessibilityWidgetAPI.changeLanguage('fr')
+})
+```
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+```js
+window.AccessibilityWidgetAPI.reinitializeWidget()
+
+window.addEventListener(
+  'welcomingweb:widget.loaded',
+  () => {
+    window.AccessibilityWidgetAPI.changeLanguage('fr')
+  },
+  { once: true }
+)
+```
+
+</Tabs.Tab>
+
+</Tabs>
+
+---
+
+## API usage examples
+
+### Open the widget from your own button
+
+```html
+<button id="open-a11y">Accessibility options</button>
+<script>
+  document.getElementById('open-a11y').addEventListener('click', () => {
+    window.AccessibilityWidgetAPI.openWidget()
+  })
+</script>
+```
+
+### Enable a feature from your own UI
+
+```html
+<button id="invert-contrast">Enable contrast</button>
+<script>
+  document.getElementById('invert-contrast').addEventListener('click', () => {
+    window.AccessibilityWidgetAPI.enableFeature('contrast', 'invert')
+  })
+</script>
+```
+
+### Disable a feature from your own UI
+
+```html
+<button id="disable-font">Disable custom font</button>
+<script>
+  document.getElementById('disable-font').addEventListener('click', () => {
+    window.AccessibilityWidgetAPI.disableFeature('custom_font')
+  })
+</script>
+```
+
+### Sync your site language selector
+
+```js
+const siteLanguageSelect = document.getElementById('site-language')
+
+siteLanguageSelect.addEventListener('change', e => {
+  window.AccessibilityWidgetAPI.changeLanguage(e.target.value)
+})
+
+window.AccessibilityWidgetAPI.on('language.changed', event => {
+  console.log('Widget language now', event.language)
+})
+```
+
+### React to user language changes from the widget UI
+
+```js
+window.AccessibilityWidgetAPI.on(
+  'language.changed',
+  ({ language, previousLanguage, source }) => {
+    console.log('User changed language', {
+      language,
+      previousLanguage,
+      source
+    })
+
+    if (source === 'ui') {
+      document.documentElement.setAttribute('data-widget-language', language)
+    }
+  }
+)
+```
+
+### React to any user action
+
+```js
+window.AccessibilityWidgetAPI.onAny(event => {
+  if (event.source === 'ui') {
+    console.log('User action from widget UI', event.name, event)
+  }
+})
+```
+
+### Analytics example
+
+```js
+window.AccessibilityWidgetAPI.onAny(event => {
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({
+    event: 'welcomingweb_api_event',
+    widgetEventName: event.name,
+    widgetEventSource: event.source,
+    widgetId: event.widgetId,
+    widgetLanguage: event.language || null
+  })
+})
+```
+
+### Wait for widget load, then open
+
+```js
+window.AccessibilityWidgetAPI.once('widget.loaded', () => {
+  window.AccessibilityWidgetAPI.openWidget()
+})
+
+window.addEventListener('welcomingweb:widget.loaded', () => {
+  window.AccessibilityWidgetAPI.openWidget()
+})
+```
+
+---
+
+## Common integration patterns
+
+### Use your own menu
+
+```js
+function openAccessibilityMenu() {
+  window.AccessibilityWidgetAPI.openWidget()
+}
+
+function activateDyslexiaMode() {
+  window.AccessibilityWidgetAPI.enableProfile('dyslexia')
+}
+```
+
+### Keep host UI in sync
+
+```js
+window.AccessibilityWidgetAPI.on('widget.opened', () => {
+  document.body.classList.add('a11y-widget-open')
+})
+
+window.AccessibilityWidgetAPI.on('widget.closed', () => {
+  document.body.classList.remove('a11y-widget-open')
+})
+```
+
+### Watch feature toggles
+
+```js
+window.AccessibilityWidgetAPI.on('feature.enabled', ({ featureId, mode }) => {
+  console.log('Enabled', featureId, mode)
+})
+
+window.AccessibilityWidgetAPI.on('feature.disabled', ({ featureId }) => {
+  console.log('Disabled', featureId)
+})
+```
+
 ---
 
 ## Troubleshooting
 
-<Callout type="warning">
-If <code>window.AccessibilityWidgetAPI</code> is undefined, ensure the following:
-</Callout>
+<details>
+  <summary><code>window.AccessibilityWidgetAPI</code> is undefined</summary>
 
-- The script is embedded before any API call.
-- `data-widget-id` is valid and active.
-- You wait for the `a11yWidgetReady` event before calling methods.
+  - Ensure the script is embedded before you call the API.
+  - Ensure `data-widget-id` is valid and active.
+  - Ensure the widget has finished loading.
+  - Ensure no script loading or CSP issue blocks the bundle.
+
+  ```js
+  window.addEventListener('welcomingweb:widget.loaded', () => {
+    console.log('Widget ready')
+  })
+  ```
+</details>
+
+<details>
+  <summary>My callback does not fire</summary>
+
+  - You subscribed after the event already happened.
+  - The event name is spelled exactly as documented.
+  - Your code runs after the widget script has initialized.
+
+  ```js
+  window.AccessibilityWidgetAPI.onAny(event => {
+    console.log('Debug event', event.name, event)
+  })
+  ```
+</details>
+
+<details>
+  <summary>The widget loads, but <code>widget.loaded</code> is missed</summary>
+
+  Prefer a window DOM listener or initialize your subscriptions before the widget bundle finishes loading.
+
+  ```js
+  window.addEventListener('welcomingweb:widget.loaded', handler)
+  ```
+</details>
 
 ---
 
-<CTA2
-  title="Need Implementation Support?"
-  description="Our engineering team is here to help with advanced JavaScript integration."
-  buttonText="Contact Developer Support"
-  buttonLink="https://welcomingweb.com/contact"
-/>
+## Quick reference
+
+<Tabs items={['Core methods', 'Event methods', 'DOM events']}>
+
+<Tabs.Tab>
+
+```js
+window.AccessibilityWidgetAPI.openWidget()
+window.AccessibilityWidgetAPI.closeWidget()
+window.AccessibilityWidgetAPI.enableProfile('visually_impaired')
+window.AccessibilityWidgetAPI.disableCurrentProfile()
+window.AccessibilityWidgetAPI.enableFeature('contrast', 'invert', {
+  brightness: 0.8
+})
+window.AccessibilityWidgetAPI.disableFeature('contrast')
+window.AccessibilityWidgetAPI.changeLanguage('es')
+window.AccessibilityWidgetAPI.resetAllFeatures()
+window.AccessibilityWidgetAPI.resetFeatureEffects()
+window.AccessibilityWidgetAPI.reinitializeWidget()
+window.AccessibilityWidgetAPI.destroy()
+```
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+```js
+window.AccessibilityWidgetAPI.on('language.changed', handler)
+window.AccessibilityWidgetAPI.off('language.changed', handler)
+window.AccessibilityWidgetAPI.once('widget.loaded', handler)
+window.AccessibilityWidgetAPI.onAny(handler)
+```
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+```js
+window.addEventListener('welcomingweb:widget.loaded', handler)
+window.addEventListener('welcomingweb:language.changed', handler)
+window.addEventListener('welcomingweb:event', handler)
+```
+
+</Tabs.Tab>
+
+</Tabs>
