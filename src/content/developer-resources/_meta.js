@@ -1,5 +1,5 @@
 export default {
-  "javascript-api": "Javascript Api",
+  "javascript-api": "JavaScript API",
   "rest-api-guide": "Rest Api Guide",
   "webhooks-integration": "Webhooks Integration"
 };
