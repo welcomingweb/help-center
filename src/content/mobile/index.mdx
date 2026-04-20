@@ -1,0 +1,207 @@
+---
+title: "Mobile Accessibility SDK"
+description: "WelcomingWeb's mobile SDK brings automated WCAG 2.2 accessibility scanning into your native and cross-platform mobile apps, with results in the same dashboard as your website."
+---
+
+import { Callout, Cards, Steps, Table } from 'nextra/components'
+import { DevicePhoneMobileIcon, BoltIcon, ShieldCheckIcon, AdjustmentsHorizontalIcon, CogIcon, ChartBarIcon, CodeBracketIcon, PuzzlePieceIcon } from '@heroicons/react/24/outline'
+
+# Mobile Accessibility SDK
+
+WelcomingWeb extends accessibility management beyond the browser. Drop a lightweight SDK into your
+mobile app and detect WCAG 2.2 issues as users navigate — before they ever reach the App Store or
+Play Store. Every scan flows into the same dashboard as your website accessibility data, mapped to
+the same standards.
+
+<Callout type="info">
+**All four SDKs are production-ready.** React Native, Flutter, native iOS (Swift) and native
+Android (Kotlin) all ship today with an identical rule set, scoring model and dashboard experience.
+The server doesn't know which SDK produced a scan — only the `platform` field in the payload differs.
+</Callout>
+
+## Pick Your Platform
+
+<Cards>
+  <Cards.Card title="React Native" href="/mobile/platforms/react-native" icon={<CodeBracketIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Install via npm or yarn, configure once, wrap your screens with a HOC or hook.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="iOS (Swift)" href="/mobile/platforms/ios" icon={<DevicePhoneMobileIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Swift Package Manager. Pure Swift, zero dependencies. UIKit and SwiftUI supported.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Android (Kotlin)" href="/mobile/platforms/android" icon={<DevicePhoneMobileIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Maven Central. Classic Views and Jetpack Compose, with three tracking modes to choose from.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Flutter" href="/mobile/platforms/flutter" icon={<PuzzlePieceIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      pub.dev as `welcomingweb_flutter_sdk`. Pure Dart. Works across every Flutter target.
+    </p>
+  </Cards.Card>
+</Cards>
+
+## What the SDK Does
+
+<Cards>
+  <Cards.Card title="Automatic Scanning" href="/mobile/getting-started" icon={<BoltIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Scans run automatically on screen change. No manual triggers, no test recordings.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="WCAG 2.2 Rules" href="/mobile/rules" icon={<ShieldCheckIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Eight built-in rules: touch targets, labels, roles, contrast, hierarchy and more.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Accessibility Panel" href="/mobile/panel" icon={<AdjustmentsHorizontalIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Optional floating panel: text size, contrast, reduce motion, screen curtain, reading guide.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="CI / CD Gating" href="/mobile/ci-cd" icon={<CogIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Fail builds on critical issues with Detox, Maestro, Fastlane, GitHub Actions or Bitrise.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Unified Dashboard" href="https://app.welcomingweb.com" icon={<ChartBarIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Mobile and web data side-by-side. Filter by platform, app version, commit hash or screen.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Quick Start" href="/mobile/getting-started" icon={<DevicePhoneMobileIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Install, configure, track one screen — see your first scan in minutes.
+    </p>
+  </Cards.Card>
+</Cards>
+
+## One Engine, Four SDKs
+
+Every SDK is a 1:1 port of the same engine. What that means in practice:
+
+- **Same rules.** The eight WCAG 2.2 rules, their severities, their WCAG mappings, and their rule
+  IDs (`mobile-missing-accessibility-label`, `mobile-touch-target-size`, etc.) are identical across
+  React Native, Flutter, iOS and Android.
+- **Same score formula.** `penalty = 10·critical + 5·major + 1·minor`, clamped against
+  `components × 10`, normalised to 0–100.
+- **Same API payloads.** Only the `platform` field differs (`react_native`, `flutter`, `ios_native`,
+  `android_native`). All other keys, casing and shapes match.
+- **Same behavioural contract.** Auto-scan on screen change, 600 ms post-navigation delay, 15 s
+  HTTP timeout, max two retries with jitter, background hook flushes pending scans, 50-scan
+  in-memory cap.
+- **Same dashboard.** Every scan lands in the same place, filterable by platform and app version.
+
+## A Three-Step Integration
+
+Regardless of platform, bringing WelcomingWeb into your mobile app follows the same shape.
+
+<Steps>
+### Step 1: Configure the SDK
+
+Call `configure()` once at app startup with your API key and app ID. Set the environment, enable
+auto-scan for development, and optionally provide callbacks to inspect scan results inline.
+
+### Step 2: Track Your Screens
+
+Each SDK exposes a platform-idiomatic way to track screens: a HOC or hook on React Native, a
+widget on Flutter, a one-line install call on iOS (automatic view-controller tracking via
+swizzling), and three choices on Android (Activity lifecycle, NavController, or manual).
+
+### Step 3: (Optional) Add the Accessibility Panel
+
+Drop the panel into your app to give end users runtime controls for text size, high contrast,
+reduce motion, screen curtain and a reading guide. The panel respects the device's real
+accessibility state — it augments system settings rather than fighting them.
+</Steps>
+
+## Architecture at a Glance
+
+Every SDK is built from four layers that work together to scan, report and adapt.
+
+- **Core (singleton or actor):** configuration, component-tree walking, rule execution, session
+  management, API submission.
+- **Screen tracking:** the platform-native hook, widget, modifier or lifecycle observer that
+  registers screens and triggers scans on focus.
+- **Rules engine:** eight per-node rules plus one screen-level rule. Each issue includes WCAG
+  mapping, severity, evidence and a fix suggestion.
+- **UI components:** the optional accessibility panel and provider that apply global effects like
+  the screen curtain and reading guide.
+
+## Platform-Native Distribution
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Platform</Table.Th>
+      <Table.Th>Distribution</Table.Th>
+      <Table.Th>Language / Framework</Table.Th>
+      <Table.Th>Dependencies</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>React Native</Table.Td>
+      <Table.Td>npm / yarn — `@welcomingweb/react-native-sdk`</Table.Td>
+      <Table.Td>TypeScript / JavaScript</Table.Td>
+      <Table.Td>Zero native module dependencies</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>iOS</Table.Td>
+      <Table.Td>Swift Package Manager</Table.Td>
+      <Table.Td>Swift, UIKit and SwiftUI</Table.Td>
+      <Table.Td>Zero — Apple-bundled only</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>Android</Table.Td>
+      <Table.Td>Maven Central — `com.welcomingweb:sdk`</Table.Td>
+      <Table.Td>Kotlin, Views and Jetpack Compose</Table.Td>
+      <Table.Td>OkHttp, Kotlin coroutines, lifecycle-process</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>Flutter</Table.Td>
+      <Table.Td>pub.dev — `welcomingweb_flutter_sdk`</Table.Td>
+      <Table.Td>Dart</Table.Td>
+      <Table.Td>`http`, `app_settings` (iOS deep-link only)</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Minimum Requirements
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Platform</Table.Th>
+      <Table.Th>Minimum</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>React Native</Table.Td>
+      <Table.Td>React Native 0.70+, React 18.0+, iOS 13+ / Android API 21+</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>iOS</Table.Td>
+      <Table.Td>iOS 13+, Swift 5.9+, Xcode 15+</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>Android</Table.Td>
+      <Table.Td>Android API 21+ (Lollipop), Kotlin 1.9+, optional Compose 1.6+</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>Flutter</Table.Td>
+      <Table.Td>Flutter 3.10+, Dart 3.0+, iOS 13+ / Android API 21+</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Need Help?
+
+Our mobile accessibility team is available for technical questions, integration reviews and
+onboarding support.
+
+[Contact support](https://welcomingweb.com/contact) · [Book a demo](https://welcomingweb.com/book-demo)

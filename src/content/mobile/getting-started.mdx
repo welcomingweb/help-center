@@ -1,0 +1,505 @@
+---
+title: "Getting Started"
+description: "Install the WelcomingWeb mobile SDK on React Native, iOS, Android or Flutter, configure it with your API key, and see your first accessibility scan in under five minutes."
+---
+
+import { Callout, Steps, Cards, Tabs, Table } from 'nextra/components'
+import { CheckBadgeIcon, CodeBracketIcon, DevicePhoneMobileIcon, PuzzlePieceIcon } from '@heroicons/react/24/outline'
+
+# Getting Started with the Mobile SDK
+
+Every WelcomingWeb SDK follows the same three-step integration shape: **configure**, **track your
+screens**, and **optionally add the in-app panel**. The code is platform-native; the concepts,
+rules and dashboard are identical.
+
+<Callout type="info">
+You need an API key from your WelcomingWeb dashboard. If you don't have one yet, create a free
+account at [welcomingweb.com](https://welcomingweb.com) and generate a key from **Settings →
+API Keys**.
+</Callout>
+
+## Pick Your Platform
+
+<Cards>
+  <Cards.Card title="React Native" href="/mobile/platforms/react-native" icon={<CodeBracketIcon />}>
+    <p className="m-2 text-sm text-gray-700">Full RN integration guide.</p>
+  </Cards.Card>
+  <Cards.Card title="iOS (Swift)" href="/mobile/platforms/ios" icon={<DevicePhoneMobileIcon />}>
+    <p className="m-2 text-sm text-gray-700">UIKit and SwiftUI integration.</p>
+  </Cards.Card>
+  <Cards.Card title="Android (Kotlin)" href="/mobile/platforms/android" icon={<DevicePhoneMobileIcon />}>
+    <p className="m-2 text-sm text-gray-700">Views and Jetpack Compose.</p>
+  </Cards.Card>
+  <Cards.Card title="Flutter" href="/mobile/platforms/flutter" icon={<PuzzlePieceIcon />}>
+    <p className="m-2 text-sm text-gray-700">Dart package for all Flutter targets.</p>
+  </Cards.Card>
+</Cards>
+
+## Three-Step Integration
+
+<Steps>
+
+### Step 1: Install the Package
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```bash
+    # npm
+    npm install @welcomingweb/react-native-sdk
+
+    # yarn
+    yarn add @welcomingweb/react-native-sdk
+    ```
+
+    No `pod install` or gradle sync is required — the SDK uses only JavaScript APIs available in
+    React Native core.
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    Add the package in Xcode via **File → Add Packages…**, or add the dependency directly in
+    your `Package.swift`:
+
+    ```swift filename="Package.swift"
+    dependencies: [
+      .package(url: "https://github.com/welcomingweb/ios-sdk.git", from: "1.0.0")
+    ]
+    ```
+
+    No CocoaPods entry, no bridging header, no script phases. The package imports URLSession,
+    Foundation, UIKit and SwiftUI — all Apple-bundled.
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    Add Maven Central to your root `build.gradle` (if not already there) and the SDK to your
+    app module:
+
+    ```groovy filename="app/build.gradle"
+    dependencies {
+      implementation 'com.welcomingweb:sdk:1.0.0'
+    }
+    ```
+
+    Compose support is a soft dependency (declared `compileOnly`), so apps that don't use Compose
+    carry zero runtime cost.
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    Add the package to your `pubspec.yaml`:
+
+    ```yaml filename="pubspec.yaml"
+    dependencies:
+      welcomingweb_flutter_sdk: ^1.0.0
+    ```
+
+    Then run:
+
+    ```bash
+    flutter pub get
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+### Step 2: Configure the SDK
+
+Call `configure()` once at app startup, before any navigation renders.
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx filename="App.tsx"
+    import { WelcomingWeb } from '@welcomingweb/react-native-sdk';
+
+    WelcomingWeb.configure({
+      apiKey: 'YOUR_API_KEY',
+      appId: 'com.yourcompany.yourapp',
+      appVersion: '1.0.0',
+      environment: 'development',
+      autoScan: true,
+      debug: true,
+    });
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift filename="AppDelegate.swift"
+    import WelcomingWebSDK
+
+    @main
+    class AppDelegate: UIResponder, UIApplicationDelegate {
+      func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+      ) -> Bool {
+        WelcomingWeb.configure(
+          WelcomingWebConfig(
+            apiKey: "YOUR_API_KEY",
+            appId: "com.yourcompany.yourapp",
+            appVersion: "1.0.0",
+            environment: .development,
+            autoScan: true,
+            debug: true
+          )
+        )
+
+        // Install the global view-controller hook so every screen is tracked.
+        ViewControllerSwizzler.installIfNeeded()
+
+        return true
+      }
+    }
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```kotlin filename="MyApplication.kt"
+    import com.welcomingweb.sdk.WelcomingWeb
+    import com.welcomingweb.sdk.WelcomingWebConfig
+    import com.welcomingweb.sdk.Environment
+
+    class MyApplication : Application() {
+      override fun onCreate() {
+        super.onCreate()
+
+        WelcomingWeb.configure(
+          this,
+          WelcomingWebConfig(
+            apiKey = "YOUR_API_KEY",
+            appId = "com.yourcompany.yourapp",
+            appVersion = "1.0.0",
+            environment = Environment.DEVELOPMENT,
+            autoScan = true,
+            debug = true
+          )
+        )
+      }
+    }
+    ```
+
+    Don't forget to register your Application class in `AndroidManifest.xml`:
+
+    ```xml filename="AndroidManifest.xml"
+    <application
+      android:name=".MyApplication"
+      ...>
+    </application>
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart filename="main.dart"
+    import 'package:flutter/material.dart';
+    import 'package:welcomingweb_flutter_sdk/welcomingweb_flutter_sdk.dart';
+
+    void main() {
+      WelcomingWeb.configure(
+        const WelcomingWebConfig(
+          apiKey: 'YOUR_API_KEY',
+          appId: 'com.yourcompany.yourapp',
+          appVersion: '1.0.0',
+          environment: Environment.development,
+          autoScan: true,
+          debug: true,
+        ),
+      );
+
+      runApp(const MyApp());
+    }
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+For the full list of configuration options, see the [configuration reference](#configuration-reference)
+below.
+
+### Step 3: Track Your Screens
+
+Each platform has its own idiomatic way to register screens for scanning.
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    Wrap each screen with the HOC, or use the hook in function components:
+
+    ```tsx filename="screens/HomeScreen.tsx"
+    import { withAccessibilityTracking } from '@welcomingweb/react-native-sdk';
+
+    function HomeScreen() {
+      return <ScrollView>{/* screen content */}</ScrollView>;
+    }
+
+    export default withAccessibilityTracking(HomeScreen, 'HomeScreen');
+    ```
+
+    Or with the hook:
+
+    ```tsx
+    import { useAccessibilityTracking } from '@welcomingweb/react-native-sdk';
+
+    export default function ProductDetailScreen() {
+      const a11yRef = useAccessibilityTracking('ProductDetailScreen');
+      return <ScrollView ref={a11yRef}>{/* ... */}</ScrollView>;
+    }
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    With the swizzler installed (from Step 2), **every `UIViewController` is tracked automatically**
+    using its class name or `title`. No per-screen code needed.
+
+    If you want a custom screen name or route, call `ScreenTracker.trackScreen` manually:
+
+    ```swift
+    import WelcomingWebSDK
+
+    class HomeViewController: UIViewController {
+      override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        ScreenTracker.trackScreen(self, name: "HomeScreen", route: "/home")
+      }
+    }
+    ```
+
+    For SwiftUI views, add the opt-in scan modifier to key interactive elements:
+
+    ```swift
+    Button("Save") { save() }
+      .welcomingWebScan(type: "Button", label: "Save", isInteractive: true)
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    The easiest path is the automatic `ActivityLifecycleHook`, which registers every Activity and
+    Fragment as it appears:
+
+    ```kotlin filename="MyApplication.kt"
+    override fun onCreate() {
+      super.onCreate()
+      WelcomingWeb.configure(this, config)
+
+      // One line covers every Activity and Fragment in the app.
+      ActivityLifecycleHook.install(this, trackFragments = true)
+    }
+    ```
+
+    Using Jetpack Navigation? Wire the `NavControllerHook` from your Activity:
+
+    ```kotlin
+    class MainActivity : AppCompatActivity() {
+      override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val navController = findNavController(R.id.nav_host_fragment)
+        NavControllerHook.install(this, navController)
+      }
+    }
+    ```
+
+    For Jetpack Compose, wrap screens with `TrackAccessibility`:
+
+    ```kotlin
+    @Composable
+    fun HomeScreen() {
+      TrackAccessibility(screenName = "HomeScreen") {
+        // screen content
+      }
+    }
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    Wrap each screen with `A11yTracker` and register the navigator observer on `MaterialApp`:
+
+    ```dart filename="main.dart"
+    final a11yObserver = A11yNavigatorObserver();
+
+    MaterialApp(
+      navigatorObservers: [a11yObserver],
+      builder: (context, child) => A11yNavigatorObserverScope(
+        observer: a11yObserver,
+        child: child!,
+      ),
+      home: const HomeScreen(),
+    );
+    ```
+
+    ```dart filename="screens/home_screen.dart"
+    class HomeScreen extends StatelessWidget {
+      @override
+      Widget build(BuildContext context) {
+        return A11yTracker(
+          screenName: 'HomeScreen',
+          route: '/home',
+          child: Scaffold(/* screen content */),
+        );
+      }
+    }
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+### Step 4: (Optional) Add the Accessibility Panel
+
+Give your end users an in-app panel for text size, contrast, reduce motion and more. See the
+[Accessibility Panel guide](/mobile/panel) for full setup on each platform.
+
+</Steps>
+
+## Verify the Integration
+
+Launch your app in development mode and navigate between screens. With `debug: true` set, you
+should see scan logs in your platform's console (Metro console for RN, Xcode console for iOS,
+logcat for Android, `flutter logs` for Flutter):
+
+```
+[WelcomingWeb] Scanning screen: HomeScreen
+[WelcomingWeb] Found 45 nodes, 8 interactive
+[WelcomingWeb] Scan complete: 2 critical, 1 major, 0 minor — score 94.4
+[WelcomingWeb:API] Response: 200
+```
+
+Open your [WelcomingWeb dashboard](https://app.welcomingweb.com) to see the scan appear under your
+app's session view.
+
+## Configuration Reference
+
+All SDKs accept the same configuration options. Only `apiKey` and `appId` are required.
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Option</Table.Th>
+      <Table.Th>Type</Table.Th>
+      <Table.Th>Default</Table.Th>
+      <Table.Th>Description</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`apiKey`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>*(required)*</Table.Td>
+      <Table.Td>Your WelcomingWeb API key.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`appId`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>*(required)*</Table.Td>
+      <Table.Td>Unique app identifier, e.g. `com.company.app`.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`appVersion`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>`null`</Table.Td>
+      <Table.Td>App version string. Sent with every scan.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`environment`</Table.Td>
+      <Table.Td>enum</Table.Td>
+      <Table.Td>`development`</Table.Td>
+      <Table.Td>Set to `production` to disable scanning unless `enableInProduction` is true.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`autoScan`</Table.Td>
+      <Table.Td>boolean</Table.Td>
+      <Table.Td>`true`</Table.Td>
+      <Table.Td>Scan automatically on screen changes. Set false for manual or CI scanning.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`scanDelay`</Table.Td>
+      <Table.Td>number (ms)</Table.Td>
+      <Table.Td>`600`</Table.Td>
+      <Table.Td>Milliseconds to wait after a screen change before scanning.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`debug`</Table.Td>
+      <Table.Td>boolean</Table.Td>
+      <Table.Td>`false`</Table.Td>
+      <Table.Td>Enable verbose console logging.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`reportingEndpoint`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>`null`</Table.Td>
+      <Table.Td>Custom API endpoint URL. Overrides the default.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`enableInProduction`</Table.Td>
+      <Table.Td>boolean</Table.Td>
+      <Table.Td>`false`</Table.Td>
+      <Table.Td>Allow scanning in production builds.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`disabledRules`</Table.Td>
+      <Table.Td>string array</Table.Td>
+      <Table.Td>`[]`</Table.Td>
+      <Table.Td>Rule IDs to suppress globally. See [rule reference](/mobile/rules).</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`excludeScreens`</Table.Td>
+      <Table.Td>string array</Table.Td>
+      <Table.Td>`[]`</Table.Td>
+      <Table.Td>Screen names to never scan.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`maxStoredScans`</Table.Td>
+      <Table.Td>number</Table.Td>
+      <Table.Td>`50`</Table.Td>
+      <Table.Td>Maximum scan results kept in memory.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`onScanComplete`</Table.Td>
+      <Table.Td>function</Table.Td>
+      <Table.Td>`null`</Table.Td>
+      <Table.Td>Callback invoked after each scan with the full result.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`onIssueFound`</Table.Td>
+      <Table.Td>function</Table.Td>
+      <Table.Td>`null`</Table.Td>
+      <Table.Td>Callback invoked once per issue found during a scan.</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Common Issues
+
+<Callout type="warning">
+**"Found 0 nodes" on scan** — the screen may not have finished laying out when the scan fired.
+Increase `scanDelay` from 600 ms to 1200 ms for screens with complex or virtualised content.
+Platform-specific causes are covered on each [platform page](/mobile/platforms/react-native).
+</Callout>
+
+<Callout type="warning">
+**Scans not firing on navigation** — each SDK relies on its platform's navigation primitive
+(`useFocusEffect`, `RouteObserver`, `ActivityLifecycleCallbacks`, `viewDidAppear` swizzling). See
+your platform page for the exact setup.
+</Callout>
+
+<Callout type="warning">
+**Scans appear in debug logs but not on the dashboard** — enable `debug: true` and check for
+`[WelcomingWeb:API] Response: 200`. If you see 401, verify `apiKey`. If you see 403 `app_deactivated`,
+the app is disabled on the backend. If you see 409 `platform_mismatch`, the app was registered
+under a different platform — re-register or contact support.
+</Callout>
+
+## Next Steps
+
+<Cards>
+  <Cards.Card title="Platform-Specific Setup" href="/mobile/platforms" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Detailed guides for React Native, iOS, Android and Flutter.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Accessibility Rules" href="/mobile/rules" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Full reference for the eight WCAG 2.2 rules the SDK evaluates.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="CI / CD Integration" href="/mobile/ci-cd" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Fail builds on accessibility issues with Detox, Maestro, Fastlane or GitHub Actions.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Accessibility Panel" href="/mobile/panel" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Configure the in-app panel for text size, contrast, reduce motion and more.
+    </p>
+  </Cards.Card>
+</Cards>

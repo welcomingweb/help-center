@@ -1,0 +1,784 @@
+---
+title: "Accessibility Rules Reference"
+description: "Detailed reference for the eight WCAG 2.2 rules evaluated by the WelcomingWeb mobile SDK across React Native, iOS, Android and Flutter, with severity, evidence and platform-specific fix guidance."
+---
+
+import { Callout, Table, Cards, Tabs } from 'nextra/components'
+import { CheckBadgeIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
+
+# Accessibility Rules Reference
+
+Every WelcomingWeb mobile SDK — React Native, iOS, Android, Flutter — evaluates the **same eight
+rules** against your app's component tree. Rule IDs, severities and WCAG mappings are identical
+across platforms. The only thing that changes is the platform-native code you'd write to fix each
+issue.
+
+<Callout type="info">
+Nodes that are hidden (`display: none`, `opacity: 0`, `aria-hidden`, `accessibilityElementsHidden`,
+`importantForAccessibility="no"`, `excludeFromSemantics: true` or `pointerEvents="none"`) are
+automatically excluded from all rules.
+</Callout>
+
+## Rule Summary
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Rule ID</Table.Th>
+      <Table.Th>WCAG</Table.Th>
+      <Table.Th>Level</Table.Th>
+      <Table.Th>Severity</Table.Th>
+      <Table.Th>What It Checks</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`mobile-missing-accessibility-label`</Table.Td>
+      <Table.Td>4.1.2</Table.Td>
+      <Table.Td>A</Table.Td>
+      <Table.Td>Critical</Table.Td>
+      <Table.Td>Interactive elements must have a label or visible text children.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`mobile-missing-accessibility-role`</Table.Td>
+      <Table.Td>1.3.1</Table.Td>
+      <Table.Td>A</Table.Td>
+      <Table.Td>Major</Table.Td>
+      <Table.Td>Custom interactive elements should have an explicit role for screen readers.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`mobile-touch-target-size`</Table.Td>
+      <Table.Td>2.5.8</Table.Td>
+      <Table.Td>AA</Table.Td>
+      <Table.Td>Critical</Table.Td>
+      <Table.Td>Touch targets must be at least 48×48 dp (44×44 pt on iOS, per HIG).</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`mobile-image-missing-label`</Table.Td>
+      <Table.Td>1.1.1</Table.Td>
+      <Table.Td>A</Table.Td>
+      <Table.Td>Critical</Table.Td>
+      <Table.Td>Images must have a label or be marked decorative.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`mobile-color-contrast`</Table.Td>
+      <Table.Td>1.4.3</Table.Td>
+      <Table.Td>AA</Table.Td>
+      <Table.Td>Major</Table.Td>
+      <Table.Td>Text must have at least 4.5:1 contrast (3:1 for large text).</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`mobile-disabled-state-missing`</Table.Td>
+      <Table.Td>4.1.2</Table.Td>
+      <Table.Td>A</Table.Td>
+      <Table.Td>Major</Table.Td>
+      <Table.Td>Visually disabled elements must also announce disabled state.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`mobile-text-input-label`</Table.Td>
+      <Table.Td>3.3.2</Table.Td>
+      <Table.Td>A</Table.Td>
+      <Table.Td>Critical</Table.Td>
+      <Table.Td>Text inputs must have a persistent label. Placeholder alone is insufficient.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`mobile-heading-hierarchy`</Table.Td>
+      <Table.Td>1.3.1</Table.Td>
+      <Table.Td>A</Table.Td>
+      <Table.Td>Major</Table.Td>
+      <Table.Td>Heading levels must not skip (e.g. h1 → h3).</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Detailed Rule Guidance
+
+### `mobile-missing-accessibility-label`
+
+**WCAG 2.2 · Success Criterion 4.1.2 Name, Role, Value (Level A) · Critical**
+
+Every interactive element must have a name that screen readers can announce. A button with only an
+icon and no text label is invisible to VoiceOver or TalkBack users.
+
+**Evidence captured:** component type, component path, and whether the element has any descendant
+text.
+
+**How to fix:**
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    // Missing label
+    <TouchableOpacity onPress={submit}>
+      <Icon name="check" />
+    </TouchableOpacity>
+
+    // Explicit label
+    <TouchableOpacity
+      onPress={submit}
+      accessibilityLabel="Submit form"
+    >
+      <Icon name="check" />
+    </TouchableOpacity>
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    // UIKit — missing label
+    let button = UIButton(type: .system)
+    button.setImage(checkIcon, for: .normal)
+
+    // Explicit label
+    button.accessibilityLabel = "Submit form"
+
+    // SwiftUI
+    Button(action: submit) {
+      Image(systemName: "checkmark")
+    }
+    .accessibilityLabel("Submit form")
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```kotlin
+    // XML
+    <ImageButton
+      android:id="@+id/submitButton"
+      android:src="@drawable/ic_check"
+      android:contentDescription="@string/submit_form" />
+
+    // Compose
+    IconButton(
+      onClick = ::submit,
+      modifier = Modifier.semantics { contentDescription = "Submit form" }
+    ) {
+      Icon(Icons.Default.Check, contentDescription = null)
+    }
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart
+    // Missing label
+    IconButton(
+      icon: Icon(Icons.check),
+      onPressed: submit,
+    )
+
+    // Explicit label via tooltip (Flutter best practice)
+    IconButton(
+      icon: const Icon(Icons.check),
+      tooltip: 'Submit form',
+      onPressed: submit,
+    )
+
+    // Or wrap with Semantics
+    Semantics(
+      label: 'Submit form',
+      button: true,
+      child: GestureDetector(
+        onTap: submit,
+        child: const Icon(Icons.check),
+      ),
+    )
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+---
+
+### `mobile-missing-accessibility-role`
+
+**WCAG 2.2 · Success Criterion 1.3.1 Info and Relationships (Level A) · Major**
+
+Roles tell screen readers what an element *does*. Native widgets (`Button`, `Switch`, `TextInput`,
+etc.) already carry correct roles — this rule primarily catches **custom views** with tap handlers
+that haven't declared themselves as buttons.
+
+**How to fix:**
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    <TouchableOpacity
+      onPress={openMenu}
+      accessibilityRole="button"
+      accessibilityLabel="Open menu"
+    >
+      <Text>Menu</Text>
+    </TouchableOpacity>
+    ```
+
+    Common roles: `button`, `link`, `image`, `header`, `search`, `checkbox`, `radio`, `switch`,
+    `tab`, `menuitem`.
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    // UIKit — set accessibilityTraits on custom views
+    customTapView.accessibilityTraits = .button
+    customTapView.accessibilityLabel = "Open menu"
+
+    // SwiftUI
+    MyCustomView()
+      .accessibilityLabel("Open menu")
+      .accessibilityAddTraits(.isButton)
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```kotlin
+    // Views — ViewCompat.setAccessibilityDelegate declares the role
+    ViewCompat.setAccessibilityDelegate(customView, object : AccessibilityDelegateCompat() {
+      override fun onInitializeAccessibilityNodeInfo(
+        host: View, info: AccessibilityNodeInfoCompat
+      ) {
+        super.onInitializeAccessibilityNodeInfo(host, info)
+        info.className = Button::class.java.name
+      }
+    })
+
+    // Compose
+    MyCustomView(
+      modifier = Modifier.semantics {
+        role = Role.Button
+        contentDescription = "Open menu"
+      }
+    )
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart
+    Semantics(
+      button: true,
+      label: 'Open menu',
+      child: GestureDetector(
+        onTap: openMenu,
+        child: const Text('Menu'),
+      ),
+    )
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+---
+
+### `mobile-touch-target-size`
+
+**WCAG 2.2 · Success Criterion 2.5.8 Target Size (Minimum) (Level AA) · Critical**
+
+Every touch target must meet the platform-native minimum size:
+
+- **iOS:** 44 × 44 points (Apple Human Interface Guidelines)
+- **Android / React Native / Flutter:** 48 × 48 density-independent pixels (Material & WCAG)
+
+This matters most for icon-only buttons, close affordances and densely packed toolbar items.
+
+**Evidence captured:** measured width and height (in dp for Android/RN/Flutter, points for iOS,
+including `hitSlop` adjustments on RN).
+
+**How to fix:**
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    // Too small — 24×24
+    <TouchableOpacity style={{ width: 24, height: 24 }}>
+      <Icon name="close" size={24} />
+    </TouchableOpacity>
+
+    // Minimum size via padding
+    <TouchableOpacity style={{ padding: 12 }}>
+      <Icon name="close" size={24} />
+    </TouchableOpacity>
+
+    // Small visual, large hit area via hitSlop
+    <TouchableOpacity
+      style={{ width: 24, height: 24 }}
+      hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+    >
+      <Icon name="close" size={24} />
+    </TouchableOpacity>
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    // UIKit — set explicit frame or constraints
+    button.widthAnchor.constraint(greaterThanOrEqualToConstant: 44).isActive = true
+    button.heightAnchor.constraint(greaterThanOrEqualToConstant: 44).isActive = true
+
+    // SwiftUI
+    Button(action: close) {
+      Image(systemName: "xmark")
+    }
+    .frame(minWidth: 44, minHeight: 44)
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```kotlin
+    // Views — minimum sizes in XML
+    <ImageButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:minWidth="48dp"
+      android:minHeight="48dp"
+      android:padding="12dp" />
+
+    // Compose
+    IconButton(
+      onClick = ::close,
+      modifier = Modifier.sizeIn(minWidth = 48.dp, minHeight = 48.dp)
+    ) {
+      Icon(Icons.Default.Close, contentDescription = "Close")
+    }
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart
+    // Flutter's IconButton already respects minimum sizes when used inside
+    // a Material app. For custom gesture detectors, enforce the minimum:
+    GestureDetector(
+      onTap: close,
+      child: Container(
+        constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+        alignment: Alignment.center,
+        child: const Icon(Icons.close, size: 24),
+      ),
+    )
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+---
+
+### `mobile-image-missing-label`
+
+**WCAG 2.2 · Success Criterion 1.1.1 Non-text Content (Level A) · Critical**
+
+Every informative image needs an alternative text representation. Decorative images must be
+explicitly marked so screen readers skip them rather than announcing meaningless file names.
+
+**How to fix:**
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    // Informative
+    <Image
+      source={require('./charts/q4-revenue.png')}
+      accessibilityLabel="Q4 revenue chart showing 18 percent growth"
+    />
+
+    // Decorative
+    <Image
+      source={require('./decorations/divider.png')}
+      accessible={false}
+    />
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    // UIKit
+    chartImageView.accessibilityLabel = "Q4 revenue chart showing 18 percent growth"
+    dividerImageView.isAccessibilityElement = false
+
+    // SwiftUI
+    Image("q4-revenue")
+      .accessibilityLabel("Q4 revenue chart showing 18 percent growth")
+
+    Image("divider")
+      .accessibilityHidden(true)
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```xml
+    <!-- Informative -->
+    <ImageView
+      android:src="@drawable/q4_revenue"
+      android:contentDescription="@string/q4_revenue_chart_desc" />
+
+    <!-- Decorative -->
+    <ImageView
+      android:src="@drawable/divider"
+      android:importantForAccessibility="no" />
+    ```
+
+    ```kotlin
+    // Compose
+    Image(
+      painter = painterResource(R.drawable.q4_revenue),
+      contentDescription = "Q4 revenue chart showing 18 percent growth",
+    )
+
+    Image(
+      painter = painterResource(R.drawable.divider),
+      contentDescription = null,  // decorative
+    )
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart
+    // Informative
+    Image.asset(
+      'assets/charts/q4_revenue.png',
+      semanticLabel: 'Q4 revenue chart showing 18 percent growth',
+    )
+
+    // Decorative
+    Image.asset(
+      'assets/decorations/divider.png',
+      excludeFromSemantics: true,
+    )
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+---
+
+### `mobile-color-contrast`
+
+**WCAG 2.2 · Success Criterion 1.4.3 Contrast (Minimum) (Level AA) · Major**
+
+Body text must have a contrast ratio of at least **4.5:1** against its background. Large text
+(18pt regular or 14pt bold) may go as low as **3:1**.
+
+<Callout type="warning">
+**The rule skips when no ancestor declares a background colour.** On iOS, Android and Flutter,
+silence is better than false positives. If your app uses a themed background without an explicit
+`backgroundColor` on the root container, set one so the rule can resolve contrast accurately.
+</Callout>
+
+**Evidence captured:** foreground colour, resolved background colour, measured ratio, and the
+minimum ratio required for the detected text size.
+
+---
+
+### `mobile-disabled-state-missing`
+
+**WCAG 2.2 · Success Criterion 4.1.2 Name, Role, Value (Level A) · Major**
+
+When an element is visually disabled, the disabled *state* must also be announced to assistive
+technologies. A greyed-out button that still announces "Submit, button" to a screen reader is
+confusing and misleading.
+
+**How to fix:**
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    <TouchableOpacity
+      disabled={!formIsValid}
+      accessibilityState={{ disabled: !formIsValid }}
+      accessibilityRole="button"
+      accessibilityLabel="Submit form"
+    >
+      <Text>Submit</Text>
+    </TouchableOpacity>
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    // UIKit — setting isEnabled = false automatically sets the trait
+    submitButton.isEnabled = formIsValid
+
+    // For custom views, set the trait manually
+    customButton.accessibilityTraits.insert(.notEnabled)
+
+    // SwiftUI
+    Button("Submit", action: submit)
+      .disabled(!formIsValid)
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```kotlin
+    // Views — isEnabled = false updates the AccessibilityNodeInfo automatically
+    submitButton.isEnabled = formIsValid
+
+    // Compose
+    Button(
+      onClick = ::submit,
+      enabled = formIsValid,
+    ) {
+      Text("Submit")
+    }
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart
+    // ElevatedButton disables accessibility state automatically when
+    // onPressed is null
+    ElevatedButton(
+      onPressed: formIsValid ? submit : null,
+      child: const Text('Submit'),
+    )
+
+    // For custom controls, wrap with Semantics
+    Semantics(
+      enabled: formIsValid,
+      button: true,
+      label: 'Submit',
+      child: /* ... */,
+    )
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+---
+
+### `mobile-text-input-label`
+
+**WCAG 2.2 · Success Criterion 3.3.2 Labels or Instructions (Level A) · Critical**
+
+Every text input needs a persistent label. Placeholder text disappears as soon as the user starts
+typing, so screen-reader users who tab back into the field hear nothing.
+
+**How to fix:**
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    // Placeholder only — not enough
+    <TextInput placeholder="Email address" />
+
+    // Explicit accessibility label
+    <TextInput
+      placeholder="you@example.com"
+      accessibilityLabel="Email address"
+    />
+
+    // Visible label + programmatic association
+    <View>
+      <Text nativeID="emailLabel">Email address</Text>
+      <TextInput
+        placeholder="you@example.com"
+        accessibilityLabelledBy="emailLabel"
+      />
+    </View>
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    // UIKit
+    emailField.placeholder = "you@example.com"
+    emailField.accessibilityLabel = "Email address"
+
+    // SwiftUI
+    TextField("you@example.com", text: $email)
+      .accessibilityLabel("Email address")
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```xml
+    <!-- Wrap EditText with TextInputLayout — the recommended pattern -->
+    <com.google.android.material.textfield.TextInputLayout
+      android:hint="Email address">
+      <com.google.android.material.textfield.TextInputEditText
+        android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+    ```
+
+    ```kotlin
+    // Compose
+    TextField(
+      value = email,
+      onValueChange = { email = it },
+      label = { Text("Email address") },
+      placeholder = { Text("you@example.com") },
+    )
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart
+    // Use labelText, not just hintText
+    TextField(
+      decoration: const InputDecoration(
+        labelText: 'Email address',
+        hintText: 'you@example.com',
+      ),
+    )
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+---
+
+### `mobile-heading-hierarchy`
+
+**WCAG 2.2 · Success Criterion 1.3.1 Info and Relationships (Level A) · Major**
+
+Screen-reader users often navigate by heading. Skipping levels (for example jumping from `h1` to
+`h3`) breaks that mental model.
+
+<Callout type="warning">
+The rule requires **explicit heading levels** to fire. On React Native and Android (Views) it uses
+the heading's declared level; on Flutter it uses `Semantics(header: true)`. Compose's
+`Modifier.semantics { heading() }` and SwiftUI's `.accessibilityAddTraits(.isHeader)` are markers
+without numeric levels, so screens built purely in those stacks with multiple headings skip this
+rule.
+</Callout>
+
+**How to fix (React Native example):**
+
+```tsx
+// Skipped level
+<Text accessibilityRole="header" aria-level={1}>Settings</Text>
+<Text accessibilityRole="header" aria-level={3}>Notifications</Text>
+
+// Sequential levels
+<Text accessibilityRole="header" aria-level={1}>Settings</Text>
+<Text accessibilityRole="header" aria-level={2}>Notifications</Text>
+```
+
+## Disabling Rules
+
+Sometimes a rule fires on a component you can't change (for example, a third-party library).
+Disable the rule globally in your SDK configuration:
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    import { WelcomingWeb, RULES } from '@welcomingweb/react-native-sdk';
+
+    WelcomingWeb.configure({
+      apiKey: 'YOUR_API_KEY',
+      appId: 'com.yourcompany.yourapp',
+      disabledRules: [
+        RULES.COLOR_CONTRAST,
+        'mobile-heading-hierarchy',
+      ],
+    });
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    WelcomingWeb.configure(
+      WelcomingWebConfig(
+        apiKey: "YOUR_API_KEY",
+        appId: "com.yourcompany.yourapp",
+        disabledRules: [
+          Rules.colorContrast,
+          "mobile-heading-hierarchy",
+        ]
+      )
+    )
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```kotlin
+    WelcomingWeb.configure(
+      application = this,
+      config = WelcomingWebConfig(
+        apiKey = "YOUR_API_KEY",
+        appId = "com.yourcompany.yourapp",
+        disabledRules = listOf(
+          Rules.COLOR_CONTRAST,
+          "mobile-heading-hierarchy",
+        )
+      )
+    )
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart
+    WelcomingWeb.configure(
+      const WelcomingWebConfig(
+        apiKey: 'YOUR_API_KEY',
+        appId: 'com.yourcompany.yourapp',
+        disabledRules: [
+          Rules.colorContrast,
+          'mobile-heading-hierarchy',
+        ],
+      ),
+    );
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+<Callout type="warning">
+Disabling a rule suppresses it everywhere, not just on the offending component. Prefer fixing the
+issue at source, or scope the suppression with the `excludeScreens` option for screens you can't
+control.
+</Callout>
+
+## Rule Constants
+
+Every SDK exports its rule IDs as constants to avoid hard-coding strings:
+
+| Constant | Rule ID |
+| --- | --- |
+| `MISSING_LABEL` | `mobile-missing-accessibility-label` |
+| `MISSING_ROLE` | `mobile-missing-accessibility-role` |
+| `TOUCH_TARGET` | `mobile-touch-target-size` |
+| `IMAGE_MISSING_LABEL` | `mobile-image-missing-label` |
+| `COLOR_CONTRAST` | `mobile-color-contrast` |
+| `DISABLED_STATE` | `mobile-disabled-state-missing` |
+| `TEXT_INPUT_LABEL` | `mobile-text-input-label` |
+| `HEADING_HIERARCHY` | `mobile-heading-hierarchy` |
+
+## How Scoring Works
+
+Each scan produces a score from 0 to 100 based on the issues found and the total number of
+components scanned:
+
+```
+penalty     = (critical × 10) + (major × 5) + (minor × 1)
+max_penalty = total_components × 10
+score       = max(0, 100 − (penalty / max_penalty × 100))
+```
+
+A screen with 45 components, 2 critical issues and 1 major issue scores
+`100 − (25 / 450 × 100) = 94.4`.
+
+**Session scores** are the average of all per-screen scores. The server independently recalculates
+scores from its own stored data as the source of truth in the dashboard.
+
+**The formula is identical on every platform** — a scan of the same screen shape from the Android
+SDK and the Flutter SDK produces the same score, so you can compare builds apples-to-apples even
+across stacks.
+
+## Platform-Specific Notes
+
+**Color contrast requires a declared background.** On iOS, Android and Flutter, the rule returns
+nothing when no ancestor declares a background colour — silence is better than false positives.
+Set an explicit `backgroundColor` on your root container to get accurate results.
+
+**Heading hierarchy limitations.** Compose (`Modifier.semantics { heading() }`) and SwiftUI
+(`.accessibilityAddTraits(.isHeader)`) don't expose numeric heading levels, so the heading-hierarchy
+rule doesn't fire on screens built purely in those stacks. On React Native use `aria-level`; on
+Android Views, use `android:accessibilityHeading`; on Flutter wrap with `Semantics(header: true)`.
+
+**Custom view role detection.** On Android, custom `View` subclasses with tap handlers won't get a
+role automatically — they'll trip `mobile-missing-accessibility-role`. Declare the role via
+`ViewCompat.setAccessibilityDelegate` or use a framework widget.
+
+## Next Steps
+
+<Cards>
+  <Cards.Card title="Accessibility Panel" href="/mobile/panel" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Give your end users a runtime accessibility panel with the same adjustments.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="CI / CD Gating" href="/mobile/ci-cd" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Fail builds automatically when critical issues appear.
+    </p>
+  </Cards.Card>
+</Cards>

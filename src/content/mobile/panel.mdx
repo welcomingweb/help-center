@@ -1,0 +1,585 @@
+---
+title: "Accessibility Panel"
+description: "Give your end users a floating accessibility panel with text size, contrast, reduce motion, screen curtain and reading guide — available on React Native, iOS, Android and Flutter."
+---
+
+import { Callout, Cards, Steps, Table, Tabs } from 'nextra/components'
+import { CheckBadgeIcon, AdjustmentsHorizontalIcon, EyeIcon, SpeakerWaveIcon, MinusIcon, BookOpenIcon } from '@heroicons/react/24/outline'
+
+# Accessibility Panel
+
+The optional accessibility panel gives your end users a familiar in-app control surface — the same
+kind of controls they expect from modern web accessibility widgets, but native to your mobile app.
+It respects the device's real accessibility state, so it augments system settings rather than
+fighting them.
+
+<Callout type="info">
+The panel is available on **React Native, iOS, Android and Flutter**, with the same feature set
+on every platform. The implementation is platform-native — UIKit on iOS, classic Views on Android,
+pure React components on RN, pure Flutter widgets on Flutter — so there's no shared runtime or
+WebView overhead.
+</Callout>
+
+## Available Features
+
+<Cards>
+  <Cards.Card title="Text Size" href="#text-size" icon={<AdjustmentsHorizontalIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Opens the OS accessibility settings for system-wide text size control.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="High Contrast" href="#high-contrast" icon={<EyeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Exposes a contrast preference your components can read and react to.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Reduce Motion" href="#reduce-motion" icon={<MinusIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Honours the system reduce-motion preference and exposes it to your components.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Screen Curtain" href="#screen-curtain" icon={<SpeakerWaveIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Black overlay for screen-reader users who prefer an eyes-off experience.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Reading Guide" href="#reading-guide" icon={<BookOpenIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Draggable horizontal highlight strip with dimmed regions above and below.
+    </p>
+  </Cards.Card>
+</Cards>
+
+## Setup
+
+<Steps>
+
+### Step 1: Wrap Your App in the Provider
+
+`A11yProvider` / `AccessibilityProvider` is the context root for panel state and device
+accessibility detection.
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx filename="App.tsx"
+    import { AccessibilityProvider } from '@welcomingweb/react-native-sdk';
+
+    export default function App() {
+      return (
+        <AccessibilityProvider>
+          {/* rest of your app */}
+        </AccessibilityProvider>
+      );
+    }
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    On iOS the controller is installed once at app startup. No view wrapping required:
+
+    ```swift filename="AppDelegate.swift"
+    import WelcomingWebSDK
+
+    func application(
+      _ application: UIApplication,
+      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+      A11yProvider.install()
+      WelcomingWeb.configure(/* ... */)
+      ViewControllerSwizzler.installIfNeeded()
+      return true
+    }
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    Install the controller from your `Application.onCreate`:
+
+    ```kotlin filename="MyApplication.kt"
+    import com.welcomingweb.sdk.ui.A11yProvider
+
+    override fun onCreate() {
+      super.onCreate()
+      A11yProvider.install(this)   // <-- this line
+      WelcomingWeb.configure(this, config)
+    }
+    ```
+
+    Preferences are persisted to `SharedPreferences` (scoped to `welcomingweb_a11y_prefs`), so
+    they survive app restarts.
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart filename="main.dart"
+    import 'package:welcomingweb_flutter_sdk/welcomingweb_flutter_sdk.dart';
+
+    void main() {
+      WelcomingWeb.configure(const WelcomingWebConfig(/* ... */));
+
+      runApp(
+        A11yProvider(
+          child: MaterialApp(
+            // ...
+            home: const HomeScreen(),
+          ),
+        ),
+      );
+    }
+    ```
+
+    Place `A11yProvider` **above** `MaterialApp` so the screen-curtain and reading-guide overlays
+    can render above every route.
+  </Tabs.Tab>
+</Tabs>
+
+### Step 2: Drop the Panel Component
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    Place `<AccessibilityPanel />` as the last child inside your `NavigationContainer`, after all
+    navigators, so it layers above the navigation stack.
+
+    ```tsx filename="App.tsx"
+    import {
+      AccessibilityProvider,
+      AccessibilityPanel,
+      createNavigationObserver
+    } from '@welcomingweb/react-native-sdk';
+
+    export default function App() {
+      return (
+        <AccessibilityProvider>
+          <NavigationContainer onStateChange={createNavigationObserver()}>
+            <Tab.Navigator>{/* screens */}</Tab.Navigator>
+            <AccessibilityPanel
+              position="bottom-right"
+              theme={{ primaryColor: '#3D2ED6' }}
+            />
+          </NavigationContainer>
+        </AccessibilityProvider>
+      );
+    }
+    ```
+
+    <Callout type="warning">
+      The panel uses absolute positioning with zIndex 9998–9999. If you can't see it after adding
+      it, check that it sits after all navigators, not inside a screen component.
+    </Callout>
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    On iOS the panel is a UIKit overlay attached to the key window. Show it once at app startup:
+
+    ```swift
+    import WelcomingWebSDK
+
+    func showAccessibilityPanel() {
+      A11yPanel.show(
+        position: .bottomRight,
+        theme: A11yPanel.Theme(primaryColor: UIColor(red: 0.24, green: 0.18, blue: 0.84, alpha: 1))
+      )
+    }
+
+    // Call showAccessibilityPanel() after the window is available,
+    // e.g. from your first view controller's viewDidAppear.
+    ```
+
+    The panel works in UIKit, SwiftUI and mixed apps — overlays attach at the window level, not
+    inside a view hierarchy.
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    Attach the panel from your main Activity's `onCreate`:
+
+    ```kotlin filename="MainActivity.kt"
+    import com.welcomingweb.sdk.ui.A11yPanel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+      super.onCreate(savedInstanceState)
+      setContentView(R.layout.activity_main)
+
+      A11yPanel.attachTo(
+        this,
+        position = A11yPanel.Position.BOTTOM_RIGHT,
+        theme = A11yPanel.Theme(primaryColor = Color.parseColor("#3D2ED6"))
+      )
+    }
+    ```
+
+    The panel is a classic-View overlay, so it works in pure-View apps, pure-Compose apps and
+    mixed hosts without requiring Compose as a hard dependency.
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    Add `A11yPanel` inside your `MaterialApp`'s builder, above the route content:
+
+    ```dart filename="main.dart"
+    MaterialApp(
+      navigatorObservers: [a11yObserver],
+      builder: (context, child) {
+        return A11yNavigatorObserverScope(
+          observer: a11yObserver,
+          child: Stack(
+            children: [
+              child!,
+              const A11yPanel(position: A11yPanelPosition.bottomRight),
+            ],
+          ),
+        );
+      },
+      home: const HomeScreen(),
+    );
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+### Step 3: (Optional) Apply Settings in Your Components
+
+The panel exposes its preferences through hooks or controllers. Read them in your components to
+honour the user's choices.
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    import { useAccessibilityToolkit } from '@welcomingweb/react-native-sdk';
+
+    export function MyCard({ title, body }) {
+      const { effectiveSettings, getTextStyle, getTouchTargetStyle } =
+        useAccessibilityToolkit();
+
+      if (effectiveSettings.reduceMotion) {
+        // skip entrance animation
+      }
+
+      return (
+        <TouchableOpacity style={[styles.card, getTouchTargetStyle()]}>
+          <Text style={getTextStyle({ fontSize: 20, fontWeight: '600' })}>{title}</Text>
+          <Text style={getTextStyle({ fontSize: 14 })}>{body}</Text>
+        </TouchableOpacity>
+      );
+    }
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    let settings = A11yProvider.shared.effectiveSettings
+
+    if settings.reduceMotion {
+      // skip animation
+    }
+
+    let backgroundColor = settings.highContrast ? .black : .systemBackground
+    let textColor = settings.highContrast ? .white : .label
+    ```
+
+    For reactive updates, register a listener:
+
+    ```swift
+    let token = A11yProvider.shared.addListener { settings in
+      // re-render your view
+    }
+
+    // Clean up
+    A11yProvider.shared.removeListener(token)
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```kotlin
+    val controller = A11yProvider.get()
+    val settings = controller.effectiveSettings
+
+    if (settings.reduceMotion) {
+      // skip animation
+    }
+
+    val textColor = if (settings.highContrast) Color.WHITE else Color.BLACK
+    ```
+
+    For reactive updates, add a listener:
+
+    ```kotlin
+    val listener = controller.addListener { effective ->
+      // update view
+    }
+
+    // In onDestroy:
+    controller.removeListener(listener)
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    Access preferences via `A11yProvider.of(context)` (backed by an `InheritedWidget`):
+
+    ```dart
+    @override
+    Widget build(BuildContext context) {
+      final settings = A11yProvider.of(context).effectiveSettings;
+
+      final duration = settings.reduceMotion
+        ? Duration.zero
+        : const Duration(milliseconds: 250);
+
+      return AnimatedContainer(
+        duration: duration,
+        color: settings.highContrast ? Colors.black : Colors.white,
+        child: /* ... */,
+      );
+    }
+    ```
+
+    The widget rebuilds automatically when settings change.
+  </Tabs.Tab>
+</Tabs>
+
+</Steps>
+
+## Panel Props
+
+Every platform accepts the same panel props. Naming varies slightly per language idiom.
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Prop</Table.Th>
+      <Table.Th>Type</Table.Th>
+      <Table.Th>Default</Table.Th>
+      <Table.Th>Description</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`position`</Table.Td>
+      <Table.Td>enum</Table.Td>
+      <Table.Td>`bottom-right`</Table.Td>
+      <Table.Td>FAB position. One of `bottom-right`, `bottom-left`, `top-right`, `top-left`.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`features`</Table.Td>
+      <Table.Td>string array</Table.Td>
+      <Table.Td>all</Table.Td>
+      <Table.Td>Feature IDs to show. Omit to show all.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`theme`</Table.Td>
+      <Table.Td>object</Table.Td>
+      <Table.Td>`&#123;&#125;`</Table.Td>
+      <Table.Td>Override colors: `primaryColor`, `accentColor`, `backgroundColor`, `textColor`, `fabSize`.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`onSettingsChange`</Table.Td>
+      <Table.Td>function</Table.Td>
+      <Table.Td>`null`</Table.Td>
+      <Table.Td>Callback when settings change.</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+**Available feature IDs:** `textSize`, `highContrast`, `reduceMotion`, `screenCurtain`,
+`readingGuide`, `screenReader`.
+
+## Feature Details
+
+### Text Size
+
+Opens the OS accessibility settings so the user's choice persists across every app. The panel
+itself does not override text size in your app — respect the system font scale by reading
+`effectiveSettings.fontScale` in your components.
+
+| Platform | Implementation |
+| --- | --- |
+| React Native | `Linking.openSettings` (iOS) / `Linking.sendIntent` (Android) |
+| iOS | `UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)` |
+| Android | `Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)` with fallback to app details |
+| Flutter | `app_settings` package, deep-links to accessibility settings on both platforms |
+
+### High Contrast
+
+Toggling high contrast sets `settings.highContrast` to `true`. Your components read this and apply
+a contrast theme from `effectiveSettings.highContrastTheme`.
+
+The SDK also respects the system's high-contrast preference (e.g. **Smart Invert** on iOS,
+**Increase contrast** on Android) — `effectiveSettings.highContrast` is the merge of user toggle
+**OR** system preference.
+
+### Reduce Motion
+
+The SDK reads the device's system reduce-motion preference and merges it with the in-panel
+toggle. Read `effectiveSettings.reduceMotion` and skip or shorten animations where relevant:
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    const { effectiveSettings } = useAccessibilityToolkit();
+    const duration = effectiveSettings.reduceMotion ? 0 : 250;
+    ```
+
+    <Callout type="warning">
+      The SDK does not patch `Animated` globally. Read `effectiveSettings.reduceMotion` in each
+      animating component and short-circuit the animation yourself.
+    </Callout>
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    let duration: TimeInterval = A11yProvider.shared.effectiveSettings.reduceMotion
+      ? 0
+      : 0.25
+
+    UIView.animate(withDuration: duration) { /* ... */ }
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```kotlin
+    val duration = if (A11yProvider.get().effectiveSettings.reduceMotion) 0L else 250L
+    view.animate().alpha(1f).setDuration(duration).start()
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart
+    final duration = A11yProvider.of(context).effectiveSettings.reduceMotion
+      ? Duration.zero
+      : const Duration(milliseconds: 250);
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+### Screen Curtain
+
+Renders a full-screen black overlay only when a screen reader is active on the device (VoiceOver on
+iOS, TalkBack on Android, VoiceOver on Flutter iOS, TalkBack on Flutter Android). Toggling the
+curtain without an active screen reader announces a warning and resets the toggle — this prevents
+sighted users from accidentally locking themselves out of the app.
+
+### Reading Guide
+
+Displays a draggable horizontal highlight strip with dimmed regions above and below for focus
+tracking. Useful for users with dyslexia, ADHD or cognitive fatigue who benefit from a reduced
+visual field while reading.
+
+## Theming
+
+Override any subset of colours and the FAB size through the `theme` prop. Unspecified values fall
+back to the panel defaults.
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    <AccessibilityPanel
+      position="bottom-right"
+      theme={{
+        primaryColor: '#3D2ED6',
+        accentColor: '#4A3AE8',
+        backgroundColor: '#FFFFFF',
+        textColor: '#1E1E2F',
+        fabSize: 56,
+      }}
+    />
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    A11yPanel.show(
+      position: .bottomRight,
+      theme: A11yPanel.Theme(
+        primaryColor: UIColor(hex: "#3D2ED6"),
+        accentColor: UIColor(hex: "#4A3AE8"),
+        backgroundColor: .systemBackground,
+        textColor: .label,
+        fabSize: 56
+      )
+    )
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```kotlin
+    A11yPanel.attachTo(
+      activity = this,
+      position = A11yPanel.Position.BOTTOM_RIGHT,
+      theme = A11yPanel.Theme(
+        primaryColor = Color.parseColor("#3D2ED6"),
+        accentColor = Color.parseColor("#4A3AE8"),
+        backgroundColor = Color.WHITE,
+        textColor = Color.parseColor("#1E1E2F"),
+        fabSize = 56
+      )
+    )
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart
+    A11yPanel(
+      position: A11yPanelPosition.bottomRight,
+      theme: A11yPanelTheme(
+        primaryColor: Color(0xFF3D2ED6),
+        accentColor: Color(0xFF4A3AE8),
+        backgroundColor: Colors.white,
+        textColor: Color(0xFF1E1E2F),
+        fabSize: 56,
+      ),
+    )
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## Limiting Features
+
+Show only the features relevant to your users. If your app has no screen-reader-friendly content
+flow yet, for example, you might hide `screenCurtain` until it's ready.
+
+```tsx
+<AccessibilityPanel
+  features={['textSize', 'highContrast', 'reduceMotion']}
+/>
+```
+
+The same pattern works on every platform with a `features` array.
+
+## Troubleshooting
+
+<Callout type="warning">
+**Panel not visible** — ensure the provider is installed at app startup and that the panel is
+attached at the window or navigation-root level, not inside a screen component. On Android
+specifically, the panel needs to be attached to the Activity; re-attach it in every Activity if
+your app has multiple.
+</Callout>
+
+<Callout type="warning">
+**Reduce motion toggle has no effect** — the SDK does not patch the platform's animation APIs
+globally. Read `effectiveSettings.reduceMotion` in each animating component and short-circuit the
+animation yourself.
+</Callout>
+
+<Callout type="warning">
+**Screen curtain doesn't darken the screen** — the curtain only activates when a screen reader
+(VoiceOver or TalkBack) is active on the device. This is intentional: it prevents sighted users
+from locking themselves out. Enable your OS screen reader to test the curtain.
+</Callout>
+
+<Callout type="warning">
+**iOS: "Directionality" error in Flutter** — on Flutter, the screen-curtain and reading-guide
+overlays wrap the child in a `Stack` only when active, because `Stack` requires a `Directionality`
+ancestor. If you still see the error, confirm `A11yProvider` is wrapped above `MaterialApp`, not
+below it.
+</Callout>
+
+## Next Steps
+
+<Cards>
+  <Cards.Card title="Accessibility Rules" href="/mobile/rules" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Full WCAG 2.2 rule reference for mobile scanning.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="CI / CD Integration" href="/mobile/ci-cd" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Run the same scans in your pipeline and gate releases.
+    </p>
+  </Cards.Card>
+</Cards>

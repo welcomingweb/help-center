@@ -1,0 +1,809 @@
+---
+title: "CI / CD Integration"
+description: "Run WelcomingWeb mobile accessibility scans in your pipeline with Detox, Maestro, Fastlane, GitHub Actions or Bitrise. Fail builds on critical issues before they ship — on React Native, iOS, Android or Flutter."
+---
+
+import { Callout, Steps, Cards, Table, Tabs } from 'nextra/components'
+import { CogIcon, CheckBadgeIcon, CommandLineIcon, CloudIcon } from '@heroicons/react/24/outline'
+
+# CI / CD Integration
+
+Run the same accessibility scans you use in development inside your build pipeline. WelcomingWeb
+supports two integration styles — **in-app CI runners** driven by E2E frameworks, and **headless
+scripts** driven by Fastlane or shell — and both produce the same structured session report on the
+dashboard.
+
+<Callout type="info">
+This guide assumes you already have the mobile SDK configured in your app. If not, start with the
+[getting started guide](/mobile/getting-started) and return here once a development scan is
+reaching the dashboard.
+</Callout>
+
+The workflow is identical across every platform. Only the SDK call syntax differs — the server
+doesn't know which SDK produced a session.
+
+## Core Workflow
+
+Every CI integration follows the same four-step pattern.
+
+<Steps>
+
+### Step 1: Configure with Auto-Scan Off
+
+Auto-scan is designed for development, where deduplication saves battery and network. In CI you
+want guaranteed fresh results, so disable auto-scan.
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    WelcomingWeb.configure({
+      apiKey: process.env.WELCOMINGWEB_API_KEY,
+      appId: 'com.yourcompany.app',
+      appVersion: process.env.APP_VERSION,
+      environment: 'development',
+      autoScan: false,
+    });
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    WelcomingWeb.configure(
+      WelcomingWebConfig(
+        apiKey: ProcessInfo.processInfo.environment["WELCOMINGWEB_API_KEY"] ?? "",
+        appId: "com.yourcompany.app",
+        appVersion: ProcessInfo.processInfo.environment["APP_VERSION"] ?? "",
+        environment: .development,
+        autoScan: false
+      )
+    )
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```kotlin
+    WelcomingWeb.configure(
+      application = application,
+      config = WelcomingWebConfig(
+        apiKey = BuildConfig.WELCOMINGWEB_API_KEY,
+        appId = "com.yourcompany.app",
+        appVersion = BuildConfig.VERSION_NAME,
+        environment = Environment.DEVELOPMENT,
+        autoScan = false
+      )
+    )
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart
+    WelcomingWeb.configure(
+      WelcomingWebConfig(
+        apiKey: const String.fromEnvironment('WELCOMINGWEB_API_KEY'),
+        appId: 'com.yourcompany.app',
+        appVersion: const String.fromEnvironment('APP_VERSION'),
+        environment: Environment.development,
+        autoScan: false,
+      ),
+    );
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+### Step 2: Clear the Screen Cache
+
+The SDK uses a component-tree hash to skip re-scanning screens whose UI hasn't changed. In CI,
+clear the cache before each run so every screen is evaluated fresh.
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    WelcomingWeb.clearScreenCache();
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```swift
+    await WelcomingWeb.clearScreenCache()
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```kotlin
+    WelcomingWeb.clearScreenCache()
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```dart
+    WelcomingWeb.clearScreenCache();
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+Alternatively, pass `force: true` to `scanScreen()` — it bypasses the dedup check and produces a
+fresh result on every call.
+
+### Step 3: Navigate and Scan Each Screen
+
+For each screen you want covered, navigate to it and call `scanScreen()`. Either do this from a
+dedicated in-app runner (driven by Detox or Maestro) or from your test framework directly.
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    await navigateTo('HomeScreen');
+    await WelcomingWeb.scanScreen('HomeScreen', '/Home', null);
+
+    await navigateTo('ProductList');
+    await WelcomingWeb.scanScreen('ProductList', '/ProductList', null);
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    await navigateTo("HomeScreen")
+    _ = try await WelcomingWeb.scanScreen(
+      screenName: "HomeScreen",
+      screenRoute: "/Home",
+      force: true
+    )
+
+    await navigateTo("ProductList")
+    _ = try await WelcomingWeb.scanScreen(
+      screenName: "ProductList",
+      screenRoute: "/ProductList",
+      force: true
+    )
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```kotlin
+    navigateTo("HomeScreen")
+    WelcomingWeb.scanScreen(
+      screenName = "HomeScreen",
+      screenRoute = "/Home",
+      force = true
+    )
+
+    navigateTo("ProductList")
+    WelcomingWeb.scanScreen(
+      screenName = "ProductList",
+      screenRoute = "/ProductList",
+      force = true
+    )
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart
+    await navigateTo('HomeScreen');
+    await WelcomingWeb.scanScreen('HomeScreen', '/Home', force: true);
+
+    await navigateTo('ProductList');
+    await WelcomingWeb.scanScreen('ProductList', '/ProductList', force: true);
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+### Step 4: Submit the Session
+
+One final call batch-submits every scan as a single session and returns aggregate results.
+
+<Tabs items={['React Native', 'iOS', 'Android', 'Flutter']}>
+  <Tabs.Tab>
+    ```tsx
+    const result = await WelcomingWeb.submitScanSession({
+      scanType: 'ci_build',
+      buildId: process.env.BUILD_ID,
+      commitHash: process.env.COMMIT_SHA,
+      appVersion: process.env.APP_VERSION,
+    });
+
+    if (result.criticalIssues > 0) process.exit(1);
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```swift
+    let result = try await WelcomingWeb.submitScanSession(
+      options: SubmitSessionOptions(
+        scanType: "ci_build",
+        buildId: ProcessInfo.processInfo.environment["BUILD_ID"],
+        commitHash: ProcessInfo.processInfo.environment["COMMIT_SHA"],
+        appVersion: ProcessInfo.processInfo.environment["APP_VERSION"]
+      )
+    )
+
+    if (result?.criticalIssues ?? 0) > 0 {
+      exit(1)
+    }
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```kotlin
+    val result = WelcomingWeb.submitScanSession(
+      SubmitSessionOptions(
+        scanType = "ci_build",
+        buildId = System.getenv("BUILD_ID"),
+        commitHash = System.getenv("COMMIT_SHA"),
+        appVersion = BuildConfig.VERSION_NAME
+      )
+    )
+
+    if ((result?.criticalIssues ?: 0) > 0) {
+      exitProcess(1)
+    }
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```dart
+    final result = await WelcomingWeb.submitScanSession(
+      options: const SubmitSessionOptions(
+        scanType: 'ci_build',
+      ),
+    );
+
+    if ((result?.criticalIssues ?? 0) > 0) {
+      exit(1);
+    }
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+</Steps>
+
+## Environment Variables
+
+All CI integrations consume the same environment variables. Store secrets in your CI provider's
+secret manager.
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Variable</Table.Th>
+      <Table.Th>Required</Table.Th>
+      <Table.Th>Description</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`WELCOMINGWEB_API_KEY`</Table.Td>
+      <Table.Td>Yes</Table.Td>
+      <Table.Td>API key with scan write permission.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`WELCOMINGWEB_APP_ID`</Table.Td>
+      <Table.Td>Yes</Table.Td>
+      <Table.Td>Registered app identifier (e.g. `com.company.app`).</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`WELCOMINGWEB_ENDPOINT`</Table.Td>
+      <Table.Td>No</Table.Td>
+      <Table.Td>Custom reporting endpoint. Omit to use the default API.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`APP_VERSION`</Table.Td>
+      <Table.Td>Recommended</Table.Td>
+      <Table.Td>Semver string included in session reports.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`BUILD_ID`</Table.Td>
+      <Table.Td>Recommended</Table.Td>
+      <Table.Td>CI build number or identifier for traceability.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`COMMIT_SHA`</Table.Td>
+      <Table.Td>Recommended</Table.Td>
+      <Table.Td>Git commit hash linked to the session on the dashboard.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`A11Y_MIN_SCORE`</Table.Td>
+      <Table.Td>No</Table.Td>
+      <Table.Td>Minimum acceptable aggregate score. Defaults to 0 (no threshold).</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`A11Y_FAIL_ON_CRITICAL`</Table.Td>
+      <Table.Td>No</Table.Td>
+      <Table.Td>Set to `'true'` to fail on any critical issue regardless of score.</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## In-App CI Runner Screen
+
+For teams running E2E tests with Detox or Maestro, the simplest integration is a dedicated
+`CIRunnerScreen` inside the app. Pressing the "Run CI Scan" button navigates to every tracked
+screen in sequence, waits for each scan, submits the session, and displays a verdict banner.
+Your external test framework reads the verdict text to determine the exit code.
+
+### Architecture
+
+1. **Clear the dedup cache** at the start of the run.
+2. **Swap the scan callback** to resolve a Promise / Task / Future keyed by screen name.
+3. **For each screen:** register a resolver, navigate, wait for a settle margin, await the scan.
+4. **Submit the session** with `scanType: 'ci_build'` and the build metadata.
+5. **Restore** the original config in a `finally` block.
+6. **Display a verdict banner** (BUILD PASSED / BUILD FAILED) that the test framework asserts on.
+
+### Define Scan Targets
+
+List every screen you want covered. One entry per screen.
+
+```ts filename="screens/CIRunnerScreen/targets.ts"
+export const SCAN_TARGETS = [
+  {
+    tab: 'Shop',
+    stackScreen: 'Home',
+    sdkName: 'HomeScreen',
+    route: '/HomeScreen',
+  },
+  {
+    tab: 'Shop',
+    stackScreen: 'ProductDetail',
+    stackParams: { product: SAMPLE_PRODUCT },
+    sdkName: 'ProductDetailScreen',
+    route: '/ProductDetailScreen',
+  },
+  {
+    tab: 'Profile',
+    sdkName: 'ProfileScreen',
+    route: '/ProfileScreen',
+  },
+];
+```
+
+### The Scan Loop (React Native Example)
+
+A Promise resolver map bridges the callback-based `onScanComplete` into an async/await loop,
+guaranteeing results are captured even for screens with complex loading sequences.
+
+```tsx
+// 1. Clear dedup cache
+WelcomingWeb.clearScreenCache();
+
+// 2. Override callback for this run
+WelcomingWeb.configure({
+  ...SDK_CONFIG,
+  autoScan: true,
+  onScanComplete: (result) => {
+    resolverMapRef.current.get(result.screenName)?.resolve(result);
+  },
+});
+
+// 3. Scan each screen in sequence
+for (const target of SCAN_TARGETS) {
+  const scanPromise = waitForScan(target.sdkName);   // 8 s timeout
+  navigateTo(target);                                // triggers useFocusEffect
+  await sleep(SCAN_WAIT_MS);                         // 2000 ms margin
+  const result = await scanPromise;                  // resolved by onScanComplete
+  collectResult(result);
+}
+
+// 4. Submit session
+const session = await WelcomingWeb.submitScanSession({ scanType: 'ci_build' });
+
+// 5. Restore original config
+WelcomingWeb.configure(SDK_CONFIG);
+```
+
+<Callout type="info">
+The Android, iOS and Flutter SDKs follow the exact same pattern with coroutines / async-await /
+`Completer` respectively. The only syntactic difference is how you bridge the SDK's
+`onScanComplete` callback into your test framework's await primitive.
+</Callout>
+
+After all screens have been scanned, the runner navigates back to itself and shows a
+**BUILD PASSED** or **BUILD FAILED** banner. Your test framework asserts which one is visible.
+
+## GitHub Actions
+
+Runs on every pull request. The accessibility job runs in parallel with your existing test jobs
+and fails the PR check if critical issues appear or the score drops below threshold.
+
+```yaml filename=".github/workflows/accessibility.yml"
+name: Accessibility Scan
+
+on:
+  pull_request:
+  push:
+    branches: [main, develop]
+
+jobs:
+  a11y-scan:
+    runs-on: macos-latest
+    timeout-minutes: 30
+
+    env:
+      WELCOMINGWEB_API_KEY: ${{ secrets.WELCOMINGWEB_API_KEY }}
+      WELCOMINGWEB_APP_ID:  ${{ secrets.WELCOMINGWEB_APP_ID }}
+      APP_VERSION:          ${{ github.ref_name }}
+      BUILD_ID:             ${{ github.run_id }}
+      COMMIT_SHA:           ${{ github.sha }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install Detox CLI
+        run: yarn global add detox-cli
+
+      - name: Build app (debug)
+        run: detox build --configuration ios.sim.debug
+
+      - name: Boot simulator
+        run: xcrun simctl boot "iPhone 15"
+
+      - name: Run accessibility scan
+        run: |
+          detox test --configuration ios.sim.debug \
+            --testNamePattern "Accessibility CI"
+        env:
+          A11Y_FAIL_ON_CRITICAL: 'true'
+          A11Y_MIN_SCORE:        '75'
+
+      - name: Upload session report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-report
+          path: e2e/artifacts/
+```
+
+### Detox Test File
+
+```ts filename="e2e/accessibility.test.ts"
+import { device, element, by, expect as detoxExpect } from 'detox';
+
+describe('Accessibility CI', () => {
+  beforeAll(async () => {
+    await device.launchApp({ newInstance: true });
+  });
+
+  it('passes full accessibility scan', async () => {
+    await element(by.label('CI Scan')).tap();
+    await element(by.label('Run full CI scan')).tap();
+
+    await detoxExpect(
+      element(by.text('BUILD PASSED').or(by.text('BUILD FAILED')))
+    ).toBeVisible(60000);
+
+    await detoxExpect(element(by.text('BUILD FAILED'))).not.toBeVisible();
+  });
+});
+```
+
+## Bitrise
+
+Add the script step below to your `bitrise.yml` workflow after your E2E test step. Bitrise's
+secret store holds the API key; all other values come from built-in environment variables.
+
+```yaml filename="bitrise.yml"
+workflows:
+  accessibility_scan:
+    steps:
+      - git-clone@8: {}
+      - yarn@0:
+          inputs:
+            - command: install --frozen-lockfile
+      - script@1:
+          title: Run WelcomingWeb accessibility scan
+          inputs:
+            - content: |
+                #!/usr/bin/env bash
+                set -euo pipefail
+
+                export WELCOMINGWEB_API_KEY="$WELCOMINGWEB_API_KEY"
+                export APP_VERSION="$BITRISE_BUILD_NUMBER"
+                export BUILD_ID="$BITRISE_BUILD_SLUG"
+                export COMMIT_SHA="$GIT_CLONE_COMMIT_HASH"
+
+                yarn detox test \
+                  --configuration android.emu.debug \
+                  --testNamePattern "Accessibility CI"
+                echo "Scan complete."
+
+      - slack@4:
+          title: Notify accessibility result
+          is_always_run: true
+          inputs:
+            - webhook_url: "$SLACK_WEBHOOK"
+            - channel: "#mobile-a11y"
+            - message: |
+                *Accessibility Scan* $BITRISE_APP_TITLE
+                Build: $BITRISE_BUILD_NUMBER | $BITRISE_BUILD_STATUS_TEXT
+                Dashboard: https://app.welcomingweb.com/apps/$WELCOMINGWEB_APP_ID
+```
+
+## Fastlane
+
+The lane below runs the Detox accessibility suite and fails if critical issues appear. Invoke it
+from any CI provider or locally before a release.
+
+```ruby filename="fastlane/Fastfile"
+platform :ios do
+  desc "Run WelcomingWeb accessibility scan"
+  lane :a11y_scan do |options|
+    min_score        = options[:min_score]        || 75
+    fail_on_critical = options[:fail_on_critical] != false  # default true
+
+    ENV['WELCOMINGWEB_API_KEY']   = ENV['WELCOMINGWEB_API_KEY']
+    ENV['APP_VERSION']            = lane_context[SharedValues::VERSION_NUMBER]
+    ENV['BUILD_ID']               = ENV['CI_BUILD_ID'] || 'local'
+    ENV['COMMIT_SHA']             = last_git_commit[:commit_hash]
+    ENV['A11Y_MIN_SCORE']         = min_score.to_s
+    ENV['A11Y_FAIL_ON_CRITICAL']  = fail_on_critical.to_s
+
+    build_app(
+      scheme: "YourAppScheme",
+      configuration: "Debug",
+      skip_codesigning: true
+    )
+
+    sh("yarn detox test --configuration ios.sim.debug " \
+       "--testNamePattern 'Accessibility CI'")
+
+    UI.success "Accessibility scan complete. Check the dashboard for results."
+  end
+end
+```
+
+**Usage:**
+
+```bash
+# From the command line
+bundle exec fastlane a11y_scan
+
+# With custom threshold
+bundle exec fastlane a11y_scan min_score:80 fail_on_critical:true
+
+# From another lane
+lane :release do
+  a11y_scan(min_score: 80)
+  gym
+  pilot
+end
+```
+
+## Maestro
+
+Maestro is a lightweight mobile UI testing framework with no native setup — perfect if you don't
+already have Detox or another E2E harness wired in. It works against all four SDKs equally, because
+it drives the app from outside via accessibility labels.
+
+```yaml filename=".maestro/a11y_scan.yaml"
+appId: com.yourcompany.yourapp
+---
+
+# 1. Launch the app fresh
+- launchApp:
+    clearState: true
+
+# 2. Open the CI runner tab
+- tapOn:
+    text: "CI Scan"
+
+# 3. Start the scan
+- tapOn:
+    accessibilityLabel: "Run full CI scan"
+
+# 4. Wait up to 60 s for the verdict
+- waitForAnimationToEnd:
+    timeout: 60000
+
+# 5. Assert pass (fails if BUILD FAILED is visible)
+- assertNotVisible:
+    text: "BUILD FAILED"
+
+- assertVisible:
+    text: "BUILD PASSED"
+```
+
+**Running Maestro in CI:**
+
+```bash
+# Install
+curl -Ls "https://get.maestro.mobile.dev" | bash
+
+# Run the accessibility flow
+maestro test .maestro/a11y_scan.yaml
+
+# Run against a specific device
+maestro --device <udid> test .maestro/a11y_scan.yaml
+```
+
+## Codemagic (Flutter)
+
+Flutter teams using Codemagic can run the scan as part of their build pipeline:
+
+```yaml filename="codemagic.yaml"
+workflows:
+  accessibility-scan:
+    name: Accessibility Scan
+    environment:
+      vars:
+        WELCOMINGWEB_API_KEY: $WELCOMINGWEB_API_KEY
+        WELCOMINGWEB_APP_ID:  $WELCOMINGWEB_APP_ID
+    scripts:
+      - flutter pub get
+      - flutter build apk --debug
+      - flutter test integration_test/a11y_test.dart
+```
+
+## Gradle Task (Android)
+
+For teams preferring a pure-Android pipeline, run the integration tests directly from Gradle:
+
+```bash
+./gradlew :app:connectedAndroidTest \
+  -PtestClass=com.yourcompany.app.AccessibilityCiTest \
+  -PWELCOMINGWEB_API_KEY=$WELCOMINGWEB_API_KEY
+```
+
+## Pass / Fail Strategies
+
+Choose the threshold strategy that matches your release quality requirements.
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Strategy</Table.Th>
+      <Table.Th>When to Use</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>**Zero critical issues**</Table.Td>
+      <Table.Td>Recommended baseline for every team. No critical WCAG A violations can ship.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>**Minimum score**</Table.Td>
+      <Table.Td>Prevents regression below a baseline (e.g. 75). Combine with the critical check.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>**Zero new issues**</Table.Td>
+      <Table.Td>Advanced. Diff the current session against a stored baseline and fail on regressions only.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>**Warning only**</Table.Td>
+      <Table.Td>Collect data without blocking. Useful when first adopting the SDK.</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+### Recommended Combined Check
+
+```tsx
+const result = await WelcomingWeb.submitScanSession({ scanType: 'ci_build' });
+
+const MIN_SCORE = parseInt(process.env.A11Y_MIN_SCORE || '0', 10);
+const failOnCritical = process.env.A11Y_FAIL_ON_CRITICAL === 'true';
+
+if (failOnCritical && result.criticalIssues > 0) {
+  console.error(
+    `A11Y FAIL: ${result.criticalIssues} critical issue(s). Fix before shipping.`
+  );
+  process.exit(1);
+}
+
+if (MIN_SCORE > 0 && result.accessibilityScore < MIN_SCORE) {
+  console.error(
+    `A11Y FAIL: score ${result.accessibilityScore} < minimum ${MIN_SCORE}.`
+  );
+  process.exit(1);
+}
+
+console.log(
+  `A11Y PASS: score ${result.accessibilityScore} (${result.totalIssues} issues)`
+);
+```
+
+## Session Response Fields
+
+Every CI session returns a structured response you can read programmatically. The shape is
+identical across all four SDKs.
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Field</Table.Th>
+      <Table.Th>Type</Table.Th>
+      <Table.Th>Description</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`success`</Table.Td>
+      <Table.Td>boolean</Table.Td>
+      <Table.Td>Whether the session completed successfully.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`sessionId`</Table.Td>
+      <Table.Td>number</Table.Td>
+      <Table.Td>Server-assigned session ID. Link to the dashboard.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`screensScanned`</Table.Td>
+      <Table.Td>number</Table.Td>
+      <Table.Td>Number of screens in this session.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`totalIssues`</Table.Td>
+      <Table.Td>number</Table.Td>
+      <Table.Td>Total issues across all screens.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`criticalIssues`</Table.Td>
+      <Table.Td>number</Table.Td>
+      <Table.Td>Count of critical-severity issues.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`majorIssues`</Table.Td>
+      <Table.Td>number</Table.Td>
+      <Table.Td>Count of major-severity issues.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`minorIssues`</Table.Td>
+      <Table.Td>number</Table.Td>
+      <Table.Td>Count of minor-severity issues.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`accessibilityScore`</Table.Td>
+      <Table.Td>number</Table.Td>
+      <Table.Td>Aggregated score from 0 to 100.</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Troubleshooting
+
+<Callout type="warning">
+**All CI scans return `deduplicated: true`** — the dedup cache was not cleared before the CI run.
+Call `clearScreenCache()` at the start of every CI scan loop, or pass `force: true` to each
+`scanScreen()` call. If the issue persists across separate app launches, ensure the SDK is freshly
+configured at the start of each run.
+</Callout>
+
+<Callout type="warning">
+**Scan timeout in CI runner** — the scan callback fired outside the expected window. Common causes:
+the screen wasn't mounted when navigated to (increase the settle margin from 2000 ms to 3000 ms),
+or the screen name passed to the runner doesn't match the name registered with the SDK.
+</Callout>
+
+<Callout type="warning">
+**Scores differ between SDK and dashboard** — the server recalculates scores from its own stored
+data as the source of truth. Small differences can occur if server-side deduplication skipped a
+scan. Enable `debug: true` and check the API payload log to confirm data is being transmitted.
+</Callout>
+
+<Callout type="warning">
+**403 `app_deactivated`** — the app's `active` flag is `false` on the backend. Re-activate the app
+from the dashboard or contact support.
+</Callout>
+
+<Callout type="warning">
+**409 `platform_mismatch`** — the app was registered under a different platform on the backend
+(e.g. `REACT_NATIVE` when you're submitting `ios_native`). Either re-register the app under a new
+`appId`, or update the backend registration.
+</Callout>
+
+## Next Steps
+
+<Cards>
+  <Cards.Card title="Platform Setup" href="/mobile/platforms" icon={<CommandLineIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Detailed integration guides for each SDK.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Accessibility Rules" href="/mobile/rules" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Full WCAG 2.2 rule reference driving your CI pass/fail decisions.
+    </p>
+  </Cards.Card>
+</Cards>
