@@ -2,6 +2,7 @@ export const folderMeta = [
   { slug: 'getting-started', title: 'Getting Started', description: 'Quick guides for onboarding and setup.', icon: '/icons/PlayCircleOutlined.svg' },
   { slug: 'widget-configuration', title: 'Widget Configuration', description: 'Customize and manage your widget.', icon: '/icons/SettingOutlined.svg' },
   { slug: 'integrations', title: 'Platform Integrations', description: 'Integrate AccessiblyKit with various platforms.', icon: '/icons/ApiOutlined.svg' },
+  { slug: 'mobile', title: 'Mobile SDK', description: 'Accessibility scanning inside your iOS, Android, React Native and Flutter apps.', icon: '/icons/MobileOutlined.svg' },
   { slug: 'dashboard-analytics', title: 'Dashboard & Analytics', description: 'Monitor accessibility performance.', icon: '/icons/DashboardOutlined.svg' },
   { slug: 'ai-remediations', title: 'AI Remediations & Features', description: 'Utilize AI to improve accessibility.', icon: '/icons/RobotOutlined.svg' },
   { slug: 'developer-resources', title: 'Developer Resources', description: 'Guides and APIs for developers.', icon: '/icons/CodeOutlined.svg' },
