@@ -1,0 +1,466 @@
+---
+title: "Android SDK (Kotlin)"
+description: "Complete Android integration guide for the WelcomingWeb mobile accessibility SDK — Maven Central installation, classic Views and Jetpack Compose support, three screen-tracking modes, and troubleshooting."
+---
+
+import { Callout, Steps, Table, Cards } from 'nextra/components'
+import { CheckBadgeIcon, CommandLineIcon } from '@heroicons/react/24/outline'
+
+# Android SDK (Kotlin)
+
+The Android SDK walks the `View` hierarchy at runtime, integrates with Jetpack Compose via the
+public semantics tree, detects WCAG 2.2 violations, and reports to the same dashboard as every
+other SDK.
+
+<Callout type="info">
+Jetpack Compose support is a **soft dependency** (declared `compileOnly`), so apps that don't
+use Compose carry zero runtime cost and don't need Compose on their classpath.
+</Callout>
+
+## Requirements
+
+| Requirement | Minimum Version |
+| --- | --- |
+| Android API | 21+ (Lollipop) |
+| Kotlin | 1.9+ |
+| Jetpack Compose | 1.6+ (optional) |
+
+## Installation
+
+Add Maven Central to your root `build.gradle` (if not already there) and the SDK to your app
+module:
+
+```groovy filename="settings.gradle"
+dependencyResolutionManagement {
+  repositories {
+    google()
+    mavenCentral()
+  }
+}
+```
+
+```groovy filename="app/build.gradle"
+dependencies {
+  implementation 'com.welcomingweb:sdk:1.0.0'
+}
+```
+
+Or Kotlin DSL:
+
+```kotlin filename="app/build.gradle.kts"
+dependencies {
+  implementation("com.welcomingweb:sdk:1.0.0")
+}
+```
+
+## Configuration
+
+Call `WelcomingWeb.configure(...)` once from your `Application.onCreate()`, before any Activity
+starts.
+
+```kotlin filename="MyApplication.kt"
+import android.app.Application
+import com.welcomingweb.sdk.WelcomingWeb
+import com.welcomingweb.sdk.WelcomingWebConfig
+import com.welcomingweb.sdk.Environment
+
+class MyApplication : Application() {
+  override fun onCreate() {
+    super.onCreate()
+
+    WelcomingWeb.configure(
+      application = this,
+      config = WelcomingWebConfig(
+        apiKey = "YOUR_API_KEY",
+        appId = "com.yourcompany.yourapp",
+        appVersion = BuildConfig.VERSION_NAME,
+        environment = Environment.DEVELOPMENT,
+        autoScan = true,
+        debug = true
+      )
+    )
+  }
+}
+```
+
+Register the Application class in your manifest:
+
+```xml filename="AndroidManifest.xml"
+<application
+  android:name=".MyApplication"
+  android:label="@string/app_name"
+  android:theme="@style/Theme.YourApp">
+  <!-- activities -->
+</application>
+```
+
+See the [full configuration reference](/mobile/getting-started#configuration-reference) for every
+supported option.
+
+## Screen Tracking
+
+The SDK ships **three complementary tracking modes**. Pick whichever fits your app's navigation
+style — they all funnel through the same internal API.
+
+### Mode 1: `ActivityLifecycleHook` (Recommended)
+
+The zero-code option. Register once on your `Application` and every Activity and Fragment is
+tracked automatically.
+
+```kotlin filename="MyApplication.kt"
+import com.welcomingweb.sdk.tracking.ActivityLifecycleHook
+
+override fun onCreate() {
+  super.onCreate()
+  WelcomingWeb.configure(this, config)
+
+  // One line covers every Activity and Fragment.
+  ActivityLifecycleHook.install(this, trackFragments = true)
+}
+```
+
+The hook implements `Application.ActivityLifecycleCallbacks` and fires on every Activity's
+`onResumed` / `onPaused`. When `trackFragments = true`, it also registers
+`FragmentLifecycleCallbacks` on each `FragmentActivity` to track Fragment appearances.
+
+**Wrapper-class filter.** The hook automatically ignores:
+
+- Any Activity ending in `"Activity"` without the `@TrackedScreen` annotation (your `MainActivity`
+  etc. — Fragments inside are tracked instead).
+- `NavHostFragment` and `DialogFragmentNavigator` (AndroidX Navigation wrappers).
+
+Use `@TrackedScreen` to opt an Activity back in:
+
+```kotlin
+@TrackedScreen(name = "CheckoutScreen", route = "/checkout")
+class CheckoutActivity : AppCompatActivity() {
+  // ...
+}
+```
+
+### Mode 2: `NavControllerHook` (AndroidX Navigation)
+
+Using Jetpack Navigation? Wire the hook from your Activity:
+
+```kotlin filename="MainActivity.kt"
+import androidx.navigation.findNavController
+import com.welcomingweb.sdk.tracking.NavControllerHook
+
+class MainActivity : AppCompatActivity() {
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+
+    val navController = findNavController(R.id.nav_host_fragment)
+    NavControllerHook.install(this, navController)
+  }
+}
+```
+
+The hook implements `NavController.OnDestinationChangedListener` and fires on every destination
+change, using the destination's `label` or route as the screen name.
+
+### Mode 3: Manual `ScreenTracker.trackScreen(...)`
+
+For fine-grained control, call the manual API from `onResume`:
+
+```kotlin
+import com.welcomingweb.sdk.tracking.ScreenTracker
+
+class HomeActivity : AppCompatActivity() {
+  override fun onResume() {
+    super.onResume()
+    ScreenTracker.trackScreen(
+      findViewById(R.id.root),
+      name = "HomeScreen",
+      route = "/home"
+    )
+  }
+}
+```
+
+## Jetpack Compose Support
+
+Compose is auto-walked whenever the `View` walker encounters an `AbstractComposeView` — the root
+of any Compose subtree. The walker reflectively accesses the Compose semantics tree and extracts
+nodes using the same property mappings as native Views.
+
+**Nothing explicit is required** for Compose screens — the walker handles them automatically
+whether you're using classic Navigation, Compose Navigation or a `ComposeView` inside a
+classic-Views host.
+
+### Compose Navigation
+
+For Compose-Navigation apps, wrap each route with the `TrackAccessibility` helper:
+
+```kotlin
+import com.welcomingweb.sdk.tracking.TrackAccessibility
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+
+@Composable
+fun AppNavigation(navController: NavHostController) {
+  NavHost(navController, startDestination = "home") {
+    composable("home") {
+      TrackAccessibility(screenName = "HomeScreen", route = "/home") {
+        HomeScreen()
+      }
+    }
+    composable("profile") {
+      TrackAccessibility(screenName = "ProfileScreen", route = "/profile") {
+        ProfileScreen()
+      }
+    }
+  }
+}
+```
+
+### Compose + Views Hybrid
+
+The walker transparently dispatches to the Compose tree at any `AbstractComposeView`. A classic
+`Activity` with a `ComposeView` inside is scanned correctly with no extra setup.
+
+<Callout type="info">
+**Compose 1.6+ required for auto-walk.** On earlier Compose versions, the internal reflection
+degrades gracefully — Compose nodes are skipped, but the host View hierarchy still scans.
+</Callout>
+
+## Manual Scanning
+
+Trigger a scan imperatively when auto-scan isn't enough:
+
+```kotlin
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+
+class HomeActivity : AppCompatActivity() {
+  fun runScan() {
+    lifecycleScope.launch {
+      val result = WelcomingWeb.scanCurrentScreen()
+      Log.d("A11y", "Score: ${result.summary.accessibilityScore}")
+      result.issues.forEach { issue ->
+        Log.d("A11y", "${issue.severity} ${issue.ruleId} — ${issue.suggestion}")
+      }
+    }
+  }
+}
+```
+
+## Scan Result Types
+
+The types match every other SDK.
+
+```kotlin
+data class ScanResult(
+  val screenName: String,
+  val screenRoute: String,
+  val componentTreeHash: String,
+  val issues: List<AccessibilityIssue>,
+  val summary: ScanSummary?,
+  val scanDurationMs: Long,
+  val deduplicated: Boolean,
+)
+
+data class AccessibilityIssue(
+  val ruleId: String,
+  val wcagMapping: String,
+  val wcagLevel: String,          // "A", "AA", or "AAA"
+  val severity: String,           // "critical", "major", or "minor"
+  val componentType: String,
+  val componentPath: String,
+  val evidence: Map<String, Any>,
+  val suggestion: String,
+  val ruleDescription: String,
+)
+```
+
+## Threading Model
+
+The SDK uses Kotlin coroutines with `Dispatchers.Default` for scanning and `Dispatchers.IO` for
+network calls. The public API is entirely `suspend`-based:
+
+```kotlin
+// From a coroutine scope
+lifecycleScope.launch {
+  val result = WelcomingWeb.scanScreen("HomeScreen", "/home")
+  // ...
+}
+
+// From a callback
+WelcomingWeb.configure(
+  application = this,
+  config = WelcomingWebConfig(
+    apiKey = "YOUR_API_KEY",
+    appId = "com.yourcompany.yourapp",
+    onScanComplete = { result ->
+      // Runs on the SDK's coroutine scope.
+      // Dispatch to Main if you need to update UI:
+      mainHandler.post {
+        scoreText.text = "Score: ${result.summary?.accessibilityScore}"
+      }
+    }
+  )
+)
+```
+
+The HTTP layer pins itself to `Dispatchers.IO` internally, so calling `submitScanSession()` from
+`lifecycleScope.launch { }` (defaults to `Dispatchers.Main`) won't throw
+`NetworkOnMainThreadException`.
+
+## Session Lifecycle
+
+### Development Mode
+
+- The first scan creates a new server session; subsequent scans share the session ID.
+- Concurrent scans await a shared `Deferred<String?>` that resolves to the session ID.
+- `ProcessLifecycleOwner` hooks `Lifecycle.onStop` (background) to flush pending scans via
+  `/scans/complete`, and `Lifecycle.onStart` (foreground) to clear the hash cache and session
+  ID for a fresh session.
+
+### CI/CD Mode
+
+See the [CI/CD integration page](/mobile/ci-cd). Summary:
+
+- Set `autoScan = false` in configuration.
+- Call `WelcomingWeb.clearScreenCache()` before the scan loop.
+- Navigate to each screen and call `WelcomingWeb.scanScreen(..., force = true)`.
+- Call `WelcomingWeb.submitScanSession(...)` to create a session, submit all buffered scans,
+  and complete it.
+
+## Lifecycle Management
+
+### `destroy()`
+
+Release all SDK resources. Required before re-configuring with different credentials.
+
+```kotlin
+WelcomingWeb.destroy()
+```
+
+After calling `destroy()`, `configure(...)` must be called again before any scanning can occur.
+
+### `clearScreenCache(screenName?)`
+
+Clears stored component-tree hashes used for deduplication.
+
+```kotlin
+// Before a CI run — force every screen to scan fresh
+WelcomingWeb.clearScreenCache()
+
+// After fixing one screen — re-scan only that screen
+WelcomingWeb.clearScreenCache("HomeScreen")
+```
+
+## ProGuard / R8
+
+The SDK ships with consumer ProGuard rules. No additional rules are required in your app's
+`proguard-rules.pro`.
+
+If you're using ProGuard without R8 and see reflection warnings for
+`androidx.compose.ui.platform.AbstractComposeView`, add:
+
+```
+-keep class androidx.compose.ui.platform.AbstractComposeView { *; }
+-keep class androidx.compose.ui.node.Owner { *; }
+-keep class androidx.compose.ui.semantics.SemanticsOwner { *; }
+-keep class androidx.compose.ui.semantics.SemanticsNode { *; }
+```
+
+## Troubleshooting
+
+### Scan returns "Found 0 nodes"
+
+- The Activity is a wrapper class the hook filters out (`MainActivity` without `@TrackedScreen`,
+  `NavHostFragment`). Annotate with `@TrackedScreen` to opt in, or rely on Fragment tracking.
+- The view wasn't finished laying out when the scan fired. `onResume` is the right hook;
+  `onCreate` is too early. For complex screens, increase `scanDelayMs` to 1200 ms or more.
+- Custom `View` subclasses aren't in the reportable types list — they'll be walked through but
+  won't produce scan nodes. Refactor to use standard widgets, or contact support to extend the
+  list.
+
+### API returns 401 Unauthorized
+
+Check that `apiKey` is correct and isn't being URL-encoded. If using a custom `reportingEndpoint`,
+ensure the URL includes the full base path (`/api/public/v1/mobile`).
+
+### "Deduplicated" when expecting a real result
+
+Pass `force = true` to `scanScreen`:
+
+```kotlin
+val result = WelcomingWeb.scanScreen(
+  screenName = "HomeScreen",
+  screenRoute = "/home",
+  force = true
+)
+```
+
+Or use `scanCurrentScreen()` which handles this internally.
+
+### Fragment doesn't appear in scan history
+
+- `trackFragments = false` was passed to `ActivityLifecycleHook.install(...)`. Re-enable Fragment
+  tracking.
+- The Fragment's name matches an entry in `excludeScreens`.
+- The Fragment is a `DialogFragment` — these are tracked only if they're in the AndroidX
+  Navigation back stack.
+
+### `NetworkOnMainThreadException`
+
+Shouldn't happen — the SDK's HTTP layer pins itself to `Dispatchers.IO`. If you see this, check
+that you're calling SDK methods from a coroutine scope (not synchronously from the main thread
+via `runBlocking { }`).
+
+### Compose screens scan but with very few nodes
+
+- Compose reflection requires Compose 1.6+. On older versions, the walker silently skips Compose
+  subtrees and scans only the host `View` hierarchy.
+- Your Compose version may have restructured internal APIs. Enable `debug = true` and check
+  logcat for `WelcomingWeb: Failed to access SemanticsOwner`.
+- Custom Compose layouts that bypass `Modifier.semantics { ... }` won't produce nodes. Add
+  `contentDescription`, `role`, and other semantics modifiers to key elements.
+
+### 403 `app_deactivated`
+
+The app's `active` flag is `false` on the backend. Re-activate from the dashboard or contact
+support.
+
+### 409 `platform_mismatch`
+
+The app was registered under a different platform on the backend (e.g. `REACT_NATIVE`) while the
+Android SDK is submitting `"platform": "android_native"`. Either re-register under a new `appId`,
+or ask support to update the backend registration.
+
+### Accessibility panel doesn't appear
+
+Ensure `A11yPanel.attachTo(this, ...)` is called from every Activity's `onCreate`, not just
+`MainActivity`. The panel is attached per-Activity on Android because `View` overlays don't cross
+Activity boundaries.
+
+### Duplicate sessions on the dashboard
+
+Each app foreground cycle should create one session. If you see many open sessions:
+
+- The app process was killed before `Lifecycle.onStop` could fire. `IN_PROGRESS` sessions
+  auto-complete after 24h server-side.
+- You called `configure(...)` multiple times without `destroy()` in between.
+
+## Next Steps
+
+<Cards>
+  <Cards.Card title="Accessibility Rules" href="/mobile/rules" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Full WCAG 2.2 rule reference for every issue the SDK detects.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Accessibility Panel" href="/mobile/panel" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Configure the in-app panel for text size, contrast and more.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="CI / CD Integration" href="/mobile/ci-cd" icon={<CommandLineIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Gate releases with Gradle, Fastlane, GitHub Actions or Bitrise.
+    </p>
+  </Cards.Card>
+</Cards>

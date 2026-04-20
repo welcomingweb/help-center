@@ -1,0 +1,435 @@
+---
+title: "iOS SDK (Swift)"
+description: "Complete iOS integration guide for the WelcomingWeb mobile accessibility SDK — Swift Package Manager installation, UIKit and SwiftUI support, view-controller swizzling, and troubleshooting."
+---
+
+import { Callout, Steps, Table, Cards } from 'nextra/components'
+import { CheckBadgeIcon, CommandLineIcon } from '@heroicons/react/24/outline'
+
+# iOS SDK (Swift)
+
+The iOS SDK is a pure-Swift port of the WelcomingWeb scanning engine. It walks the `UIView`
+hierarchy at runtime, supports SwiftUI via an opt-in view modifier, detects WCAG 2.2 violations,
+and reports to the same dashboard as every other SDK.
+
+<Callout type="info">
+**Pure Swift, zero dependencies.** The SDK uses only Apple-bundled frameworks: URLSession,
+Foundation, UIKit and SwiftUI. No CocoaPods entries. No SPM dependencies. No bridging headers.
+No build phases.
+</Callout>
+
+## Requirements
+
+| Requirement | Minimum Version |
+| --- | --- |
+| iOS | 13+ |
+| Swift | 5.9+ |
+| Xcode | 15+ |
+
+## Installation
+
+Add the package in Xcode via **File → Add Packages…** and enter the repository URL, or add the
+dependency directly in your `Package.swift`:
+
+```swift filename="Package.swift"
+dependencies: [
+  .package(url: "https://github.com/welcomingweb/ios-sdk.git", from: "1.0.0")
+],
+targets: [
+  .target(
+    name: "YourApp",
+    dependencies: [
+      .product(name: "WelcomingWebSDK", package: "ios-sdk")
+    ]
+  )
+]
+```
+
+## Configuration
+
+Call `WelcomingWeb.configure(...)` and install the view-controller swizzler from your
+`AppDelegate` (or `App`'s initialiser for pure-SwiftUI apps).
+
+```swift filename="AppDelegate.swift"
+import UIKit
+import WelcomingWebSDK
+
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+  ) -> Bool {
+    WelcomingWeb.configure(
+      WelcomingWebConfig(
+        apiKey: "YOUR_API_KEY",
+        appId: "com.yourcompany.yourapp",
+        appVersion: "1.0.0",
+        environment: .development,
+        autoScan: true,
+        debug: true
+      )
+    )
+
+    // Install the global viewDidAppear hook — automatic screen tracking.
+    ViewControllerSwizzler.installIfNeeded()
+
+    return true
+  }
+}
+```
+
+For a pure-SwiftUI app:
+
+```swift filename="YourApp.swift"
+import SwiftUI
+import WelcomingWebSDK
+
+@main
+struct YourApp: App {
+  init() {
+    WelcomingWeb.configure(
+      WelcomingWebConfig(
+        apiKey: "YOUR_API_KEY",
+        appId: "com.yourcompany.yourapp",
+        appVersion: "1.0.0",
+        environment: .development,
+        autoScan: true,
+        debug: true
+      )
+    )
+    ViewControllerSwizzler.installIfNeeded()
+  }
+
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
+    }
+  }
+}
+```
+
+See the [full configuration reference](/mobile/getting-started#configuration-reference) for every
+supported option.
+
+## Screen Tracking
+
+### Automatic: `ViewControllerSwizzler` (Recommended)
+
+Once `ViewControllerSwizzler.installIfNeeded()` has been called, **every `UIViewController` in
+your app is tracked automatically**. The swizzler intercepts `viewDidAppear(_:)` on the
+`UIViewController` base class and reports the screen to the SDK.
+
+The screen's name is derived in this order:
+
+1. The controller's `title` if set (e.g. what appears in the navigation bar).
+2. A name derived from the class name (with `ViewController` / `Controller` suffix stripped).
+
+No per-controller code is required.
+
+### Automatic: Wrapper-Class Filter
+
+The swizzler automatically ignores "wrapper" controllers that aren't user-visible screens:
+
+- `UINavigationController`
+- `UITabBarController`
+- `UISplitViewController`
+- `UIPageViewController`
+- Anything with `"UIHostingController"` in the class name
+- Anything starting with `_UI` (private framework classes)
+
+This prevents the dashboard filling up with phantom `UINavigationController` scans on every
+navigation push.
+
+### Manual: `ScreenTracker.trackScreen(...)`
+
+If you want a custom screen name or route, or you're dealing with a controller the swizzler
+filters out, call the manual API from `viewDidAppear`:
+
+```swift
+import WelcomingWebSDK
+
+class HomeViewController: UIViewController {
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    ScreenTracker.trackScreen(self, name: "HomeScreen", route: "/home")
+  }
+}
+```
+
+For a view without a controller context:
+
+```swift
+ScreenTracker.trackScreen(view: someView, name: "CustomScreen")
+```
+
+## SwiftUI Support
+
+SwiftUI's view hierarchy is opaque at compile time — there's no public API to walk it, and
+private APIs cause App Store review rejections. The SDK uses two complementary approaches:
+
+### Automatic: Synthesized `UIAccessibilityElement` Walking
+
+SwiftUI emits standard `UIAccessibilityElement` instances for `Text`, `Button`, `Toggle`,
+`TextField` and other stock controls. The SDK walks these automatically through the public
+`UIAccessibilityContainer` protocol — **no opt-in required** for stock SwiftUI controls.
+
+The metadata from synthesized elements is less rich than UIKit's (no exact font sizes, no exact
+background colours), so contrast detection is limited to views that also provide a declared
+background.
+
+### Opt-In: `.welcomingWebScan(...)` Modifier
+
+For richer metadata — custom views, accurate touch-target sizes, explicit labels — add the
+`.welcomingWebScan(...)` modifier to key elements:
+
+```swift
+import SwiftUI
+import WelcomingWebSDK
+
+struct LoginView: View {
+  @State private var email = ""
+  @State private var password = ""
+
+  var body: some View {
+    VStack {
+      TextField("Email", text: $email)
+        .welcomingWebScan(type: "TextField", label: "Email address")
+
+      SecureField("Password", text: $password)
+        .welcomingWebScan(type: "TextField", label: "Password")
+
+      Button("Log in") { login() }
+        .welcomingWebScan(type: "Button", label: "Log in", isInteractive: true)
+    }
+  }
+}
+```
+
+The modifier uses `GeometryReader` in `.background` to capture the view's actual size, and
+registers the entry with the SDK keyed by the nearest ancestor `UIView` (the hosting view).
+
+<Callout type="info">
+For best results, add `.welcomingWebScan` to every interactive element. Stock SwiftUI controls
+are auto-walked, but custom views built on `GestureDetector` or `onTapGesture` require the
+modifier for the SDK to see them.
+</Callout>
+
+## Manual Scanning
+
+Trigger a scan imperatively when auto-scan isn't enough — for example, after a state change that
+doesn't trigger `viewDidAppear`.
+
+```swift
+Task {
+  do {
+    let result = try await WelcomingWeb.scanCurrentScreen()
+    print("Score: \(result.summary.accessibilityScore)")
+    for issue in result.issues {
+      print("\(issue.severity) \(issue.ruleId) — \(issue.suggestion)")
+    }
+  } catch {
+    print("Scan failed: \(error)")
+  }
+}
+```
+
+## Scan Result Types
+
+The types match every other SDK.
+
+```swift
+public struct ScanResult: Sendable {
+  public let screenName: String
+  public let screenRoute: String
+  public let componentTreeHash: String
+  public let issues: [AccessibilityIssue]
+  public let summary: ScanSummary
+  public let scanDurationMs: Int
+  public let deduplicated: Bool
+}
+
+public struct AccessibilityIssue: Sendable {
+  public let ruleId: String
+  public let wcagMapping: String
+  public let wcagLevel: String     // "A", "AA", or "AAA"
+  public let severity: String      // "critical", "major", or "minor"
+  public let componentType: String
+  public let componentPath: String
+  public let evidence: [String: Any]
+  public let suggestion: String
+  public let ruleDescription: String
+}
+```
+
+## Concurrency Model
+
+The SDK uses Swift Concurrency throughout. The internal state lives inside an `actor`, so:
+
+- `configure(...)` is synchronous and safe from any thread.
+- `scanScreen`, `scanCurrentScreen` and `submitScanSession` are `async` functions — `await` them
+  from any context.
+- `onScanComplete` and `onIssueFound` callbacks are `@Sendable` closures. They can be called from
+  the SDK actor, so dispatch to `@MainActor` yourself if you're updating UI:
+
+```swift
+WelcomingWeb.configure(
+  WelcomingWebConfig(
+    apiKey: "YOUR_API_KEY",
+    appId: "com.yourcompany.yourapp",
+    onScanComplete: { result in
+      Task { @MainActor in
+        // Safe to update UI here
+        scoreLabel.text = "Score: \(result.summary.accessibilityScore)"
+      }
+    }
+  )
+)
+```
+
+## Session Lifecycle
+
+### Development Mode
+
+- The first scan creates a new server session; subsequent scans share the session ID.
+- Concurrent scans await a shared `Task<String?, Error>` that resolves to the session ID, so
+  every parallel `onScreenChange` submits against the same session.
+- On `UIApplication.didEnterBackgroundNotification`, the SDK calls `/scans/complete` to flush
+  pending scans.
+- On `UIApplication.didBecomeActiveNotification`, the screen hash cache, current session ID and
+  session task are cleared. The next scan starts a fresh session.
+
+### CI/CD Mode
+
+See the [CI/CD integration page](/mobile/ci-cd). Summary:
+
+- Set `autoScan: false` in configuration.
+- Call `await WelcomingWeb.clearScreenCache()` before the scan loop.
+- Navigate to each screen and call `try await WelcomingWeb.scanScreen(...)`.
+- Call `try await WelcomingWeb.submitScanSession(...)` to create a session, submit all buffered
+  scans, and complete it.
+
+## Lifecycle Management
+
+### `destroy()`
+
+Release all SDK resources. Required before re-configuring with different credentials.
+
+```swift
+WelcomingWeb.destroy()
+```
+
+After calling `destroy()`, `configure(...)` must be called again before any scanning can occur.
+
+### `clearScreenCache(_:)`
+
+Clears stored component-tree hashes used for deduplication.
+
+```swift
+// Before a CI run — force every screen to scan fresh
+await WelcomingWeb.clearScreenCache(nil)
+
+// After fixing one screen — re-scan only that screen
+await WelcomingWeb.clearScreenCache("HomeScreen")
+```
+
+## Troubleshooting
+
+### Scan returns "Found 0 nodes"
+
+- Your view controller may be a wrapper class the swizzler filters out (`UINavigationController`,
+  `UIHostingController`). Check `ScreenTracker.isWrapperClass(self)`.
+- The view wasn't finished laying out when the scan fired. `viewDidAppear` is the right hook;
+  `viewDidLoad` is too early. For SwiftUI, add `.welcomingWebScan` modifiers to at least a few
+  key components.
+- Custom `UIView` subclasses aren't in the SDK's reportable types list. Either refactor to use
+  stock UIKit widgets, or contact support to extend the list for your custom views.
+
+### API returns 401 Unauthorized
+
+Check that `apiKey` is correct and isn't being URL-encoded before submission. If using a custom
+`reportingEndpoint`, ensure the URL includes the full base path (`/api/public/v1/mobile`).
+
+### "Deduplicated" when expecting a real result
+
+Pass `force: true` to `scanScreen`, or use `scanCurrentScreen` which handles this internally:
+
+```swift
+let result = try await WelcomingWeb.scanScreen(
+  screenName: "HomeScreen",
+  screenRoute: "/home",
+  force: true
+)
+```
+
+### Screen doesn't appear in scan history
+
+- `excludeScreens` contains its name.
+- The swizzler isn't installed — call `ViewControllerSwizzler.installIfNeeded()` from
+  `AppDelegate.application(_:didFinishLaunchingWithOptions:)`.
+- The controller is a wrapper class (`UINavigationController`, etc.). Only leaf controllers fire.
+- `autoScan: false` in config — explicit `scanScreen` calls still work.
+
+### Multiple sessions stacking on the dashboard
+
+Each app foreground cycle should create one session. If you see many open sessions:
+
+- The app crashed before `didEnterBackgroundNotification` could fire. `IN_PROGRESS` sessions
+  auto-complete after 24h server-side, but dashboard noise is real.
+- You called `configure(...)` multiple times without `destroy()` in between.
+
+### UI freezes during scans
+
+Shouldn't happen — `URLSession.data(for:)` is async and runs off-main automatically. If you see
+freezes, check your `onScanComplete` / `onIssueFound` callbacks — they run on the SDK actor, so
+dispatch to `@MainActor` yourself if you're doing UI work there.
+
+### 403 `app_deactivated`
+
+The app's `active` flag is `false` on the backend. Re-activate from the dashboard or contact
+support.
+
+### 409 `platform_mismatch`
+
+The app was registered under a different platform on the backend (e.g. `REACT_NATIVE`) while the
+iOS SDK is submitting `"platform": "ios_native"`. Either re-register under a new `appId`, or ask
+support to update the backend registration.
+
+### SwiftUI screens scan but with very few nodes
+
+Either:
+
+- Your SwiftUI views don't use the `.welcomingWebScan(...)` modifier, so the SDK only sees
+  synthesized `UIAccessibilityElement`s for standard controls.
+- The hosting view's `accessibilityElementCount` returns 0 — happens on screens dominated by
+  `Canvas`, custom shapes, or `GeometryReader`-driven custom layouts. Add the modifier to the
+  key components.
+
+### Swizzling doesn't fire
+
+- Confirm `ViewControllerSwizzler.installIfNeeded()` is called from
+  `AppDelegate.application(_:didFinishLaunchingWithOptions:)` (or the `@main App`'s `init`).
+- Confirm your view controller isn't a wrapper class.
+- Confirm `viewIfLoaded` returns non-nil at `viewDidAppear` — should always be true at that
+  point but custom controllers can break this.
+
+## Next Steps
+
+<Cards>
+  <Cards.Card title="Accessibility Rules" href="/mobile/rules" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Full WCAG 2.2 rule reference for every issue the SDK detects.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Accessibility Panel" href="/mobile/panel" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Configure the in-app panel for text size, contrast and more.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="CI / CD Integration" href="/mobile/ci-cd" icon={<CommandLineIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Gate releases with Xcode Cloud, Fastlane, GitHub Actions or Bitrise.
+    </p>
+  </Cards.Card>
+</Cards>

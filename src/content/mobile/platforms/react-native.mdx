@@ -1,0 +1,400 @@
+---
+title: "React Native SDK"
+description: "Complete React Native integration guide for the WelcomingWeb mobile accessibility SDK — installation, screen tracking, manual scanning, panel, and troubleshooting."
+---
+
+import { Callout, Steps, Table, Cards } from 'nextra/components'
+import { CheckBadgeIcon, CommandLineIcon } from '@heroicons/react/24/outline'
+
+# React Native SDK
+
+The React Native SDK walks the React fiber tree at runtime, detects WCAG 2.2 violations, reports
+issues to your dashboard, and provides an optional in-app accessibility panel for end users.
+
+<Callout type="info">
+**Version 1.2** is the current release. Zero native module dependencies, full TypeScript support,
+bundled declaration files — no `@types/*` package required.
+</Callout>
+
+## Requirements
+
+| Requirement | Minimum Version |
+| --- | --- |
+| React Native | 0.70+ |
+| React | 18.0+ |
+| `@react-navigation/native` | 6.x (optional — enables auto-scan on focus) |
+| iOS | 13+ |
+| Android | API 21+ |
+
+## Installation
+
+```bash
+# npm
+npm install @welcomingweb/react-native-sdk
+
+# yarn
+yarn add @welcomingweb/react-native-sdk
+```
+
+<Callout type="info">
+No `pod install` or gradle sync is required. The SDK uses only JavaScript APIs available in
+React Native core.
+</Callout>
+
+## Configuration
+
+Call `WelcomingWeb.configure()` once at app startup — typically in `App.tsx` or `index.js` —
+before any navigation renders.
+
+```tsx filename="App.tsx"
+import { WelcomingWeb } from '@welcomingweb/react-native-sdk';
+
+WelcomingWeb.configure({
+  apiKey: 'YOUR_API_KEY',
+  appId: 'com.yourcompany.yourapp',
+  appVersion: '1.0.0',
+  environment: 'development',
+  autoScan: true,
+  debug: true,
+});
+```
+
+See the [full configuration reference](/mobile/getting-started#configuration-reference) for every
+supported option.
+
+## Screen Tracking
+
+Screen tracking is the mechanism that triggers scans. The SDK provides three complementary
+approaches.
+
+### `withAccessibilityTracking` (Higher-Order Component)
+
+The recommended approach for most screens. Wraps your component in a tracked container that
+scans automatically on focus.
+
+```tsx filename="screens/HomeScreen.tsx"
+import { withAccessibilityTracking } from '@welcomingweb/react-native-sdk';
+
+function HomeScreen({ navigation }) {
+  return <ScrollView>{/* screen content */}</ScrollView>;
+}
+
+export default withAccessibilityTracking(HomeScreen, 'HomeScreen');
+```
+
+**Behaviour:** the HOC wraps your screen in a `<View ref={containerRef}>` with
+`collapsable={false}`. When the screen gains navigation focus (via `useFocusEffect` from
+`@react-navigation`), it waits for the configured `scanDelay` (default 600 ms) then an idle
+callback before scanning.
+
+<Callout type="info">
+If `@react-navigation/native` is not installed, the SDK falls back to `useEffect` (mount only).
+Install `@react-navigation/native` 6.x for proper focus-based scanning.
+</Callout>
+
+### `useAccessibilityTracking` (Hook)
+
+For function components where you prefer hook composition.
+
+```tsx filename="screens/ProductDetailScreen.tsx"
+import { useAccessibilityTracking } from '@welcomingweb/react-native-sdk';
+
+export default function ProductDetailScreen({ route }) {
+  const a11yRef = useAccessibilityTracking('ProductDetailScreen');
+  return <ScrollView ref={a11yRef}>{/* screen content */}</ScrollView>;
+}
+```
+
+<Callout type="warning">
+When using the hook, you must pass the returned ref to the root `View` or `ScrollView`. The SDK
+uses this ref to access the React fiber tree for scanning.
+</Callout>
+
+### `createNavigationObserver` (Fallback)
+
+A navigation state observer for screens that don't use the HOC or hook. Checks whether a screen
+is already registered before triggering a scan, so there's no duplicate work.
+
+```tsx filename="App.tsx"
+import { createNavigationObserver } from '@welcomingweb/react-native-sdk';
+
+<NavigationContainer onStateChange={createNavigationObserver()}>
+  {/* navigators */}
+</NavigationContainer>
+```
+
+## Manual Scanning
+
+Trigger a scan imperatively when auto-scan isn't enough — for example, after a state change that
+re-renders the screen without re-focusing it.
+
+```tsx
+const result = await WelcomingWeb.scanCurrentScreen();
+
+console.log('Score:', result.summary.accessibilityScore);
+for (const issue of result.issues) {
+  console.log(issue.severity, issue.ruleId, issue.suggestion);
+}
+```
+
+### `ScanResult` Object
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Field</Table.Th>
+      <Table.Th>Type</Table.Th>
+      <Table.Th>Description</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`screenName`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>Name of the scanned screen.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`screenRoute`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>Route path (e.g. `/ProductDetail`).</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`componentTreeHash`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>Hash of the component tree for deduplication.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`issues`</Table.Td>
+      <Table.Td>`AccessibilityIssue[]`</Table.Td>
+      <Table.Td>Array of detected issues.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`summary.totalComponents`</Table.Td>
+      <Table.Td>number</Table.Td>
+      <Table.Td>Total nodes found in the tree.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`summary.interactiveComponents`</Table.Td>
+      <Table.Td>number</Table.Td>
+      <Table.Td>Nodes with onPress, buttons, inputs, switches.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`summary.issuesBySeverity`</Table.Td>
+      <Table.Td>object</Table.Td>
+      <Table.Td>`&#123; critical: N, major: N, minor: N &#125;`</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`summary.accessibilityScore`</Table.Td>
+      <Table.Td>number</Table.Td>
+      <Table.Td>Score from 0 to 100.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`scanDurationMs`</Table.Td>
+      <Table.Td>number</Table.Td>
+      <Table.Td>Scan execution time in milliseconds.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`deduplicated`</Table.Td>
+      <Table.Td>boolean</Table.Td>
+      <Table.Td>True if the scan was skipped (same tree as last scan).</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+### `AccessibilityIssue` Object
+
+<Table>
+  <thead>
+    <Table.Tr>
+      <Table.Th>Field</Table.Th>
+      <Table.Th>Type</Table.Th>
+      <Table.Th>Description</Table.Th>
+    </Table.Tr>
+  </thead>
+  <tbody>
+    <Table.Tr>
+      <Table.Td>`ruleId`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>Unique rule identifier (e.g. `mobile-touch-target-size`).</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`wcagMapping`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>WCAG criterion number (e.g. `2.5.8`).</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`wcagLevel`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>`A`, `AA`, or `AAA`.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`severity`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>`critical`, `major`, or `minor`.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`componentType`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>React Native component type (e.g. `TouchableOpacity`).</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`componentPath`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>Full path in the tree (e.g. `Home > View > Button`).</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`evidence`</Table.Td>
+      <Table.Td>object</Table.Td>
+      <Table.Td>Measured values that triggered the issue.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`suggestion`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>Human-readable fix suggestion.</Table.Td>
+    </Table.Tr>
+    <Table.Tr>
+      <Table.Td>`ruleDescription`</Table.Td>
+      <Table.Td>string</Table.Td>
+      <Table.Td>Brief description of the rule.</Table.Td>
+    </Table.Tr>
+  </tbody>
+</Table>
+
+## Session Lifecycle
+
+### Development Mode
+
+- The first scan of the day creates a new server session. The session ID is captured and reused
+  for all subsequent scans.
+- Concurrent screen scans are serialised — a shared session-ID promise ensures all scans share the
+  same server session with no race conditions.
+- When the app goes to background, the SDK calls `/scans/complete`. If the request fails, the SDK
+  retries on the next background event.
+- When the app resumes, the hash cache and session ID are cleared. The next scan starts a fresh
+  session.
+
+### CI/CD Mode
+
+Covered in full on the [CI/CD integration page](/mobile/ci-cd). In summary:
+
+- Set `autoScan: false` in configuration.
+- Call `WelcomingWeb.clearScreenCache()` before the scan loop.
+- Navigate to each screen and call `scanScreen()` manually.
+- Call `submitScanSession()` to create a session, submit all buffered scans, and complete it.
+
+## Lifecycle Management
+
+### `destroy()`
+
+Release all SDK resources. Required for test teardown and safe re-configuration.
+
+```tsx
+afterEach(() => {
+  WelcomingWeb.destroy();
+});
+```
+
+<Callout type="info">
+`destroy()` is safe to call multiple times. After calling it, `configure()` must be called again
+before any scanning can occur.
+</Callout>
+
+### `hasScreen(name)`
+
+Returns `true` if the given screen name is currently registered. Used by `createNavigationObserver`
+to avoid redundant scans.
+
+```tsx
+if (WelcomingWeb.hasScreen('HomeScreen')) {
+  // Already tracked via HOC/hook — skip observer scan
+}
+```
+
+### `clearScreenCache(screenName?)`
+
+Clears stored component-tree hashes used for deduplication.
+
+```tsx
+// Before a CI run — force every screen to scan fresh
+WelcomingWeb.clearScreenCache();
+
+// After fixing one screen — re-scan only that screen
+WelcomingWeb.clearScreenCache('HomeScreen');
+```
+
+## TypeScript Support
+
+The SDK ships with a bundled `index.d.ts`. No `@types/*` package is required.
+
+```tsx
+import type {
+  ScanResult,
+  AccessibilityIssue,
+  WelcomingWebConfig,
+  IssueSeverity,
+} from '@welcomingweb/react-native-sdk';
+
+const result: ScanResult = await WelcomingWeb.scanCurrentScreen();
+```
+
+**Exported types:** `WelcomingWebConfig`, `ScanResult`, `ScanSummary`, `AccessibilityIssue`,
+`IssueSeverity`, `SubmitSessionOptions`, `AccessibilityPreferences`,
+`EffectiveAccessibilitySettings`, `LegacyAccessibilitySettings`, `AccessibilityPanelProps`,
+`PanelFeatureId`.
+
+## Troubleshooting
+
+### "Found 0 nodes" on scan
+
+- The root `View` may have `collapsable={true}` (default on Android). The HOC sets
+  `collapsable={false}` automatically. If using the hook, add `collapsable={false}` to the root
+  view explicitly.
+- Screen content may not have mounted yet. The default `scanDelay` is 600 ms — increase it via
+  `configure({ scanDelay: 1200 })` for complex screens with virtualised lists.
+- A React Native version change may have altered internal fiber property names. Enable
+  `debug: true` and check for `[WelcomingWeb] Could not find fiber. Keys: [...]`.
+
+### API returns 401 Unauthorized
+
+Check that `apiKey` is correct and is passed as the `X-API-Key` header. If using a custom
+`reportingEndpoint`, ensure the URL includes the full base path (`/api/public/v1/mobile`).
+
+### Issues not showing in Dashboard
+
+Enable `debug: true` and check for `[WelcomingWeb:API] Response: 200`. If every response shows
+`deduplicated: true`, the server-side dedup is incorrectly skipping across sessions.
+
+### `AccessibilityPanel` not visible
+
+The panel uses absolute positioning with zIndex 9998–9999. Place `<AccessibilityPanel />` as the
+last child inside your `NavigationContainer`, after all navigators.
+
+### Scans not triggering on navigation
+
+The SDK uses `useFocusEffect` from `@react-navigation/native`. Without it, scans only trigger on
+mount. Install `@react-navigation/native` 6.x for focus-based scanning.
+
+### Reduce Motion toggle has no effect
+
+The SDK does not patch `Animated` globally. Read `effectiveSettings.reduceMotion` from
+`useAccessibilityToolkit()` and skip animations in your own components.
+
+## Next Steps
+
+<Cards>
+  <Cards.Card title="Accessibility Rules" href="/mobile/rules" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Full WCAG 2.2 rule reference for every issue the SDK detects.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Accessibility Panel" href="/mobile/panel" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Configure the in-app panel for text size, contrast and more.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="CI / CD Integration" href="/mobile/ci-cd" icon={<CommandLineIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Gate releases with Detox, Maestro, Fastlane or GitHub Actions.
+    </p>
+  </Cards.Card>
+</Cards>

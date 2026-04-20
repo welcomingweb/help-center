@@ -1,0 +1,423 @@
+---
+title: "Flutter SDK (Dart)"
+description: "Complete Flutter integration guide for the WelcomingWeb mobile accessibility SDK — pub.dev installation, widget-tree scanning, route observation, panel setup, and troubleshooting."
+---
+
+import { Callout, Steps, Table, Cards } from 'nextra/components'
+import { CheckBadgeIcon, CommandLineIcon } from '@heroicons/react/24/outline'
+
+# Flutter SDK (Dart)
+
+The Flutter SDK walks the `Element` tree at runtime, detects WCAG 2.2 violations, reports to your
+dashboard, and provides an optional in-app accessibility panel — all in pure Dart, targeting every
+platform Flutter supports.
+
+<Callout type="info">
+**Pure Dart where possible.** The only plugin dependency is `app_settings`, and only because
+Apple restricts direct deep-links to the iOS Accessibility settings page. All scanning, all
+rules and all UI are implemented without platform channels.
+</Callout>
+
+## Requirements
+
+| Requirement | Minimum Version |
+| --- | --- |
+| Flutter | 3.10+ |
+| Dart | 3.0+ |
+| iOS (target) | 13+ |
+| Android (target) | API 21+ |
+
+## Installation
+
+Add the package to your `pubspec.yaml`:
+
+```yaml filename="pubspec.yaml"
+dependencies:
+  welcomingweb_flutter_sdk: ^1.0.0
+```
+
+Then run:
+
+```bash
+flutter pub get
+```
+
+## Configuration
+
+Call `WelcomingWeb.configure(...)` once at app startup, before `runApp(...)`.
+
+```dart filename="main.dart"
+import 'package:flutter/material.dart';
+import 'package:welcomingweb_flutter_sdk/welcomingweb_flutter_sdk.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  WelcomingWeb.configure(
+    const WelcomingWebConfig(
+      apiKey: 'YOUR_API_KEY',
+      appId: 'com.yourcompany.yourapp',
+      appVersion: '1.0.0',
+      environment: Environment.development,
+      autoScan: true,
+      debug: true,
+    ),
+  );
+
+  runApp(const MyApp());
+}
+```
+
+See the [full configuration reference](/mobile/getting-started#configuration-reference) for every
+supported option.
+
+## Screen Tracking
+
+Flutter screen tracking uses three cooperating pieces: the `A11yNavigatorObserver` (plugged into
+`MaterialApp` / `CupertinoApp`), an `A11yNavigatorObserverScope` `InheritedWidget`, and an
+`A11yTracker` widget wrapping each screen.
+
+### Full Setup
+
+```dart filename="main.dart"
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final a11yObserver = A11yNavigatorObserver();
+
+    return A11yProvider(
+      child: MaterialApp(
+        navigatorObservers: [a11yObserver],
+        builder: (context, child) {
+          return A11yNavigatorObserverScope(
+            observer: a11yObserver,
+            child: child!,
+          );
+        },
+        home: const HomeScreen(),
+        routes: {
+          '/profile': (_) => const ProfileScreen(),
+          '/settings': (_) => const SettingsScreen(),
+        },
+      ),
+    );
+  }
+}
+```
+
+### `A11yTracker` — Per-Screen Widget
+
+Wrap every screen's build output with `A11yTracker`. The widget registers a `GlobalKey` with the
+SDK, subscribes to the route observer, and triggers a scan when the screen gains focus.
+
+```dart filename="screens/home_screen.dart"
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return A11yTracker(
+      screenName: 'HomeScreen',
+      route: '/home',
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Home')),
+        body: const Center(child: Text('Welcome!')),
+      ),
+    );
+  }
+}
+```
+
+**Why a widget wrapper?** Flutter's `Element` tree is walked via `GlobalKey`. `A11yTracker`
+attaches a key to the child through a `KeyedSubtree`, so the SDK can look up the exact element
+to scan when the screen focuses.
+
+### `A11yNavigatorObserver` — Route Observer
+
+Extends `RouteObserver<PageRoute<dynamic>>`. It tracks the last route name to de-duplicate no-op
+route events, but it deliberately **does not** emit `onScreenChange` for route names directly —
+only `A11yTracker` triggers scans, using its registered `screenName` (which may differ from the
+route name).
+
+This prevents phantom "0 node" scans for screens that aren't wrapped with `A11yTracker`.
+
+### `A11yNavigatorObserverScope` — InheritedWidget
+
+An `InheritedWidget` that propagates the observer down the tree so every `A11yTracker` can find
+it via `didChangeDependencies`. Always place it in `MaterialApp.builder` so it sits *below* the
+`Navigator` but *above* your route content.
+
+## Jetpack-Compose-Style Tracking (Per-Widget)
+
+If you're building without a standard `Navigator` (e.g. inside a custom routing library), you
+can still wrap individual widgets with `A11yTracker` and manually trigger scans on navigation:
+
+```dart
+class MyCustomRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return A11yTracker(
+      screenName: 'CustomRouteScreen',
+      route: '/custom',
+      child: /* content */,
+    );
+  }
+}
+
+// When navigating without the observer:
+await WelcomingWeb.onScreenChange('CustomRouteScreen', '/custom');
+```
+
+## Manual Scanning
+
+Trigger a scan imperatively when auto-scan isn't enough — for example, after a `setState` that
+significantly changes the UI without triggering a route event.
+
+```dart
+final result = await WelcomingWeb.scanCurrentScreen();
+
+print('Score: ${result.summary?.accessibilityScore}');
+for (final issue in result.issues) {
+  print('${issue.severity} ${issue.ruleId} — ${issue.suggestion}');
+}
+```
+
+## Scan Result Types
+
+The types match every other SDK.
+
+```dart
+class ScanResult {
+  final String screenName;
+  final String screenRoute;
+  final String componentTreeHash;
+  final List<AccessibilityIssue> issues;
+  final ScanSummary? summary;
+  final int scanDurationMs;
+  final bool deduplicated;
+}
+
+class AccessibilityIssue {
+  final String ruleId;
+  final String wcagMapping;
+  final String wcagLevel;      // 'A', 'AA', or 'AAA'
+  final String severity;        // 'critical', 'major', or 'minor'
+  final String componentType;
+  final String componentPath;
+  final Map<String, dynamic> evidence;
+  final String suggestion;
+  final String ruleDescription;
+}
+```
+
+## Release Mode Caveat
+
+The walker reads semantics from `RenderObject.debugSemantics` in debug and profile builds, which
+gives fully-merged `SemanticsNode` data (what the OS actually sees). In release builds,
+`debugSemantics` isn't available and the walker falls back to `describeSemanticsConfiguration`,
+which exposes each widget's unmerged contribution.
+
+**Practical impact:** release-mode scans produce the same rule verdicts but with slightly less
+rich evidence (e.g. merged labels appear as they were originally set, not as the merged screen
+reader text).
+
+<Callout type="info">
+For CI gating against release builds, prefer **profile mode** — it gives you debug-quality
+semantics without the performance overhead of debug builds.
+</Callout>
+
+## Concurrency Model
+
+The SDK uses `Future`/`Completer` throughout. Every public `async` method is safe to `await`
+from any isolate context.
+
+Callbacks run on the SDK's isolate:
+
+```dart
+WelcomingWeb.configure(
+  WelcomingWebConfig(
+    apiKey: 'YOUR_API_KEY',
+    appId: 'com.yourcompany.yourapp',
+    onScanComplete: (result) {
+      // Safe to read result here.
+      // If you need to update UI, make sure you're on the main isolate —
+      // which you almost always are, since Flutter is single-isolate by default.
+      debugPrint('Scan complete: ${result.summary?.accessibilityScore}');
+    },
+  ),
+);
+```
+
+## Session Lifecycle
+
+### Development Mode
+
+- The first scan creates a new server session; subsequent scans share the session ID.
+- Concurrent scans await a shared `Future<String?>` that resolves to the session ID.
+- `WidgetsBindingObserver.didChangeAppLifecycleState` is used to detect background and foreground
+  transitions. On background, pending scans flush via `/scans/complete`. On foreground, the hash
+  cache and session ID are cleared for a fresh session.
+
+### CI/CD Mode
+
+See the [CI/CD integration page](/mobile/ci-cd). Summary:
+
+- Set `autoScan: false` in configuration.
+- Call `WelcomingWeb.clearScreenCache()` before the scan loop.
+- Navigate to each screen and call `WelcomingWeb.scanScreen(..., force: true)`.
+- Call `WelcomingWeb.submitScanSession(...)` to create a session, submit all buffered scans,
+  and complete it.
+
+## Lifecycle Management
+
+### `destroy()`
+
+Release all SDK resources. Required before re-configuring with different credentials.
+
+```dart
+WelcomingWeb.destroy();
+```
+
+After calling `destroy()`, `configure(...)` must be called again before any scanning can occur.
+
+### `clearScreenCache([screenName])`
+
+Clears stored component-tree hashes used for deduplication.
+
+```dart
+// Before a CI run — force every screen to scan fresh
+WelcomingWeb.clearScreenCache();
+
+// After fixing one screen — re-scan only that screen
+WelcomingWeb.clearScreenCache('HomeScreen');
+```
+
+## Platform Support
+
+The SDK runs on every Flutter target:
+
+| Target | Status | Notes |
+| --- | --- | --- |
+| iOS | Fully supported | 13+ |
+| Android | Fully supported | API 21+ |
+| Web | Supported | Scans run; dashboard filtering treats as separate platform |
+| macOS | Supported | Experimental; some system-state values may be unavailable |
+| Windows | Supported | Experimental; some system-state values may be unavailable |
+| Linux | Supported | Experimental; some system-state values may be unavailable |
+
+For desktop targets, the accessibility panel is available but the touch-target size rule uses
+mouse-click minimums rather than dp.
+
+## Troubleshooting
+
+### Scan returns "Found 0 nodes"
+
+- Your screen isn't wrapped with `A11yTracker`. The route observer alone doesn't trigger scans —
+  the tracker registers the `GlobalKey` the walker needs.
+- The widget tree wasn't built when the scan fired. Flutter's first frame callback handles this
+  for `initState`; for complex conditional content, increase `scanDelay` to 1200 ms or more.
+- The screen content is entirely `RenderObject`-based with no standard widget types
+  (`Canvas`, custom `SingleChildRenderObjectWidget`). Add `Semantics` wrappers to key elements.
+
+### API returns 401 Unauthorized
+
+Check that `apiKey` is correct. If using a custom `reportingEndpoint`, ensure the URL includes
+the full base path (`/api/public/v1/mobile`).
+
+### "Deduplicated" when expecting a real result
+
+Pass `force: true` to `scanScreen`:
+
+```dart
+final result = await WelcomingWeb.scanScreen(
+  'HomeScreen',
+  '/home',
+  force: true,
+);
+```
+
+Or use `scanCurrentScreen()` which handles this internally.
+
+### `Directionality` error when adding the panel
+
+The screen-curtain and reading-guide overlays wrap their child in a `Stack` only when active,
+because `Stack` requires a `Directionality` ancestor. If you still see this error, confirm
+`A11yProvider` is wrapped **above** `MaterialApp`, not below it.
+
+```dart
+// ❌ Wrong
+MaterialApp(
+  home: A11yProvider(child: HomeScreen()),  // too deep
+)
+
+// ✅ Correct
+A11yProvider(
+  child: MaterialApp(home: HomeScreen()),
+)
+```
+
+### Observer not firing on navigation
+
+- The observer wasn't registered in `MaterialApp.navigatorObservers`.
+- `A11yNavigatorObserverScope` isn't in the widget tree — required for `A11yTracker` to find
+  the observer.
+- You're using a custom navigation library that doesn't emit `PageRoute` events. Wrap with
+  `A11yTracker` and call `WelcomingWeb.onScreenChange(...)` manually.
+
+### Release-mode scans produce fewer issues than debug-mode
+
+`RenderObject.debugSemantics` is unavailable in release mode, so the walker falls back to
+`describeSemanticsConfiguration`. Some merged-semantics cases (e.g. a `Semantics(label: ...)`
+wrapping a subtree that also declares its own labels) may resolve differently in release.
+
+For CI gating, use **profile mode** — same release optimisations, but `debugSemantics` is still
+available.
+
+### 403 `app_deactivated`
+
+The app's `active` flag is `false` on the backend. Re-activate from the dashboard or contact
+support.
+
+### 409 `platform_mismatch`
+
+The app was registered under a different platform on the backend (e.g. `REACT_NATIVE`) while the
+Flutter SDK is submitting `"platform": "flutter"`. Either re-register under a new `appId`, or
+ask support to update the backend registration.
+
+### Scans appear but panel toggles don't take effect
+
+The panel exposes preferences through `A11yProvider.of(context).effectiveSettings`. Your
+components must read these values and apply them — the SDK doesn't globally patch `AnimationController`
+or theme data.
+
+```dart
+// Read in the widget
+final settings = A11yProvider.of(context).effectiveSettings;
+
+// Apply in your theme or animations
+final duration = settings.reduceMotion
+  ? Duration.zero
+  : const Duration(milliseconds: 250);
+```
+
+## Next Steps
+
+<Cards>
+  <Cards.Card title="Accessibility Rules" href="/mobile/rules" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Full WCAG 2.2 rule reference for every issue the SDK detects.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Accessibility Panel" href="/mobile/panel" icon={<CheckBadgeIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Configure the in-app panel for text size, contrast and more.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="CI / CD Integration" href="/mobile/ci-cd" icon={<CommandLineIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Gate releases with Codemagic, Fastlane, GitHub Actions or Bitrise.
+    </p>
+  </Cards.Card>
+</Cards>
