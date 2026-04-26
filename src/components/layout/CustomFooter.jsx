@@ -57,7 +57,7 @@ const navigation = {
     { name: "Book a Demo", href: `${MAIN_SITE_URL}/book-demo` },
     { name: "Log in", href: `${APP_URL}/login` },
     { name: "Start Free", href: `${APP_URL}/register` },
-    { name: "Free Website Audit", href: `${MAIN_SITE_URL}/audit` },
+    { name: "Free Website Audit", href: `${MAIN_SITE_URL}/free-accessibility-scan` },
   ],
   compliance: ComplianceStandards.map((cs) => ({
     name: cs.value,
