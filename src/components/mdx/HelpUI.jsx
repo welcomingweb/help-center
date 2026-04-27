@@ -896,3 +896,44 @@ export function CTA3({
 function isExternal(link) {
   return /^https?:\/\//.test(link);
 }
+
+const FREE_SCAN_URL = 'https://welcomingweb.com/free-accessibility-scan';
+
+export function FreeScanCTA({ text }) {
+  return (
+    <a
+      href={FREE_SCAN_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        group flex items-center justify-between gap-4
+        my-6 px-5 py-4 rounded-xl
+        bg-blue-50 dark:bg-blue-950
+        border border-blue-200 dark:border-blue-800
+        hover:border-blue-400 dark:hover:border-blue-600
+        hover:bg-blue-100 dark:hover:bg-blue-900
+        transition-all duration-200 no-underline
+      "
+      aria-label={text}
+    >
+      <span className="flex items-center gap-3 min-w-0">
+        <span className="text-blue-600 dark:text-blue-400 shrink-0" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </span>
+        <span className="text-sm font-medium text-blue-800 dark:text-blue-200 truncate">
+          {text}
+        </span>
+      </span>
+      <span className="
+        shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full
+        bg-blue-600 text-white
+        group-hover:bg-blue-700
+        transition-colors duration-200
+      ">
+        Free scan →
+      </span>
+    </a>
+  );
+}

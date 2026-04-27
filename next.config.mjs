@@ -6,7 +6,28 @@ const withNextra = nextra({
  
 // You can include other Next.js configuration options here, in addition to Nextra settings:
 export default withNextra({
-  // ... Other Next.js config options
+  async redirects() {
+    return [
+      // /rules → index of rules section (bare /rules has no content file)
+      {
+        source: '/rules',
+        destination: '/rules/accesskeys',
+        permanent: false,
+      },
+      // Support old /help/rules paths arriving from the portal redirect
+      {
+        source: '/help/rules',
+        destination: '/rules/accesskeys',
+        permanent: true,
+      },
+      {
+        source: '/help/:path*',
+        destination: '/:path*',
+        permanent: true,
+      },
+    ];
+  },
+
    images: {
       remotePatterns: [
         {
