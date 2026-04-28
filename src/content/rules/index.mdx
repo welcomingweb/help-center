@@ -1,0 +1,170 @@
+---
+title: "Accessibility Rules"
+description: "Complete reference for all 92 WCAG accessibility rules checked by WelcomingWeb. Find explanations, impact levels, and fixes for every rule."
+---
+
+import { Cards } from 'nextra/components'
+import {
+  ShieldCheckIcon,
+  EyeIcon,
+  CursorArrowRaysIcon,
+  CodeBracketIcon,
+  TableCellsIcon,
+  GlobeAltIcon,
+  SpeakerWaveIcon,
+  DevicePhoneMobileIcon,
+  BoltIcon,
+} from '@heroicons/react/24/outline'
+
+# Accessibility Rules
+
+WelcomingWeb checks your site against **92 WCAG 2.2 rules** spanning ARIA usage, color contrast, keyboard access, HTML structure, and more. Select a category below or browse all rules alphabetically.
+
+## ARIA
+
+Rules that validate correct usage of ARIA roles, attributes, and properties.
+
+| Rule | Description |
+|------|-------------|
+| [aria-allowed-attr](/rules/aria-allowed-attr) | ARIA attributes must be allowed for the element's role |
+| [aria-allowed-role](/rules/aria-allowed-role) | Role must be appropriate for the element |
+| [aria-braille-equivalent](/rules/aria-braille-equivalent) | Braille display attributes must have equivalent text |
+| [aria-command-name](/rules/aria-command-name) | Button, link and menuitem must have accessible names |
+| [aria-conditional-attr](/rules/aria-conditional-attr) | ARIA attributes must be used only when conditions are met |
+| [aria-deprecated-role](/rules/aria-deprecated-role) | Deprecated ARIA roles must not be used |
+| [aria-dialog-name](/rules/aria-dialog-name) | Dialog and alertdialog nodes must have accessible names |
+| [aria-hidden-body](/rules/aria-hidden-body) | aria-hidden must not be present on document body |
+| [aria-hidden-focus](/rules/aria-hidden-focus) | aria-hidden elements must not contain focusable elements |
+| [aria-input-field-name](/rules/aria-input-field-name) | ARIA input fields must have accessible names |
+| [aria-meter-name](/rules/aria-meter-name) | ARIA meter nodes must have accessible names |
+| [aria-progressbar-name](/rules/aria-progressbar-name) | ARIA progressbar nodes must have accessible names |
+| [aria-prohibited-attr](/rules/aria-prohibited-attr) | Elements must only use permitted ARIA attributes |
+| [aria-required-attr](/rules/aria-required-attr) | Required ARIA attributes must be provided |
+| [aria-required-children](/rules/aria-required-children) | Certain ARIA roles must contain required child roles |
+| [aria-required-parent](/rules/aria-required-parent) | Certain ARIA roles must be contained by required parent |
+| [aria-roles](/rules/aria-roles) | ARIA roles must conform to valid values |
+| [aria-text](/rules/aria-text) | role="text" must not have focusable descendants |
+| [aria-toggle-field-name](/rules/aria-toggle-field-name) | ARIA toggle fields must have accessible names |
+| [aria-tooltip-name](/rules/aria-tooltip-name) | ARIA tooltip nodes must have accessible names |
+| [aria-treeitem-name](/rules/aria-treeitem-name) | ARIA treeitem nodes must have accessible names |
+| [aria-valid-attr](/rules/aria-valid-attr) | ARIA attributes must conform to valid names |
+| [aria-valid-attr-value](/rules/aria-valid-attr-value) | ARIA attributes must conform to valid values |
+
+## Color & Visual
+
+Rules that check color contrast and visual presentation.
+
+| Rule | Description |
+|------|-------------|
+| [color-contrast](/rules/color-contrast) | Text must have sufficient color contrast (WCAG AA) |
+| [color-contrast-enhanced](/rules/color-contrast-enhanced) | Text must have enhanced color contrast (WCAG AAA) |
+| [avoid-inline-spacing](/rules/avoid-inline-spacing) | Inline text spacing must be adjustable via CSS |
+| [meta-viewport](/rules/meta-viewport) | Zooming and scaling must not be disabled |
+| [meta-viewport-large](/rules/meta-viewport-large) | Users should be able to zoom and scale up to 500% |
+
+## Forms & Inputs
+
+Rules that ensure form controls are properly labeled and accessible.
+
+| Rule | Description |
+|------|-------------|
+| [autocomplete-valid](/rules/autocomplete-valid) | autocomplete attribute must be used correctly |
+| [button-name](/rules/button-name) | Buttons must have discernible text |
+| [form-field-multiple-labels](/rules/form-field-multiple-labels) | Form fields must not have multiple label elements |
+| [input-button-name](/rules/input-button-name) | Input buttons must have discernible text |
+| [input-image-alt](/rules/input-image-alt) | Image inputs must have alternative text |
+| [label](/rules/label) | Form elements must have associated labels |
+| [label-title-only](/rules/label-title-only) | Form elements should have visible labels, not just title |
+| [select-name](/rules/select-name) | Select element must have accessible name |
+
+## Images & Media
+
+Rules for alternative text, media controls, and image accessibility.
+
+| Rule | Description |
+|------|-------------|
+| [area-alt](/rules/area-alt) | Active area elements must have alternative text |
+| [image-alt](/rules/image-alt) | Images must have alternative text |
+| [image-redundant-alt](/rules/image-redundant-alt) | Image alternative text must not be redundant |
+| [no-autoplay-audio](/rules/no-autoplay-audio) | Audio must not autoplay for more than 3 seconds |
+| [object-alt](/rules/object-alt) | Object elements must have alternative text |
+| [role-img-alt](/rules/role-img-alt) | Elements with role="img" must have alternative text |
+| [server-side-image-map](/rules/server-side-image-map) | Server-side image maps must not be used |
+| [video-caption](/rules/video-caption) | Videos must have captions |
+
+## Navigation & Landmarks
+
+Rules for page structure, landmarks, headings, and skip links.
+
+| Rule | Description |
+|------|-------------|
+| [bypass](/rules/bypass) | Page must have means to bypass repeated content |
+| [heading-order](/rules/heading-order) | Heading levels must not be skipped |
+| [landmark-banner-is-top-level](/rules/landmark-banner-is-top-level) | Banner landmark must not be nested inside another landmark |
+| [landmark-complementary-is-top-level](/rules/landmark-complementary-is-top-level) | Complementary landmark must be top-level |
+| [landmark-contentinfo-is-top-level](/rules/landmark-contentinfo-is-top-level) | Contentinfo landmark must not be nested |
+| [landmark-main-is-top-level](/rules/landmark-main-is-top-level) | Main landmark must not be nested inside another landmark |
+| [landmark-no-duplicate-banner](/rules/landmark-no-duplicate-banner) | Page must not have more than one banner landmark |
+| [landmark-no-duplicate-contentinfo](/rules/landmark-no-duplicate-contentinfo) | Page must not have more than one contentinfo landmark |
+| [landmark-no-duplicate-main](/rules/landmark-no-duplicate-main) | Page must not have more than one main landmark |
+| [landmark-one-main](/rules/landmark-one-main) | Page must have one main landmark |
+| [landmark-unique](/rules/landmark-unique) | Landmark roles must be unique |
+| [link-in-text-block](/rules/link-in-text-block) | Links must be distinguishable without relying on color |
+| [link-name](/rules/link-name) | Links must have discernible text |
+| [page-has-heading-one](/rules/page-has-heading-one) | Page must contain a level-one heading |
+| [region](/rules/region) | All page content must be contained by landmarks |
+| [skip-link](/rules/skip-link) | Skip link must be focusable and functional |
+
+## HTML & Language
+
+Rules for document language, titles, and HTML validity.
+
+| Rule | Description |
+|------|-------------|
+| [document-title](/rules/document-title) | Documents must have a title element |
+| [html-has-lang](/rules/html-has-lang) | HTML element must have a lang attribute |
+| [html-lang-valid](/rules/html-lang-valid) | HTML lang attribute must have a valid value |
+| [html-xml-lang-mismatch](/rules/html-xml-lang-mismatch) | HTML and xml:lang must match |
+| [valid-lang](/rules/valid-lang) | lang attributes must have valid values |
+
+## Tables
+
+Rules for accessible data tables and list structure.
+
+| Rule | Description |
+|------|-------------|
+| [dlitem](/rules/dlitem) | Definition list items must be wrapped in dl elements |
+| [duplicate-id-aria](/rules/duplicate-id-aria) | IDs referenced by ARIA must be unique |
+| [empty-table-header](/rules/empty-table-header) | Table headers must not be empty |
+| [scope-attr-valid](/rules/scope-attr-valid) | Scope attribute values must be correct |
+| [table-cell-headers-attr](/rules/table-cell-headers-attr) | Table cells must use headers attribute correctly |
+| [table-duplicate-name](/rules/table-duplicate-name) | Table summary and caption must not be identical |
+| [th-has-data-cells](/rules/th-has-data-cells) | Table headers must have data cells |
+
+## Keyboard & Interaction
+
+Rules for keyboard accessibility, focus management, and interactive elements.
+
+| Rule | Description |
+|------|-------------|
+| [accesskeys](/rules/accesskeys) | accesskey attribute values must be unique |
+| [empty-heading](/rules/empty-heading) | Headings must not be empty |
+| [frame-focusable-content](/rules/frame-focusable-content) | Frames with focusable content must not be hidden |
+| [frame-tested](/rules/frame-tested) | Frames must be tested for accessibility |
+| [frame-title](/rules/frame-title) | Frames must have accessible names |
+| [identical-links-same-purpose](/rules/identical-links-same-purpose) | Links with identical text must serve the same purpose |
+| [marquee](/rules/marquee) | Marquee elements must not be used |
+| [meta-refresh](/rules/meta-refresh) | Timed refresh must not exist |
+| [meta-refresh-no-exceptions](/rules/meta-refresh-no-exceptions) | Pages must not use timed refresh without exception |
+| [nested-interactive](/rules/nested-interactive) | Interactive controls must not be nested |
+| [presentation-role-conflict](/rules/presentation-role-conflict) | Elements with role="presentation" must not be focusable |
+| [scrollable-region-focusable](/rules/scrollable-region-focusable) | Scrollable regions must have keyboard access |
+| [summary-name](/rules/summary-name) | Summary elements must have discernible text |
+| [tabindex](/rules/tabindex) | Positive tabindex values must not be used |
+| [target-size](/rules/target-size) | Touch targets must be at least 24×24 CSS pixels |
+
+## Performance
+
+| Rule | Description |
+|------|-------------|
+| [bootup-time](/rules/bootup-time) | JavaScript execution time must not impair accessibility |

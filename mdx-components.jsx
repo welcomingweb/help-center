@@ -1,4 +1,5 @@
 import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs'
+import FreeScanCTAInjector from '@components/cta/FreeScanCTAInjector'
 
 const themeComponents = getThemeComponents()
 const joinClassNames = (...values) => values.filter(Boolean).join(' ')
@@ -44,6 +45,7 @@ export function useMDXComponents(components) {
   return {
     ...themeComponents,
     ...plainHeadings,
+    FreeScanCTAInjector,
     ...components
   }
 }

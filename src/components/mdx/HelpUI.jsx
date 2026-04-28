@@ -8,7 +8,7 @@ import { useRef, useState, useEffect } from 'react';
  
 import Cinema8Video  from '@components/mdx/Cinema8Video';
 import Link from 'next/link'
-import { SparklesIcon } from '@heroicons/react/24/outline'
+import { SparklesIcon, MagnifyingGlassIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 
 // 2. Step Component (for tutorials)
 export function Step({ number, title, children }) {
@@ -898,6 +898,145 @@ function isExternal(link) {
 }
 
 const FREE_SCAN_URL = 'https://welcomingweb.com/free-accessibility-scan';
+
+const HEADER_ICONS = {
+  scan: <MagnifyingGlassIcon className="h-5 w-5" />,
+};
+
+export function MiniCheckSiteSection({
+  hiddenTitle = false,
+  hiddenIcon = false,
+  className,
+  header,
+  titleClassName = '',
+  formClassName = '',
+  title = '',
+  description = '',
+  buttonText = 'Check Now',
+  placeholder = 'example.com',
+  secondaryCtaLabel,
+  secondaryCtaHref,
+  helperText,
+  compactForm = false,
+}) {
+  const [error, setError] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [url, setUrl] = useState('');
+
+  const isValidUrl = (urlString) => {
+    const regex = /^(https?:\/\/)?([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}.*$/;
+    return regex.test(urlString);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError(false);
+    let raw = url.trim();
+    if (!raw) { setError(true); return; }
+    raw = raw.replace(/^https?:\/\//i, '');
+    const normalized = `https://${raw}`;
+    if (!isValidUrl(normalized)) { setError(true); return; }
+    try {
+      localStorage.setItem('auditUrl', normalized);
+      localStorage.setItem('auditUrlTimestamp', Date.now().toString());
+    } catch {}
+    window.open(`${FREE_SCAN_URL}?url=${encodeURIComponent(normalized)}`, '_blank');
+  };
+
+  const hasHeadingContent = !hiddenTitle && (title || description || header);
+
+  const inputBorderClass = focused
+    ? 'border-[#3D2ED6] shadow-lg shadow-[#3D2ED6]/20'
+    : error
+    ? 'border-[#FF7E6B] shadow-[#FF7E6B]/20'
+    : 'border-[#E1E2EA]';
+
+  return (
+    <section className={`flex flex-col items-center${className ? ` ${className}` : ''}`}>
+      {hasHeadingContent && (
+        <div className="container mx-auto mb-8">
+          <div className="flex flex-col items-center justify-center gap-6 p-1 lg:p-3">
+            {header?.title && (
+              <div className="flex w-fit items-center gap-2 rounded-full border border-[#3D2ED6]/20 bg-gradient-to-r from-[#EEF0FF] to-[#EEF0FF]/50 px-4 py-2 text-sm font-semibold text-[#3D2ED6]">
+                {header.icon && (HEADER_ICONS[header.icon] ?? null)}
+                {header.title}
+              </div>
+            )}
+
+            <div className="flex flex-col items-center justify-center gap-4 text-center lg:flex-row">
+              {!hiddenIcon && (
+                <MagnifyingGlassIcon
+                  className="h-14 w-14 text-[#3D2ED6] transition-transform hover:scale-110"
+                  aria-hidden="true"
+                />
+              )}
+              {title && (
+                <h2 className={`bg-gradient-to-r from-[#1E1E2F] to-[#4A4B57] bg-clip-text text-3xl font-bold text-transparent lg:text-5xl${titleClassName ? ` ${titleClassName}` : ''}`}>
+                  {title}
+                </h2>
+              )}
+            </div>
+
+            {description && (
+              <p className="max-w-2xl text-center text-base text-[#4A4B57] lg:text-lg">
+                {description}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+      <div className={`mx-auto w-full ${compactForm ? 'max-w-5xl' : 'max-w-4xl'}${formClassName ? ` ${formClassName}` : ''}`}>
+        <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3" aria-label="Quick website accessibility check">
+          <div className="flex flex-col items-stretch gap-3 lg:flex-row lg:items-center lg:justify-center">
+            <div className={`flex flex-col overflow-hidden rounded-xl border bg-white shadow-md transition-all duration-300 sm:flex-row sm:rounded-full ${secondaryCtaLabel ? 'w-full lg:max-w-[500px]' : 'w-full'} ${inputBorderClass}`}>
+              <label htmlFor="mini-url-input" className="sr-only">Website URL for accessibility check</label>
+              <input
+                id="mini-url-input"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                type="text"
+                placeholder={placeholder}
+                className="flex-grow border-none bg-transparent px-6 py-4 text-base text-[#1E1E2F] placeholder:text-[#4A4B57] focus:outline-none focus:ring-0"
+                onBlur={() => { setFocused(false); setError(false); }}
+                onFocus={() => setFocused(true)}
+                aria-describedby={error ? 'mini-url-error' : undefined}
+                aria-invalid={error}
+              />
+              <button
+                type="submit"
+                className="min-h-[50px] px-5 py-4 font-semibold whitespace-nowrap bg-[#3D2ED6] text-white hover:bg-[#3526C0] transition-colors duration-200 sm:rounded-l-none sm:rounded-r-full"
+              >
+                {buttonText}
+              </button>
+            </div>
+
+            {secondaryCtaLabel && secondaryCtaHref && (
+              <a
+                href={secondaryCtaHref}
+                className="min-h-[50px] flex items-center justify-center rounded-xl bg-[#EEF0FF] px-6 py-4 text-center font-semibold whitespace-nowrap shadow-sm hover:shadow-md sm:rounded-full text-[#3D2ED6] no-underline"
+              >
+                {secondaryCtaLabel}
+                <ArrowRightIcon className="ml-2 h-4 w-4" />
+              </a>
+            )}
+          </div>
+
+          {error && (
+            <div className="flex items-center gap-2 rounded-lg border border-[#FF7E6B] bg-[#FFF2ED] p-3" role="alert" id="mini-url-error">
+              <span className="flex-shrink-0 font-bold text-[#FF7E6B]">!</span>
+              <p className="text-sm font-medium text-[#A63C2E]">Please enter a valid website address (e.g., example.com)</p>
+            </div>
+          )}
+
+          {helperText && (
+            <p className="mt-1 text-sm leading-relaxed text-[#6B6C7A]">{helperText}</p>
+          )}
+        </form>
+      </div>
+    </section>
+  );
+}
 
 export function FreeScanCTA({ text }) {
   return (

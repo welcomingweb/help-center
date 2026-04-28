@@ -17,7 +17,7 @@ import 'nextra-theme-docs/style.css'
 import './globals.css'
 
 const BRAND = {
-  siteName: 'Welcoming Web Help Center',
+  siteName: 'WelcomingWeb Help Center',
   domain: 'help.welcomingweb.com',
   rootUrl: 'https://help.welcomingweb.com',
   mainUrl: 'https://welcomingweb.com',
@@ -28,8 +28,8 @@ const BRAND = {
 export const metadata = {
   metadataBase: new URL(BRAND.rootUrl),
   title: {
-    default: 'Web Accessibility Tools & Documentation | Welcoming Web Help Center',
-    template: '%s | Welcoming Web Help Center'
+    default: 'Help Center — Accessibility Docs | WelcomingWeb',
+    template: '%s | WelcomingWeb Help Center'
   },
   description:
     'Official help and developer documentation for Welcoming Web - the next-gen, AI-centered accessibility platform. Learn installation, widget configuration, remediation, and compliance workflows.',
@@ -52,11 +52,11 @@ export const metadata = {
     follow: true
   },
   openGraph: {
-    title: 'Web Accessibility Tools & Documentation | Welcoming Web Help Center',
+    title: 'Help Center — Accessibility Docs | WelcomingWeb',
     description:
       'Learn how to install, configure, and use Welcoming Web widgets, tools, and AI-powered accessibility features.',
     url: BRAND.rootUrl,
-    siteName: BRAND.siteName,
+    siteName: 'WelcomingWeb Help Center',
     locale: 'en_US',
     type: 'website',
     images: [
@@ -64,19 +64,19 @@ export const metadata = {
         url: BRAND.ogImage,
         width: 1200,
         height: 630,
-        alt: 'Welcoming Web Help Center'
+        alt: 'WelcomingWeb Help Center'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Web Accessibility Tools & Documentation | Welcoming Web Help Center',
+    title: 'Help Center — Accessibility Docs | WelcomingWeb',
     description:
       'Explore support articles, developer guides, and platform documentation for Welcoming Web.',
     creator: BRAND.twitterHandle,
     images: [BRAND.ogImage]
   },
-  applicationName: 'Welcoming Web Help Center',
+  applicationName: 'WelcomingWeb Help Center',
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',
@@ -151,7 +151,7 @@ function JsonLd() {
   const org = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Welcoming Web',
+    name: 'WelcomingWeb',
     url: BRAND.mainUrl,
     logo: 'https://welcomingweb.com/brand/welcomingweb-logo.png',
     sameAs: ['https://x.com/Welcoming Web', 'https://www.linkedin.com/company/welcomingweb']
@@ -172,7 +172,7 @@ function JsonLd() {
   const collectionPage = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Welcoming Web Help Center',
+    name: 'WelcomingWeb Help Center',
     url: BRAND.rootUrl,
     description:
       'Official help and developer documentation for Welcoming Web - installation, configuration, remediation, and compliance guides.'
@@ -217,7 +217,6 @@ export default async function RootLayout({ children }) {
           search={null}
           docsRepositoryBase="https://github.com/welcomingweb/help-center/blob/main"
         >
-          <FreeScanCTAInjector />
           {children}
         </Layout>
       </body>
