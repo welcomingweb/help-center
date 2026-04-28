@@ -206,8 +206,8 @@ export default async function RootLayout({ children }) {
       </Head>
       <body>
         <InjectTagManager />
-        <InjectSearchWidget />
-        <InjectChatbotWidget />
+        {/* <InjectSearchWidget /> */}
+        {/* <InjectChatbotWidget /> */}
 
         <Layout
           banner={banner}
