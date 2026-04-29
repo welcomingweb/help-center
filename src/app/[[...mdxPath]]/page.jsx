@@ -1,6 +1,7 @@
 import { generateStaticParamsFor, importPage } from 'nextra/pages'
 import { useMDXComponents as getMDXComponents } from '../../../mdx-components'
 import HelpCenterSchema from '@components/seo/HelpCenterSchema'
+import FreeScanCTAInjector from '@components/cta/FreeScanCTAInjector'
 
 export const generateStaticParams = generateStaticParamsFor('mdxPath')
 
@@ -34,6 +35,7 @@ export default async function Page(props) {
     <Wrapper toc={toc} metadata={metadata}>
       <HelpCenterSchema mdxPath={mdxPath} metadata={metadata} />
       <MDXContent {...props} params={params} />
+      {mdxPath.length > 0 && <FreeScanCTAInjector />}
     </Wrapper>
   )
 }

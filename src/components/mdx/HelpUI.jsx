@@ -794,47 +794,37 @@ export function CTA1({
 
 
 export function CTA2({
-  title = 'Join Us Today!',
+    title = 'Join Us Today!',
   description = 'Get access to exclusive content and features by signing up.',
   buttonText = 'View details',
   buttonLink = '#',
 }) {
-	
-	const external = isExternal(buttonLink);
+  const external = isExternal(buttonLink);
 
   return (
-    <div className="bg-white text-gray-800 text-center p-8 rounded-xl shadow-xl max-w-md mx-auto border border-gray-100">
-      <div className="space-y-4 mb-6">
-        <h2 className="text-2xl font-bold">{title}</h2>
-        <p className="text-gray-600">{description}</p>
+    <div className="not-prose my-8 flex flex-col sm:flex-row items-center gap-5 rounded-2xl border border-[#E1E2EA] dark:border-[#2d3148] bg-white dark:bg-[#161929] px-6 py-5 shadow-sm">
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EEF0FF] dark:bg-[#1e2044]">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-[#3D2ED6] dark:text-[#7B6FF5]" aria-hidden="true">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
       </div>
-      
+      <div className="flex-1 text-center sm:text-left">
+        <p className="font-semibold text-[#1E1E2F] dark:text-gray-100 leading-snug">{title}</p>
+        <p className="mt-0.5 text-sm text-[#4A4B57] dark:text-gray-400 leading-snug">{description}</p>
+      </div>
       <Link
         href={buttonLink}
-		target={external ? '_blank' : undefined}
-		rel={external ? 'noopener noreferrer' : undefined}
-        className="
-          bg-gradient-to-r from-blue-500 to-blue-600 text-white
-          inline-block py-3 px-8 rounded-full font-medium 
-          transition-all duration-300 hover:opacity-90
-          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500
-          shadow-md hover:shadow-lg
-        "
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noopener noreferrer' : undefined}
+        className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-[#3D2ED6] hover:bg-[#3526C0] dark:bg-[#4F3EE8] dark:hover:bg-[#3D2ED6] px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D2ED6] no-underline"
       >
         {buttonText}
-		{external && (
-		          <svg
-		            xmlns="http://www.w3.org/2000/svg"
-		            className="inline-block ml-2 w-4 h-4"
-		            fill="none"
-		            viewBox="0 0 24 24"
-		            stroke="currentColor"
-		            strokeWidth={2}
-		          >
-		            <path strokeLinecap="round" strokeLinejoin="round" d="M14 3h7v7m0-7L10 14" />
-		            <path strokeLinecap="round" strokeLinejoin="round" d="M5 5v14h14" />
-		          </svg>
-		        )}	
+        {external && (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M14 3h7v7m0-7L10 14" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 5v14h14" />
+          </svg>
+        )}
       </Link>
     </div>
   );
@@ -918,6 +908,7 @@ export function MiniCheckSiteSection({
   secondaryCtaHref,
   helperText,
   compactForm = false,
+  compact = false,
 }) {
   const [error, setError] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -946,10 +937,10 @@ export function MiniCheckSiteSection({
   const hasHeadingContent = !hiddenTitle && (title || description || header);
 
   const inputBorderClass = focused
-    ? 'border-[#3D2ED6] shadow-lg shadow-[#3D2ED6]/20'
+    ? 'border-[#3D2ED6] shadow-lg shadow-[#3D2ED6]/20 dark:border-[#6B5EF5]'
     : error
     ? 'border-[#FF7E6B] shadow-[#FF7E6B]/20'
-    : 'border-[#E1E2EA]';
+    : 'border-[#E1E2EA] dark:border-[#374151]';
 
   return (
     <section className={`flex flex-col items-center${className ? ` ${className}` : ''}`}>
@@ -978,7 +969,7 @@ export function MiniCheckSiteSection({
             </div>
 
             {description && (
-              <p className="max-w-2xl text-center text-base text-[#4A4B57] lg:text-lg">
+              <p className="max-w-2xl text-center text-base text-[#4A4B57] dark:text-gray-300 lg:text-lg">
                 {description}
               </p>
             )}
@@ -989,7 +980,7 @@ export function MiniCheckSiteSection({
       <div className={`mx-auto w-full ${compactForm ? 'max-w-5xl' : 'max-w-4xl'}${formClassName ? ` ${formClassName}` : ''}`}>
         <form onSubmit={handleSubmit} className="flex w-full flex-col gap-3" aria-label="Quick website accessibility check">
           <div className="flex flex-col items-stretch gap-3 lg:flex-row lg:items-center lg:justify-center">
-            <div className={`flex flex-col overflow-hidden rounded-xl border bg-white shadow-md transition-all duration-300 sm:flex-row sm:rounded-full ${secondaryCtaLabel ? 'w-full lg:max-w-[500px]' : 'w-full'} ${inputBorderClass}`}>
+            <div className={`flex flex-col overflow-hidden rounded-xl border bg-white dark:bg-[#111827] shadow-md transition-all duration-300 sm:flex-row sm:rounded-full ${secondaryCtaLabel ? 'w-full lg:max-w-[500px]' : 'w-full'} ${inputBorderClass}`}>
               <label htmlFor="mini-url-input" className="sr-only">Website URL for accessibility check</label>
               <input
                 id="mini-url-input"
@@ -997,7 +988,7 @@ export function MiniCheckSiteSection({
                 onChange={(e) => setUrl(e.target.value)}
                 type="text"
                 placeholder={placeholder}
-                className="flex-grow border-none bg-transparent px-6 py-4 text-base text-[#1E1E2F] placeholder:text-[#4A4B57] focus:outline-none focus:ring-0"
+                className={`flex-grow border-none bg-transparent text-[#1E1E2F] dark:text-gray-100 placeholder:text-[#4A4B57] dark:placeholder:text-gray-500 focus:outline-none focus:ring-0 ${compact ? 'px-4 py-2.5 text-sm' : 'px-6 py-4 text-base'}`}
                 onBlur={() => { setFocused(false); setError(false); }}
                 onFocus={() => setFocused(true)}
                 aria-describedby={error ? 'mini-url-error' : undefined}
@@ -1005,7 +996,7 @@ export function MiniCheckSiteSection({
               />
               <button
                 type="submit"
-                className="min-h-[50px] px-5 py-4 font-semibold whitespace-nowrap bg-[#3D2ED6] text-white hover:bg-[#3526C0] transition-colors duration-200 sm:rounded-l-none sm:rounded-r-full"
+                className={`font-semibold whitespace-nowrap bg-[#3D2ED6] text-white hover:bg-[#3526C0] transition-colors duration-200 sm:rounded-l-none sm:rounded-r-full ${compact ? 'px-4 py-2.5 text-sm' : 'min-h-[50px] px-5 py-4'}`}
               >
                 {buttonText}
               </button>
@@ -1023,14 +1014,14 @@ export function MiniCheckSiteSection({
           </div>
 
           {error && (
-            <div className="flex items-center gap-2 rounded-lg border border-[#FF7E6B] bg-[#FFF2ED] p-3" role="alert" id="mini-url-error">
+            <div className="flex items-center gap-2 rounded-lg border border-[#FF7E6B] bg-[#FFF2ED] dark:bg-[#2d1a1a] p-3" role="alert" id="mini-url-error">
               <span className="flex-shrink-0 font-bold text-[#FF7E6B]">!</span>
-              <p className="text-sm font-medium text-[#A63C2E]">Please enter a valid website address (e.g., example.com)</p>
+              <p className="text-sm font-medium text-[#A63C2E] dark:text-[#FF9A8B]">Please enter a valid website address (e.g., example.com)</p>
             </div>
           )}
 
           {helperText && (
-            <p className="mt-1 text-sm leading-relaxed text-[#6B6C7A]">{helperText}</p>
+            <p className="mt-1 text-sm leading-relaxed text-[#6B6C7A] dark:text-gray-400">{helperText}</p>
           )}
         </form>
       </div>

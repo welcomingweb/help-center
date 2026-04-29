@@ -35,7 +35,8 @@ export default function FreeScanCTAInjector() {
       description={description}
       buttonText="Run free audit"
       hiddenIcon={true}
-      className="flex flex-col lg:flex-row items-center justify-between gap-10 bg-[#EDEEF3] p-8 mb-8 rounded-2xl"
+      compact={true}
+      className="flex flex-col lg:flex-row items-center justify-between gap-5 bg-[#EDEEF3] dark:bg-[#1e2030] px-6 py-5 mt-8 rounded-xl"
     />
   );
 }

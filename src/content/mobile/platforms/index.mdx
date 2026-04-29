@@ -1,0 +1,34 @@
+---
+title: "Mobile SDK Platforms"
+description: "Choose your platform to get started with the WelcomingWeb mobile accessibility SDK — React Native, iOS (Swift), Android (Kotlin), and Flutter all supported."
+---
+
+import { Cards } from 'nextra/components'
+import { CodeBracketIcon, DevicePhoneMobileIcon, PuzzlePieceIcon } from '@heroicons/react/24/outline'
+
+# Mobile SDK Platforms
+
+WelcomingWeb provides a native SDK for every major mobile platform. Pick yours to get started.
+
+<Cards>
+  <Cards.Card title="React Native" href="/mobile/platforms/react-native" icon={<CodeBracketIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Install via npm or yarn, configure once, wrap your screens with a HOC or hook.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="iOS (Swift)" href="/mobile/platforms/ios" icon={<DevicePhoneMobileIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Swift Package Manager. Pure Swift, zero dependencies. UIKit and SwiftUI supported.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Android (Kotlin)" href="/mobile/platforms/android" icon={<DevicePhoneMobileIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      Maven Central. Classic Views and Jetpack Compose, with three tracking modes to choose from.
+    </p>
+  </Cards.Card>
+  <Cards.Card title="Flutter" href="/mobile/platforms/flutter" icon={<PuzzlePieceIcon />}>
+    <p className="m-2 text-sm text-gray-700">
+      pub.dev as `welcomingweb_flutter_sdk`. Pure Dart. Works across every Flutter target.
+    </p>
+  </Cards.Card>
+</Cards>

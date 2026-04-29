@@ -11,7 +11,6 @@ import InjectTagManager from '@components/integration/InjectTagManager'
 import CustomFooter from '@components/layout/CustomFooter'
 import PopupModalTrigger from '@components/popup/PopupModalTrigger'
 import MobileSearchTriggerButton from '@components/search/MobileSearchTriggerButton'
-import FreeScanCTAInjector from '@components/cta/FreeScanCTAInjector'
 
 import 'nextra-theme-docs/style.css'
 import './globals.css'
