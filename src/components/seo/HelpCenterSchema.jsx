@@ -63,7 +63,7 @@ function buildBreadcrumb(path) {
   }
 }
 
-function buildContentSchema(type, title, description, url) {
+function buildContentSchema(type, title, description, url, steps) {
   const publisher = {
     '@type': 'Organization',
     '@id': `${MAIN_SITE}/#organization`,
@@ -74,7 +74,7 @@ function buildContentSchema(type, title, description, url) {
     },
   }
 
-  if (type === 'HowTo') {
+  if (type === 'HowTo' && Array.isArray(steps) && steps.length > 0) {
     return {
       '@context': 'https://schema.org',
       '@type': 'HowTo',
@@ -83,6 +83,12 @@ function buildContentSchema(type, title, description, url) {
       url,
       inLanguage: 'en',
       publisher,
+      step: steps.map((s, i) => ({
+        '@type': 'HowToStep',
+        position: i + 1,
+        name: s.name,
+        text: s.text || s.name,
+      })),
     }
   }
 
@@ -133,7 +139,10 @@ export default function HelpCenterSchema({ mdxPath, metadata }) {
     // Content page — category'ye göre tip belirle
     const category = path[0]
     const type = SCHEMA_TYPE_MAP[category] ?? 'Article'
-    schemas.push(buildContentSchema(type, title, description, url))
+    const steps = metadata?.steps
+    // HowTo requires steps; fall back to Article if none defined
+    const effectiveType = type === 'HowTo' && (!Array.isArray(steps) || steps.length === 0) ? 'Article' : type
+    schemas.push(buildContentSchema(effectiveType, title, description, url, steps))
   }
 
   // FAQPage — MDX frontmatter'dan (opsiyonel)
