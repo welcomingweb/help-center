@@ -5,9 +5,12 @@ import { getPageMap } from 'nextra/page-map'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import InjectChatbotWidget from '@components/integration/InjectChatbotWidget'
+import InjectSearchWidget from '@components/integration/InjectSearchWidget'
 import InjectTagManager from '@components/integration/InjectTagManager'
 import CustomFooter from '@components/layout/CustomFooter'
 import PopupModalTrigger from '@components/popup/PopupModalTrigger'
+import MobileSearchTriggerButton from '@components/search/MobileSearchTriggerButton'
 
 import 'nextra-theme-docs/style.css'
 import './globals.css'
@@ -131,6 +134,12 @@ const navbar = (
           Welcoming Web.com
         </Link>
 
+        <MobileSearchTriggerButton />
+
+        <div className="flex-shrink max-w-xs w-full hidden sm:block" aria-hidden="true">
+          <div id="sparc-search-container" data-mode="popup" className="w-full" />
+        </div>
+
       </div>
     </div>
   </Navbar>
@@ -197,6 +206,9 @@ export default async function RootLayout({ children }) {
       </Head>
       <body>
         <InjectTagManager />
+        {/* <InjectSearchWidget /> */}
+        {/* <InjectChatbotWidget /> */}
+
         <Layout
           banner={banner}
           navbar={navbar}
