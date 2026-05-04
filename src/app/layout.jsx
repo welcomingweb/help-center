@@ -5,12 +5,9 @@ import { getPageMap } from 'nextra/page-map'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import InjectChatbotWidget from '@components/integration/InjectChatbotWidget'
-import InjectSearchWidget from '@components/integration/InjectSearchWidget'
 import InjectTagManager from '@components/integration/InjectTagManager'
 import CustomFooter from '@components/layout/CustomFooter'
 import PopupModalTrigger from '@components/popup/PopupModalTrigger'
-import MobileSearchTriggerButton from '@components/search/MobileSearchTriggerButton'
 
 import 'nextra-theme-docs/style.css'
 import './globals.css'
@@ -20,7 +17,7 @@ const BRAND = {
   domain: 'help.welcomingweb.com',
   rootUrl: 'https://help.welcomingweb.com',
   mainUrl: 'https://welcomingweb.com',
-  twitterHandle: '@Welcoming Web',
+  twitterHandle: '@WelcomingWeb',
   ogImage: 'https://help.welcomingweb.com/og/help-center-og.png'
 }
 
@@ -79,7 +76,7 @@ export const metadata = {
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',
-    apple: '/apple-touch-icon.png'
+    apple: '/favicon.png'
   }
 }
 
@@ -134,11 +131,6 @@ const navbar = (
           Welcoming Web.com
         </Link>
 
-        <MobileSearchTriggerButton />
-
-        <div className="flex-shrink max-w-xs w-full hidden sm:block" aria-hidden="true">
-          <div id="sparc-search-container" data-mode="popup" className="w-full" />
-        </div>
       </div>
     </div>
   </Navbar>
@@ -153,7 +145,7 @@ function JsonLd() {
     name: 'WelcomingWeb',
     url: BRAND.mainUrl,
     logo: 'https://welcomingweb.com/brand/welcomingweb-logo.png',
-    sameAs: ['https://x.com/Welcoming Web', 'https://www.linkedin.com/company/welcomingweb']
+    sameAs: ['https://x.com/WelcomingWeb', 'https://www.linkedin.com/company/welcomingweb']
   }
 
   const webSite = {
@@ -205,9 +197,6 @@ export default async function RootLayout({ children }) {
       </Head>
       <body>
         <InjectTagManager />
-        {/* <InjectSearchWidget /> */}
-        {/* <InjectChatbotWidget /> */}
-
         <Layout
           banner={banner}
           navbar={navbar}

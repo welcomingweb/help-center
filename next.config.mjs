@@ -12,7 +12,7 @@ export default withNextra({
       {
         source: '/rules',
         destination: '/rules/accesskeys',
-        permanent: false,
+        permanent: true,
       },
       // Support old /help/rules paths arriving from the portal redirect
       {
