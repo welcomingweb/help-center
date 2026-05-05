@@ -21,7 +21,7 @@ const BRAND = {
   rootUrl: 'https://help.welcomingweb.com',
   mainUrl: 'https://welcomingweb.com',
   twitterHandle: '@WelcomingWeb',
-  ogImage: 'https://help.welcomingweb.com/og/help-center-og.png'
+  ogImage: 'https://welcomingweb.com/api/og?title=Help+Center+%E2%80%94+Accessibility+Docs'
 }
 
 export const metadata = {
