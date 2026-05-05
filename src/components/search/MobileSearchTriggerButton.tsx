@@ -3,7 +3,7 @@
 export default function MobileSearchTriggerButton() {
   return (
     <button
-      onClick={() => window.SearchWidget?.open?.()}
+      onClick={() => (window as any).SearchWidget?.open?.()}
       className="block sm:hidden p-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
       aria-label="Open search"
     >

@@ -10,17 +10,18 @@ export default function InjectChatbotWidget() {
     if (typeof window === 'undefined') return;
 
     const scriptId = 'chatbot-widget-script';
-    let script = document.getElementById(scriptId);
+    let script = document.getElementById(scriptId) as HTMLScriptElement | null;
     const reinitializeWidget = async () => {
 	   console.log('reinitializeWidget');
        // Now safely re-initialize
-      if (window.SearchWidget?.refresh) {
+      const sw = (window as any).SearchWidget;
+      if (sw?.refresh) {
         console.log('Refreshing ChatbotWidget...');
-        window.SearchWidget.refresh();
-      } else if (window.SearchWidget?.open) {
+        sw.refresh();
+      } else if (sw?.open) {
         // fallback in case refresh is not yet available
         console.log('Setting mode for SearchWidget...');
-        window.SearchWidget.setMode('popup'); // Default mode
+        sw.setMode('popup'); // Default mode
       } else {
         console.warn('SearchWidget not ready to refresh.');
       }
