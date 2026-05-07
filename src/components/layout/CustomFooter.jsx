@@ -61,7 +61,7 @@ const navigation = {
   ],
   compliance: ComplianceStandards.map((cs) => ({
     name: cs.value,
-    href: `${MAIN_SITE_URL}/compliance-monitoring/${cs.key.toLowerCase().replace(/ /g, "_")}`,
+    href: `${MAIN_SITE_URL}/compliance-monitoring/${cs.key.toLowerCase().replace(/ /g, "-")}`,
   })),
   social: [
     {
